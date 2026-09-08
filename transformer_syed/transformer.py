@@ -6,7 +6,7 @@ class Transformer():
     
     def linear(self):
 
-    def feedforward(self):
+    def feedforward(self, numEmbeddings):
 
     def softmax(self,X):
         for i in range(len(X)):
@@ -28,4 +28,3 @@ def setGPUInTorch():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
     return device
-
