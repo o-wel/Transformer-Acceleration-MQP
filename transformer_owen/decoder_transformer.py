@@ -29,7 +29,7 @@ class PositionalEncoding(nn.Module):
         super().__init__()
         self.d_model = d_model
         self.seq = seq
-        self.dropout = dropout
+        self.dropout = nn.Dropout(dropout)
         
         encodings = torch.zeros(seq, d_model) # zeros of shape (seq, d_model)
         position = torch.arange(0, seq, dtype=torch.float).unsqueeze(1) # vals 0-seq, shape (seq, 1)
@@ -108,7 +108,7 @@ class MultiHeadAttention(nn.Module):
         attention_scores = torch.matmul(query, key.transpose(-2,-1)) / math.sqrt(self.d_k)
         
         if mask is not None:
-            attention_scores.masked_fill_(mask==0, -1e9)
+            attention_scores = attention_scores + mask
             
         attention_scores = attention_scores.softmax(dim=-1)
         
@@ -168,7 +168,6 @@ class ProjectionLayer(nn.Module):
     def __init__(self, d_model, vocab_size):
         super().__init__()
         self.proj = nn.Linear(d_model, vocab_size)
-        self.proj = nn.Softmax(self.proj, dim=1)
         
     def forward(self, x):
         return self.proj(x)
@@ -189,6 +188,11 @@ class Transformer(nn.Module):
     
     def project(self, x):
         return self.projection_layer(x)
+    
+    def forward(self, x, mask):
+        decoder_output = self.decode(x, mask)
+        
+        return self.project(decoder_output)
     
 
 def build_transformer(tgt_vocab_size: int,
