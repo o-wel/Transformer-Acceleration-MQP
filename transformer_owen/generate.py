@@ -7,6 +7,7 @@ from torch.utils.data import DataLoader
 from torch.utils.data import Dataset, Subset
 from tokenizer import get_vocab_info, decode, encode
 from decoder_transformer import build_transformer
+from train import create_causal_mask
 
 
 def generate(model, context, seq_length, max_new_tokens):
@@ -16,7 +17,9 @@ def generate(model, context, seq_length, max_new_tokens):
     for _ in range(max_new_tokens):
         model_context = context[:, -seq_length:]
         
-        output = model(model_context, None)
+        mask = create_causal_mask(model_context.shape[1], device)
+        
+        output = model(model_context, mask.unsqueeze(0))
 
         output = output[:, -1, :]
         probs = torch.softmax(output, dim=1)
@@ -24,6 +27,8 @@ def generate(model, context, seq_length, max_new_tokens):
         
         context = torch.cat((context, next), dim=-1)
         token_list.append(next.item())
+        
+        print(decoder([next.item()]), end="", flush=True)
         
     return token_list
 
@@ -64,10 +69,10 @@ if __name__ == '__main__':
     with torch.no_grad():
         while True:
             prompt = input("Prompt the model: ")
+            print("-------------------")
             val = encoder(prompt)
             val = torch.tensor(val).to(device)
                 
-            output = generate(model, val, seq_length, max_new_tokens=300)
+            output = generate(model, val, seq_length, max_new_tokens=1000)
+            print("-------------------")
             
-            text_output = decoder(output)
-            print(text_output)
