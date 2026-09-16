@@ -42,11 +42,13 @@ if __name__ == '__main__':
     encoder = encode(chars)
     decoder = decode(chars)
     
+    relative_path = os.path.dirname(os.path.relpath(__file__))
+    
     device = torch.device('cuda' if torch.cuda.is_available() else "cpu")
     print("Running on device " + str(device))
     
      # Transformer Hyperparameters
-    seq_length = 128 # context window from dataset per batch
+    seq_length = 256 # context window from dataset per batch
     num_heads = 8 # default is 8
     num_dblocks = 6 # decoder block layers, default is 6
     d_model = 512 # input embedding length, default is 512
@@ -62,7 +64,7 @@ if __name__ == '__main__':
                                 d_ff=d_ff
                                 ).to(device)
     
-    state_dict = torch.load("models/epoch10-turingWeights.pth")
+    state_dict = torch.load(os.path.join(relative_path, "models/transformer_epoch0.pth"))
     model.load_state_dict(state_dict)
     model.eval()
     
@@ -74,5 +76,5 @@ if __name__ == '__main__':
             val = torch.tensor(val).to(device)
                 
             output = generate(model, val, seq_length, max_new_tokens=1000)
-            print("-------------------")
+            print("\n-------------------")
             
