@@ -4,19 +4,14 @@ import time
 import torch
 import torch.nn as nn
 import torch.optim as optim
+import matplotlib.pyplot as plt
 from torch.utils.data import DataLoader
 from torch.utils.data import Dataset, Subset
 from decoder_transformer import build_transformer
 from tokenizer import encode, get_vocab_info
 
-def get_training_data(path):
-    # download the tiny shakespeare dataset
-    input_file_path = os.path.join(path, 'input.txt')
-    if not os.path.exists(input_file_path):
-        data_url = 'https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt'
-        with open(input_file_path, 'w', encoding='utf-8') as f:
-            f.write(requests.get(data_url).text)
-        print("Wrote tiny shakespeare dataset to " + os.path.join(os.getcwd(), input_file_path))
+# set up path for logging and saving results
+relative_path = os.path.dirname(os.path.relpath(__file__))
 
 
 def create_causal_mask(seq_len, device):
@@ -43,19 +38,13 @@ class textDataset(Dataset):
 
 if __name__ == '__main__':
     
-    # set up training data and tokenizer
-    download_path = "training_data"
-    get_training_data(download_path)
-    
-    with open("training_data/input.txt", "r") as f:
+    # open training data
+    with open(os.path.join(relative_path, "training_data/input.txt"), "r") as f:
         text = f.read()
         
     vocab_size, chars = get_vocab_info(text)
     
     encoder = encode(chars)
-    
-    # set up path for logging and saving results
-    relative_path = os.path.dirname(os.path.relpath(__file__))
     
     # set up cuda, give exit option if not available
     device = torch.device('cuda' if torch.cuda.is_available() else "cpu")
@@ -71,7 +60,7 @@ if __name__ == '__main__':
     weight_decay = 1e-5
     
     # Transformer Hyperparameters
-    seq_length = 8 # context window from dataset per batch
+    seq_length = 4 # context window from dataset per batch
     num_heads = 2 # default is 8
     num_dblocks = 2 # decoder block layers, default is 6
     d_model = 128 # input embedding length, default is 512
@@ -102,6 +91,8 @@ if __name__ == '__main__':
         os.mkdir(log_path)
     with open(os.path.join(log_path, f"transformer_seq{seq_length}_H{num_heads}_N{num_dblocks}.txt"), "w+") as f:
         
+        losses = []
+        
         # main training loop
         start_time = time.perf_counter()
         for epoch in range(epochs):
@@ -126,19 +117,30 @@ if __name__ == '__main__':
                 optimizer.step()
                 epoch_loss += loss.item()
             
+            # getting model time stats and loss
             epoch_loss = epoch_loss / len(dataloader)
             print(f"Epoch {epoch} loss: {epoch_loss}", file=f)
+            print(f"Epoch {epoch} loss: {epoch_loss}")
             checkpoint_time = time.perf_counter() - start_time
             print(f"Elapsed time: {checkpoint_time:.6f} secs", file=f)
+            print(f"Elapsed time: {checkpoint_time:.6f} secs")
+            
+            # add to list for graphing
+            losses.append(epoch_loss)
             
             # save checkpoint every epoch
             checkpoint_path = os.path.join(relative_path, f"training_checkpoints/transformer_seq{seq_length}_H{num_heads}_N{num_dblocks}")
             if not os.path.exists(checkpoint_path):
                     os.makedirs(checkpoint_path, exist_ok=True)
             torch.save(model.state_dict(), os.path.join(checkpoint_path, f"transformer_epoch{epoch}.pth"))
-                    
+
         final_time = time.perf_counter() - start_time
         print(f"\nFinal training time: {final_time:.6f} secs", file=f)
+                
+        plt.plot([i for i in range(0, epochs)], losses)
+        plt.xlabel("Epoch")
+        plt.ylabel("Loss")
+        plt.savefig(os.path.join(log_path, f"transformer_seq{seq_length}_H{num_heads}_N{num_dblocks}.png"))
         
         save_path = os.path.join(relative_path, "models")
         if not os.path.exists(save_path):
