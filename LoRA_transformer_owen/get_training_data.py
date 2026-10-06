@@ -40,14 +40,18 @@ if __name__ == '__main__':
     with open(os.path.join(relative_path, "training_data/input.txt"), "r") as f:
         text = f.read()
     
+    text_len = len(text)
     vocab_size, chars = get_vocab_info(text)
     print(chars)
+    print(text_len)
     
      # open training data
     with open(os.path.join(relative_path, "training_data/web_data.txt"), "r", encoding="utf-8") as f:
         web_text = f.read()
-        
+    
+    # filters new data to be same length as other dataset, reduce vocab to same as other
     filtered = "".join(ch for ch in web_text if ch in chars)
+    filtered = filtered[:text_len]
     
     # filter new dataset to match old one
     with open(os.path.join(relative_path, "training_data/web_data_clean.txt"), "w") as f:

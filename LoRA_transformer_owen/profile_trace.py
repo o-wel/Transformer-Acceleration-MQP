@@ -22,7 +22,7 @@ from torch.profiler import (
 )
 from torch.utils.data import DataLoader
 
-from decoder_transformer import build_transformer
+from LoRA_transformer import build_transformer
 from tokenizer import encode, get_vocab_info
 from train import create_causal_mask, textDataset
 
@@ -75,6 +75,8 @@ def profile_training(args, device):
         h=args.num_heads,
         dropout=args.dropout,
         d_ff=args.d_ff,
+        lora_a=4,
+        lora_r=4
     ).to(device)
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(

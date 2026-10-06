@@ -47,6 +47,13 @@ def generate(model, context, seq_length, max_new_tokens):
     print(f"TTFT: {ttft:.6f} sec")
     print(f"TPS: {tps:.6f} tokens/sec")
     print(f"SPT: {1/tps:.6f} sec")
+        
+    # Track exact memory usage
+    current_mem = torch.cuda.memory_allocated()       # Bytes currently occupied by live tensors
+    peak_mem = torch.cuda.max_memory_allocated()      # Peak bytes occupied since the program/reset began
+
+    print(f"Current Tensor Allocation: {current_mem / 1024**2:.2f} MB")
+    print(f"Peak Tensor Allocation: {peak_mem / 1024**2:.2f} MB")
     
     return token_list
 

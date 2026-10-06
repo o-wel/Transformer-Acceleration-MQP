@@ -48,6 +48,13 @@ def generate(model, context, seq_length, max_new_tokens):
     print(f"TPS: {tps:.6f} tokens/sec")
     print(f"SPT: {1/tps:.6f} sec")
     
+    # Track exact memory usage
+    current_mem = torch.cuda.memory_allocated()       # Bytes currently occupied by live tensors
+    peak_mem = torch.cuda.max_memory_allocated()      # Peak bytes occupied since the program/reset began
+
+    print(f"Current Tensor Allocation: {current_mem / 1024**2:.2f} MB")
+    print(f"Peak Tensor Allocation: {peak_mem / 1024**2:.2f} MB")
+    
     return token_list
 
 
@@ -72,8 +79,8 @@ if __name__ == '__main__':
     d_model = 512 # input embedding length, default is 512
     dropout = 0.1 # default of 0.1
     d_ff = 2048 # default of 2048
-    lora_r = 1 # LoRA rank
-    lora_a = 1 # LoRA alpha
+    lora_r = 4 # LoRA rank
+    lora_a = 4 # LoRA alpha
     
     model = build_transformer(tgt_vocab_size=vocab_size, 
                                 tgt_seq=seq_length,
@@ -86,7 +93,7 @@ if __name__ == '__main__':
                                 lora_r=lora_r
                                 ).to(device)
     
-    state_dict = torch.load(os.path.join(relative_path, "models/LoRA_seq128_H8_N6.pth")) #transformer_seq128_H8_N6.pth
+    state_dict = torch.load(os.path.join(relative_path, "models/LoRA_seq128_H8_N6_R4_A4.pth")) #transformer_seq128_H8_N6.pth
     model.load_state_dict(state_dict)
     model.eval()
     

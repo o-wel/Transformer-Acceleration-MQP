@@ -49,14 +49,14 @@ if __name__ == '__main__':
     # set up cuda, give exit option if not available
     device = torch.device('cuda' if torch.cuda.is_available() else "cpu")
     print("Running on device " + str(device))
-    cont = input("Continue? Y/N\n")
-    if (cont.lower() != "y"):
-        exit()
+    # cont = input("Continue? Y/N\n")
+    # if (cont.lower() != "y"):
+    #     exit()
     
     # Training Hyperparameters
     batch_size = 16
     learning_rate = 0.001
-    epochs = 1
+    epochs = 10
     weight_decay = 1e-5
     
     # Transformer Hyperparameters
@@ -98,6 +98,8 @@ if __name__ == '__main__':
         for epoch in range(epochs):
             model.train()
             epoch_loss = 0
+            correct_tokens = 0
+            total_tokens = 0
             
             for batch_i, (x, y) in enumerate(dataloader):
                 if batch_i % batch_size == 0:
@@ -116,10 +118,18 @@ if __name__ == '__main__':
                 loss.backward()
                 optimizer.step()
                 epoch_loss += loss.item()
+                
+                predictions = outputs.argmax(dim=-1)
+                correct_tokens += (predictions == y).sum().item()
+                total_tokens += y.numel()
             
             # getting model time stats and loss
             epoch_loss = epoch_loss / len(dataloader)
+            accuracy = correct_tokens / total_tokens
+            
             print(f"Epoch {epoch} loss: {epoch_loss}", file=f)
+            print(f"Epoch {epoch} accuracy: {accuracy:.4%}", file=f)
+            
             print(f"Epoch {epoch} loss: {epoch_loss}")
             checkpoint_time = time.perf_counter() - start_time
             print(f"Elapsed time: {checkpoint_time:.6f} secs", file=f)
