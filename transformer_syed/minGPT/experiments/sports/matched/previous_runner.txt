@@ -1,0 +1,225 @@
+"""FP32 LoRA adaptation to unseen match questions, with validation-only selection."""
+import argparse
+import hashlib
+import json
+import random
+import time
+from pathlib import Path
+
+import torch
+from transformers import GPT2Tokenizer
+from mingpt.model import GPT
+from mingpt.measurement import ChangeAudit, parameter_counts, cuda_memory
+from lora_experiment import prompt, encode, load_rows, scales
+from experiments.sports.scoring import score, aggregate
+
+
+def write(path, data):
+    path.write_text(json.dumps(data,indent=2))
+
+
+@torch.no_grad()
+def nll(model, data, device, batch_size):
+    model.eval()
+    total, tokens = 0., 0
+    for start in range(0,len(data),batch_size):
+        batch=data[start:start+batch_size]
+        x,y=(torch.stack([r[i] for r in batch]).to(device) for i in range(2))
+        n=int((y!=-1).sum())
+        total+=model(x,y)[1].item()*n
+        tokens+=n
+    return total/tokens
+
+
+@torch.no_grad()
+def generate_batch(model, tokenizer, questions, device, new_tokens):
+    """Right padding is strictly after each real prefix; causal attention hides it."""
+    model.eval()
+    ids=[tokenizer.encode(prompt(q)) for q in questions]
+    starts=[len(x) for x in ids]
+    width=max(starts)+new_tokens
+    if width>model.block_size:
+        raise ValueError('Prompt exceeds model context')
+    x=torch.full((len(ids),width),tokenizer.eos_token_id,dtype=torch.long,device=device)
+    for i,row in enumerate(ids):
+        x[i,:len(row)]=torch.tensor(row,device=device)
+    lengths=torch.tensor(starts,device=device)
+    alive=torch.ones(len(ids),dtype=torch.bool,device=device)
+    indices=torch.arange(len(ids),device=device)
+    for _ in range(new_tokens):
+        logits=model(x[:,:int(lengths.max())])[0]
+        nxt=logits[indices,lengths-1].argmax(-1)
+        x[indices[alive],lengths[alive]]=nxt[alive]
+        lengths+=alive.long()
+        alive &= nxt!=tokenizer.eos_token_id
+        if not bool(alive.any()):
+            break
+    return [tokenizer.decode(x[i,start:int(lengths[i])].tolist(),skip_special_tokens=True).split('\nUser:')[0].strip() for i,start in enumerate(starts)]
+
+
+def evaluate_outputs(model, tokenizer, rows, a):
+    outputs=[]
+    for start in range(0,len(rows),a.batch_size):
+        batch=rows[start:start+a.batch_size]
+        texts=generate_batch(model,tokenizer,[r['question'] for r in batch],a.device,a.new_tokens)
+        for row,text in zip(batch,texts):
+            outputs.append(dict(match_id=row['match_id'],kind=row['kind'],question=row['question'],
+                                reference=row['answer'],output=text,scores=score(row,text)))
+    metrics=aggregate(outputs)
+    metrics['by_kind']={kind:aggregate([r for r in outputs if r['kind']==kind]) for kind in ['winner','halftime','comeback']}
+    return dict(metrics=metrics,outputs=outputs)
+
+
+def adapter(model):
+    return {n:p.detach().cpu().clone() for n,p in model.named_parameters() if p.requires_grad}
+
+
+def main():
+    p=argparse.ArgumentParser(description=__doc__)
+    p.add_argument('--out',required=True)
+    p.add_argument('--steps',type=int,default=1200)
+    p.add_argument('--seed',type=int,default=42)
+    p.add_argument('--batch-size',type=int,default=8)
+    p.add_argument('--length',type=int,default=128)
+    p.add_argument('--rank',type=int,default=4)
+    p.add_argument('--alpha',type=float,default=8)
+    p.add_argument('--lr',type=float,default=0.001)
+    p.add_argument('--eval-every',type=int,default=300)
+    p.add_argument('--audit-every',type=int,default=300)
+    p.add_argument('--new-tokens',type=int,default=40)
+    p.add_argument('--device',default='cuda')
+    p.add_argument('--full',action='store_true',help='Training memory reference; no test-quality comparison')
+    a=p.parse_args()
+    if min(a.steps,a.batch_size,a.length,a.eval_every,a.audit_every,a.new_tokens)<1:
+        p.error('Sizes must be positive')
+    out=Path(a.out)
+    if out.exists():
+        raise FileExistsError(f'{out} already exists; preserve prior runs')
+    out.mkdir(parents=True)
+    torch.set_num_threads(4)
+    torch.manual_seed(a.seed)
+    random.seed(a.seed)
+    torch.backends.cuda.matmul.allow_tf32=False
+    torch.backends.cudnn.allow_tf32=False
+    tokenizer=GPT2Tokenizer.from_pretrained('gpt2')
+    root=Path('experiments/sports')
+    train_rows=load_rows(root/'train.jsonl')
+    val_rows=load_rows(root/'validation.jsonl')
+    train=encode(train_rows,tokenizer,a.length)
+    val=encode(val_rows,tokenizer,a.length)
+    model=GPT.from_pretrained('gpt2').float().eval()
+    base_counts=parameter_counts(model)
+    probe=train[0][0][:48].unsqueeze(0)
+    with torch.no_grad():
+        base_logits=model(probe)[0]
+    if not a.full:
+        model.enable_lora(a.rank,a.alpha)
+    with torch.no_grad():
+        torch.testing.assert_close(model(probe)[0],base_logits,rtol=0,atol=0)
+    del base_logits,probe
+    assert all(p.dtype==torch.float32 for p in model.parameters())
+    audit=ChangeAudit(model)
+    model.to(a.device)
+    optimizer=torch.optim.AdamW([p for p in model.parameters() if p.requires_grad],lr=a.lr,weight_decay=0.)
+    report=dict(config=vars(a),torch_version=str(torch.__version__),cuda_version=torch.version.cuda,
+                gpu=torch.cuda.get_device_name() if a.device=='cuda' else None,
+                dtype='float32',tf32=False,parameters=parameter_counts(model),base_parameters=base_counts,
+                initial_model_memory=cuda_memory(a.device),
+                data_sha256={str(f):hashlib.sha256(f.read_bytes()).hexdigest() for f in root.glob('*.jsonl')},
+                source_sha256={str(f):hashlib.sha256(f.read_bytes()).hexdigest() for f in [Path('sports_experiment.py'),Path('lora_experiment.py'),Path('mingpt/model.py'),Path('mingpt/measurement.py'),root/'data.py',root/'scoring.py']},
+                history=[],validation_history=[],memory_windows=[])
+    best=float('inf')
+    best_step=None
+    step_times=[]
+    torch.manual_seed(a.seed)
+    random.seed(a.seed)
+    if a.device=='cuda':
+        torch.cuda.empty_cache()
+        torch.cuda.reset_peak_memory_stats()
+    start_wall=time.perf_counter()
+    for step in range(1,a.steps+1):
+        batch=random.choices(train,k=a.batch_size)
+        x,y=(torch.stack([r[i] for r in batch]).to(a.device) for i in range(2))
+        model.train()
+        if a.device=='cuda': torch.cuda.synchronize()
+        start=time.perf_counter()
+        optimizer.zero_grad(set_to_none=True)
+        loss=model(x,y)[1]
+        loss.backward()
+        torch.nn.utils.clip_grad_norm_([p for p in model.parameters() if p.requires_grad],1.,error_if_nonfinite=True)
+        optimizer.step()
+        if a.device=='cuda': torch.cuda.synchronize()
+        step_times.append(time.perf_counter()-start)
+        if step in (1,40):
+            report['gradient_bytes']=sum(p.grad.numel()*p.grad.element_size() for p in model.parameters() if p.grad is not None)
+            report[f'training_memory_through_step_{step}']=cuda_memory(a.device)
+        if step==1 or step%a.audit_every==0 or step==a.steps:
+            changes=audit.measure(model)
+            write(out/f'changes-{step:04d}.json',changes)
+            entry=dict(step=step,train_loss=loss.item(),changed_elements=changes['changed_elements'],frozen_changed_elements=changes['frozen_changed_elements'])
+            report['history'].append(entry)
+            print(json.dumps(entry),flush=True)
+        if step%a.eval_every==0 or step==a.steps:
+            report['memory_windows'].append(cuda_memory(a.device))
+            if not a.full:
+                validation=nll(model,val,a.device,a.batch_size)
+                report['validation_history'].append(dict(step=step,nll=validation))
+                if report['history'][-1]['step']==step:
+                    report['history'][-1]['validation_nll']=validation
+                print(f'validation step={step} nll={validation:.6f}',flush=True)
+                if validation<best:
+                    best,best_step=validation,step
+                    torch.save(dict(base='gpt2',rank=a.rank,alpha=a.alpha,step=step,adapter=adapter(model)),out/'adapter.pt')
+            write(out/'progress.json',report)
+            optimizer.zero_grad(set_to_none=True)
+            if a.device=='cuda':
+                torch.cuda.empty_cache()
+                torch.cuda.reset_peak_memory_stats()
+    report['training_wall_seconds']=time.perf_counter()-start_wall
+    report['training_step_seconds']=sum(step_times)
+    report['step_seconds']=step_times
+    report['warm_training_steps_per_second']=(len(step_times)-10)/sum(step_times[10:]) if len(step_times)>10 else None
+    report['timing_scope']='Synchronized forward/backward/clipping/optimizer. Excludes data transfer, audits and validation. Warm throughput excludes first 10 steps.'
+    report['training_peak_allocated_bytes']=max(m['peak_allocated_bytes'] for m in report['memory_windows']) if a.device=='cuda' else None
+    report['training_peak_reserved_bytes']=max(m['peak_reserved_bytes'] for m in report['memory_windows']) if a.device=='cuda' else None
+    report['optimizer_tensor_bytes']=sum(v.numel()*v.element_size() for state in optimizer.state.values() for v in state.values() if torch.is_tensor(v))
+    report['final_changes']={k:v for k,v in changes.items() if k!='per_tensor'}
+    if not a.full:
+        report['selected_step']=best_step
+        report['selected_validation_nll']=best
+        checkpoint=torch.load(out/'adapter.pt',map_location='cpu',weights_only=True)
+        model.load_state_dict(checkpoint['adapter'],strict=False)
+        selected_changes=audit.measure(model)
+        write(out/'selected-changes.json',selected_changes)
+        report['selected_changes']={k:v for k,v in selected_changes.items() if k!='per_tensor'}
+        # The test outputs are evaluated only after the validation-selected checkpoint is fixed.
+        test_rows=load_rows(root/'test.jsonl')
+        cf_rows=load_rows(root/'counterfactual.jsonl')
+        test=encode(test_rows,tokenizer,a.length)
+        training_answers={r['answer'] for r in train_rows}
+        report['reference_answers_seen_in_training']=sum(r['answer'] in training_answers for r in test_rows)
+        for enabled,name in [(False,'base'),(True,'lora')]:
+            scales(model,enabled)
+            result=evaluate_outputs(model,tokenizer,test_rows,a)
+            counter=evaluate_outputs(model,tokenizer,cf_rows,a)
+            result['test_nll']=nll(model,test,a.device,a.batch_size)
+            result['counterfactual_metrics']=counter['metrics']
+            result['counterfactual_outputs']=counter['outputs']
+            result['paired_primary_accuracy']=sum(x['scores']['primary_correct'] and y['scores']['primary_correct'] for x,y in zip(result['outputs'],counter['outputs']))/len(test_rows)
+            result['paired_fields_accuracy']=sum(x['scores']['fields_correct'] and y['scores']['fields_correct'] for x,y in zip(result['outputs'],counter['outputs']))/len(test_rows)
+            result['outputs_exactly_seen_in_training']=sum(r['output'] in training_answers for r in result['outputs'])
+            report[name]=result
+            print(name,json.dumps(result['metrics']),flush=True)
+        scales(model,True)
+        # Check batched decoding against independent single-example decoding on a fixed subset.
+        for row,stored in zip(test_rows[:3],report['lora']['outputs'][:3]):
+            single=generate_batch(model,tokenizer,[row['question']],a.device,a.new_tokens)[0]
+            if single!=stored['output']:
+                raise RuntimeError('Batched and single-example greedy outputs disagree')
+        report['batch_generation_checked']=True
+    write(out/'report.json',report)
+    print(f'Saved {out}/report.json',flush=True)
+
+
+if __name__=='__main__':
+    main()

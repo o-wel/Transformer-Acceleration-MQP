@@ -1,0 +1,54 @@
+{
+  "protocol": "Two learning rates per method, seed 42, 1200 steps each. Select by minimum validation NLL; then evaluate and run seeds 43/44. No test-guided selection.",
+  "rates": [
+    0.001,
+    0.0001
+  ],
+  "methods": {
+    "lora": {
+      "candidates": [
+        {
+          "path": "out/matched-lora-lr0.001-seed42",
+          "lr": 0.001,
+          "validation_nll": 0.028532958432369256,
+          "step": 1200
+        },
+        {
+          "path": "out/matched-lora-lr0.0001-seed42",
+          "lr": 0.0001,
+          "validation_nll": 0.07750300781092852,
+          "step": 900
+        }
+      ],
+      "selected_lr": 0.001,
+      "runs": {
+        "42": "out/matched-lora-lr0.001-seed42",
+        "43": "out/matched-lora-seed43",
+        "44": "out/matched-lora-seed44"
+      }
+    },
+    "full": {
+      "candidates": [
+        {
+          "path": "out/matched-full-lr0.001-seed42",
+          "lr": 0.001,
+          "validation_nll": 0.1501522661169614,
+          "step": 900
+        },
+        {
+          "path": "out/matched-full-lr0.0001-seed42",
+          "lr": 0.0001,
+          "validation_nll": 0.049477303420633445,
+          "step": 1200
+        }
+      ],
+      "selected_lr": 0.0001,
+      "runs": {
+        "42": "out/matched-full-lr0.0001-seed42",
+        "43": "out/matched-full-seed43",
+        "44": "out/matched-full-seed44"
+      }
+    }
+  },
+  "complete": true
+}

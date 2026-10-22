@@ -1,0 +1,156 @@
+{
+  "config": {
+    "out": "out/matched-full-seed43",
+    "steps": 1200,
+    "seed": 43,
+    "batch_size": 8,
+    "length": 128,
+    "rank": 4,
+    "alpha": 8,
+    "lr": 0.0001,
+    "eval_every": 300,
+    "audit_every": 300,
+    "new_tokens": 40,
+    "device": "cuda",
+    "full": true,
+    "skip_test": false,
+    "evaluate_only": false
+  },
+  "torch_version": "2.14.0+cu130",
+  "cuda_version": "13.0",
+  "gpu": "NVIDIA A30",
+  "initial_base_sha256": "b049a944e6c6c7bfbcdcdcd8abe49fd5636b53b751e08a04f4584c98178bd323",
+  "dtype": "float32",
+  "tf32": false,
+  "parameters": {
+    "total": 163037184,
+    "trainable": 163037184,
+    "frozen": 0,
+    "trainable_percent": 100.0,
+    "parameter_bytes": 652148736,
+    "trainable_parameter_bytes": 652148736,
+    "buffer_bytes": 50331648
+  },
+  "base_parameters": {
+    "total": 163037184,
+    "trainable": 163037184,
+    "frozen": 0,
+    "trainable_percent": 100.0,
+    "parameter_bytes": 652148736,
+    "trainable_parameter_bytes": 652148736,
+    "buffer_bytes": 50331648
+  },
+  "initial_model_memory": {
+    "allocated_bytes": 707487744,
+    "reserved_bytes": 731906048,
+    "peak_allocated_bytes": 707487744,
+    "peak_reserved_bytes": 731906048
+  },
+  "data_sha256": {
+    "experiments/sports/train.jsonl": "0974785a47121aff9ab0a9bf6906a5380184a446da94a8e5a53fefd81b8fd004",
+    "experiments/sports/test.jsonl": "2d2a28bdd49b7ec0321112e5eccf7ba1e7adeae41207c7c485035fc6d1d1f72e",
+    "experiments/sports/counterfactual.jsonl": "d4b4c780d48326e69d46e2f5d5775119ffecefa04963b4aa5cdcdf9693ed55d1",
+    "experiments/sports/validation.jsonl": "a186486d238c3de1b2fcb06bc56cd499908f325334f04800a4dca90e2b8baff8"
+  },
+  "source_sha256": {
+    "sports_experiment.py": "c41c5e655d21f57f641693901e86b7036d2902e308f0a74437e97b8c8be1bc84",
+    "lora_experiment.py": "bc4a1452e68842d994580c9d59cde01258b5c1f1e5a8ed786c40baa0dab74d1e",
+    "mingpt/model.py": "81d28525c812608af141e82a681f34a1a3b7c217931284f9f22be135557c6f74",
+    "mingpt/measurement.py": "8e075d50213171cd316d467257c93b1faa7fadf605b45a66ed3d0b5d536f3cc2",
+    "experiments/sports/data.py": "fc1b53aed5f860a44fe6f6ddb5654cd0c8f5dfd3cb6f25708076c17f5639fae5",
+    "experiments/sports/scoring.py": "dd9123a113ee8ea0baa87ffbd8f39b23508cdf65e46e4b3f630e1e5d78a466bc"
+  },
+  "history": [
+    {
+      "step": 1,
+      "train_loss": 3.7908270359039307,
+      "changed_elements": 123313019,
+      "frozen_changed_elements": 0
+    },
+    {
+      "step": 300,
+      "train_loss": 0.07133559882640839,
+      "changed_elements": 123741622,
+      "frozen_changed_elements": 0,
+      "validation_nll": 0.08379313609694228
+    },
+    {
+      "step": 600,
+      "train_loss": 0.06368216127157211,
+      "changed_elements": 123790322,
+      "frozen_changed_elements": 0,
+      "validation_nll": 0.07168631735286372
+    },
+    {
+      "step": 900,
+      "train_loss": 0.10306855291128159,
+      "changed_elements": 123821895,
+      "frozen_changed_elements": 0,
+      "validation_nll": 0.13479524652010824
+    },
+    {
+      "step": 1200,
+      "train_loss": 0.012506606988608837,
+      "changed_elements": 123826232,
+      "frozen_changed_elements": 0,
+      "validation_nll": 0.05356362452259161
+    }
+  ],
+  "validation_history": [
+    {
+      "step": 300,
+      "nll": 0.08379313609694228
+    },
+    {
+      "step": 600,
+      "nll": 0.07168631735286372
+    },
+    {
+      "step": 900,
+      "nll": 0.13479524652010824
+    },
+    {
+      "step": 1200,
+      "nll": 0.05356362452259161
+    }
+  ],
+  "memory_windows": [
+    {
+      "allocated_bytes": 2702146048,
+      "reserved_bytes": 4257218560,
+      "peak_allocated_bytes": 3928975360,
+      "peak_reserved_bytes": 4257218560
+    },
+    {
+      "allocated_bytes": 2701228544,
+      "reserved_bytes": 4041211904,
+      "peak_allocated_bytes": 3927926784,
+      "peak_reserved_bytes": 4041211904
+    },
+    {
+      "allocated_bytes": 2701228544,
+      "reserved_bytes": 4041211904,
+      "peak_allocated_bytes": 3927926784,
+      "peak_reserved_bytes": 4041211904
+    },
+    {
+      "allocated_bytes": 2701228544,
+      "reserved_bytes": 4041211904,
+      "peak_allocated_bytes": 3927926784,
+      "peak_reserved_bytes": 4041211904
+    }
+  ],
+  "gradient_bytes": 652148736,
+  "training_memory_through_step_1": {
+    "allocated_bytes": 2705278464,
+    "reserved_bytes": 3632267264,
+    "peak_allocated_bytes": 3367677440,
+    "peak_reserved_bytes": 3632267264
+  },
+  "training_memory_through_step_40": {
+    "allocated_bytes": 2702146048,
+    "reserved_bytes": 4257218560,
+    "peak_allocated_bytes": 3928975360,
+    "peak_reserved_bytes": 4257218560
+  }
+}

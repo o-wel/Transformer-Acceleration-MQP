@@ -1,0 +1,93 @@
+Loading python/3.12.9/oegpall
+  Loading requirement: gcc-runtime/13.2.0/yimvxxm bzip2/1.0.8/itttwfv
+    gcc-runtime/13.2.0/s3f7i6x libmd/1.0.4/ngvfltj libbsd/0.12.1/6of6olc
+    expat/2.6.2/zoq445h ncurses/6.4/zqsx2w2 readline/8.2/hmsgdsx
+    gdbm/1.23/gtrssid libiconv/1.17/pmxhi4x xz/5.4.6/uxouxrg
+    zlib-ng/2.1.5/uctcqfl libxml2/2.10.3/vdqe2g3 pigz/2.8/pmmdaqf
+    zstd/1.5.5/juuobg2 tar/1.34/5prin2y gettext/0.22.4/iy5z4el
+    libffi/3.4.4/vqf2avv libxcrypt/4.4.35/zvatbxx openssl/3.4.0/pholr53
+    sqlite/3.43.2/o22u32h util-linux-uuid/2.38.1/mse45hb
+test_automatic (test_flash_attention.TestAttention.test_automatic) ... number of parameters: 0.01M
+number of parameters: 0.01M
+ok
+test_explicit_errors (test_flash_attention.TestAttention.test_explicit_errors) ... number of parameters: 0.01M
+ok
+test_flash (test_flash_attention.TestAttention.test_flash) ... number of parameters: 0.01M
+number of parameters: 0.01M
+ok
+test_math (test_flash_attention.TestAttention.test_math) ... number of parameters: 0.01M
+number of parameters: 0.01M
+ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 3.491s
+
+OK
+number of parameters: 124.44M
+PARITY pretrained {'eager': {'max_abs_error': 0.0, 'mean_abs_error': 0.0, 'cached_max_abs_error': 1.0, 'argmax_agreement': 1.0, 'cached_argmax_agreement': 0.8783783912658691}, 'math': {'max_abs_error': 1.0, 'mean_abs_error': 0.16210098564624786, 'cached_max_abs_error': 1.0, 'argmax_agreement': 0.8918918967247009, 'cached_argmax_agreement': 0.8918918967247009}, 'flash': {'max_abs_error': 1.0, 'mean_abs_error': 0.14831577241420746, 'cached_max_abs_error': 1.0, 'argmax_agreement': 0.8918918967247009, 'cached_argmax_agreement': 0.8783783912658691}}
+PERFORMANCE pretrained 1 32 {'eager-uncached': 402.5, 'eager-cached': 408.89, 'math-uncached': 490.94, 'math-cached': 460.89, 'flash-uncached': 290.09, 'flash-cached': 314.58}
+PERFORMANCE pretrained 1 128 {'eager-uncached': 401.29, 'eager-cached': 411.01, 'math-uncached': 488.59, 'math-cached': 462.69, 'flash-uncached': 290.24, 'flash-cached': 316.18}
+PERFORMANCE pretrained 1 512 {'eager-uncached': 403.87, 'eager-cached': 413.74, 'math-uncached': 583.25, 'math-cached': 465.59, 'flash-uncached': 289.48, 'flash-cached': 326.35}
+PERFORMANCE pretrained 4 128 {'eager-uncached': 427.6, 'eager-cached': 431.94, 'math-uncached': 508.52, 'math-cached': 471.38, 'flash-uncached': 293.82, 'flash-cached': 325.4}
+PERFORMANCE pretrained 1 896 {'eager-uncached': 639.23, 'eager-cached': 408.53, 'math-uncached': 1136.04, 'math-cached': 460.4, 'flash-uncached': 290.36, 'flash-cached': 321.82}
+USDT:2026-10-19 17:40:12 1131184:1131184 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-10-19 17:40:12 1131184:1131184 SyncActivityProfilerHandler.cpp:46] profiler_stop
+USDT:2026-10-19 17:40:12 1131184:1131184 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-10-19 17:40:12 1131184:1131184 SyncActivityProfilerHandler.cpp:46] profiler_stop
+USDT:2026-10-19 17:40:12 1131184:1131184 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-10-19 17:40:12 1131184:1131184 SyncActivityProfilerHandler.cpp:46] profiler_stop
+QUALITY pretrained {'eager-uncached': 0.225, 'eager-cached': 0.21666666666666667, 'math-uncached': 0.21666666666666667, 'math-cached': 0.23333333333333334, 'flash-uncached': 0.23333333333333334, 'flash-cached': 0.21666666666666667}
+number of parameters: 124.44M
+PARITY lora {'eager': {'max_abs_error': 0.0, 'mean_abs_error': 0.0, 'cached_max_abs_error': 1.5, 'argmax_agreement': 1.0, 'cached_argmax_agreement': 0.9324324727058411}, 'math': {'max_abs_error': 1.0, 'mean_abs_error': 0.17935587465763092, 'cached_max_abs_error': 1.0, 'argmax_agreement': 0.8513513803482056, 'cached_argmax_agreement': 0.9189189672470093}, 'flash': {'max_abs_error': 1.0, 'mean_abs_error': 0.16512887179851532, 'cached_max_abs_error': 1.0, 'argmax_agreement': 0.9054054021835327, 'cached_argmax_agreement': 0.8783783912658691}}
+PERFORMANCE lora 1 32 {'eager-uncached': 773.22, 'eager-cached': 750.1, 'math-uncached': 899.13, 'math-cached': 819.79, 'flash-uncached': 649.18, 'flash-cached': 646.27}
+PERFORMANCE lora 1 128 {'eager-uncached': 775.07, 'eager-cached': 752.0, 'math-uncached': 897.46, 'math-cached': 822.56, 'flash-uncached': 651.75, 'flash-cached': 649.63}
+PERFORMANCE lora 1 512 {'eager-uncached': 781.58, 'eager-cached': 754.81, 'math-uncached': 906.92, 'math-cached': 824.44, 'flash-uncached': 655.79, 'flash-cached': 659.93}
+PERFORMANCE lora 4 128 {'eager-uncached': 814.3, 'eager-cached': 808.63, 'math-uncached': 931.12, 'math-cached': 865.81, 'flash-uncached': 660.44, 'flash-cached': 690.03}
+PERFORMANCE lora 1 896 {'eager-uncached': 785.23, 'eager-cached': 751.06, 'math-uncached': 1261.55, 'math-cached': 817.36, 'flash-uncached': 651.08, 'flash-cached': 655.55}
+USDT:2026-10-19 17:45:11 1131184:1131184 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-10-19 17:45:11 1131184:1131184 SyncActivityProfilerHandler.cpp:46] profiler_stop
+USDT:2026-10-19 17:45:12 1131184:1131184 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-10-19 17:45:12 1131184:1131184 SyncActivityProfilerHandler.cpp:46] profiler_stop
+USDT:2026-10-19 17:45:12 1131184:1131184 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-10-19 17:45:12 1131184:1131184 SyncActivityProfilerHandler.cpp:46] profiler_stop
+QUALITY lora {'eager-uncached': 0.8, 'eager-cached': 0.8, 'math-uncached': 0.8, 'math-cached': 0.8, 'flash-uncached': 0.8, 'flash-cached': 0.8}
+number of parameters: 124.44M
+PARITY full {'eager': {'max_abs_error': 0.0, 'mean_abs_error': 0.0, 'cached_max_abs_error': 1.0, 'argmax_agreement': 1.0, 'cached_argmax_agreement': 0.9729729890823364}, 'math': {'max_abs_error': 0.75, 'mean_abs_error': 0.13060873746871948, 'cached_max_abs_error': 1.0, 'argmax_agreement': 0.9864864945411682, 'cached_argmax_agreement': 0.9864864945411682}, 'flash': {'max_abs_error': 1.0, 'mean_abs_error': 0.14646823704242706, 'cached_max_abs_error': 1.0, 'argmax_agreement': 1.0, 'cached_argmax_agreement': 1.0}}
+QUALITY full {'eager-uncached': 0.2, 'eager-cached': 0.2, 'math-uncached': 0.2, 'math-cached': 0.2, 'flash-uncached': 0.2, 'flash-cached': 0.2}
+number of parameters: 124.44M
+number of parameters: 124.44M
+number of parameters: 124.44M
+TRAINING full 2 128 {'eager': 64.97, 'math': 64.77, 'flash': 55.85}
+number of parameters: 124.44M
+USDT:2026-10-19 17:46:58 1131184:1131184 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-10-19 17:46:58 1131184:1131184 SyncActivityProfilerHandler.cpp:46] profiler_stop
+number of parameters: 124.44M
+USDT:2026-10-19 17:47:01 1131184:1131184 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-10-19 17:47:02 1131184:1131184 SyncActivityProfilerHandler.cpp:46] profiler_stop
+number of parameters: 124.44M
+USDT:2026-10-19 17:47:05 1131184:1131184 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-10-19 17:47:05 1131184:1131184 SyncActivityProfilerHandler.cpp:46] profiler_stop
+TRAINING full 2 512 {'eager': 63.61, 'math': 66.7, 'flash': 54.86}
+number of parameters: 124.44M
+number of parameters: 124.44M
+number of parameters: 124.44M
+TRAINING full 2 896 {'eager': 99.63, 'math': 118.64, 'flash': 67.93}
+number of parameters: 124.44M
+number of parameters: 124.44M
+number of parameters: 124.44M
+TRAINING lora 2 128 {'eager': 59.14, 'math': 59.96, 'flash': 50.18}
+number of parameters: 124.44M
+USDT:2026-10-19 17:47:27 1131184:1131184 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-10-19 17:47:28 1131184:1131184 SyncActivityProfilerHandler.cpp:46] profiler_stop
+number of parameters: 124.44M
+USDT:2026-10-19 17:47:32 1131184:1131184 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-10-19 17:47:32 1131184:1131184 SyncActivityProfilerHandler.cpp:46] profiler_stop
+number of parameters: 124.44M
+USDT:2026-10-19 17:47:36 1131184:1131184 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-10-19 17:47:36 1131184:1131184 SyncActivityProfilerHandler.cpp:46] profiler_stop
+TRAINING lora 2 512 {'eager': 57.65, 'math': 59.74, 'flash': 49.85}
+number of parameters: 124.44M
+number of parameters: 124.44M
+number of parameters: 124.44M
+TRAINING lora 2 896 {'eager': 83.89, 'math': 102.9, 'flash': 53.58}
+COMPLETE

@@ -1,0 +1,156 @@
+{
+  "config": {
+    "out": "out/matched-lora-seed44",
+    "steps": 1200,
+    "seed": 44,
+    "batch_size": 8,
+    "length": 128,
+    "rank": 4,
+    "alpha": 8,
+    "lr": 0.001,
+    "eval_every": 300,
+    "audit_every": 300,
+    "new_tokens": 40,
+    "device": "cuda",
+    "full": false,
+    "skip_test": false,
+    "evaluate_only": false
+  },
+  "torch_version": "2.14.0+cu130",
+  "cuda_version": "13.0",
+  "gpu": "NVIDIA A30",
+  "initial_base_sha256": "b049a944e6c6c7bfbcdcdcd8abe49fd5636b53b751e08a04f4584c98178bd323",
+  "dtype": "float32",
+  "tf32": false,
+  "parameters": {
+    "total": 163627008,
+    "trainable": 589824,
+    "frozen": 163037184,
+    "trainable_percent": 0.3604686091919495,
+    "parameter_bytes": 654508032,
+    "trainable_parameter_bytes": 2359296,
+    "buffer_bytes": 50331648
+  },
+  "base_parameters": {
+    "total": 163037184,
+    "trainable": 163037184,
+    "frozen": 0,
+    "trainable_percent": 100.0,
+    "parameter_bytes": 652148736,
+    "trainable_parameter_bytes": 652148736,
+    "buffer_bytes": 50331648
+  },
+  "initial_model_memory": {
+    "allocated_bytes": 709847040,
+    "reserved_bytes": 734003200,
+    "peak_allocated_bytes": 709847040,
+    "peak_reserved_bytes": 734003200
+  },
+  "data_sha256": {
+    "experiments/sports/train.jsonl": "0974785a47121aff9ab0a9bf6906a5380184a446da94a8e5a53fefd81b8fd004",
+    "experiments/sports/test.jsonl": "2d2a28bdd49b7ec0321112e5eccf7ba1e7adeae41207c7c485035fc6d1d1f72e",
+    "experiments/sports/counterfactual.jsonl": "d4b4c780d48326e69d46e2f5d5775119ffecefa04963b4aa5cdcdf9693ed55d1",
+    "experiments/sports/validation.jsonl": "a186486d238c3de1b2fcb06bc56cd499908f325334f04800a4dca90e2b8baff8"
+  },
+  "source_sha256": {
+    "sports_experiment.py": "c41c5e655d21f57f641693901e86b7036d2902e308f0a74437e97b8c8be1bc84",
+    "lora_experiment.py": "bc4a1452e68842d994580c9d59cde01258b5c1f1e5a8ed786c40baa0dab74d1e",
+    "mingpt/model.py": "81d28525c812608af141e82a681f34a1a3b7c217931284f9f22be135557c6f74",
+    "mingpt/measurement.py": "8e075d50213171cd316d467257c93b1faa7fadf605b45a66ed3d0b5d536f3cc2",
+    "experiments/sports/data.py": "fc1b53aed5f860a44fe6f6ddb5654cd0c8f5dfd3cb6f25708076c17f5639fae5",
+    "experiments/sports/scoring.py": "dd9123a113ee8ea0baa87ffbd8f39b23508cdf65e46e4b3f630e1e5d78a466bc"
+  },
+  "history": [
+    {
+      "step": 1,
+      "train_loss": 3.553180456161499,
+      "changed_elements": 331776,
+      "frozen_changed_elements": 0
+    },
+    {
+      "step": 300,
+      "train_loss": 0.05651882663369179,
+      "changed_elements": 589824,
+      "frozen_changed_elements": 0,
+      "validation_nll": 0.09208761916090191
+    },
+    {
+      "step": 600,
+      "train_loss": 0.050690438598394394,
+      "changed_elements": 589824,
+      "frozen_changed_elements": 0,
+      "validation_nll": 0.05786844280382698
+    },
+    {
+      "step": 900,
+      "train_loss": 0.07308720797300339,
+      "changed_elements": 589824,
+      "frozen_changed_elements": 0,
+      "validation_nll": 0.04455006620532439
+    },
+    {
+      "step": 1200,
+      "train_loss": 0.03378837928175926,
+      "changed_elements": 589824,
+      "frozen_changed_elements": 0,
+      "validation_nll": 0.027197635838293408
+    }
+  ],
+  "validation_history": [
+    {
+      "step": 300,
+      "nll": 0.09208761916090191
+    },
+    {
+      "step": 600,
+      "nll": 0.05786844280382698
+    },
+    {
+      "step": 900,
+      "nll": 0.04455006620532439
+    },
+    {
+      "step": 1200,
+      "nll": 0.027197635838293408
+    }
+  ],
+  "memory_windows": [
+    {
+      "allocated_bytes": 733981184,
+      "reserved_bytes": 2883584000,
+      "peak_allocated_bytes": 2602097664,
+      "peak_reserved_bytes": 2883584000
+    },
+    {
+      "allocated_bytes": 733981184,
+      "reserved_bytes": 2891972608,
+      "peak_allocated_bytes": 2602097664,
+      "peak_reserved_bytes": 2891972608
+    },
+    {
+      "allocated_bytes": 733981184,
+      "reserved_bytes": 2891972608,
+      "peak_allocated_bytes": 2602097664,
+      "peak_reserved_bytes": 2891972608
+    },
+    {
+      "allocated_bytes": 733981184,
+      "reserved_bytes": 2891972608,
+      "peak_allocated_bytes": 2602097664,
+      "peak_reserved_bytes": 2891972608
+    }
+  ],
+  "gradient_bytes": 2359296,
+  "training_memory_through_step_1": {
+    "allocated_bytes": 733981184,
+    "reserved_bytes": 2669674496,
+    "peak_allocated_bytes": 2588859392,
+    "peak_reserved_bytes": 2669674496
+  },
+  "training_memory_through_step_40": {
+    "allocated_bytes": 733981184,
+    "reserved_bytes": 2883584000,
+    "peak_allocated_bytes": 2602097664,
+    "peak_reserved_bytes": 2883584000
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "source": "Programmatically authored fictional basketball scores; no external dataset.",
+  "seed": 20260929,
+  "train_teams": [
+    "Falcons",
+    "Rockets",
+    "Comets",
+    "Tigers",
+    "Lions",
+    "Hawks",
+    "Bears",
+    "Wolves"
+  ],
+  "test_teams": [
+    "Eagles",
+    "Owls",
+    "Sharks",
+    "Bulls"
+  ],
+  "split_rows": {
+    "train": 1440,
+    "validation": 120,
+    "test": 120,
+    "counterfactual": 120
+  },
+  "split_matches": {
+    "train": 480,
+    "validation": 40,
+    "test": 40,
+    "counterfactual": 120
+  },
+  "design": "No shared score quadruples or match IDs across train/validation/test. Test teams absent from training. Counterfactual rows are paired with test rows and deliberately not independent."
+}

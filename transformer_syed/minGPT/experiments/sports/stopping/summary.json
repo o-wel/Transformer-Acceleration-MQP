@@ -1,0 +1,469 @@
+{
+  "protocol": "Same shuffled epochs, initial weights and seed per pair. Final checkpoint evaluated. Loss target checked each complete epoch. No test-based selection.",
+  "epochs": 7,
+  "target_train_loss": 0.05,
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "runs": [
+    {
+      "method": "lora",
+      "stopping": "epochs",
+      "seed": 42,
+      "path": "experiments/sports/stopping/lora-epochs-seed42",
+      "steps": 1260,
+      "epochs": 7.0,
+      "stop_reason": "epoch_limit",
+      "train_nll": 0.019455491774196212,
+      "validation_nll": 0.022250582144075742,
+      "training_step_seconds": 110.04009912989568,
+      "metrics": {
+        "primary_correct": 0.9166666666666666,
+        "score_numbers_correct": 1.0,
+        "fields_correct": 0.9166666666666666,
+        "reference_exact": 0.9166666666666666,
+        "by_kind": {
+          "winner": {
+            "primary_correct": 1.0,
+            "score_numbers_correct": 1.0,
+            "fields_correct": 1.0,
+            "reference_exact": 1.0
+          },
+          "halftime": {
+            "primary_correct": 0.975,
+            "score_numbers_correct": 1.0,
+            "fields_correct": 0.975,
+            "reference_exact": 0.975
+          },
+          "comeback": {
+            "primary_correct": 0.775,
+            "score_numbers_correct": 1.0,
+            "fields_correct": 0.775,
+            "reference_exact": 0.775
+          }
+        }
+      }
+    },
+    {
+      "method": "lora",
+      "stopping": "train_loss",
+      "seed": 42,
+      "path": "experiments/sports/stopping/lora-train_loss-seed42",
+      "steps": 900,
+      "epochs": 5.0,
+      "stop_reason": "target_train_loss",
+      "train_nll": 0.038992510631930696,
+      "validation_nll": 0.04103326212266243,
+      "training_step_seconds": 79.39080660173204,
+      "metrics": {
+        "primary_correct": 0.7,
+        "score_numbers_correct": 1.0,
+        "fields_correct": 0.7,
+        "reference_exact": 0.7,
+        "by_kind": {
+          "winner": {
+            "primary_correct": 0.725,
+            "score_numbers_correct": 1.0,
+            "fields_correct": 0.725,
+            "reference_exact": 0.725
+          },
+          "halftime": {
+            "primary_correct": 0.9,
+            "score_numbers_correct": 1.0,
+            "fields_correct": 0.9,
+            "reference_exact": 0.9
+          },
+          "comeback": {
+            "primary_correct": 0.475,
+            "score_numbers_correct": 1.0,
+            "fields_correct": 0.475,
+            "reference_exact": 0.475
+          }
+        }
+      }
+    },
+    {
+      "method": "full",
+      "stopping": "epochs",
+      "seed": 42,
+      "path": "experiments/sports/stopping/full-epochs-seed42",
+      "steps": 1260,
+      "epochs": 7.0,
+      "stop_reason": "epoch_limit",
+      "train_nll": 0.0243648903318224,
+      "validation_nll": 0.030361044469169495,
+      "training_step_seconds": 158.33883548725862,
+      "metrics": {
+        "primary_correct": 0.3333333333333333,
+        "score_numbers_correct": 1.0,
+        "fields_correct": 0.3333333333333333,
+        "reference_exact": 0.2916666666666667,
+        "by_kind": {
+          "winner": {
+            "primary_correct": 0.05,
+            "score_numbers_correct": 1.0,
+            "fields_correct": 0.05,
+            "reference_exact": 0.05
+          },
+          "halftime": {
+            "primary_correct": 0.4,
+            "score_numbers_correct": 1.0,
+            "fields_correct": 0.4,
+            "reference_exact": 0.4
+          },
+          "comeback": {
+            "primary_correct": 0.55,
+            "score_numbers_correct": 1.0,
+            "fields_correct": 0.55,
+            "reference_exact": 0.425
+          }
+        }
+      }
+    },
+    {
+      "method": "full",
+      "stopping": "train_loss",
+      "seed": 42,
+      "path": "experiments/sports/stopping/full-train_loss-seed42",
+      "steps": 720,
+      "epochs": 4.0,
+      "stop_reason": "target_train_loss",
+      "train_nll": 0.0452336575544192,
+      "validation_nll": 0.055893814062665394,
+      "training_step_seconds": 90.6030998606002,
+      "metrics": {
+        "primary_correct": 0.19166666666666668,
+        "score_numbers_correct": 0.9916666666666667,
+        "fields_correct": 0.18333333333333332,
+        "reference_exact": 0.14166666666666666,
+        "by_kind": {
+          "winner": {
+            "primary_correct": 0.0,
+            "score_numbers_correct": 1.0,
+            "fields_correct": 0.0,
+            "reference_exact": 0.0
+          },
+          "halftime": {
+            "primary_correct": 0.025,
+            "score_numbers_correct": 1.0,
+            "fields_correct": 0.025,
+            "reference_exact": 0.025
+          },
+          "comeback": {
+            "primary_correct": 0.55,
+            "score_numbers_correct": 0.975,
+            "fields_correct": 0.525,
+            "reference_exact": 0.4
+          }
+        }
+      }
+    },
+    {
+      "method": "lora",
+      "stopping": "epochs",
+      "seed": 43,
+      "path": "experiments/sports/stopping/lora-epochs-seed43",
+      "steps": 1260,
+      "epochs": 7.0,
+      "stop_reason": "epoch_limit",
+      "train_nll": 0.031023723457382715,
+      "validation_nll": 0.032866493880211664,
+      "training_step_seconds": 111.05621638486627,
+      "metrics": {
+        "primary_correct": 0.8083333333333333,
+        "score_numbers_correct": 1.0,
+        "fields_correct": 0.8083333333333333,
+        "reference_exact": 0.8083333333333333,
+        "by_kind": {
+          "winner": {
+            "primary_correct": 0.975,
+            "score_numbers_correct": 1.0,
+            "fields_correct": 0.975,
+            "reference_exact": 0.975
+          },
+          "halftime": {
+            "primary_correct": 0.975,
+            "score_numbers_correct": 1.0,
+            "fields_correct": 0.975,
+            "reference_exact": 0.975
+          },
+          "comeback": {
+            "primary_correct": 0.475,
+            "score_numbers_correct": 1.0,
+            "fields_correct": 0.475,
+            "reference_exact": 0.475
+          }
+        }
+      }
+    },
+    {
+      "method": "lora",
+      "stopping": "train_loss",
+      "seed": 43,
+      "path": "experiments/sports/stopping/lora-train_loss-seed43",
+      "steps": 1080,
+      "epochs": 6.0,
+      "stop_reason": "target_train_loss",
+      "train_nll": 0.0452994403233748,
+      "validation_nll": 0.04936254936830352,
+      "training_step_seconds": 95.36650811834261,
+      "metrics": {
+        "primary_correct": 0.675,
+        "score_numbers_correct": 1.0,
+        "fields_correct": 0.675,
+        "reference_exact": 0.675,
+        "by_kind": {
+          "winner": {
+            "primary_correct": 0.575,
+            "score_numbers_correct": 1.0,
+            "fields_correct": 0.575,
+            "reference_exact": 0.575
+          },
+          "halftime": {
+            "primary_correct": 0.925,
+            "score_numbers_correct": 1.0,
+            "fields_correct": 0.925,
+            "reference_exact": 0.925
+          },
+          "comeback": {
+            "primary_correct": 0.525,
+            "score_numbers_correct": 1.0,
+            "fields_correct": 0.525,
+            "reference_exact": 0.525
+          }
+        }
+      }
+    },
+    {
+      "method": "full",
+      "stopping": "epochs",
+      "seed": 43,
+      "path": "experiments/sports/stopping/full-epochs-seed43",
+      "steps": 1260,
+      "epochs": 7.0,
+      "stop_reason": "epoch_limit",
+      "train_nll": 0.031645299046650574,
+      "validation_nll": 0.054393636931213865,
+      "training_step_seconds": 158.4516636854969,
+      "metrics": {
+        "primary_correct": 0.18333333333333332,
+        "score_numbers_correct": 0.9916666666666667,
+        "fields_correct": 0.18333333333333332,
+        "reference_exact": 0.15,
+        "by_kind": {
+          "winner": {
+            "primary_correct": 0.0,
+            "score_numbers_correct": 1.0,
+            "fields_correct": 0.0,
+            "reference_exact": 0.0
+          },
+          "halftime": {
+            "primary_correct": 0.075,
+            "score_numbers_correct": 0.975,
+            "fields_correct": 0.075,
+            "reference_exact": 0.075
+          },
+          "comeback": {
+            "primary_correct": 0.475,
+            "score_numbers_correct": 1.0,
+            "fields_correct": 0.475,
+            "reference_exact": 0.375
+          }
+        }
+      }
+    },
+    {
+      "method": "full",
+      "stopping": "train_loss",
+      "seed": 43,
+      "path": "experiments/sports/stopping/full-train_loss-seed43",
+      "steps": 900,
+      "epochs": 5.0,
+      "stop_reason": "target_train_loss",
+      "train_nll": 0.043996027777956206,
+      "validation_nll": 0.06955071991778042,
+      "training_step_seconds": 113.19803311757278,
+      "metrics": {
+        "primary_correct": 0.24166666666666667,
+        "score_numbers_correct": 1.0,
+        "fields_correct": 0.24166666666666667,
+        "reference_exact": 0.14166666666666666,
+        "by_kind": {
+          "winner": {
+            "primary_correct": 0.0,
+            "score_numbers_correct": 1.0,
+            "fields_correct": 0.0,
+            "reference_exact": 0.0
+          },
+          "halftime": {
+            "primary_correct": 0.25,
+            "score_numbers_correct": 1.0,
+            "fields_correct": 0.25,
+            "reference_exact": 0.25
+          },
+          "comeback": {
+            "primary_correct": 0.475,
+            "score_numbers_correct": 1.0,
+            "fields_correct": 0.475,
+            "reference_exact": 0.175
+          }
+        }
+      }
+    },
+    {
+      "method": "lora",
+      "stopping": "epochs",
+      "seed": 44,
+      "path": "experiments/sports/stopping/lora-epochs-seed44",
+      "steps": 1260,
+      "epochs": 7.0,
+      "stop_reason": "epoch_limit",
+      "train_nll": 0.023356969500172093,
+      "validation_nll": 0.024683064075495385,
+      "training_step_seconds": 111.23078009055462,
+      "metrics": {
+        "primary_correct": 0.825,
+        "score_numbers_correct": 1.0,
+        "fields_correct": 0.825,
+        "reference_exact": 0.8166666666666667,
+        "by_kind": {
+          "winner": {
+            "primary_correct": 1.0,
+            "score_numbers_correct": 1.0,
+            "fields_correct": 1.0,
+            "reference_exact": 1.0
+          },
+          "halftime": {
+            "primary_correct": 1.0,
+            "score_numbers_correct": 1.0,
+            "fields_correct": 1.0,
+            "reference_exact": 0.975
+          },
+          "comeback": {
+            "primary_correct": 0.475,
+            "score_numbers_correct": 1.0,
+            "fields_correct": 0.475,
+            "reference_exact": 0.475
+          }
+        }
+      }
+    },
+    {
+      "method": "lora",
+      "stopping": "train_loss",
+      "seed": 44,
+      "path": "experiments/sports/stopping/lora-train_loss-seed44",
+      "steps": 900,
+      "epochs": 5.0,
+      "stop_reason": "target_train_loss",
+      "train_nll": 0.037146901242858556,
+      "validation_nll": 0.04128497133197183,
+      "training_step_seconds": 79.41780170926359,
+      "metrics": {
+        "primary_correct": 0.8,
+        "score_numbers_correct": 1.0,
+        "fields_correct": 0.8,
+        "reference_exact": 0.8,
+        "by_kind": {
+          "winner": {
+            "primary_correct": 0.95,
+            "score_numbers_correct": 1.0,
+            "fields_correct": 0.95,
+            "reference_exact": 0.95
+          },
+          "halftime": {
+            "primary_correct": 0.975,
+            "score_numbers_correct": 1.0,
+            "fields_correct": 0.975,
+            "reference_exact": 0.975
+          },
+          "comeback": {
+            "primary_correct": 0.475,
+            "score_numbers_correct": 1.0,
+            "fields_correct": 0.475,
+            "reference_exact": 0.475
+          }
+        }
+      }
+    },
+    {
+      "method": "full",
+      "stopping": "epochs",
+      "seed": 44,
+      "path": "experiments/sports/stopping/full-epochs-seed44",
+      "steps": 1260,
+      "epochs": 7.0,
+      "stop_reason": "epoch_limit",
+      "train_nll": 0.02815105235364984,
+      "validation_nll": 0.056962760282463276,
+      "training_step_seconds": 158.1991204265505,
+      "metrics": {
+        "primary_correct": 0.30833333333333335,
+        "score_numbers_correct": 0.9833333333333333,
+        "fields_correct": 0.30833333333333335,
+        "reference_exact": 0.25833333333333336,
+        "by_kind": {
+          "winner": {
+            "primary_correct": 0.075,
+            "score_numbers_correct": 0.975,
+            "fields_correct": 0.075,
+            "reference_exact": 0.075
+          },
+          "halftime": {
+            "primary_correct": 0.2,
+            "score_numbers_correct": 1.0,
+            "fields_correct": 0.2,
+            "reference_exact": 0.2
+          },
+          "comeback": {
+            "primary_correct": 0.65,
+            "score_numbers_correct": 0.975,
+            "fields_correct": 0.65,
+            "reference_exact": 0.5
+          }
+        }
+      }
+    },
+    {
+      "method": "full",
+      "stopping": "train_loss",
+      "seed": 44,
+      "path": "experiments/sports/stopping/full-train_loss-seed44",
+      "steps": 900,
+      "epochs": 5.0,
+      "stop_reason": "target_train_loss",
+      "train_nll": 0.035591544441436244,
+      "validation_nll": 0.07516383537965501,
+      "training_step_seconds": 113.14520908461418,
+      "metrics": {
+        "primary_correct": 0.21666666666666667,
+        "score_numbers_correct": 0.9833333333333333,
+        "fields_correct": 0.20833333333333334,
+        "reference_exact": 0.175,
+        "by_kind": {
+          "winner": {
+            "primary_correct": 0.0,
+            "score_numbers_correct": 0.975,
+            "fields_correct": 0.0,
+            "reference_exact": 0.0
+          },
+          "halftime": {
+            "primary_correct": 0.175,
+            "score_numbers_correct": 1.0,
+            "fields_correct": 0.175,
+            "reference_exact": 0.175
+          },
+          "comeback": {
+            "primary_correct": 0.475,
+            "score_numbers_correct": 0.975,
+            "fields_correct": 0.45,
+            "reference_exact": 0.35
+          }
+        }
+      }
+    }
+  ],
+  "complete": true
+}

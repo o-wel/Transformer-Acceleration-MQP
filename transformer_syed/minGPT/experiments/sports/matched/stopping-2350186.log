@@ -1,0 +1,267 @@
+Loading python/3.12.9/oegpall
+  Loading requirement: gcc-runtime/13.2.0/yimvxxm bzip2/1.0.8/itttwfv
+    gcc-runtime/13.2.0/s3f7i6x libmd/1.0.4/ngvfltj libbsd/0.12.1/6of6olc
+    expat/2.6.2/zoq445h ncurses/6.4/zqsx2w2 readline/8.2/hmsgdsx
+    gdbm/1.23/gtrssid libiconv/1.17/pmxhi4x xz/5.4.6/uxouxrg
+    zlib-ng/2.1.5/uctcqfl libxml2/2.10.3/vdqe2g3 pigz/2.8/pmmdaqf
+    zstd/1.5.5/juuobg2 tar/1.34/5prin2y gettext/0.22.4/iy5z4el
+    libffi/3.4.4/vqf2avv libxcrypt/4.4.35/zvatbxx openssl/3.4.0/pholr53
+    sqlite/3.43.2/o22u32h util-linux-uuid/2.38.1/mse45hb
+number of parameters: 124.44M
+{"step": 1, "train_loss": 3.61029314994812, "changed_elements": 331776, "frozen_changed_elements": 0}
+{"step": 180, "train_loss": 0.14151178300380707, "changed_elements": 589824, "frozen_changed_elements": 0}
+validation step=180 nll=0.098626
+{"step": 300, "train_loss": 0.13898752629756927, "changed_elements": 589824, "frozen_changed_elements": 0}
+{"step": 360, "train_loss": 0.07024839520454407, "changed_elements": 589824, "frozen_changed_elements": 0}
+validation step=360 nll=0.073664
+{"step": 540, "train_loss": 0.13677605986595154, "changed_elements": 589824, "frozen_changed_elements": 0}
+validation step=540 nll=0.069594
+{"step": 600, "train_loss": 0.06885629147291183, "changed_elements": 589824, "frozen_changed_elements": 0}
+{"step": 720, "train_loss": 0.062888003885746, "changed_elements": 589824, "frozen_changed_elements": 0}
+validation step=720 nll=0.059736
+{"step": 900, "train_loss": 0.04099760949611664, "changed_elements": 589824, "frozen_changed_elements": 0}
+validation step=900 nll=0.041033
+{"step": 1080, "train_loss": 0.06053340435028076, "changed_elements": 589824, "frozen_changed_elements": 0}
+validation step=1080 nll=0.025812
+{"step": 1200, "train_loss": 0.037344928830862045, "changed_elements": 589824, "frozen_changed_elements": 0}
+{"step": 1260, "train_loss": 0.028648870065808296, "changed_elements": 589824, "frozen_changed_elements": 0}
+validation step=1260 nll=0.022251
+base {"primary_correct": 0.25833333333333336, "score_numbers_correct": 0.0, "fields_correct": 0.0, "reference_exact": 0.0, "by_kind": {"winner": {"primary_correct": 0.575, "score_numbers_correct": 0.0, "fields_correct": 0.0, "reference_exact": 0.0}, "halftime": {"primary_correct": 0.2, "score_numbers_correct": 0.0, "fields_correct": 0.0, "reference_exact": 0.0}, "comeback": {"primary_correct": 0.0, "score_numbers_correct": 0.0, "fields_correct": 0.0, "reference_exact": 0.0}}}
+lora {"primary_correct": 0.9166666666666666, "score_numbers_correct": 1.0, "fields_correct": 0.9166666666666666, "reference_exact": 0.9166666666666666, "by_kind": {"winner": {"primary_correct": 1.0, "score_numbers_correct": 1.0, "fields_correct": 1.0, "reference_exact": 1.0}, "halftime": {"primary_correct": 0.975, "score_numbers_correct": 1.0, "fields_correct": 0.975, "reference_exact": 0.975}, "comeback": {"primary_correct": 0.775, "score_numbers_correct": 1.0, "fields_correct": 0.775, "reference_exact": 0.775}}}
+Saved experiments/sports/stopping/lora-epochs-seed42/report.json
+number of parameters: 124.44M
+{"step": 1, "train_loss": 3.61029314994812, "changed_elements": 331776, "frozen_changed_elements": 0}
+training NLL step=180 nll=0.081028
+{"step": 180, "train_loss": 0.14151178300380707, "changed_elements": 589824, "frozen_changed_elements": 0}
+validation step=180 nll=0.098626
+{"step": 300, "train_loss": 0.13898752629756927, "changed_elements": 589824, "frozen_changed_elements": 0}
+training NLL step=360 nll=0.075196
+{"step": 360, "train_loss": 0.07024839520454407, "changed_elements": 589824, "frozen_changed_elements": 0}
+validation step=360 nll=0.073664
+training NLL step=540 nll=0.064474
+{"step": 540, "train_loss": 0.13677605986595154, "changed_elements": 589824, "frozen_changed_elements": 0}
+validation step=540 nll=0.069594
+{"step": 600, "train_loss": 0.06885629147291183, "changed_elements": 589824, "frozen_changed_elements": 0}
+training NLL step=720 nll=0.057239
+{"step": 720, "train_loss": 0.062888003885746, "changed_elements": 589824, "frozen_changed_elements": 0}
+validation step=720 nll=0.059736
+training NLL step=900 nll=0.038993
+{"step": 900, "train_loss": 0.04099760949611664, "changed_elements": 589824, "frozen_changed_elements": 0}
+validation step=900 nll=0.041033
+base {"primary_correct": 0.25833333333333336, "score_numbers_correct": 0.0, "fields_correct": 0.0, "reference_exact": 0.0, "by_kind": {"winner": {"primary_correct": 0.575, "score_numbers_correct": 0.0, "fields_correct": 0.0, "reference_exact": 0.0}, "halftime": {"primary_correct": 0.2, "score_numbers_correct": 0.0, "fields_correct": 0.0, "reference_exact": 0.0}, "comeback": {"primary_correct": 0.0, "score_numbers_correct": 0.0, "fields_correct": 0.0, "reference_exact": 0.0}}}
+lora {"primary_correct": 0.7, "score_numbers_correct": 1.0, "fields_correct": 0.7, "reference_exact": 0.7, "by_kind": {"winner": {"primary_correct": 0.725, "score_numbers_correct": 1.0, "fields_correct": 0.725, "reference_exact": 0.725}, "halftime": {"primary_correct": 0.9, "score_numbers_correct": 1.0, "fields_correct": 0.9, "reference_exact": 0.9}, "comeback": {"primary_correct": 0.475, "score_numbers_correct": 1.0, "fields_correct": 0.475, "reference_exact": 0.475}}}
+Saved experiments/sports/stopping/lora-train_loss-seed42/report.json
+number of parameters: 124.44M
+{"step": 1, "train_loss": 3.61029314994812, "changed_elements": 123474681, "frozen_changed_elements": 0}
+{"step": 180, "train_loss": 0.1453944444656372, "changed_elements": 123730549, "frozen_changed_elements": 0}
+validation step=180 nll=0.102945
+{"step": 300, "train_loss": 0.10312622785568237, "changed_elements": 123769196, "frozen_changed_elements": 0}
+{"step": 360, "train_loss": 0.05608903616666794, "changed_elements": 123771767, "frozen_changed_elements": 0}
+validation step=360 nll=0.078318
+{"step": 540, "train_loss": 0.17615599930286407, "changed_elements": 123783489, "frozen_changed_elements": 0}
+validation step=540 nll=0.084297
+{"step": 600, "train_loss": 0.10900068283081055, "changed_elements": 123785148, "frozen_changed_elements": 0}
+{"step": 720, "train_loss": 0.058442212641239166, "changed_elements": 123817615, "frozen_changed_elements": 0}
+validation step=720 nll=0.055894
+{"step": 900, "train_loss": 0.026686204597353935, "changed_elements": 123840861, "frozen_changed_elements": 0}
+validation step=900 nll=0.061618
+{"step": 1080, "train_loss": 0.08868448436260223, "changed_elements": 123850260, "frozen_changed_elements": 0}
+validation step=1080 nll=0.068327
+{"step": 1200, "train_loss": 0.1634218841791153, "changed_elements": 123850563, "frozen_changed_elements": 0}
+{"step": 1260, "train_loss": 0.032806623727083206, "changed_elements": 123850784, "frozen_changed_elements": 0}
+validation step=1260 nll=0.030361
+full {"primary_correct": 0.3333333333333333, "score_numbers_correct": 1.0, "fields_correct": 0.3333333333333333, "reference_exact": 0.2916666666666667, "by_kind": {"winner": {"primary_correct": 0.05, "score_numbers_correct": 1.0, "fields_correct": 0.05, "reference_exact": 0.05}, "halftime": {"primary_correct": 0.4, "score_numbers_correct": 1.0, "fields_correct": 0.4, "reference_exact": 0.4}, "comeback": {"primary_correct": 0.55, "score_numbers_correct": 1.0, "fields_correct": 0.55, "reference_exact": 0.425}}}
+Saved experiments/sports/stopping/full-epochs-seed42/report.json
+number of parameters: 124.44M
+{"step": 1, "train_loss": 3.61029314994812, "changed_elements": 123474681, "frozen_changed_elements": 0}
+training NLL step=180 nll=0.090610
+{"step": 180, "train_loss": 0.1453944444656372, "changed_elements": 123730549, "frozen_changed_elements": 0}
+validation step=180 nll=0.102945
+{"step": 300, "train_loss": 0.10312622785568237, "changed_elements": 123769196, "frozen_changed_elements": 0}
+training NLL step=360 nll=0.082790
+{"step": 360, "train_loss": 0.05608903616666794, "changed_elements": 123771767, "frozen_changed_elements": 0}
+validation step=360 nll=0.078318
+training NLL step=540 nll=0.066949
+{"step": 540, "train_loss": 0.17615599930286407, "changed_elements": 123783489, "frozen_changed_elements": 0}
+validation step=540 nll=0.084297
+{"step": 600, "train_loss": 0.10900068283081055, "changed_elements": 123785148, "frozen_changed_elements": 0}
+training NLL step=720 nll=0.045234
+{"step": 720, "train_loss": 0.058442212641239166, "changed_elements": 123817615, "frozen_changed_elements": 0}
+validation step=720 nll=0.055894
+full {"primary_correct": 0.19166666666666668, "score_numbers_correct": 0.9916666666666667, "fields_correct": 0.18333333333333332, "reference_exact": 0.14166666666666666, "by_kind": {"winner": {"primary_correct": 0.0, "score_numbers_correct": 1.0, "fields_correct": 0.0, "reference_exact": 0.0}, "halftime": {"primary_correct": 0.025, "score_numbers_correct": 1.0, "fields_correct": 0.025, "reference_exact": 0.025}, "comeback": {"primary_correct": 0.55, "score_numbers_correct": 0.975, "fields_correct": 0.525, "reference_exact": 0.4}}}
+Saved experiments/sports/stopping/full-train_loss-seed42/report.json
+number of parameters: 124.44M
+{"step": 1, "train_loss": 3.7392208576202393, "changed_elements": 331776, "frozen_changed_elements": 0}
+{"step": 180, "train_loss": 0.0889352485537529, "changed_elements": 589824, "frozen_changed_elements": 0}
+validation step=180 nll=0.089716
+{"step": 300, "train_loss": 0.1449487954378128, "changed_elements": 589824, "frozen_changed_elements": 0}
+{"step": 360, "train_loss": 0.0964963436126709, "changed_elements": 589824, "frozen_changed_elements": 0}
+validation step=360 nll=0.071354
+{"step": 540, "train_loss": 0.08503147214651108, "changed_elements": 589824, "frozen_changed_elements": 0}
+validation step=540 nll=0.067394
+{"step": 600, "train_loss": 0.06065893545746803, "changed_elements": 589824, "frozen_changed_elements": 0}
+{"step": 720, "train_loss": 0.10544414818286896, "changed_elements": 589824, "frozen_changed_elements": 0}
+validation step=720 nll=0.061222
+{"step": 900, "train_loss": 0.07025410234928131, "changed_elements": 589824, "frozen_changed_elements": 0}
+validation step=900 nll=0.061282
+{"step": 1080, "train_loss": 0.0774172767996788, "changed_elements": 589824, "frozen_changed_elements": 0}
+validation step=1080 nll=0.049363
+{"step": 1200, "train_loss": 0.019430100917816162, "changed_elements": 589824, "frozen_changed_elements": 0}
+{"step": 1260, "train_loss": 0.04856521263718605, "changed_elements": 589824, "frozen_changed_elements": 0}
+validation step=1260 nll=0.032866
+base {"primary_correct": 0.25833333333333336, "score_numbers_correct": 0.0, "fields_correct": 0.0, "reference_exact": 0.0, "by_kind": {"winner": {"primary_correct": 0.575, "score_numbers_correct": 0.0, "fields_correct": 0.0, "reference_exact": 0.0}, "halftime": {"primary_correct": 0.2, "score_numbers_correct": 0.0, "fields_correct": 0.0, "reference_exact": 0.0}, "comeback": {"primary_correct": 0.0, "score_numbers_correct": 0.0, "fields_correct": 0.0, "reference_exact": 0.0}}}
+lora {"primary_correct": 0.8083333333333333, "score_numbers_correct": 1.0, "fields_correct": 0.8083333333333333, "reference_exact": 0.8083333333333333, "by_kind": {"winner": {"primary_correct": 0.975, "score_numbers_correct": 1.0, "fields_correct": 0.975, "reference_exact": 0.975}, "halftime": {"primary_correct": 0.975, "score_numbers_correct": 1.0, "fields_correct": 0.975, "reference_exact": 0.975}, "comeback": {"primary_correct": 0.475, "score_numbers_correct": 1.0, "fields_correct": 0.475, "reference_exact": 0.475}}}
+Saved experiments/sports/stopping/lora-epochs-seed43/report.json
+number of parameters: 124.44M
+{"step": 1, "train_loss": 3.7392208576202393, "changed_elements": 331776, "frozen_changed_elements": 0}
+training NLL step=180 nll=0.082061
+{"step": 180, "train_loss": 0.0889352485537529, "changed_elements": 589824, "frozen_changed_elements": 0}
+validation step=180 nll=0.089716
+{"step": 300, "train_loss": 0.1449487954378128, "changed_elements": 589824, "frozen_changed_elements": 0}
+training NLL step=360 nll=0.067206
+{"step": 360, "train_loss": 0.0964963436126709, "changed_elements": 589824, "frozen_changed_elements": 0}
+validation step=360 nll=0.071354
+training NLL step=540 nll=0.065228
+{"step": 540, "train_loss": 0.08503147214651108, "changed_elements": 589824, "frozen_changed_elements": 0}
+validation step=540 nll=0.067394
+{"step": 600, "train_loss": 0.06065893545746803, "changed_elements": 589824, "frozen_changed_elements": 0}
+training NLL step=720 nll=0.056325
+{"step": 720, "train_loss": 0.10544414818286896, "changed_elements": 589824, "frozen_changed_elements": 0}
+validation step=720 nll=0.061222
+training NLL step=900 nll=0.053414
+{"step": 900, "train_loss": 0.07025410234928131, "changed_elements": 589824, "frozen_changed_elements": 0}
+validation step=900 nll=0.061282
+training NLL step=1080 nll=0.045299
+{"step": 1080, "train_loss": 0.0774172767996788, "changed_elements": 589824, "frozen_changed_elements": 0}
+validation step=1080 nll=0.049363
+base {"primary_correct": 0.25833333333333336, "score_numbers_correct": 0.0, "fields_correct": 0.0, "reference_exact": 0.0, "by_kind": {"winner": {"primary_correct": 0.575, "score_numbers_correct": 0.0, "fields_correct": 0.0, "reference_exact": 0.0}, "halftime": {"primary_correct": 0.2, "score_numbers_correct": 0.0, "fields_correct": 0.0, "reference_exact": 0.0}, "comeback": {"primary_correct": 0.0, "score_numbers_correct": 0.0, "fields_correct": 0.0, "reference_exact": 0.0}}}
+lora {"primary_correct": 0.675, "score_numbers_correct": 1.0, "fields_correct": 0.675, "reference_exact": 0.675, "by_kind": {"winner": {"primary_correct": 0.575, "score_numbers_correct": 1.0, "fields_correct": 0.575, "reference_exact": 0.575}, "halftime": {"primary_correct": 0.925, "score_numbers_correct": 1.0, "fields_correct": 0.925, "reference_exact": 0.925}, "comeback": {"primary_correct": 0.525, "score_numbers_correct": 1.0, "fields_correct": 0.525, "reference_exact": 0.525}}}
+Saved experiments/sports/stopping/lora-train_loss-seed43/report.json
+number of parameters: 124.44M
+{"step": 1, "train_loss": 3.7392208576202393, "changed_elements": 123477501, "frozen_changed_elements": 0}
+{"step": 180, "train_loss": 0.0665867030620575, "changed_elements": 123748152, "frozen_changed_elements": 0}
+validation step=180 nll=0.108286
+{"step": 300, "train_loss": 0.13737033307552338, "changed_elements": 123775565, "frozen_changed_elements": 0}
+{"step": 360, "train_loss": 0.1062091588973999, "changed_elements": 123782019, "frozen_changed_elements": 0}
+validation step=360 nll=0.077907
+{"step": 540, "train_loss": 0.07122927904129028, "changed_elements": 123799255, "frozen_changed_elements": 0}
+validation step=540 nll=0.074087
+{"step": 600, "train_loss": 0.11702878028154373, "changed_elements": 123800666, "frozen_changed_elements": 0}
+{"step": 720, "train_loss": 0.03487885370850563, "changed_elements": 123807915, "frozen_changed_elements": 0}
+validation step=720 nll=0.064216
+{"step": 900, "train_loss": 0.057532403618097305, "changed_elements": 123816593, "frozen_changed_elements": 0}
+validation step=900 nll=0.069551
+{"step": 1080, "train_loss": 0.024241993203759193, "changed_elements": 123839766, "frozen_changed_elements": 0}
+validation step=1080 nll=0.077821
+{"step": 1200, "train_loss": 0.02861584909260273, "changed_elements": 123840605, "frozen_changed_elements": 0}
+{"step": 1260, "train_loss": 0.010570756159722805, "changed_elements": 123840722, "frozen_changed_elements": 0}
+validation step=1260 nll=0.054394
+full {"primary_correct": 0.18333333333333332, "score_numbers_correct": 0.9916666666666667, "fields_correct": 0.18333333333333332, "reference_exact": 0.15, "by_kind": {"winner": {"primary_correct": 0.0, "score_numbers_correct": 1.0, "fields_correct": 0.0, "reference_exact": 0.0}, "halftime": {"primary_correct": 0.075, "score_numbers_correct": 0.975, "fields_correct": 0.075, "reference_exact": 0.075}, "comeback": {"primary_correct": 0.475, "score_numbers_correct": 1.0, "fields_correct": 0.475, "reference_exact": 0.375}}}
+Saved experiments/sports/stopping/full-epochs-seed43/report.json
+number of parameters: 124.44M
+{"step": 1, "train_loss": 3.7392208576202393, "changed_elements": 123477501, "frozen_changed_elements": 0}
+training NLL step=180 nll=0.102945
+{"step": 180, "train_loss": 0.0665867030620575, "changed_elements": 123748152, "frozen_changed_elements": 0}
+validation step=180 nll=0.108286
+{"step": 300, "train_loss": 0.13737033307552338, "changed_elements": 123775565, "frozen_changed_elements": 0}
+training NLL step=360 nll=0.073687
+{"step": 360, "train_loss": 0.1062091588973999, "changed_elements": 123782019, "frozen_changed_elements": 0}
+validation step=360 nll=0.077907
+training NLL step=540 nll=0.068127
+{"step": 540, "train_loss": 0.07122927904129028, "changed_elements": 123799255, "frozen_changed_elements": 0}
+validation step=540 nll=0.074087
+{"step": 600, "train_loss": 0.11702878028154373, "changed_elements": 123800666, "frozen_changed_elements": 0}
+training NLL step=720 nll=0.052143
+{"step": 720, "train_loss": 0.03487885370850563, "changed_elements": 123807915, "frozen_changed_elements": 0}
+validation step=720 nll=0.064216
+training NLL step=900 nll=0.043996
+{"step": 900, "train_loss": 0.057532403618097305, "changed_elements": 123816593, "frozen_changed_elements": 0}
+validation step=900 nll=0.069551
+full {"primary_correct": 0.24166666666666667, "score_numbers_correct": 1.0, "fields_correct": 0.24166666666666667, "reference_exact": 0.14166666666666666, "by_kind": {"winner": {"primary_correct": 0.0, "score_numbers_correct": 1.0, "fields_correct": 0.0, "reference_exact": 0.0}, "halftime": {"primary_correct": 0.25, "score_numbers_correct": 1.0, "fields_correct": 0.25, "reference_exact": 0.25}, "comeback": {"primary_correct": 0.475, "score_numbers_correct": 1.0, "fields_correct": 0.475, "reference_exact": 0.175}}}
+Saved experiments/sports/stopping/full-train_loss-seed43/report.json
+number of parameters: 124.44M
+{"step": 1, "train_loss": 3.972322463989258, "changed_elements": 331776, "frozen_changed_elements": 0}
+{"step": 180, "train_loss": 0.09220460057258606, "changed_elements": 589824, "frozen_changed_elements": 0}
+validation step=180 nll=0.092795
+{"step": 300, "train_loss": 0.14851783215999603, "changed_elements": 589824, "frozen_changed_elements": 0}
+{"step": 360, "train_loss": 0.13886453211307526, "changed_elements": 589824, "frozen_changed_elements": 0}
+validation step=360 nll=0.071283
+{"step": 540, "train_loss": 0.08224458247423172, "changed_elements": 589824, "frozen_changed_elements": 0}
+validation step=540 nll=0.063702
+{"step": 600, "train_loss": 0.07331144064664841, "changed_elements": 589824, "frozen_changed_elements": 0}
+{"step": 720, "train_loss": 0.10056322813034058, "changed_elements": 589824, "frozen_changed_elements": 0}
+validation step=720 nll=0.078168
+{"step": 900, "train_loss": 0.05009060725569725, "changed_elements": 589824, "frozen_changed_elements": 0}
+validation step=900 nll=0.041285
+{"step": 1080, "train_loss": 0.02857048809528351, "changed_elements": 589824, "frozen_changed_elements": 0}
+validation step=1080 nll=0.027519
+{"step": 1200, "train_loss": 0.05010111257433891, "changed_elements": 589824, "frozen_changed_elements": 0}
+{"step": 1260, "train_loss": 0.022764548659324646, "changed_elements": 589824, "frozen_changed_elements": 0}
+validation step=1260 nll=0.024683
+base {"primary_correct": 0.25833333333333336, "score_numbers_correct": 0.0, "fields_correct": 0.0, "reference_exact": 0.0, "by_kind": {"winner": {"primary_correct": 0.575, "score_numbers_correct": 0.0, "fields_correct": 0.0, "reference_exact": 0.0}, "halftime": {"primary_correct": 0.2, "score_numbers_correct": 0.0, "fields_correct": 0.0, "reference_exact": 0.0}, "comeback": {"primary_correct": 0.0, "score_numbers_correct": 0.0, "fields_correct": 0.0, "reference_exact": 0.0}}}
+lora {"primary_correct": 0.825, "score_numbers_correct": 1.0, "fields_correct": 0.825, "reference_exact": 0.8166666666666667, "by_kind": {"winner": {"primary_correct": 1.0, "score_numbers_correct": 1.0, "fields_correct": 1.0, "reference_exact": 1.0}, "halftime": {"primary_correct": 1.0, "score_numbers_correct": 1.0, "fields_correct": 1.0, "reference_exact": 0.975}, "comeback": {"primary_correct": 0.475, "score_numbers_correct": 1.0, "fields_correct": 0.475, "reference_exact": 0.475}}}
+Saved experiments/sports/stopping/lora-epochs-seed44/report.json
+number of parameters: 124.44M
+{"step": 1, "train_loss": 3.972322463989258, "changed_elements": 331776, "frozen_changed_elements": 0}
+training NLL step=180 nll=0.083418
+{"step": 180, "train_loss": 0.09220460057258606, "changed_elements": 589824, "frozen_changed_elements": 0}
+validation step=180 nll=0.092795
+{"step": 300, "train_loss": 0.14851783215999603, "changed_elements": 589824, "frozen_changed_elements": 0}
+training NLL step=360 nll=0.068930
+{"step": 360, "train_loss": 0.13886453211307526, "changed_elements": 589824, "frozen_changed_elements": 0}
+validation step=360 nll=0.071283
+training NLL step=540 nll=0.066953
+{"step": 540, "train_loss": 0.08224458247423172, "changed_elements": 589824, "frozen_changed_elements": 0}
+validation step=540 nll=0.063702
+{"step": 600, "train_loss": 0.07331144064664841, "changed_elements": 589824, "frozen_changed_elements": 0}
+training NLL step=720 nll=0.064965
+{"step": 720, "train_loss": 0.10056322813034058, "changed_elements": 589824, "frozen_changed_elements": 0}
+validation step=720 nll=0.078168
+training NLL step=900 nll=0.037147
+{"step": 900, "train_loss": 0.05009060725569725, "changed_elements": 589824, "frozen_changed_elements": 0}
+validation step=900 nll=0.041285
+base {"primary_correct": 0.25833333333333336, "score_numbers_correct": 0.0, "fields_correct": 0.0, "reference_exact": 0.0, "by_kind": {"winner": {"primary_correct": 0.575, "score_numbers_correct": 0.0, "fields_correct": 0.0, "reference_exact": 0.0}, "halftime": {"primary_correct": 0.2, "score_numbers_correct": 0.0, "fields_correct": 0.0, "reference_exact": 0.0}, "comeback": {"primary_correct": 0.0, "score_numbers_correct": 0.0, "fields_correct": 0.0, "reference_exact": 0.0}}}
+lora {"primary_correct": 0.8, "score_numbers_correct": 1.0, "fields_correct": 0.8, "reference_exact": 0.8, "by_kind": {"winner": {"primary_correct": 0.95, "score_numbers_correct": 1.0, "fields_correct": 0.95, "reference_exact": 0.95}, "halftime": {"primary_correct": 0.975, "score_numbers_correct": 1.0, "fields_correct": 0.975, "reference_exact": 0.975}, "comeback": {"primary_correct": 0.475, "score_numbers_correct": 1.0, "fields_correct": 0.475, "reference_exact": 0.475}}}
+Saved experiments/sports/stopping/lora-train_loss-seed44/report.json
+number of parameters: 124.44M
+{"step": 1, "train_loss": 3.972322463989258, "changed_elements": 123454838, "frozen_changed_elements": 0}
+{"step": 180, "train_loss": 0.10638628154993057, "changed_elements": 123748615, "frozen_changed_elements": 0}
+validation step=180 nll=0.095071
+{"step": 300, "train_loss": 0.11356311291456223, "changed_elements": 123776493, "frozen_changed_elements": 0}
+{"step": 360, "train_loss": 0.06894325464963913, "changed_elements": 123782398, "frozen_changed_elements": 0}
+validation step=360 nll=0.073524
+{"step": 540, "train_loss": 0.05747830122709274, "changed_elements": 123796170, "frozen_changed_elements": 0}
+validation step=540 nll=0.069308
+{"step": 600, "train_loss": 0.20158657431602478, "changed_elements": 123798732, "frozen_changed_elements": 0}
+{"step": 720, "train_loss": 0.11690878123044968, "changed_elements": 123801526, "frozen_changed_elements": 0}
+validation step=720 nll=0.067890
+{"step": 900, "train_loss": 0.02765204943716526, "changed_elements": 123812307, "frozen_changed_elements": 0}
+validation step=900 nll=0.075164
+{"step": 1080, "train_loss": 0.034701406955718994, "changed_elements": 123830096, "frozen_changed_elements": 0}
+validation step=1080 nll=0.038226
+{"step": 1200, "train_loss": 0.019227586686611176, "changed_elements": 123844432, "frozen_changed_elements": 0}
+{"step": 1260, "train_loss": 0.02366068586707115, "changed_elements": 123850171, "frozen_changed_elements": 0}
+validation step=1260 nll=0.056963
+full {"primary_correct": 0.30833333333333335, "score_numbers_correct": 0.9833333333333333, "fields_correct": 0.30833333333333335, "reference_exact": 0.25833333333333336, "by_kind": {"winner": {"primary_correct": 0.075, "score_numbers_correct": 0.975, "fields_correct": 0.075, "reference_exact": 0.075}, "halftime": {"primary_correct": 0.2, "score_numbers_correct": 1.0, "fields_correct": 0.2, "reference_exact": 0.2}, "comeback": {"primary_correct": 0.65, "score_numbers_correct": 0.975, "fields_correct": 0.65, "reference_exact": 0.5}}}
+Saved experiments/sports/stopping/full-epochs-seed44/report.json
+number of parameters: 124.44M
+{"step": 1, "train_loss": 3.972322463989258, "changed_elements": 123454838, "frozen_changed_elements": 0}
+training NLL step=180 nll=0.085223
+{"step": 180, "train_loss": 0.10638628154993057, "changed_elements": 123748615, "frozen_changed_elements": 0}
+validation step=180 nll=0.095071
+{"step": 300, "train_loss": 0.11356311291456223, "changed_elements": 123776493, "frozen_changed_elements": 0}
+training NLL step=360 nll=0.065802
+{"step": 360, "train_loss": 0.06894325464963913, "changed_elements": 123782398, "frozen_changed_elements": 0}
+validation step=360 nll=0.073524
+training NLL step=540 nll=0.066205
+{"step": 540, "train_loss": 0.05747830122709274, "changed_elements": 123796170, "frozen_changed_elements": 0}
+validation step=540 nll=0.069308
+{"step": 600, "train_loss": 0.20158657431602478, "changed_elements": 123798732, "frozen_changed_elements": 0}
+training NLL step=720 nll=0.057995
+{"step": 720, "train_loss": 0.11690878123044968, "changed_elements": 123801526, "frozen_changed_elements": 0}
+validation step=720 nll=0.067890
+training NLL step=900 nll=0.035592
+{"step": 900, "train_loss": 0.02765204943716526, "changed_elements": 123812307, "frozen_changed_elements": 0}
+validation step=900 nll=0.075164
+full {"primary_correct": 0.21666666666666667, "score_numbers_correct": 0.9833333333333333, "fields_correct": 0.20833333333333334, "reference_exact": 0.175, "by_kind": {"winner": {"primary_correct": 0.0, "score_numbers_correct": 0.975, "fields_correct": 0.0, "reference_exact": 0.0}, "halftime": {"primary_correct": 0.175, "score_numbers_correct": 1.0, "fields_correct": 0.175, "reference_exact": 0.175}, "comeback": {"primary_correct": 0.475, "score_numbers_correct": 0.975, "fields_correct": 0.45, "reference_exact": 0.35}}}
+Saved experiments/sports/stopping/full-train_loss-seed44/report.json
