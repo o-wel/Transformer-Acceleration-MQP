@@ -7,7 +7,7 @@ import time
 from torch.utils.data import DataLoader
 from torch.utils.data import Dataset, Subset
 from tokenizer import get_vocab_info, decode, encode
-from LoRA_transformer import build_transformer
+from LoRA_transformer import build_lora_transformer
 from train import create_causal_mask
 
 # set up path for logging and saving results
@@ -73,7 +73,7 @@ if __name__ == '__main__':
     print("Running on device " + str(device))
     
      # Transformer Hyperparameters
-    seq_length = 128 # context window from dataset per batch
+    seq_length = 512 # context window from dataset per batch
     num_heads = 8 # default is 8
     num_dblocks = 6 # decoder block layers, default is 6
     d_model = 512 # input embedding length, default is 512
@@ -82,7 +82,7 @@ if __name__ == '__main__':
     lora_r = 4 # LoRA rank
     lora_a = 4 # LoRA alpha
     
-    model = build_transformer(tgt_vocab_size=vocab_size, 
+    model = build_lora_transformer(tgt_vocab_size=vocab_size, 
                                 tgt_seq=seq_length,
                                 d_model=d_model,
                                 N=num_dblocks,
@@ -93,7 +93,7 @@ if __name__ == '__main__':
                                 lora_r=lora_r
                                 ).to(device)
     
-    state_dict = torch.load(os.path.join(relative_path, "models/LoRA_seq128_H8_N6_R4_A4.pth")) #transformer_seq128_H8_N6.pth
+    state_dict = torch.load(os.path.join(relative_path, "models/model.pth")) #transformer_seq128_H8_N6.pth
     model.load_state_dict(state_dict)
     model.eval()
     

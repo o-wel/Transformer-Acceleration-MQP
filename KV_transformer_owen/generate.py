@@ -17,9 +17,10 @@ def create_causal_mask(seq_len, device):
 # set up path for logging and saving results
 relative_path = os.path.dirname(os.path.relpath(__file__))
 
-def generate(model, context, seq_length, max_new_tokens):
+def kv_generate(model, context, seq_length, max_new_tokens):
     token_list = context.tolist()
     context = context[-seq_length:].unsqueeze(0)
+    torch.cuda.synchronize()
     start = time.perf_counter()
     ttft = 0
     
@@ -44,25 +45,26 @@ def generate(model, context, seq_length, max_new_tokens):
         
         # add only one new token
         output = model(next_token, mask=None, position=context.shape[1] - 1)
-        
     
+    torch.cuda.synchronize()
     elapsed = time.perf_counter() - start
     tps = max_new_tokens/elapsed
-    print("\n-------------------")
-    print(f"Generated {max_new_tokens} new tokens\n")
-    print(f"Elapsed Time: {elapsed:.6f} sec")
-    print(f"TTFT: {ttft:.6f} sec")
-    print(f"TPS: {tps:.6f} tokens/sec")
-    print(f"SPT: {1/tps:.6f} sec")
+    # print("\n-------------------")
+    # print(f"Generated {max_new_tokens} new tokens\n")
+    # print(f"Elapsed Time: {elapsed:.6f} sec")
+    # print(f"TTFT: {ttft:.6f} sec")
+    # print(f"TPS: {tps:.6f} tokens/sec")
+    # print(f"SPT: {1/tps:.6f} sec")
         
     # Track exact memory usage
     current_mem = torch.cuda.memory_allocated()       # Bytes currently occupied by live tensors
     peak_mem = torch.cuda.max_memory_allocated()      # Peak bytes occupied since the program/reset began
 
-    print(f"Current Tensor Allocation: {current_mem / 1024**2:.2f} MB")
-    print(f"Peak Tensor Allocation: {peak_mem / 1024**2:.2f} MB")
+    # print(f"Current Tensor Allocation: {current_mem / 1024**2:.2f} MB")
+    # print(f"Peak Tensor Allocation: {peak_mem / 1024**2:.2f} MB")
     
-    return token_list
+    return token_list, elapsed, ttft
+
 
 
 if __name__ == '__main__':
@@ -80,31 +82,26 @@ if __name__ == '__main__':
     print("Running on device " + str(device))
     
      # Transformer Hyperparameters
-    seq_length = 128 # context window from dataset per batch
+    seq_length = 512 # context window from dataset per batch
     num_heads = 8 # default is 8
     num_dblocks = 6 # decoder block layers, default is 6
     d_model = 512 # input embedding length, default is 512
     dropout = 0.1 # default of 0.1
     d_ff = 2048 # default of 2048
     
-    model = build_transformer(tgt_vocab_size=vocab_size, 
+    kv_model = build_transformer(tgt_vocab_size=vocab_size, 
                                 tgt_seq=seq_length,
                                 d_model=d_model,
                                 N=num_dblocks,
                                 h=num_heads,
                                 dropout=dropout,
-                                d_ff=d_ff
+                                d_ff=d_ff,
+                                use_kv=True
                                 ).to(device)
     
-    state_dict = torch.load(os.path.join(relative_path, "models/transformer_seq128_H8_N6.pth")) #transformer_seq128_H8_N6.pth
-    model.load_state_dict(state_dict)
-    model.eval()
-    
-    # get amount of parameters in the model
-    params = sum(p.numel() for p in model.parameters())
-    trainable_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
-    print(f"Model parameters: {params:,}")
-    print(f"Trainable parameters: {trainable_params:,}")
+    state_dict = torch.load(os.path.join(relative_path, "models/model.pth")) #transformer_seq128_H8_N6.pth
+    kv_model.load_state_dict(state_dict, strict=False)
+    kv_model.eval()
     
     with torch.no_grad():
         while True:
@@ -116,7 +113,7 @@ if __name__ == '__main__':
             val = encoder(prompt)
             val = torch.tensor(val).to(device)
                 
-            output = generate(model, val, seq_length, max_new_tokens=500)
+            output = kv_generate(kv_model, val, seq_length, max_new_tokens=500)
             
             print("\n-------------------")
-            
+    

@@ -56,13 +56,13 @@ if __name__ == '__main__':
     # Training Hyperparameters
     batch_size = 16
     learning_rate = 0.001
-    epochs = 10
+    epochs = 1
     weight_decay = 1e-5
     
     # Transformer Hyperparameters
-    seq_length = 4 # context window from dataset per batch
-    num_heads = 2 # default is 8
-    num_dblocks = 2 # decoder block layers, default is 6
+    seq_length = 128 # context window from dataset per batch
+    num_heads = 1 # default is 8
+    num_dblocks = 1 # decoder block layers, default is 6
     d_model = 128 # input embedding length, default is 512
     dropout = 0.1 # default of 0.1
     d_ff = 512 # default of 2048

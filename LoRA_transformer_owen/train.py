@@ -7,7 +7,7 @@ import torch.optim as optim
 import matplotlib.pyplot as plt
 from torch.utils.data import DataLoader
 from torch.utils.data import Dataset, Subset
-from LoRA_transformer import build_transformer, LoRALayer
+from LoRA_transformer import build_lora_transformer, LoRALayer
 from tokenizer import encode, get_vocab_info
 
 # set up path for logging and saving results

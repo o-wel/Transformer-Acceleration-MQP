@@ -23,33 +23,49 @@ class InputEmbeddings(nn.Module):
         return self.embedding(x) * math.sqrt(self.d_model)
     
 
-# returns positional encodings of the input sequence
-# seq is max length of the input sequence
-class PositionalEncoding(nn.Module):
-    def __init__(self, d_model: int, seq: int, dropout: float):
+class RotaryEmbedding(nn.Module):
+    def __init__(self, dim, base=10000):
         super().__init__()
-        self.d_model = d_model
-        self.seq = seq
-        self.dropout = nn.Dropout(dropout)
-        
-        encodings = torch.zeros(seq, d_model) # zeros of shape (seq, d_model)
-        position = torch.arange(0, seq, dtype=torch.float).unsqueeze(1) # vals 0-seq, shape (seq, 1)
-        
-        # gives the exponential term in PE equation
-        div_term = torch.exp(torch.arange(0, d_model, 2, dtype=torch.float) * (-math.log(10000.0) / d_model))
-        
-        encodings[:, 0::2] = torch.sin(position * div_term)
-        encodings[:, 1::2] = torch.cos(position * div_term)
-        
-        encodings = encodings.unsqueeze(0) # adds dimension, (1, seq, d_model)
-        
-        self.register_buffer('encodings', encodings)
-    
-    def forward(self, x, position=0):
-        # adds PE to input embeddings
-        # PE encodings have same dimension d_model as the embeddings
-        x = x + (self.encodings[:, :x.shape[1], :]).requires_grad_(False)
-        return self.dropout(x)
+
+        if dim % 2 != 0:
+            raise ValueError("RoPE dimension must be even")
+
+        inverse_frequency = 1.0 / (
+            base ** (
+                torch.arange(0, dim, 2, dtype=torch.float32) / dim
+            )
+        )
+
+        self.register_buffer(
+            "inverse_frequency",
+            inverse_frequency,
+            persistent=False,
+        )
+
+    def forward(self, x, position):
+        # x: [batch, heads, sequence, head_dim]
+        sequence_length = x.shape[2]
+        positions = torch.arange(
+            position,
+            position + sequence_length,
+            device=x.device,
+            dtype=self.inverse_frequency.dtype,
+        )
+
+        angles = torch.outer(positions, self.inverse_frequency)
+        cos = angles.cos()[None, None, :, :]
+        sin = angles.sin()[None, None, :, :]
+
+        x_even = x[..., 0::2]
+        x_odd = x[..., 1::2]
+
+        rotated_even = x_even * cos - x_odd * sin
+        rotated_odd = x_even * sin + x_odd * cos
+
+        return torch.stack(
+            (rotated_even, rotated_odd),
+            dim=-1,
+        ).flatten(-2)
     
 
 # essentially an implementation of pytorch LayerNorm
@@ -82,7 +98,7 @@ class FeedForward(nn.Module):
     
     
 class MultiHeadAttention(nn.Module):
-    def __init__(self, d_model: int, h: int, dropout: float):
+    def __init__(self, d_model: int, h: int, dropout: float, use_kv, seq_length: int):
         super().__init__()
         self.d_model = d_model
         self.h = h # number of heads, d_model should be divisible by h
@@ -93,17 +109,22 @@ class MultiHeadAttention(nn.Module):
         self.w_v = nn.Linear(d_model, d_model, bias=False)
         self.w_o = nn.Linear(d_model, d_model, bias=False)
         self.dropout = nn.Dropout(dropout)
+        self.rotary = RotaryEmbedding(self.d_k)
         
         self.k_cache = None
         self.v_cache = None
-        self.seq_length = 128
+        self.cache_index = 0
+        self.use_kv = use_kv
+        self.seq_length = seq_length
     
     def reset_cache(self):
         self.k_cache = None
         self.v_cache = None
+        self.cache_index = 0
 
-    def forward(self, q, k, v, mask):
+    def forward(self, q, k, v, mask, position):
         # all of shape (batch, seq, d_model)
+        B, T, C = q.shape
         query = self.w_q(q)
         key = self.w_k(k)
         value = self.w_v(v)
@@ -113,26 +134,37 @@ class MultiHeadAttention(nn.Module):
         key = key.view(key.shape[0], key.shape[1], self.h, self.d_k).transpose(1, 2)
         value = value.view(value.shape[0], value.shape[1], self.h, self.d_k).transpose(1, 2)
         
-        if self.k_cache is None:
-            self.k_cache = key
-        else:
-            self.k_cache = torch.cat((self.k_cache, key), dim=2)
+        # apply rotary embeddings
+        query = self.rotary(query, position)
+        key = self.rotary(key, position)
         
-        if self.v_cache is None:
-            self.v_cache = value
-        else:
-            self.v_cache = torch.cat((self.v_cache, value), dim=2)
-            
-        if self.k_cache.size(2) > self.seq_length:
-            self.k_cache = self.k_cache[:, :, -self.seq_length:, :]
-            self.v_cache = self.v_cache[:, :, -self.seq_length:, :]
-        
-        key = self.k_cache
-        value = self.v_cache     
+        if self.use_kv:
+            if self.k_cache is None or self.v_cache is None:
+                # Initialize cache with fixed size
+                self.k_cache = torch.zeros(B, self.h, self.seq_length, self.d_k, device=q.device)
+                self.v_cache = torch.zeros(B, self.h, self.seq_length, self.d_k, device=q.device)
+                self.cache_index = 0
+                
+            # Update cache in-place
+            if self.cache_index + T <= self.seq_length:
+                self.k_cache[:, :, self.cache_index:self.cache_index + T, :] = key
+                self.v_cache[:, :, self.cache_index:self.cache_index + T, :] = value
+            else:
+                # shift the tokens one step back
+                shift = self.cache_index + T - self.seq_length # Shift will always be 1
+                self.k_cache[:, :, :-shift, :] = self.k_cache[:, :, shift:, :].clone()
+                self.v_cache[:, :, :-shift, :] = self.v_cache[:, :, shift:, :].clone()
+                self.k_cache[:, :, -T:, :] = key
+                self.v_cache[:, :, -T:, :] = value
+
+            # Update cache index
+            self.cache_index = min(self.cache_index + T, self.seq_length)
+            key = self.k_cache[:, :, :self.cache_index, :]
+            value = self.v_cache[:, :, :self.cache_index, :]
         
         # calculate attention
-        attention_scores = torch.matmul(query, key.transpose(-2,-1)) / math.sqrt(self.d_k)
-        
+        attention_scores = torch.matmul(query, key.transpose(-2,-1)) / math.sqrt(self.d_k) 
+         
         if mask is not None:
             attention_scores = attention_scores + mask
             
@@ -169,8 +201,8 @@ class DecoderBlock(nn.Module):
         self.feed_forward_block = feed_forward_block
         self.residual_connections = nn.ModuleList([ResidualConnection(features, dropout) for _ in range(2)])
     
-    def forward(self, x, tgt_mask):
-        x = self.residual_connections[0](x, lambda x: self.self_attention_block(x, x, x, tgt_mask))
+    def forward(self, x, tgt_mask, position):
+        x = self.residual_connections[0](x, lambda x: self.self_attention_block(x, x, x, tgt_mask, position))
         x = self.residual_connections[1](x, self.feed_forward_block)
         return x
 
@@ -183,9 +215,9 @@ class Decoder(nn.Module):
         self.layers = layers
         self.norm = LayerNormalization(features)
         
-    def forward(self, x, tgt_mask):
+    def forward(self, x, tgt_mask, position):
         for layer in self.layers:
-            x = layer(x, tgt_mask)
+            x = layer(x, tgt_mask, position)
         return self.norm(x)
 
 # final layer for mapping decoder output to vocabulary
@@ -200,17 +232,17 @@ class ProjectionLayer(nn.Module):
     
 
 class Transformer(nn.Module):
-    def __init__(self, decoder, tgt_embed: InputEmbeddings, tgt_pos: PositionalEncoding, projection_layer: ProjectionLayer):
+    def __init__(self, decoder, tgt_embed: InputEmbeddings, projection_layer: ProjectionLayer):
         super().__init__()
         self.decoder = decoder
         self.tgt_embed = tgt_embed
-        self.tgt_pos = tgt_pos
+        
         self.projection_layer = projection_layer
         
     def decode(self, tgt: torch.Tensor, tgt_mask: torch.Tensor, position):
         tgt = self.tgt_embed(tgt)
-        tgt = self.tgt_pos(tgt, position)
-        return self.decoder(tgt, tgt_mask)
+        
+        return self.decoder(tgt, tgt_mask, position)
     
     def reset_cache(self):
         for module in self.modules():
@@ -232,15 +264,16 @@ def build_transformer(tgt_vocab_size: int,
                       N: int=6,
                       h: int=8,
                       dropout: float=0.1,
-                      d_ff: int=2048):
+                      d_ff: int=2048,
+                      use_kv: float=True
+                      ):
     
     embed = InputEmbeddings(d_model, tgt_vocab_size)
-    pos = PositionalEncoding(d_model, tgt_seq, dropout)
     
     # defining each block in the decoder
     decoder_blocks = []
     for _ in range(N):
-        decoder_self_attention = MultiHeadAttention(d_model, h, dropout)
+        decoder_self_attention = MultiHeadAttention(d_model, h, dropout, use_kv, seq_length=tgt_seq)
         ffn = FeedForward(d_model, d_ff, dropout)
         decoder_block = DecoderBlock(d_model, decoder_self_attention, ffn, dropout)
         
@@ -250,7 +283,6 @@ def build_transformer(tgt_vocab_size: int,
     decoder = Decoder(d_model, nn.ModuleList(decoder_blocks))
     proj_layer = ProjectionLayer(d_model, tgt_vocab_size)
     
-    transformer = Transformer(decoder, embed, pos, proj_layer)
+    transformer = Transformer(decoder, embed, proj_layer)
     
     return transformer
-

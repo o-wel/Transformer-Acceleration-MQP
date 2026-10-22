@@ -27,6 +27,7 @@ if __name__ == '__main__':
     with open(os.path.join(relative_path, "training_data/input.txt"), "r") as f:
         text = f.read()
     
+    print(len(text)/16)
     vocab_size, chars = get_vocab_info(text)
     print(chars)
     
