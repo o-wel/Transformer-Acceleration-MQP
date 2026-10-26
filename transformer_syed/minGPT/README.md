@@ -181,6 +181,8 @@ python -m unittest discover -s tests -p test_lora.py -v
 
 ### FP32 LoRA domain-adaptation experiment
 
+For setup, training, and base-versus-adapter commands, see [LoRA reproduction steps](LORA_REPRO.md).
+
 See [the reproducible FAQ demo](experiments/lora/README.md) for base/adapter comparisons, exact frozen-weight audits, parameter counts, and GPU memory measurement.
 
 ### LoRA on unseen sports matches
