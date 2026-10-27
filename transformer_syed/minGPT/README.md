@@ -198,3 +198,18 @@ The [corrected comparison](experiments/sports/matched/README.md) trains both met
 See [the attention benchmark](experiments/flash_attention/README.md) for selectable
 eager/SDPA/forced FlashAttention kernels and paired training, prefill, cached decode,
 and uncached decode measurements, including GPU memory and profiler traces.
+
+### FP32 tiled attention and precision attribution
+
+See [the FP32 attention experiment](experiments/fp32_attention/README.md) for an
+earlier inference-only Triton kernel with IEEE FP32 dot products, the built-in efficient
+backend's FastF32 caveat, and same-GPU FP32/BF16/FlashAttention comparisons with
+LoRA, KV caching, compiler evidence and task-quality checks.
+
+### Main FP16/FP32 attention comparison
+
+See [the backend glossary](experiments/fp16_fp32_attention/BACKENDS.md) and
+[matched FP16/FP32 experiment](experiments/fp16_fp32_attention/README.md) for
+FP16 eager versus forced FlashAttention, FP32 eager versus custom tiled attention,
+and validated first-order tiled backward with paired inference/training controls.
+Earlier BF16 and forward-only FP32 reports remain historical results.

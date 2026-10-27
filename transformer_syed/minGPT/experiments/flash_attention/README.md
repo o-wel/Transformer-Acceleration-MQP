@@ -1,5 +1,10 @@
 # FlashAttention measurements
 
+**Historical BF16 run:** the new primary comparison uses FP16 autocast and
+validated FP32 tiled backward; see [the FP16/FP32 experiment](../fp16_fp32_attention/README.md).
+This directory retains the original native-BF16 inference results and their
+precision policy. They must not be relabeled FP16.
+
 The real-checkpoint A30 experiment is run with `sbatch experiments/flash_attention/run_gpu.sh`.
 It measures pretrained GPT-2 and the trained seed-42 LoRA adapter, checks task quality
 on pretrained/full/LoRA checkpoints, and measures full/LoRA AdamW training costs.

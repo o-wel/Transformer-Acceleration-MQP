@@ -47,8 +47,8 @@ class CausalSelfAttention(nn.Module):
         self.register_buffer("bias", torch.tril(torch.ones(config.block_size, config.block_size))
                                      .view(1, 1, config.block_size, config.block_size))
         self.attention_backend = getattr(config, "attention_backend", "eager")
-        if self.attention_backend not in {"eager", "sdpa", "math", "flash"}:
-            raise ValueError("attention_backend must be eager, sdpa, math, or flash")
+        if self.attention_backend not in {"eager", "sdpa", "math", "flash", "efficient", "tiled_fp32"}:
+            raise ValueError("attention_backend must be eager, sdpa, math, flash, efficient, or tiled_fp32")
         self.n_head = config.n_head
         self.n_embd = config.n_embd
 
@@ -74,13 +74,19 @@ class CausalSelfAttention(nn.Module):
             att = att.masked_fill(self.bias[:, :, past_length:past_length + T, :past_length + T] == 0, float('-inf'))
             att = self.attn_dropout(F.softmax(att, dim=-1))
             y = att @ v
+        elif self.attention_backend == "tiled_fp32":
+            from mingpt.tiled_attention import tiled_attention_fp32
+            if self.training and self.attn_dropout.p:
+                raise RuntimeError("tiled_fp32 has no attention dropout; set attn_pdrop=0 for training")
+            y = tiled_attention_fp32(q, k, v, past_length)
         else:
             from contextlib import nullcontext
             from torch.nn.attention import SDPBackend, sdpa_kernel
-            if self.attention_backend == "flash" and q.device.type != "cuda":
-                raise RuntimeError("FlashAttention requires CUDA; use math or sdpa on CPU")
+            if self.attention_backend in {"flash", "efficient", "tiled_fp32"} and q.device.type != "cuda":
+                raise RuntimeError(f"{self.attention_backend} attention requires CUDA; use math or sdpa on CPU")
             context = nullcontext() if self.attention_backend == "sdpa" else sdpa_kernel(
-                SDPBackend.FLASH_ATTENTION if self.attention_backend == "flash" else SDPBackend.MATH)
+                {"flash": SDPBackend.FLASH_ATTENTION, "math": SDPBackend.MATH,
+                 "efficient": SDPBackend.EFFICIENT_ATTENTION}[self.attention_backend])
             # SDPA's is_causal is upper-left aligned. Cached queries belong at
             # the RIGHT end of K/V; one-token decode can see every cached key.
             mask = None
@@ -166,7 +172,7 @@ class GPT(nn.Module):
         C.embd_pdrop = 0.1
         C.resid_pdrop = 0.1
         C.attn_pdrop = 0.1
-        C.attention_backend = "eager"  # eager | math | sdpa (automatic) | flash (forced)
+        C.attention_backend = "eager"  # eager | math | sdpa (automatic) | flash / efficient (forced)
         return C
 
     def __init__(self, config):
@@ -277,8 +283,8 @@ class GPT(nn.Module):
 
     def set_attention_backend(self, backend):
         """Switch kernels without changing weights, LoRA adapters, or cache format."""
-        if backend not in {"eager", "sdpa", "math", "flash"}:
-            raise ValueError("attention backend must be eager, sdpa, math, or flash")
+        if backend not in {"eager", "sdpa", "math", "flash", "efficient", "tiled_fp32"}:
+            raise ValueError("attention backend must be eager, sdpa, math, flash, efficient, or tiled_fp32")
         for block in self.transformer.h:
             block.attn.attention_backend = backend
         return self

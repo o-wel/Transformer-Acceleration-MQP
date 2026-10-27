@@ -1,0 +1,69 @@
+test_book_cleanup_and_cap (test_chargpt_data.TestCorpusPreparation.test_book_cleanup_and_cap) ... ok
+test_dialogue_preserves_roles_and_boundaries (test_chargpt_data.TestCorpusPreparation.test_dialogue_preserves_roles_and_boundaries) ... ok
+test_automatic (test_flash_attention.TestAttention.test_automatic) ... ok
+test_efficient_fp32 (test_flash_attention.TestAttention.test_efficient_fp32) ... skipped 'CUDA required'
+test_explicit_errors (test_flash_attention.TestAttention.test_explicit_errors) ... ok
+test_flash (test_flash_attention.TestAttention.test_flash) ... skipped 'CUDA required'
+test_math (test_flash_attention.TestAttention.test_math) ... ok
+test_gpt2 (test_huggingface_import.TestHuggingFaceImport.test_gpt2) ... The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+ok
+test_chunked_logits_base_and_nonzero_lora (test_kv_cache.TestKVCache.test_chunked_logits_base_and_nonzero_lora) ... ok
+test_generation_and_window_rebuild (test_kv_cache.TestKVCache.test_generation_and_window_rebuild) ... ok
+test_invalid_cache_usage (test_kv_cache.TestKVCache.test_invalid_cache_usage) ... ok
+test_training_and_checkpoint_unchanged (test_kv_cache.TestKVCache.test_training_and_checkpoint_unchanged) ... ok
+test_linear_matches_effective_weight (test_lora.TestLoRA.test_linear_matches_effective_weight) ... ok
+test_training_and_checkpoint (test_lora.TestLoRA.test_training_and_checkpoint) ... ok
+test_validation_and_base_optimizer (test_lora.TestLoRA.test_validation_and_base_optimizer) ... ok
+test_epoch_and_loss_stopping_evaluate_final_checkpoint (test_matched.TestMatched.test_epoch_and_loss_stopping_evaluate_final_checkpoint) ... number of parameters: 0.01M
+number of parameters: 0.01M
+number of parameters: 0.01M
+number of parameters: 0.01M
+number of parameters: 0.01M
+number of parameters: 124.44M
+number of parameters: 0.01M
+number of parameters: 0.01M
+number of parameters: 0.01M
+number of parameters: 0.01M
+number of parameters: 0.01M
+number of parameters: 0.00M
+number of parameters: 0.00M
+LoRA toy training loss: 2.8102 -> 2.4909
+number of parameters: 0.00M
+number of parameters: 0.00M
+{"step": 1, "train_loss": 2.726710081100464, "changed_elements": 576, "frozen_changed_elements": 0}
+{"step": 2, "train_loss": 2.7238922119140625, "changed_elements": 1024, "frozen_changed_elements": 0}
+validation step=2 nll=2.721037
+{"step": 4, "train_loss": 2.7181172370910645, "changed_elements": 1024, "frozen_changed_elements": 0}
+validation step=4 nll=2.715122
+Saved /tmp/tmprmailgzm/run/report.json
+number of parameters: 0.00M
+{"step": 1, "train_loss": 2.726710081100464, "changed_elements": 576, "frozen_changed_elements": 0}
+training NLL step=2 nll=2.721037
+{"step": 2, "train_loss": 2.7238922119140625, "changed_elements": 1024, "frozen_changed_elements": 0}
+validation step=2 nll=2.721037
+Saved /tmp/tmpc1x7t2fp/run/report.json
+ok
+test_full_and_lora_checkpoint_roundtrip (test_matched.TestMatched.test_full_and_lora_checkpoint_roundtrip) ... ok
+test_selection_uses_validation_not_test (test_matched.TestMatched.test_selection_uses_validation_not_test) ... ok
+test_audit_detects_frozen_mutation (test_measurement.TestMeasurement.test_audit_detects_frozen_mutation) ... ok
+test_count_elements_not_tensors (test_measurement.TestMeasurement.test_count_elements_not_tensors) ... ok
+test_batch_generation_matches_single (test_sports.TestSports.test_batch_generation_matches_single) ... ok
+test_counterfactual_logic_and_scoring (test_sports.TestSports.test_counterfactual_logic_and_scoring) ... ok
+test_only_answer_tokens_are_targets (test_sports.TestSports.test_only_answer_tokens_are_targets) ... ok
+test_split_integrity (test_sports.TestSports.test_split_integrity) ... ok
+test_direct_reference_and_compiler (test_tiled_attention.TestTiledFP32.test_direct_reference_and_compiler) ... skipped 'CUDA required'
+test_model_cache_and_lora (test_tiled_attention.TestTiledFP32.test_model_cache_and_lora) ... skipped 'CUDA required'
+
+----------------------------------------------------------------------
+Ran 26 tests in 9.848s
+
+OK (skipped=4)
+number of parameters: 0.00M
+number of parameters: 0.00M
+number of parameters: 0.00M
+number of parameters: 0.00M
+number of parameters: 0.00M
+number of parameters: 0.00M
+number of parameters: 0.00M

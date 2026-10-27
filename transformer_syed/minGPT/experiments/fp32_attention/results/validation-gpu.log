@@ -1,0 +1,161 @@
+Loading python/3.12.9/oegpall
+  Loading requirement: gcc-runtime/13.2.0/yimvxxm bzip2/1.0.8/itttwfv
+    gcc-runtime/13.2.0/s3f7i6x libmd/1.0.4/ngvfltj libbsd/0.12.1/6of6olc
+    expat/2.6.2/zoq445h ncurses/6.4/zqsx2w2 readline/8.2/hmsgdsx
+    gdbm/1.23/gtrssid libiconv/1.17/pmxhi4x xz/5.4.6/uxouxrg
+    zlib-ng/2.1.5/uctcqfl libxml2/2.10.3/vdqe2g3 pigz/2.8/pmmdaqf
+    zstd/1.5.5/juuobg2 tar/1.34/5prin2y gettext/0.22.4/iy5z4el
+    libffi/3.4.4/vqf2avv libxcrypt/4.4.35/zvatbxx openssl/3.4.0/pholr53
+    sqlite/3.43.2/o22u32h util-linux-uuid/2.38.1/mse45hb
+test_automatic (test_flash_attention.TestAttention.test_automatic) ... number of parameters: 0.01M
+number of parameters: 0.01M
+ok
+test_efficient_fp32 (test_flash_attention.TestAttention.test_efficient_fp32) ... number of parameters: 0.01M
+number of parameters: 0.01M
+ok
+test_explicit_errors (test_flash_attention.TestAttention.test_explicit_errors) ... number of parameters: 0.01M
+ok
+test_flash (test_flash_attention.TestAttention.test_flash) ... number of parameters: 0.01M
+number of parameters: 0.01M
+ok
+test_math (test_flash_attention.TestAttention.test_math) ... number of parameters: 0.01M
+number of parameters: 0.01M
+ok
+test_direct_reference_and_compiler (test_tiled_attention.TestTiledFP32.test_direct_reference_and_compiler) ... ok
+test_model_cache_and_lora (test_tiled_attention.TestTiledFP32.test_model_cache_and_lora) ... number of parameters: 0.01M
+number of parameters: 0.01M
+ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 9.639s
+
+OK
+KERNEL 128 prefill {'fp32_eager': 92.83, 'fp32_tiled': 33.48, 'fp32_efficient_fastf32': 22.48, 'bf16_eager': 22.53, 'bf16_flash': 7.42}
+KERNEL 128 decode {'fp32_eager': 11.11, 'fp32_tiled': 26.68, 'fp32_efficient_fastf32': 29.85, 'bf16_eager': 11.62, 'bf16_flash': 11.72}
+KERNEL 512 prefill {'fp32_eager': 259.79, 'fp32_tiled': 287.64, 'fp32_efficient_fastf32': 99.28, 'bf16_eager': 101.73, 'bf16_flash': 17.25}
+KERNEL 512 decode {'fp32_eager': 15.97, 'fp32_tiled': 73.78, 'fp32_efficient_fastf32': 77.31, 'bf16_eager': 17.46, 'bf16_flash': 12.03}
+KERNEL 896 prefill {'fp32_eager': 880.69, 'fp32_tiled': 759.55, 'fp32_efficient_fastf32': 230.55, 'bf16_eager': 381.39, 'bf16_flash': 39.63}
+KERNEL 896 decode {'fp32_eager': 19.51, 'fp32_tiled': 121.55, 'fp32_efficient_fastf32': 126.41, 'bf16_eager': 21.71, 'bf16_flash': 12.44}
+number of parameters: 124.44M
+LOGITS pretrained fp32_eager {'max_abs_error': 0.0, 'mean_abs_error': 0.0, 'cache_max_abs_error': 0.00017547607421875, 'argmax_agreement': 1.0}
+INFERENCE pretrained fp32_eager 1 128 {'uncached': 446.59, 'cached': 413.31}
+INFERENCE pretrained fp32_eager 1 512 {'uncached': 1230.69, 'cached': 408.87}
+INFERENCE pretrained fp32_eager 1 896 {'uncached': 2329.82, 'cached': 413.78}
+INFERENCE pretrained fp32_eager 4 128 {'uncached': 1255.89, 'cached': 424.8}
+USDT:2026-10-26 22:48:41 425216:425216 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-10-26 22:48:41 425216:425216 SyncActivityProfilerHandler.cpp:46] profiler_stop
+QUALITY pretrained fp32_eager {'uncached': {'primary_correct': 0.25833333333333336, 'score_numbers_correct': 0.0, 'fields_correct': 0.0, 'reference_exact': 0.0}, 'cached': {'primary_correct': 0.25833333333333336, 'score_numbers_correct': 0.0, 'fields_correct': 0.0, 'reference_exact': 0.0}}
+number of parameters: 124.44M
+LOGITS pretrained fp32_tiled {'max_abs_error': 0.0005340576171875, 'mean_abs_error': 1.794395939214155e-05, 'cache_max_abs_error': 0.0006256103515625, 'argmax_agreement': 1.0}
+INFERENCE pretrained fp32_tiled 1 128 {'uncached': 420.65, 'cached': 410.87}
+INFERENCE pretrained fp32_tiled 1 512 {'uncached': 1123.17, 'cached': 405.4}
+INFERENCE pretrained fp32_tiled 1 896 {'uncached': 2133.97, 'cached': 411.36}
+INFERENCE pretrained fp32_tiled 4 128 {'uncached': 1182.17, 'cached': 415.43}
+USDT:2026-10-26 22:54:14 425216:425216 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-10-26 22:54:14 425216:425216 SyncActivityProfilerHandler.cpp:46] profiler_stop
+QUALITY pretrained fp32_tiled {'uncached': {'primary_correct': 0.25833333333333336, 'score_numbers_correct': 0.0, 'fields_correct': 0.0, 'reference_exact': 0.0}, 'cached': {'primary_correct': 0.25833333333333336, 'score_numbers_correct': 0.0, 'fields_correct': 0.0, 'reference_exact': 0.0}}
+number of parameters: 124.44M
+LOGITS pretrained fp32_efficient_fastf32 {'max_abs_error': 0.0003814697265625, 'mean_abs_error': 1.7581014617462642e-05, 'cache_max_abs_error': 0.0002288818359375, 'argmax_agreement': 1.0}
+INFERENCE pretrained fp32_efficient_fastf32 1 128 {'uncached': 403.91, 'cached': 411.86}
+INFERENCE pretrained fp32_efficient_fastf32 1 512 {'uncached': 984.42, 'cached': 406.59}
+INFERENCE pretrained fp32_efficient_fastf32 1 896 {'uncached': 1758.25, 'cached': 410.86}
+INFERENCE pretrained fp32_efficient_fastf32 4 128 {'uncached': 1140.34, 'cached': 412.64}
+USDT:2026-10-26 22:56:53 425216:425216 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-10-26 22:56:53 425216:425216 SyncActivityProfilerHandler.cpp:46] profiler_stop
+QUALITY pretrained fp32_efficient_fastf32 {'uncached': {'primary_correct': 0.25833333333333336, 'score_numbers_correct': 0.0, 'fields_correct': 0.0, 'reference_exact': 0.0}, 'cached': {'primary_correct': 0.25833333333333336, 'score_numbers_correct': 0.0, 'fields_correct': 0.0, 'reference_exact': 0.0}}
+number of parameters: 124.44M
+LOGITS pretrained bf16_eager {'max_abs_error': 2.5355072021484375, 'mean_abs_error': 0.26866188645362854, 'cache_max_abs_error': 5.0, 'argmax_agreement': 0.7837837934494019}
+INFERENCE pretrained bf16_eager 1 128 {'uncached': 501.4, 'cached': 512.1}
+INFERENCE pretrained bf16_eager 1 512 {'uncached': 504.59, 'cached': 516.09}
+INFERENCE pretrained bf16_eager 1 896 {'uncached': 647.79, 'cached': 508.07}
+INFERENCE pretrained bf16_eager 4 128 {'uncached': 536.53, 'cached': 535.72}
+USDT:2026-10-26 22:58:03 425216:425216 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-10-26 22:58:03 425216:425216 SyncActivityProfilerHandler.cpp:46] profiler_stop
+QUALITY pretrained bf16_eager {'uncached': {'primary_correct': 0.225, 'score_numbers_correct': 0.041666666666666664, 'fields_correct': 0.03333333333333333, 'reference_exact': 0.0}, 'cached': {'primary_correct': 0.21666666666666667, 'score_numbers_correct': 0.06666666666666667, 'fields_correct': 0.041666666666666664, 'reference_exact': 0.0}}
+number of parameters: 124.44M
+LOGITS pretrained bf16_flash {'max_abs_error': 1.7164306640625, 'mean_abs_error': 0.26063072681427, 'cache_max_abs_error': 3.0, 'argmax_agreement': 0.7837837934494019}
+INFERENCE pretrained bf16_flash 1 128 {'uncached': 368.81, 'cached': 404.56}
+INFERENCE pretrained bf16_flash 1 512 {'uncached': 368.97, 'cached': 417.55}
+INFERENCE pretrained bf16_flash 1 896 {'uncached': 369.14, 'cached': 409.72}
+INFERENCE pretrained bf16_flash 4 128 {'uncached': 373.27, 'cached': 411.11}
+USDT:2026-10-26 22:59:00 425216:425216 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-10-26 22:59:00 425216:425216 SyncActivityProfilerHandler.cpp:46] profiler_stop
+QUALITY pretrained bf16_flash {'uncached': {'primary_correct': 0.23333333333333334, 'score_numbers_correct': 0.06666666666666667, 'fields_correct': 0.041666666666666664, 'reference_exact': 0.0}, 'cached': {'primary_correct': 0.21666666666666667, 'score_numbers_correct': 0.05, 'fields_correct': 0.041666666666666664, 'reference_exact': 0.0}}
+number of parameters: 124.44M
+LOGITS lora fp32_eager {'max_abs_error': 0.0, 'mean_abs_error': 0.0, 'cache_max_abs_error': 0.00018310546875, 'argmax_agreement': 1.0}
+INFERENCE lora fp32_eager 1 128 {'uncached': 733.8, 'cached': 757.36}
+INFERENCE lora fp32_eager 1 512 {'uncached': 1414.7, 'cached': 752.82}
+INFERENCE lora fp32_eager 1 896 {'uncached': 2557.44, 'cached': 757.78}
+INFERENCE lora fp32_eager 4 128 {'uncached': 1418.82, 'cached': 769.62}
+USDT:2026-10-26 23:00:54 425216:425216 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-10-26 23:00:54 425216:425216 SyncActivityProfilerHandler.cpp:46] profiler_stop
+QUALITY lora fp32_eager {'uncached': {'primary_correct': 0.8083333333333333, 'score_numbers_correct': 0.9833333333333333, 'fields_correct': 0.7916666666666666, 'reference_exact': 0.7916666666666666}, 'cached': {'primary_correct': 0.8083333333333333, 'score_numbers_correct': 0.9833333333333333, 'fields_correct': 0.7916666666666666, 'reference_exact': 0.7916666666666666}}
+number of parameters: 124.44M
+LOGITS lora fp32_tiled {'max_abs_error': 0.0001068115234375, 'mean_abs_error': 1.2088646144547965e-05, 'cache_max_abs_error': 0.00017547607421875, 'argmax_agreement': 1.0}
+INFERENCE lora fp32_tiled 1 128 {'uncached': 643.37, 'cached': 670.76}
+INFERENCE lora fp32_tiled 1 512 {'uncached': 1288.54, 'cached': 666.18}
+INFERENCE lora fp32_tiled 1 896 {'uncached': 2382.58, 'cached': 673.29}
+INFERENCE lora fp32_tiled 4 128 {'uncached': 1362.98, 'cached': 666.02}
+USDT:2026-10-26 23:02:53 425216:425216 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-10-26 23:02:53 425216:425216 SyncActivityProfilerHandler.cpp:46] profiler_stop
+QUALITY lora fp32_tiled {'uncached': {'primary_correct': 0.8083333333333333, 'score_numbers_correct': 0.9833333333333333, 'fields_correct': 0.7916666666666666, 'reference_exact': 0.7916666666666666}, 'cached': {'primary_correct': 0.8083333333333333, 'score_numbers_correct': 0.9833333333333333, 'fields_correct': 0.7916666666666666, 'reference_exact': 0.7916666666666666}}
+number of parameters: 124.44M
+LOGITS lora fp32_efficient_fastf32 {'max_abs_error': 8.392333984375e-05, 'mean_abs_error': 1.3166508324502502e-05, 'cache_max_abs_error': 0.00020599365234375, 'argmax_agreement': 1.0}
+INFERENCE lora fp32_efficient_fastf32 1 128 {'uncached': 625.46, 'cached': 671.51}
+INFERENCE lora fp32_efficient_fastf32 1 512 {'uncached': 1141.79, 'cached': 666.35}
+INFERENCE lora fp32_efficient_fastf32 1 896 {'uncached': 1984.73, 'cached': 670.77}
+INFERENCE lora fp32_efficient_fastf32 4 128 {'uncached': 1305.96, 'cached': 663.74}
+USDT:2026-10-26 23:04:43 425216:425216 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-10-26 23:04:43 425216:425216 SyncActivityProfilerHandler.cpp:46] profiler_stop
+QUALITY lora fp32_efficient_fastf32 {'uncached': {'primary_correct': 0.8083333333333333, 'score_numbers_correct': 0.9833333333333333, 'fields_correct': 0.7916666666666666, 'reference_exact': 0.7916666666666666}, 'cached': {'primary_correct': 0.8083333333333333, 'score_numbers_correct': 0.9833333333333333, 'fields_correct': 0.7916666666666666, 'reference_exact': 0.7916666666666666}}
+number of parameters: 124.44M
+LOGITS lora bf16_eager {'max_abs_error': 1.1704559326171875, 'mean_abs_error': 0.233695387840271, 'cache_max_abs_error': 1.0, 'argmax_agreement': 0.8783783912658691}
+INFERENCE lora bf16_eager 1 128 {'uncached': 783.61, 'cached': 764.61}
+INFERENCE lora bf16_eager 1 512 {'uncached': 793.2, 'cached': 765.23}
+INFERENCE lora bf16_eager 1 896 {'uncached': 828.11, 'cached': 761.85}
+INFERENCE lora bf16_eager 4 128 {'uncached': 821.89, 'cached': 815.92}
+USDT:2026-10-26 23:06:19 425216:425216 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-10-26 23:06:19 425216:425216 SyncActivityProfilerHandler.cpp:46] profiler_stop
+QUALITY lora bf16_eager {'uncached': {'primary_correct': 0.8, 'score_numbers_correct': 0.9833333333333333, 'fields_correct': 0.7833333333333333, 'reference_exact': 0.7833333333333333}, 'cached': {'primary_correct': 0.8, 'score_numbers_correct': 0.9833333333333333, 'fields_correct': 0.7833333333333333, 'reference_exact': 0.7833333333333333}}
+number of parameters: 124.44M
+LOGITS lora bf16_flash {'max_abs_error': 1.0640487670898438, 'mean_abs_error': 0.2570192515850067, 'cache_max_abs_error': 1.0, 'argmax_agreement': 0.8918918967247009}
+INFERENCE lora bf16_flash 1 128 {'uncached': 664.01, 'cached': 663.44}
+INFERENCE lora bf16_flash 1 512 {'uncached': 669.42, 'cached': 674.13}
+INFERENCE lora bf16_flash 1 896 {'uncached': 662.75, 'cached': 667.08}
+INFERENCE lora bf16_flash 4 128 {'uncached': 670.22, 'cached': 702.12}
+USDT:2026-10-26 23:07:46 425216:425216 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-10-26 23:07:46 425216:425216 SyncActivityProfilerHandler.cpp:46] profiler_stop
+QUALITY lora bf16_flash {'uncached': {'primary_correct': 0.8, 'score_numbers_correct': 0.9833333333333333, 'fields_correct': 0.7833333333333333, 'reference_exact': 0.7833333333333333}, 'cached': {'primary_correct': 0.8, 'score_numbers_correct': 0.9833333333333333, 'fields_correct': 0.7833333333333333, 'reference_exact': 0.7833333333333333}}
+number of parameters: 124.44M
+TRAIN full 512 fp32_eager 138.28
+number of parameters: 124.44M
+TRAIN full 512 fp32_efficient_fastf32 122.98
+number of parameters: 124.44M
+TRAIN full 512 bf16_eager 66.05
+number of parameters: 124.44M
+TRAIN full 512 bf16_flash 56.25
+number of parameters: 124.44M
+TRAIN full 896 fp32_eager 245.44
+number of parameters: 124.44M
+TRAIN full 896 fp32_efficient_fastf32 203.41
+number of parameters: 124.44M
+TRAIN full 896 bf16_eager 99.73
+number of parameters: 124.44M
+TRAIN full 896 bf16_flash 68.24
+number of parameters: 124.44M
+TRAIN lora 512 fp32_eager 100.34
+number of parameters: 124.44M
+TRAIN lora 512 fp32_efficient_fastf32 85.33
+number of parameters: 124.44M
+TRAIN lora 512 bf16_eager 61.42
+number of parameters: 124.44M
+TRAIN lora 512 bf16_flash 52.68
+number of parameters: 124.44M
+TRAIN lora 896 fp32_eager 190.66
+number of parameters: 124.44M
+TRAIN lora 896 fp32_efficient_fastf32 148.76
+number of parameters: 124.44M
+TRAIN lora 896 bf16_eager 83.95
+number of parameters: 124.44M
+TRAIN lora 896 bf16_flash 54.23
+COMPLETE
