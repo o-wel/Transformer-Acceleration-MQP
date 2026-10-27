@@ -1,0 +1,41 @@
+Loading python/3.12.9/oegpall
+  Loading requirement: gcc-runtime/13.2.0/yimvxxm bzip2/1.0.8/itttwfv
+    gcc-runtime/13.2.0/s3f7i6x libmd/1.0.4/ngvfltj libbsd/0.12.1/6of6olc
+    expat/2.6.2/zoq445h ncurses/6.4/zqsx2w2 readline/8.2/hmsgdsx
+    gdbm/1.23/gtrssid libiconv/1.17/pmxhi4x xz/5.4.6/uxouxrg
+    zlib-ng/2.1.5/uctcqfl libxml2/2.10.3/vdqe2g3 pigz/2.8/pmmdaqf
+    zstd/1.5.5/juuobg2 tar/1.34/5prin2y gettext/0.22.4/iy5z4el
+    libffi/3.4.4/vqf2avv libxcrypt/4.4.35/zvatbxx openssl/3.4.0/pholr53
+    sqlite/3.43.2/o22u32h util-linux-uuid/2.38.1/mse45hb
+GPU NVIDIA A30
+test_automatic (test_flash_attention.TestAttention.test_automatic) ... number of parameters: 0.01M
+number of parameters: 0.01M
+ok
+test_efficient_fp32 (test_flash_attention.TestAttention.test_efficient_fp32) ... number of parameters: 0.01M
+number of parameters: 0.01M
+ok
+test_explicit_errors (test_flash_attention.TestAttention.test_explicit_errors) ... number of parameters: 0.01M
+ok
+test_flash (test_flash_attention.TestAttention.test_flash) ... number of parameters: 0.01M
+number of parameters: 0.01M
+ok
+test_math (test_flash_attention.TestAttention.test_math) ... number of parameters: 0.01M
+number of parameters: 0.01M
+ok
+test_direct_reference_and_compiler (test_tiled_attention.TestTiledFP32.test_direct_reference_and_compiler) ... ok
+test_model_cache_and_lora (test_tiled_attention.TestTiledFP32.test_model_cache_and_lora) ... number of parameters: 0.01M
+number of parameters: 0.01M
+ok
+test_backward_ptx (test_tiled_backward.TestTiledBackward.test_backward_ptx) ... ok
+test_float64_reference_and_noncontiguous_grad (test_tiled_backward.TestTiledBackward.test_float64_reference_and_noncontiguous_grad) ... ok
+test_linear_saved_state_and_no_dropout (test_tiled_backward.TestTiledBackward.test_linear_saved_state_and_no_dropout) ... number of parameters: 0.01M
+ok
+test_model_gradients_and_optimizer_steps (test_tiled_backward.TestTiledBackward.test_model_gradients_and_optimizer_steps) ... number of parameters: 0.01M
+number of parameters: 0.01M
+ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 33.488s
+
+OK
+VALIDATION COMPLETE

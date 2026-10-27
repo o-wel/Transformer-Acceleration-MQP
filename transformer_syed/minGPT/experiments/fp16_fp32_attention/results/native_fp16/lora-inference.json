@@ -1,0 +1,2790 @@
+[
+  {
+    "batch": 1,
+    "prompt_tokens": 128,
+    "new_tokens": 64,
+    "samples": {
+      "fp16_native_eager-uncached": [
+        {
+          "wall_ms": 610.6897662393749,
+          "prefill_ms": 10.400768280029297,
+          "decode_ms": 600.2390747070312,
+          "peak_allocated_bytes": 370102784,
+          "peak_reserved_bytes": 404750336,
+          "baseline_allocated_bytes": 363526144,
+          "end_allocated_bytes": 363630080,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 9.527604360429068,
+          "aggregate_tokens_per_second": 104.79952921777573,
+          "incremental_peak_bytes": 6576640
+        },
+        {
+          "wall_ms": 610.5912271887064,
+          "prefill_ms": 10.472448348999023,
+          "decode_ms": 600.0650024414062,
+          "peak_allocated_bytes": 370102784,
+          "peak_reserved_bytes": 404750336,
+          "baseline_allocated_bytes": 363526144,
+          "end_allocated_bytes": 363630080,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 9.52484130859375,
+          "aggregate_tokens_per_second": 104.81644208134105,
+          "incremental_peak_bytes": 6576640
+        },
+        {
+          "wall_ms": 615.6555563211441,
+          "prefill_ms": 10.485759735107422,
+          "decode_ms": 605.1184692382812,
+          "peak_allocated_bytes": 370102784,
+          "peak_reserved_bytes": 404750336,
+          "baseline_allocated_bytes": 363526144,
+          "end_allocated_bytes": 363630080,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 9.605055067274305,
+          "aggregate_tokens_per_second": 103.95423113279872,
+          "incremental_peak_bytes": 6576640
+        },
+        {
+          "wall_ms": 606.9567920640111,
+          "prefill_ms": 10.380288124084473,
+          "decode_ms": 596.5250854492188,
+          "peak_allocated_bytes": 370102784,
+          "peak_reserved_bytes": 404750336,
+          "baseline_allocated_bytes": 363526144,
+          "end_allocated_bytes": 363630080,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 9.4686521499876,
+          "aggregate_tokens_per_second": 105.44407911206044,
+          "incremental_peak_bytes": 6576640
+        },
+        {
+          "wall_ms": 614.5838010124862,
+          "prefill_ms": 10.41919994354248,
+          "decode_ms": 604.1170043945312,
+          "peak_allocated_bytes": 370102784,
+          "peak_reserved_bytes": 404750336,
+          "baseline_allocated_bytes": 363526144,
+          "end_allocated_bytes": 363630080,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 9.589158799913195,
+          "aggregate_tokens_per_second": 104.1355139763922,
+          "incremental_peak_bytes": 6576640
+        },
+        {
+          "wall_ms": 611.1723589710891,
+          "prefill_ms": 10.415103912353516,
+          "decode_ms": 600.7080688476562,
+          "peak_allocated_bytes": 370102784,
+          "peak_reserved_bytes": 404750336,
+          "baseline_allocated_bytes": 363526144,
+          "end_allocated_bytes": 363630080,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 9.53504871186756,
+          "aggregate_tokens_per_second": 104.71677761694627,
+          "incremental_peak_bytes": 6576640
+        },
+        {
+          "wall_ms": 606.02872306481,
+          "prefill_ms": 10.355711936950684,
+          "decode_ms": 595.6249389648438,
+          "peak_allocated_bytes": 370102784,
+          "peak_reserved_bytes": 404750336,
+          "baseline_allocated_bytes": 363526144,
+          "end_allocated_bytes": 363630080,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 9.454364110553076,
+          "aggregate_tokens_per_second": 105.60555558544986,
+          "incremental_peak_bytes": 6576640
+        }
+      ],
+      "fp16_native_eager-cached": [
+        {
+          "wall_ms": 596.7640397138894,
+          "prefill_ms": 10.563584327697754,
+          "decode_ms": 586.1519165039062,
+          "peak_allocated_bytes": 377779712,
+          "peak_reserved_bytes": 385875968,
+          "baseline_allocated_bytes": 363526144,
+          "end_allocated_bytes": 370671104,
+          "cache_bytes": 7041024,
+          "decode_ms_per_token_step": 9.303998674665179,
+          "aggregate_tokens_per_second": 107.24506796804305,
+          "incremental_peak_bytes": 14253568
+        },
+        {
+          "wall_ms": 597.3672131076455,
+          "prefill_ms": 10.582015991210938,
+          "decode_ms": 586.7366333007812,
+          "peak_allocated_bytes": 377779712,
+          "peak_reserved_bytes": 385875968,
+          "baseline_allocated_bytes": 363526144,
+          "end_allocated_bytes": 370671104,
+          "cache_bytes": 7041024,
+          "decode_ms_per_token_step": 9.313279893663195,
+          "aggregate_tokens_per_second": 107.1367805190661,
+          "incremental_peak_bytes": 14253568
+        },
+        {
+          "wall_ms": 595.705701969564,
+          "prefill_ms": 10.567680358886719,
+          "decode_ms": 585.080810546875,
+          "peak_allocated_bytes": 377779712,
+          "peak_reserved_bytes": 385875968,
+          "baseline_allocated_bytes": 363526144,
+          "end_allocated_bytes": 370671104,
+          "cache_bytes": 7041024,
+          "decode_ms_per_token_step": 9.28699699280754,
+          "aggregate_tokens_per_second": 107.43560081496402,
+          "incremental_peak_bytes": 14253568
+        },
+        {
+          "wall_ms": 592.3214294016361,
+          "prefill_ms": 10.445823669433594,
+          "decode_ms": 581.8153076171875,
+          "peak_allocated_bytes": 377779712,
+          "peak_reserved_bytes": 385875968,
+          "baseline_allocated_bytes": 363526144,
+          "end_allocated_bytes": 370671104,
+          "cache_bytes": 7041024,
+          "decode_ms_per_token_step": 9.23516361297123,
+          "aggregate_tokens_per_second": 108.04944211566495,
+          "incremental_peak_bytes": 14253568
+        },
+        {
+          "wall_ms": 590.7046548090875,
+          "prefill_ms": 10.4519681930542,
+          "decode_ms": 580.20556640625,
+          "peak_allocated_bytes": 377779712,
+          "peak_reserved_bytes": 385875968,
+          "baseline_allocated_bytes": 363526144,
+          "end_allocated_bytes": 370671104,
+          "cache_bytes": 7041024,
+          "decode_ms_per_token_step": 9.209612165178571,
+          "aggregate_tokens_per_second": 108.34517635667599,
+          "incremental_peak_bytes": 14253568
+        },
+        {
+          "wall_ms": 596.6693973168731,
+          "prefill_ms": 10.531840324401855,
+          "decode_ms": 586.0894775390625,
+          "peak_allocated_bytes": 377779712,
+          "peak_reserved_bytes": 385875968,
+          "baseline_allocated_bytes": 363526144,
+          "end_allocated_bytes": 370671104,
+          "cache_bytes": 7041024,
+          "decode_ms_per_token_step": 9.303007579985119,
+          "aggregate_tokens_per_second": 107.26207894656199,
+          "incremental_peak_bytes": 14253568
+        },
+        {
+          "wall_ms": 591.4432872086763,
+          "prefill_ms": 10.462207794189453,
+          "decode_ms": 580.9315795898438,
+          "peak_allocated_bytes": 377779712,
+          "peak_reserved_bytes": 385875968,
+          "baseline_allocated_bytes": 363526144,
+          "end_allocated_bytes": 370671104,
+          "cache_bytes": 7041024,
+          "decode_ms_per_token_step": 9.221136183965774,
+          "aggregate_tokens_per_second": 108.20986793518067,
+          "incremental_peak_bytes": 14253568
+        }
+      ],
+      "fp16_native_flash-uncached": [
+        {
+          "wall_ms": 510.55831275880337,
+          "prefill_ms": 8.897536277770996,
+          "decode_ms": 501.6053771972656,
+          "peak_allocated_bytes": 370102784,
+          "peak_reserved_bytes": 404750336,
+          "baseline_allocated_bytes": 363526144,
+          "end_allocated_bytes": 363630080,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 7.961990114242312,
+          "aggregate_tokens_per_second": 125.3529683106633,
+          "incremental_peak_bytes": 6576640
+        },
+        {
+          "wall_ms": 511.5379490889609,
+          "prefill_ms": 8.902655601501465,
+          "decode_ms": 502.5843200683594,
+          "peak_allocated_bytes": 370102784,
+          "peak_reserved_bytes": 404750336,
+          "baseline_allocated_bytes": 363526144,
+          "end_allocated_bytes": 363630080,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 7.977528889973958,
+          "aggregate_tokens_per_second": 125.11290729061794,
+          "incremental_peak_bytes": 6576640
+        },
+        {
+          "wall_ms": 512.2334328480065,
+          "prefill_ms": 8.878080368041992,
+          "decode_ms": 503.30316162109375,
+          "peak_allocated_bytes": 370102784,
+          "peak_reserved_bytes": 404750336,
+          "baseline_allocated_bytes": 363526144,
+          "end_allocated_bytes": 363630080,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 7.988939073350695,
+          "aggregate_tokens_per_second": 124.94303553003446,
+          "incremental_peak_bytes": 6576640
+        },
+        {
+          "wall_ms": 509.2866662889719,
+          "prefill_ms": 8.8023042678833,
+          "decode_ms": 500.4369812011719,
+          "peak_allocated_bytes": 370102784,
+          "peak_reserved_bytes": 404750336,
+          "baseline_allocated_bytes": 363526144,
+          "end_allocated_bytes": 363630080,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 7.943444146050347,
+          "aggregate_tokens_per_second": 125.6659642522156,
+          "incremental_peak_bytes": 6576640
+        },
+        {
+          "wall_ms": 512.6083879731596,
+          "prefill_ms": 8.852479934692383,
+          "decode_ms": 503.7076416015625,
+          "peak_allocated_bytes": 370102784,
+          "peak_reserved_bytes": 404750336,
+          "baseline_allocated_bytes": 363526144,
+          "end_allocated_bytes": 363630080,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 7.995359390500992,
+          "aggregate_tokens_per_second": 124.85164406508126,
+          "incremental_peak_bytes": 6576640
+        },
+        {
+          "wall_ms": 513.8246831484139,
+          "prefill_ms": 8.970239639282227,
+          "decode_ms": 504.806396484375,
+          "peak_allocated_bytes": 370102784,
+          "peak_reserved_bytes": 404750336,
+          "baseline_allocated_bytes": 363526144,
+          "end_allocated_bytes": 363630080,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 8.012799944196429,
+          "aggregate_tokens_per_second": 124.55610269215919,
+          "incremental_peak_bytes": 6576640
+        },
+        {
+          "wall_ms": 510.27814531698823,
+          "prefill_ms": 8.926207542419434,
+          "decode_ms": 501.30328369140625,
+          "peak_allocated_bytes": 370102784,
+          "peak_reserved_bytes": 404750336,
+          "baseline_allocated_bytes": 363526144,
+          "end_allocated_bytes": 363630080,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 7.957194979228671,
+          "aggregate_tokens_per_second": 125.42179316780805,
+          "incremental_peak_bytes": 6576640
+        }
+      ],
+      "fp16_native_flash-cached": [
+        {
+          "wall_ms": 514.536920003593,
+          "prefill_ms": 9.010175704956055,
+          "decode_ms": 505.4781494140625,
+          "peak_allocated_bytes": 377779712,
+          "peak_reserved_bytes": 385875968,
+          "baseline_allocated_bytes": 363526144,
+          "end_allocated_bytes": 370671104,
+          "cache_bytes": 7041024,
+          "decode_ms_per_token_step": 8.023462689112103,
+          "aggregate_tokens_per_second": 124.38368853988766,
+          "incremental_peak_bytes": 14253568
+        },
+        {
+          "wall_ms": 510.26085298508406,
+          "prefill_ms": 8.922112464904785,
+          "decode_ms": 501.28076171875,
+          "peak_allocated_bytes": 377779712,
+          "peak_reserved_bytes": 385875968,
+          "baseline_allocated_bytes": 363526144,
+          "end_allocated_bytes": 370671104,
+          "cache_bytes": 7041024,
+          "decode_ms_per_token_step": 7.9568374875992065,
+          "aggregate_tokens_per_second": 125.4260436119932,
+          "incremental_peak_bytes": 14253568
+        },
+        {
+          "wall_ms": 508.7292236275971,
+          "prefill_ms": 9.001983642578125,
+          "decode_ms": 499.6741027832031,
+          "peak_allocated_bytes": 377779712,
+          "peak_reserved_bytes": 385875968,
+          "baseline_allocated_bytes": 363526144,
+          "end_allocated_bytes": 370671104,
+          "cache_bytes": 7041024,
+          "decode_ms_per_token_step": 7.931334964812748,
+          "aggregate_tokens_per_second": 125.80366337839803,
+          "incremental_peak_bytes": 14253568
+        },
+        {
+          "wall_ms": 508.23457911610603,
+          "prefill_ms": 8.992768287658691,
+          "decode_ms": 499.18975830078125,
+          "peak_allocated_bytes": 377779712,
+          "peak_reserved_bytes": 385875968,
+          "baseline_allocated_bytes": 363526144,
+          "end_allocated_bytes": 370671104,
+          "cache_bytes": 7041024,
+          "decode_ms_per_token_step": 7.923646957155258,
+          "aggregate_tokens_per_second": 125.92610308276412,
+          "incremental_peak_bytes": 14253568
+        },
+        {
+          "wall_ms": 508.14951676875353,
+          "prefill_ms": 8.894463539123535,
+          "decode_ms": 499.2071533203125,
+          "peak_allocated_bytes": 377779712,
+          "peak_reserved_bytes": 385875968,
+          "baseline_allocated_bytes": 363526144,
+          "end_allocated_bytes": 370671104,
+          "cache_bytes": 7041024,
+          "decode_ms_per_token_step": 7.923923068576389,
+          "aggregate_tokens_per_second": 125.94718264609675,
+          "incremental_peak_bytes": 14253568
+        },
+        {
+          "wall_ms": 511.7265786975622,
+          "prefill_ms": 8.947711944580078,
+          "decode_ms": 502.7317810058594,
+          "peak_allocated_bytes": 377779712,
+          "peak_reserved_bytes": 385875968,
+          "baseline_allocated_bytes": 363526144,
+          "end_allocated_bytes": 370671104,
+          "cache_bytes": 7041024,
+          "decode_ms_per_token_step": 7.979869539775546,
+          "aggregate_tokens_per_second": 125.06678891468118,
+          "incremental_peak_bytes": 14253568
+        },
+        {
+          "wall_ms": 509.3064019456506,
+          "prefill_ms": 8.902655601501465,
+          "decode_ms": 500.35711669921875,
+          "peak_allocated_bytes": 377779712,
+          "peak_reserved_bytes": 385875968,
+          "baseline_allocated_bytes": 363526144,
+          "end_allocated_bytes": 370671104,
+          "cache_bytes": 7041024,
+          "decode_ms_per_token_step": 7.942176455543155,
+          "aggregate_tokens_per_second": 125.66109468780958,
+          "incremental_peak_bytes": 14253568
+        }
+      ]
+    },
+    "summary": {
+      "fp16_native_eager-uncached": {
+        "wall_ms": {
+          "median": 610.6897662393749,
+          "mean": 610.8111749802317,
+          "stdev": 3.5501742382640717,
+          "min": 606.02872306481,
+          "max": 615.6555563211441
+        },
+        "prefill_ms": {
+          "median": 10.415103912353516,
+          "mean": 10.418468611580986,
+          "stdev": 0.04683875706019596,
+          "min": 10.355711936950684,
+          "max": 10.485759735107422
+        },
+        "decode_ms": {
+          "median": 600.2390747070312,
+          "mean": 600.3425205775669,
+          "stdev": 3.51440236332223,
+          "min": 595.6249389648438,
+          "max": 605.1184692382812
+        },
+        "peak_allocated_bytes": {
+          "median": 370102784,
+          "mean": 370102784,
+          "stdev": 0.0,
+          "min": 370102784,
+          "max": 370102784
+        },
+        "peak_reserved_bytes": {
+          "median": 404750336,
+          "mean": 404750336,
+          "stdev": 0.0,
+          "min": 404750336,
+          "max": 404750336
+        },
+        "baseline_allocated_bytes": {
+          "median": 363526144,
+          "mean": 363526144,
+          "stdev": 0.0,
+          "min": 363526144,
+          "max": 363526144
+        },
+        "end_allocated_bytes": {
+          "median": 363630080,
+          "mean": 363630080,
+          "stdev": 0.0,
+          "min": 363630080,
+          "max": 363630080
+        },
+        "cache_bytes": {
+          "median": 0,
+          "mean": 0,
+          "stdev": 0.0,
+          "min": 0,
+          "max": 0
+        },
+        "decode_ms_per_token_step": {
+          "median": 9.527604360429068,
+          "mean": 9.52924635837408,
+          "stdev": 0.05578416449717802,
+          "min": 9.454364110553076,
+          "max": 9.605055067274305
+        },
+        "aggregate_tokens_per_second": {
+          "median": 104.79952921777573,
+          "mean": 104.78173267468061,
+          "stdev": 0.6090272323734327,
+          "min": 103.95423113279872,
+          "max": 105.60555558544986
+        },
+        "incremental_peak_bytes": {
+          "median": 6576640,
+          "mean": 6576640,
+          "stdev": 0.0,
+          "min": 6576640,
+          "max": 6576640
+        }
+      },
+      "fp16_native_eager-cached": {
+        "wall_ms": {
+          "median": 595.705701969564,
+          "mean": 594.4251033610532,
+          "stdev": 2.827302315570738,
+          "min": 590.7046548090875,
+          "max": 597.3672131076455
+        },
+        "prefill_ms": {
+          "median": 10.531840324401855,
+          "mean": 10.515017236982073,
+          "stdev": 0.059799365975253864,
+          "min": 10.445823669433594,
+          "max": 10.582015991210938
+        },
+        "decode_ms": {
+          "median": 585.080810546875,
+          "mean": 583.8587559291294,
+          "stdev": 2.7718867218521117,
+          "min": 580.20556640625,
+          "max": 586.7366333007812
+        },
+        "peak_allocated_bytes": {
+          "median": 377779712,
+          "mean": 377779712,
+          "stdev": 0.0,
+          "min": 377779712,
+          "max": 377779712
+        },
+        "peak_reserved_bytes": {
+          "median": 385875968,
+          "mean": 385875968,
+          "stdev": 0.0,
+          "min": 385875968,
+          "max": 385875968
+        },
+        "baseline_allocated_bytes": {
+          "median": 363526144,
+          "mean": 363526144,
+          "stdev": 0.0,
+          "min": 363526144,
+          "max": 363526144
+        },
+        "end_allocated_bytes": {
+          "median": 370671104,
+          "mean": 370671104,
+          "stdev": 0.0,
+          "min": 370671104,
+          "max": 370671104
+        },
+        "cache_bytes": {
+          "median": 7041024,
+          "mean": 7041024,
+          "stdev": 0.0,
+          "min": 7041024,
+          "max": 7041024
+        },
+        "decode_ms_per_token_step": {
+          "median": 9.28699699280754,
+          "mean": 9.267599300462372,
+          "stdev": 0.04399820193416068,
+          "min": 9.209612165178571,
+          "max": 9.313279893663195
+        },
+        "aggregate_tokens_per_second": {
+          "median": 107.43560081496402,
+          "mean": 107.66914495087954,
+          "stdev": 0.5127579857726594,
+          "min": 107.1367805190661,
+          "max": 108.34517635667599
+        },
+        "incremental_peak_bytes": {
+          "median": 14253568,
+          "mean": 14253568,
+          "stdev": 0.0,
+          "min": 14253568,
+          "max": 14253568
+        }
+      },
+      "fp16_native_flash-uncached": {
+        "wall_ms": {
+          "median": 511.5379490889609,
+          "mean": 511.4753682033292,
+          "stdev": 1.5516841538902852,
+          "min": 509.2866662889719,
+          "max": 513.8246831484139
+        },
+        "prefill_ms": {
+          "median": 8.897536277770996,
+          "mean": 8.8899290902274,
+          "stdev": 0.05355166466914225,
+          "min": 8.8023042678833,
+          "max": 8.970239639282227
+        },
+        "decode_ms": {
+          "median": 502.5843200683594,
+          "mean": 502.5353088378906,
+          "stdev": 1.5225987046822484,
+          "min": 500.4369812011719,
+          "max": 504.806396484375
+        },
+        "peak_allocated_bytes": {
+          "median": 370102784,
+          "mean": 370102784,
+          "stdev": 0.0,
+          "min": 370102784,
+          "max": 370102784
+        },
+        "peak_reserved_bytes": {
+          "median": 404750336,
+          "mean": 404750336,
+          "stdev": 0.0,
+          "min": 404750336,
+          "max": 404750336
+        },
+        "baseline_allocated_bytes": {
+          "median": 363526144,
+          "mean": 363526144,
+          "stdev": 0.0,
+          "min": 363526144,
+          "max": 363526144
+        },
+        "end_allocated_bytes": {
+          "median": 363630080,
+          "mean": 363630080,
+          "stdev": 0.0,
+          "min": 363630080,
+          "max": 363630080
+        },
+        "cache_bytes": {
+          "median": 0,
+          "mean": 0,
+          "stdev": 0.0,
+          "min": 0,
+          "max": 0
+        },
+        "decode_ms_per_token_step": {
+          "median": 7.977528889973958,
+          "mean": 7.976750933934772,
+          "stdev": 0.024168233407654734,
+          "min": 7.943444146050347,
+          "max": 8.012799944196429
+        },
+        "aggregate_tokens_per_second": {
+          "median": 125.11290729061794,
+          "mean": 125.12920218693998,
+          "stdev": 0.37951709769295694,
+          "min": 124.55610269215919,
+          "max": 125.6659642522156
+        },
+        "incremental_peak_bytes": {
+          "median": 6576640,
+          "mean": 6576640,
+          "stdev": 0.0,
+          "min": 6576640,
+          "max": 6576640
+        }
+      },
+      "fp16_native_flash-cached": {
+        "wall_ms": {
+          "median": 509.3064019456506,
+          "mean": 510.1348675920495,
+          "stdev": 2.3145333029243877,
+          "min": 508.14951676875353,
+          "max": 514.536920003593
+        },
+        "prefill_ms": {
+          "median": 8.947711944580078,
+          "mean": 8.953124455043248,
+          "stdev": 0.04863631329203643,
+          "min": 8.894463539123535,
+          "max": 9.010175704956055
+        },
+        "decode_ms": {
+          "median": 500.35711669921875,
+          "mean": 501.13126046316967,
+          "stdev": 2.2975960697973177,
+          "min": 499.18975830078125,
+          "max": 505.4781494140625
+        },
+        "peak_allocated_bytes": {
+          "median": 377779712,
+          "mean": 377779712,
+          "stdev": 0.0,
+          "min": 377779712,
+          "max": 377779712
+        },
+        "peak_reserved_bytes": {
+          "median": 385875968,
+          "mean": 385875968,
+          "stdev": 0.0,
+          "min": 385875968,
+          "max": 385875968
+        },
+        "baseline_allocated_bytes": {
+          "median": 363526144,
+          "mean": 363526144,
+          "stdev": 0.0,
+          "min": 363526144,
+          "max": 363526144
+        },
+        "end_allocated_bytes": {
+          "median": 370671104,
+          "mean": 370671104,
+          "stdev": 0.0,
+          "min": 370671104,
+          "max": 370671104
+        },
+        "cache_bytes": {
+          "median": 7041024,
+          "mean": 7041024,
+          "stdev": 0.0,
+          "min": 7041024,
+          "max": 7041024
+        },
+        "decode_ms_per_token_step": {
+          "median": 7.942176455543155,
+          "mean": 7.954464451796343,
+          "stdev": 0.03646977888567161,
+          "min": 7.923646957155258,
+          "max": 8.023462689112103
+        },
+        "aggregate_tokens_per_second": {
+          "median": 125.66109468780958,
+          "mean": 125.4592235516615,
+          "stdev": 0.5667675506040516,
+          "min": 124.38368853988766,
+          "max": 125.94718264609675
+        },
+        "incremental_peak_bytes": {
+          "median": 14253568,
+          "mean": 14253568,
+          "stdev": 0.0,
+          "min": 14253568,
+          "max": 14253568
+        }
+      }
+    }
+  },
+  {
+    "batch": 1,
+    "prompt_tokens": 512,
+    "new_tokens": 64,
+    "samples": {
+      "fp16_native_eager-uncached": [
+        {
+          "wall_ms": 625.8769049309194,
+          "prefill_ms": 10.796031951904297,
+          "decode_ms": 615.0328369140625,
+          "peak_allocated_bytes": 386023424,
+          "peak_reserved_bytes": 404750336,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 363639296,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 9.762425982762897,
+          "aggregate_tokens_per_second": 102.25652919253179,
+          "incremental_peak_bytes": 22494208
+        },
+        {
+          "wall_ms": 635.7546946965158,
+          "prefill_ms": 11.043840408325195,
+          "decode_ms": 624.658447265625,
+          "peak_allocated_bytes": 386023424,
+          "peak_reserved_bytes": 404750336,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 363639296,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 9.915213448660714,
+          "aggregate_tokens_per_second": 100.66775838840022,
+          "incremental_peak_bytes": 22494208
+        },
+        {
+          "wall_ms": 631.8549807183444,
+          "prefill_ms": 10.91379165649414,
+          "decode_ms": 620.8880615234375,
+          "peak_allocated_bytes": 386023424,
+          "peak_reserved_bytes": 404750336,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 363639296,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 9.855366055927579,
+          "aggregate_tokens_per_second": 101.28906466360297,
+          "incremental_peak_bytes": 22494208
+        },
+        {
+          "wall_ms": 630.1711862906814,
+          "prefill_ms": 11.316224098205566,
+          "decode_ms": 618.8052368164062,
+          "peak_allocated_bytes": 386023424,
+          "peak_reserved_bytes": 404750336,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 363639296,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 9.822305346292163,
+          "aggregate_tokens_per_second": 101.55970535041011,
+          "incremental_peak_bytes": 22494208
+        },
+        {
+          "wall_ms": 628.2478258945048,
+          "prefill_ms": 10.94758415222168,
+          "decode_ms": 617.2507934570312,
+          "peak_allocated_bytes": 386023424,
+          "peak_reserved_bytes": 404750336,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 363639296,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 9.7976316421751,
+          "aggregate_tokens_per_second": 101.87062710304845,
+          "incremental_peak_bytes": 22494208
+        },
+        {
+          "wall_ms": 627.5840816088021,
+          "prefill_ms": 10.870783805847168,
+          "decode_ms": 616.6651000976562,
+          "peak_allocated_bytes": 386023424,
+          "peak_reserved_bytes": 404750336,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 363639296,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 9.78833492218502,
+          "aggregate_tokens_per_second": 101.97836732241039,
+          "incremental_peak_bytes": 22494208
+        },
+        {
+          "wall_ms": 635.9915868379176,
+          "prefill_ms": 11.025407791137695,
+          "decode_ms": 624.91650390625,
+          "peak_allocated_bytes": 386023424,
+          "peak_reserved_bytes": 404750336,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 363639296,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 9.919309585813492,
+          "aggregate_tokens_per_second": 100.63026197909501,
+          "incremental_peak_bytes": 22494208
+        }
+      ],
+      "fp16_native_eager-cached": [
+        {
+          "wall_ms": 596.6103919781744,
+          "prefill_ms": 11.24351978302002,
+          "decode_ms": 585.3184204101562,
+          "peak_allocated_bytes": 410963456,
+          "peak_reserved_bytes": 484442112,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 384836096,
+          "cache_bytes": 21196800,
+          "decode_ms_per_token_step": 9.290768577938987,
+          "aggregate_tokens_per_second": 107.27268726881526,
+          "incremental_peak_bytes": 47434240
+        },
+        {
+          "wall_ms": 601.2875610031188,
+          "prefill_ms": 11.402239799499512,
+          "decode_ms": 589.8373413085938,
+          "peak_allocated_bytes": 410963456,
+          "peak_reserved_bytes": 484442112,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 384836096,
+          "cache_bytes": 21196800,
+          "decode_ms_per_token_step": 9.36249748108879,
+          "aggregate_tokens_per_second": 106.43825708489594,
+          "incremental_peak_bytes": 47434240
+        },
+        {
+          "wall_ms": 599.8176350258291,
+          "prefill_ms": 11.539456367492676,
+          "decode_ms": 588.1989135742188,
+          "peak_allocated_bytes": 410963456,
+          "peak_reserved_bytes": 484442112,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 384836096,
+          "cache_bytes": 21196800,
+          "decode_ms_per_token_step": 9.336490691654266,
+          "aggregate_tokens_per_second": 106.69909696343633,
+          "incremental_peak_bytes": 47434240
+        },
+        {
+          "wall_ms": 597.0154656097293,
+          "prefill_ms": 11.277312278747559,
+          "decode_ms": 585.6901245117188,
+          "peak_allocated_bytes": 410963456,
+          "peak_reserved_bytes": 484442112,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 384836096,
+          "cache_bytes": 21196800,
+          "decode_ms_per_token_step": 9.296668643043155,
+          "aggregate_tokens_per_second": 107.1999029952048,
+          "incremental_peak_bytes": 47434240
+        },
+        {
+          "wall_ms": 602.4855212308466,
+          "prefill_ms": 11.466752052307129,
+          "decode_ms": 590.9708862304688,
+          "peak_allocated_bytes": 410963456,
+          "peak_reserved_bytes": 484442112,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 384836096,
+          "cache_bytes": 21196800,
+          "decode_ms_per_token_step": 9.380490257626487,
+          "aggregate_tokens_per_second": 106.22661913808538,
+          "incremental_peak_bytes": 47434240
+        },
+        {
+          "wall_ms": 597.8326848708093,
+          "prefill_ms": 11.347968101501465,
+          "decode_ms": 586.4365844726562,
+          "peak_allocated_bytes": 410963456,
+          "peak_reserved_bytes": 484442112,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 384836096,
+          "cache_bytes": 21196800,
+          "decode_ms_per_token_step": 9.308517213851687,
+          "aggregate_tokens_per_second": 107.05336395889813,
+          "incremental_peak_bytes": 47434240
+        },
+        {
+          "wall_ms": 600.6201491691172,
+          "prefill_ms": 11.35308837890625,
+          "decode_ms": 589.2147216796875,
+          "peak_allocated_bytes": 410963456,
+          "peak_reserved_bytes": 484442112,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 384836096,
+          "cache_bytes": 21196800,
+          "decode_ms_per_token_step": 9.35261462983631,
+          "aggregate_tokens_per_second": 106.5565317589428,
+          "incremental_peak_bytes": 47434240
+        }
+      ],
+      "fp16_native_flash-uncached": [
+        {
+          "wall_ms": 524.885868653655,
+          "prefill_ms": 9.542655944824219,
+          "decode_ms": 515.293212890625,
+          "peak_allocated_bytes": 383075840,
+          "peak_reserved_bytes": 404750336,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 363639296,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 8.179257347470237,
+          "aggregate_tokens_per_second": 121.9312689140623,
+          "incremental_peak_bytes": 19546624
+        },
+        {
+          "wall_ms": 531.3292220234871,
+          "prefill_ms": 9.703424453735352,
+          "decode_ms": 521.5723266601562,
+          "peak_allocated_bytes": 383075840,
+          "peak_reserved_bytes": 404750336,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 363639296,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 8.27892582000248,
+          "aggregate_tokens_per_second": 120.45262588092871,
+          "incremental_peak_bytes": 19546624
+        },
+        {
+          "wall_ms": 530.6743569672108,
+          "prefill_ms": 9.277440071105957,
+          "decode_ms": 521.343994140625,
+          "peak_allocated_bytes": 383075840,
+          "peak_reserved_bytes": 404750336,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 363639296,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 8.275301494295634,
+          "aggregate_tokens_per_second": 120.60126734926146,
+          "incremental_peak_bytes": 19546624
+        },
+        {
+          "wall_ms": 528.9012948051095,
+          "prefill_ms": 9.331711769104004,
+          "decode_ms": 519.520263671875,
+          "peak_allocated_bytes": 383075840,
+          "peak_reserved_bytes": 404750336,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 363639296,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 8.246353391617063,
+          "aggregate_tokens_per_second": 121.00556498653087,
+          "incremental_peak_bytes": 19546624
+        },
+        {
+          "wall_ms": 528.5722822882235,
+          "prefill_ms": 9.291775703430176,
+          "decode_ms": 519.2315063476562,
+          "peak_allocated_bytes": 383075840,
+          "peak_reserved_bytes": 404750336,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 363639296,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 8.24176994202629,
+          "aggregate_tokens_per_second": 121.0808855185139,
+          "incremental_peak_bytes": 19546624
+        },
+        {
+          "wall_ms": 528.5974959842861,
+          "prefill_ms": 9.249792098999023,
+          "decode_ms": 519.3001098632812,
+          "peak_allocated_bytes": 383075840,
+          "peak_reserved_bytes": 404750336,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 363639296,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 8.24285888671875,
+          "aggregate_tokens_per_second": 121.07511005292875,
+          "incremental_peak_bytes": 19546624
+        },
+        {
+          "wall_ms": 527.6919300667942,
+          "prefill_ms": 9.251839637756348,
+          "decode_ms": 518.3917846679688,
+          "peak_allocated_bytes": 383075840,
+          "peak_reserved_bytes": 404750336,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 363639296,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 8.228441026475695,
+          "aggregate_tokens_per_second": 121.28288562589731,
+          "incremental_peak_bytes": 19546624
+        }
+      ],
+      "fp16_native_flash-cached": [
+        {
+          "wall_ms": 516.7646738700569,
+          "prefill_ms": 9.559040069580078,
+          "decode_ms": 507.1544189453125,
+          "peak_allocated_bytes": 410963456,
+          "peak_reserved_bytes": 463470592,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 384836096,
+          "cache_bytes": 21196800,
+          "decode_ms_per_token_step": 8.050070141989087,
+          "aggregate_tokens_per_second": 123.84747494580701,
+          "incremental_peak_bytes": 47434240
+        },
+        {
+          "wall_ms": 527.0846127532423,
+          "prefill_ms": 9.674752235412598,
+          "decode_ms": 517.3473510742188,
+          "peak_allocated_bytes": 410963456,
+          "peak_reserved_bytes": 463470592,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 384836096,
+          "cache_bytes": 21196800,
+          "decode_ms_per_token_step": 8.21186271546379,
+          "aggregate_tokens_per_second": 121.42263016500156,
+          "incremental_peak_bytes": 47434240
+        },
+        {
+          "wall_ms": 518.1908220984042,
+          "prefill_ms": 9.880576133728027,
+          "decode_ms": 508.2449951171875,
+          "peak_allocated_bytes": 410963456,
+          "peak_reserved_bytes": 463470592,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 384836096,
+          "cache_bytes": 21196800,
+          "decode_ms_per_token_step": 8.067380874875992,
+          "aggregate_tokens_per_second": 123.5066258812404,
+          "incremental_peak_bytes": 47434240
+        },
+        {
+          "wall_ms": 518.3612108230591,
+          "prefill_ms": 10.481663703918457,
+          "decode_ms": 507.8292541503906,
+          "peak_allocated_bytes": 410963456,
+          "peak_reserved_bytes": 463470592,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 384836096,
+          "cache_bytes": 21196800,
+          "decode_ms_per_token_step": 8.060781811910962,
+          "aggregate_tokens_per_second": 123.46602844448982,
+          "incremental_peak_bytes": 47434240
+        },
+        {
+          "wall_ms": 521.8640090897679,
+          "prefill_ms": 9.892864227294922,
+          "decode_ms": 511.92218017578125,
+          "peak_allocated_bytes": 410963456,
+          "peak_reserved_bytes": 463470592,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 384836096,
+          "cache_bytes": 21196800,
+          "decode_ms_per_token_step": 8.125748891679068,
+          "aggregate_tokens_per_second": 122.63731333308158,
+          "incremental_peak_bytes": 47434240
+        },
+        {
+          "wall_ms": 518.2458790950477,
+          "prefill_ms": 9.83142375946045,
+          "decode_ms": 508.36376953125,
+          "peak_allocated_bytes": 410963456,
+          "peak_reserved_bytes": 463470592,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 384836096,
+          "cache_bytes": 21196800,
+          "decode_ms_per_token_step": 8.069266183035714,
+          "aggregate_tokens_per_second": 123.49350488180578,
+          "incremental_peak_bytes": 47434240
+        },
+        {
+          "wall_ms": 523.6053098924458,
+          "prefill_ms": 9.565183639526367,
+          "decode_ms": 513.9752807617188,
+          "peak_allocated_bytes": 410963456,
+          "peak_reserved_bytes": 463470592,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 384836096,
+          "cache_bytes": 21196800,
+          "decode_ms_per_token_step": 8.158337789868552,
+          "aggregate_tokens_per_second": 122.22947092180233,
+          "incremental_peak_bytes": 47434240
+        }
+      ]
+    },
+    "summary": {
+      "fp16_native_eager-uncached": {
+        "wall_ms": {
+          "median": 630.1711862906814,
+          "mean": 630.7830372825265,
+          "stdev": 3.9602301935356543,
+          "min": 625.8769049309194,
+          "max": 635.9915868379176
+        },
+        "prefill_ms": {
+          "median": 10.94758415222168,
+          "mean": 10.987666266305107,
+          "stdev": 0.16831491303219,
+          "min": 10.796031951904297,
+          "max": 11.316224098205566
+        },
+        "decode_ms": {
+          "median": 618.8052368164062,
+          "mean": 619.7452828543527,
+          "stdev": 3.8941728100652604,
+          "min": 615.0328369140625,
+          "max": 624.91650390625
+        },
+        "peak_allocated_bytes": {
+          "median": 386023424,
+          "mean": 386023424,
+          "stdev": 0.0,
+          "min": 386023424,
+          "max": 386023424
+        },
+        "peak_reserved_bytes": {
+          "median": 404750336,
+          "mean": 404750336,
+          "stdev": 0.0,
+          "min": 404750336,
+          "max": 404750336
+        },
+        "baseline_allocated_bytes": {
+          "median": 363529216,
+          "mean": 363529216,
+          "stdev": 0.0,
+          "min": 363529216,
+          "max": 363529216
+        },
+        "end_allocated_bytes": {
+          "median": 363639296,
+          "mean": 363639296,
+          "stdev": 0.0,
+          "min": 363639296,
+          "max": 363639296
+        },
+        "cache_bytes": {
+          "median": 0,
+          "mean": 0,
+          "stdev": 0.0,
+          "min": 0,
+          "max": 0
+        },
+        "decode_ms_per_token_step": {
+          "median": 9.822305346292163,
+          "mean": 9.837226711973852,
+          "stdev": 0.06181226682643229,
+          "min": 9.762425982762897,
+          "max": 9.919309585813492
+        },
+        "aggregate_tokens_per_second": {
+          "median": 101.55970535041011,
+          "mean": 101.4646162856427,
+          "stdev": 0.6359901575783747,
+          "min": 100.63026197909501,
+          "max": 102.25652919253179
+        },
+        "incremental_peak_bytes": {
+          "median": 22494208,
+          "mean": 22494208,
+          "stdev": 0.0,
+          "min": 22494208,
+          "max": 22494208
+        }
+      },
+      "fp16_native_eager-cached": {
+        "wall_ms": {
+          "median": 599.8176350258291,
+          "mean": 599.3813441268036,
+          "stdev": 2.2608430733161935,
+          "min": 596.6103919781744,
+          "max": 602.4855212308466
+        },
+        "prefill_ms": {
+          "median": 11.35308837890625,
+          "mean": 11.375762394496373,
+          "stdev": 0.10347548412276349,
+          "min": 11.24351978302002,
+          "max": 11.539456367492676
+        },
+        "decode_ms": {
+          "median": 588.1989135742188,
+          "mean": 587.9524274553571,
+          "stdev": 2.1860132432469843,
+          "min": 585.3184204101562,
+          "max": 590.9708862304688
+        },
+        "peak_allocated_bytes": {
+          "median": 410963456,
+          "mean": 410963456,
+          "stdev": 0.0,
+          "min": 410963456,
+          "max": 410963456
+        },
+        "peak_reserved_bytes": {
+          "median": 484442112,
+          "mean": 484442112,
+          "stdev": 0.0,
+          "min": 484442112,
+          "max": 484442112
+        },
+        "baseline_allocated_bytes": {
+          "median": 363529216,
+          "mean": 363529216,
+          "stdev": 0.0,
+          "min": 363529216,
+          "max": 363529216
+        },
+        "end_allocated_bytes": {
+          "median": 384836096,
+          "mean": 384836096,
+          "stdev": 0.0,
+          "min": 384836096,
+          "max": 384836096
+        },
+        "cache_bytes": {
+          "median": 21196800,
+          "mean": 21196800,
+          "stdev": 0.0,
+          "min": 21196800,
+          "max": 21196800
+        },
+        "decode_ms_per_token_step": {
+          "median": 9.336490691654266,
+          "mean": 9.332578213577097,
+          "stdev": 0.034698622908682225,
+          "min": 9.290768577938987,
+          "max": 9.380490257626487
+        },
+        "aggregate_tokens_per_second": {
+          "median": 106.69909696343633,
+          "mean": 106.77806559546838,
+          "stdev": 0.40275362304524437,
+          "min": 106.22661913808538,
+          "max": 107.27268726881526
+        },
+        "incremental_peak_bytes": {
+          "median": 47434240,
+          "mean": 47434240,
+          "stdev": 0.0,
+          "min": 47434240,
+          "max": 47434240
+        }
+      },
+      "fp16_native_flash-uncached": {
+        "wall_ms": {
+          "median": 528.5974959842861,
+          "mean": 528.6646358269666,
+          "stdev": 2.0989394509581354,
+          "min": 524.885868653655,
+          "max": 531.3292220234871
+        },
+        "prefill_ms": {
+          "median": 9.291775703430176,
+          "mean": 9.378377096993583,
+          "stdev": 0.175620277710203,
+          "min": 9.249792098999023,
+          "max": 9.703424453735352
+        },
+        "decode_ms": {
+          "median": 519.3001098632812,
+          "mean": 519.2361711774554,
+          "stdev": 2.091461497536815,
+          "min": 515.293212890625,
+          "max": 521.5723266601562
+        },
+        "peak_allocated_bytes": {
+          "median": 383075840,
+          "mean": 383075840,
+          "stdev": 0.0,
+          "min": 383075840,
+          "max": 383075840
+        },
+        "peak_reserved_bytes": {
+          "median": 404750336,
+          "mean": 404750336,
+          "stdev": 0.0,
+          "min": 404750336,
+          "max": 404750336
+        },
+        "baseline_allocated_bytes": {
+          "median": 363529216,
+          "mean": 363529216,
+          "stdev": 0.0,
+          "min": 363529216,
+          "max": 363529216
+        },
+        "end_allocated_bytes": {
+          "median": 363639296,
+          "mean": 363639296,
+          "stdev": 0.0,
+          "min": 363639296,
+          "max": 363639296
+        },
+        "cache_bytes": {
+          "median": 0,
+          "mean": 0,
+          "stdev": 0.0,
+          "min": 0,
+          "max": 0
+        },
+        "decode_ms_per_token_step": {
+          "median": 8.24285888671875,
+          "mean": 8.241843986943735,
+          "stdev": 0.03319780154820343,
+          "min": 8.179257347470237,
+          "max": 8.27892582000248
+        },
+        "aggregate_tokens_per_second": {
+          "median": 121.07511005292875,
+          "mean": 121.06137261830332,
+          "stdev": 0.48161896919342284,
+          "min": 120.45262588092871,
+          "max": 121.9312689140623
+        },
+        "incremental_peak_bytes": {
+          "median": 19546624,
+          "mean": 19546624,
+          "stdev": 0.0,
+          "min": 19546624,
+          "max": 19546624
+        }
+      },
+      "fp16_native_flash-cached": {
+        "wall_ms": {
+          "median": 518.3612108230591,
+          "mean": 520.5880739460034,
+          "stdev": 3.736012588560531,
+          "min": 516.7646738700569,
+          "max": 527.0846127532423
+        },
+        "prefill_ms": {
+          "median": 9.83142375946045,
+          "mean": 9.840786252702985,
+          "stdev": 0.31570342644572646,
+          "min": 9.559040069580078,
+          "max": 10.481663703918457
+        },
+        "decode_ms": {
+          "median": 508.36376953125,
+          "mean": 510.69103567940846,
+          "stdev": 3.8450238570331954,
+          "min": 507.1544189453125,
+          "max": 517.3473510742188
+        },
+        "peak_allocated_bytes": {
+          "median": 410963456,
+          "mean": 410963456,
+          "stdev": 0.0,
+          "min": 410963456,
+          "max": 410963456
+        },
+        "peak_reserved_bytes": {
+          "median": 463470592,
+          "mean": 463470592,
+          "stdev": 0.0,
+          "min": 463470592,
+          "max": 463470592
+        },
+        "baseline_allocated_bytes": {
+          "median": 363529216,
+          "mean": 363529216,
+          "stdev": 0.0,
+          "min": 363529216,
+          "max": 363529216
+        },
+        "end_allocated_bytes": {
+          "median": 384836096,
+          "mean": 384836096,
+          "stdev": 0.0,
+          "min": 384836096,
+          "max": 384836096
+        },
+        "cache_bytes": {
+          "median": 21196800,
+          "mean": 21196800,
+          "stdev": 0.0,
+          "min": 21196800,
+          "max": 21196800
+        },
+        "decode_ms_per_token_step": {
+          "median": 8.069266183035714,
+          "mean": 8.106206915546167,
+          "stdev": 0.061032124714812876,
+          "min": 8.050070141989087,
+          "max": 8.21186271546379
+        },
+        "aggregate_tokens_per_second": {
+          "median": 123.46602844448982,
+          "mean": 122.94329265331835,
+          "stdev": 0.8781092718307485,
+          "min": 121.42263016500156,
+          "max": 123.84747494580701
+        },
+        "incremental_peak_bytes": {
+          "median": 47434240,
+          "mean": 47434240,
+          "stdev": 0.0,
+          "min": 47434240,
+          "max": 47434240
+        }
+      }
+    }
+  },
+  {
+    "batch": 1,
+    "prompt_tokens": 896,
+    "new_tokens": 64,
+    "samples": {
+      "fp16_native_eager-uncached": [
+        {
+          "wall_ms": 765.3296231292188,
+          "prefill_ms": 12.621824264526367,
+          "decode_ms": 752.6461181640625,
+          "peak_allocated_bytes": 421609984,
+          "peak_reserved_bytes": 492830720,
+          "baseline_allocated_bytes": 363532288,
+          "end_allocated_bytes": 363648512,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 11.946763780381945,
+          "aggregate_tokens_per_second": 83.62409877501135,
+          "incremental_peak_bytes": 58077696
+        },
+        {
+          "wall_ms": 763.8052823022008,
+          "prefill_ms": 12.04428768157959,
+          "decode_ms": 751.7132568359375,
+          "peak_allocated_bytes": 421609984,
+          "peak_reserved_bytes": 492830720,
+          "baseline_allocated_bytes": 363532288,
+          "end_allocated_bytes": 363648512,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 11.931956457713294,
+          "aggregate_tokens_per_second": 83.79098899014723,
+          "incremental_peak_bytes": 58077696
+        },
+        {
+          "wall_ms": 764.4333080388606,
+          "prefill_ms": 12.636159896850586,
+          "decode_ms": 751.7449951171875,
+          "peak_allocated_bytes": 421609984,
+          "peak_reserved_bytes": 492830720,
+          "baseline_allocated_bytes": 363532288,
+          "end_allocated_bytes": 363648512,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 11.932460239955358,
+          "aggregate_tokens_per_second": 83.72214989452881,
+          "incremental_peak_bytes": 58077696
+        },
+        {
+          "wall_ms": 788.561827968806,
+          "prefill_ms": 15.313920021057129,
+          "decode_ms": 773.1926879882812,
+          "peak_allocated_bytes": 421609984,
+          "peak_reserved_bytes": 492830720,
+          "baseline_allocated_bytes": 363532288,
+          "end_allocated_bytes": 363648512,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 12.272899809337797,
+          "aggregate_tokens_per_second": 81.1604083916318,
+          "incremental_peak_bytes": 58077696
+        },
+        {
+          "wall_ms": 763.9103243127465,
+          "prefill_ms": 12.041215896606445,
+          "decode_ms": 751.8177490234375,
+          "peak_allocated_bytes": 421609984,
+          "peak_reserved_bytes": 492830720,
+          "baseline_allocated_bytes": 363532288,
+          "end_allocated_bytes": 363648512,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 11.933615063864087,
+          "aggregate_tokens_per_second": 83.77946725301524,
+          "incremental_peak_bytes": 58077696
+        },
+        {
+          "wall_ms": 764.3669759854674,
+          "prefill_ms": 12.010496139526367,
+          "decode_ms": 752.30615234375,
+          "peak_allocated_bytes": 421609984,
+          "peak_reserved_bytes": 492830720,
+          "baseline_allocated_bytes": 363532288,
+          "end_allocated_bytes": 363648512,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 11.941367497519842,
+          "aggregate_tokens_per_second": 83.72941533415593,
+          "incremental_peak_bytes": 58077696
+        },
+        {
+          "wall_ms": 765.1193202473223,
+          "prefill_ms": 12.66380786895752,
+          "decode_ms": 752.4034423828125,
+          "peak_allocated_bytes": 421609984,
+          "peak_reserved_bytes": 492830720,
+          "baseline_allocated_bytes": 363532288,
+          "end_allocated_bytes": 363648512,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 11.942911783854166,
+          "aggregate_tokens_per_second": 83.6470839336696,
+          "incremental_peak_bytes": 58077696
+        }
+      ],
+      "fp16_native_eager-cached": [
+        {
+          "wall_ms": 591.4293839596212,
+          "prefill_ms": 12.890111923217773,
+          "decode_ms": 578.4852294921875,
+          "peak_allocated_bytes": 459041792,
+          "peak_reserved_bytes": 488636416,
+          "baseline_allocated_bytes": 363532288,
+          "end_allocated_bytes": 400387584,
+          "cache_bytes": 35352576,
+          "decode_ms_per_token_step": 9.182305230034721,
+          "aggregate_tokens_per_second": 108.21241171941753,
+          "incremental_peak_bytes": 95509504
+        },
+        {
+          "wall_ms": 595.8983679302037,
+          "prefill_ms": 12.800000190734863,
+          "decode_ms": 583.0491943359375,
+          "peak_allocated_bytes": 459041792,
+          "peak_reserved_bytes": 488636416,
+          "baseline_allocated_bytes": 363532288,
+          "end_allocated_bytes": 400387584,
+          "cache_bytes": 35352576,
+          "decode_ms_per_token_step": 9.254749116443453,
+          "aggregate_tokens_per_second": 107.40086471842156,
+          "incremental_peak_bytes": 95509504
+        },
+        {
+          "wall_ms": 594.6734049357474,
+          "prefill_ms": 12.281855583190918,
+          "decode_ms": 582.3426513671875,
+          "peak_allocated_bytes": 459041792,
+          "peak_reserved_bytes": 488636416,
+          "baseline_allocated_bytes": 363532288,
+          "end_allocated_bytes": 400387584,
+          "cache_bytes": 35352576,
+          "decode_ms_per_token_step": 9.243534148685516,
+          "aggregate_tokens_per_second": 107.6220989013541,
+          "incremental_peak_bytes": 95509504
+        },
+        {
+          "wall_ms": 591.6438871063292,
+          "prefill_ms": 12.803071975708008,
+          "decode_ms": 578.7914428710938,
+          "peak_allocated_bytes": 459041792,
+          "peak_reserved_bytes": 488636416,
+          "baseline_allocated_bytes": 363532288,
+          "end_allocated_bytes": 400387584,
+          "cache_bytes": 35352576,
+          "decode_ms_per_token_step": 9.187165759858631,
+          "aggregate_tokens_per_second": 108.17317882386577,
+          "incremental_peak_bytes": 95509504
+        },
+        {
+          "wall_ms": 594.3520390428603,
+          "prefill_ms": 12.177408218383789,
+          "decode_ms": 582.1255493164062,
+          "peak_allocated_bytes": 459041792,
+          "peak_reserved_bytes": 488636416,
+          "baseline_allocated_bytes": 363532288,
+          "end_allocated_bytes": 400387584,
+          "cache_bytes": 35352576,
+          "decode_ms_per_token_step": 9.2400880843874,
+          "aggregate_tokens_per_second": 107.68029012412423,
+          "incremental_peak_bytes": 95509504
+        },
+        {
+          "wall_ms": 594.8647600598633,
+          "prefill_ms": 12.886015892028809,
+          "decode_ms": 581.9310302734375,
+          "peak_allocated_bytes": 459041792,
+          "peak_reserved_bytes": 488636416,
+          "baseline_allocated_bytes": 363532288,
+          "end_allocated_bytes": 400387584,
+          "cache_bytes": 35352576,
+          "decode_ms_per_token_step": 9.237000480530755,
+          "aggregate_tokens_per_second": 107.58747920041432,
+          "incremental_peak_bytes": 95509504
+        },
+        {
+          "wall_ms": 599.0095427259803,
+          "prefill_ms": 12.955648422241211,
+          "decode_ms": 586.0034790039062,
+          "peak_allocated_bytes": 459041792,
+          "peak_reserved_bytes": 488636416,
+          "baseline_allocated_bytes": 363532288,
+          "end_allocated_bytes": 400387584,
+          "cache_bytes": 35352576,
+          "decode_ms_per_token_step": 9.301642523871529,
+          "aggregate_tokens_per_second": 106.84303910877276,
+          "incremental_peak_bytes": 95509504
+        }
+      ],
+      "fp16_native_flash-uncached": [
+        {
+          "wall_ms": 525.0683422200382,
+          "prefill_ms": 9.623552322387695,
+          "decode_ms": 515.39453125,
+          "peak_allocated_bytes": 396647936,
+          "peak_reserved_bytes": 425721856,
+          "baseline_allocated_bytes": 363532288,
+          "end_allocated_bytes": 363648512,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 8.180865575396826,
+          "aggregate_tokens_per_second": 121.8888949377561,
+          "incremental_peak_bytes": 33115648
+        },
+        {
+          "wall_ms": 525.0930339097977,
+          "prefill_ms": 9.62662410736084,
+          "decode_ms": 515.40478515625,
+          "peak_allocated_bytes": 396647936,
+          "peak_reserved_bytes": 425721856,
+          "baseline_allocated_bytes": 363532288,
+          "end_allocated_bytes": 363648512,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 8.181028335813492,
+          "aggregate_tokens_per_second": 121.88316330053266,
+          "incremental_peak_bytes": 33115648
+        },
+        {
+          "wall_ms": 521.8248250894248,
+          "prefill_ms": 9.551872253417969,
+          "decode_ms": 512.2232055664062,
+          "peak_allocated_bytes": 396647936,
+          "peak_reserved_bytes": 425721856,
+          "baseline_allocated_bytes": 363532288,
+          "end_allocated_bytes": 363648512,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 8.13052707248264,
+          "aggregate_tokens_per_second": 122.64652220988596,
+          "incremental_peak_bytes": 33115648
+        },
+        {
+          "wall_ms": 523.5884049907327,
+          "prefill_ms": 9.655296325683594,
+          "decode_ms": 513.8800659179688,
+          "peak_allocated_bytes": 396647936,
+          "peak_reserved_bytes": 425721856,
+          "baseline_allocated_bytes": 363532288,
+          "end_allocated_bytes": 363648512,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 8.15682644314236,
+          "aggregate_tokens_per_second": 122.23341729871343,
+          "incremental_peak_bytes": 33115648
+        },
+        {
+          "wall_ms": 524.2711789906025,
+          "prefill_ms": 9.628671646118164,
+          "decode_ms": 514.5927734375,
+          "peak_allocated_bytes": 396647936,
+          "peak_reserved_bytes": 425721856,
+          "baseline_allocated_bytes": 363532288,
+          "end_allocated_bytes": 363648512,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 8.168139260912698,
+          "aggregate_tokens_per_second": 122.07422907210238,
+          "incremental_peak_bytes": 33115648
+        },
+        {
+          "wall_ms": 521.6859146021307,
+          "prefill_ms": 9.608192443847656,
+          "decode_ms": 512.0286865234375,
+          "peak_allocated_bytes": 396647936,
+          "peak_reserved_bytes": 425721856,
+          "baseline_allocated_bytes": 363532288,
+          "end_allocated_bytes": 363648512,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 8.127439468625992,
+          "aggregate_tokens_per_second": 122.67917957648959,
+          "incremental_peak_bytes": 33115648
+        },
+        {
+          "wall_ms": 523.7153130583465,
+          "prefill_ms": 9.600000381469727,
+          "decode_ms": 514.0684814453125,
+          "peak_allocated_bytes": 396647936,
+          "peak_reserved_bytes": 425721856,
+          "baseline_allocated_bytes": 363532288,
+          "end_allocated_bytes": 363648512,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 8.15981716579861,
+          "aggregate_tokens_per_second": 122.20379737659081,
+          "incremental_peak_bytes": 33115648
+        }
+      ],
+      "fp16_native_flash-cached": [
+        {
+          "wall_ms": 515.2856358326972,
+          "prefill_ms": 10.363903999328613,
+          "decode_ms": 504.87091064453125,
+          "peak_allocated_bytes": 448428544,
+          "peak_reserved_bytes": 488636416,
+          "baseline_allocated_bytes": 363532288,
+          "end_allocated_bytes": 400000000,
+          "cache_bytes": 35352576,
+          "decode_ms_per_token_step": 8.013823978484623,
+          "aggregate_tokens_per_second": 124.20295764033195,
+          "incremental_peak_bytes": 84896256
+        },
+        {
+          "wall_ms": 515.2980932034552,
+          "prefill_ms": 10.303487777709961,
+          "decode_ms": 504.9405517578125,
+          "peak_allocated_bytes": 448428544,
+          "peak_reserved_bytes": 488636416,
+          "baseline_allocated_bytes": 363532288,
+          "end_allocated_bytes": 400000000,
+          "cache_bytes": 35352576,
+          "decode_ms_per_token_step": 8.01492939298115,
+          "aggregate_tokens_per_second": 124.19995502434524,
+          "incremental_peak_bytes": 84896256
+        },
+        {
+          "wall_ms": 515.2894197963178,
+          "prefill_ms": 10.313728332519531,
+          "decode_ms": 504.92620849609375,
+          "peak_allocated_bytes": 448428544,
+          "peak_reserved_bytes": 488636416,
+          "baseline_allocated_bytes": 363532288,
+          "end_allocated_bytes": 400000000,
+          "cache_bytes": 35352576,
+          "decode_ms_per_token_step": 8.014701722160218,
+          "aggregate_tokens_per_second": 124.20204557139509,
+          "incremental_peak_bytes": 84896256
+        },
+        {
+          "wall_ms": 515.4972919262946,
+          "prefill_ms": 10.373120307922363,
+          "decode_ms": 505.069580078125,
+          "peak_allocated_bytes": 448428544,
+          "peak_reserved_bytes": 488636416,
+          "baseline_allocated_bytes": 363532288,
+          "end_allocated_bytes": 400000000,
+          "cache_bytes": 35352576,
+          "decode_ms_per_token_step": 8.01697746155754,
+          "aggregate_tokens_per_second": 124.15196161525263,
+          "incremental_peak_bytes": 84896256
+        },
+        {
+          "wall_ms": 514.8944249376655,
+          "prefill_ms": 10.23692798614502,
+          "decode_ms": 504.595458984375,
+          "peak_allocated_bytes": 448428544,
+          "peak_reserved_bytes": 488636416,
+          "baseline_allocated_bytes": 363532288,
+          "end_allocated_bytes": 400000000,
+          "cache_bytes": 35352576,
+          "decode_ms_per_token_step": 8.009451729910714,
+          "aggregate_tokens_per_second": 124.2973256269924,
+          "incremental_peak_bytes": 84896256
+        },
+        {
+          "wall_ms": 513.8937812298536,
+          "prefill_ms": 10.232831954956055,
+          "decode_ms": 503.61138916015625,
+          "peak_allocated_bytes": 448428544,
+          "peak_reserved_bytes": 488636416,
+          "baseline_allocated_bytes": 363532288,
+          "end_allocated_bytes": 400000000,
+          "cache_bytes": 35352576,
+          "decode_ms_per_token_step": 7.993831573970734,
+          "aggregate_tokens_per_second": 124.53935489710504,
+          "incremental_peak_bytes": 84896256
+        },
+        {
+          "wall_ms": 519.2479752004147,
+          "prefill_ms": 10.866687774658203,
+          "decode_ms": 508.3248596191406,
+          "peak_allocated_bytes": 448428544,
+          "peak_reserved_bytes": 488636416,
+          "baseline_allocated_bytes": 363532288,
+          "end_allocated_bytes": 400000000,
+          "cache_bytes": 35352576,
+          "decode_ms_per_token_step": 8.068648565383185,
+          "aggregate_tokens_per_second": 123.25517490038908,
+          "incremental_peak_bytes": 84896256
+        }
+      ]
+    },
+    "summary": {
+      "fp16_native_eager-uncached": {
+        "wall_ms": {
+          "median": 764.4333080388606,
+          "mean": 767.9323802835175,
+          "stdev": 9.114340803854413,
+          "min": 763.8052823022008,
+          "max": 788.561827968806
+        },
+        "prefill_ms": {
+          "median": 12.621824264526367,
+          "mean": 12.761673109872001,
+          "stdev": 1.1659631538540032,
+          "min": 12.010496139526367,
+          "max": 15.313920021057129
+        },
+        "decode_ms": {
+          "median": 752.30615234375,
+          "mean": 755.1177716936384,
+          "stdev": 7.978522733769788,
+          "min": 751.7132568359375,
+          "max": 773.1926879882812
+        },
+        "peak_allocated_bytes": {
+          "median": 421609984,
+          "mean": 421609984,
+          "stdev": 0.0,
+          "min": 421609984,
+          "max": 421609984
+        },
+        "peak_reserved_bytes": {
+          "median": 492830720,
+          "mean": 492830720,
+          "stdev": 0.0,
+          "min": 492830720,
+          "max": 492830720
+        },
+        "baseline_allocated_bytes": {
+          "median": 363532288,
+          "mean": 363532288,
+          "stdev": 0.0,
+          "min": 363532288,
+          "max": 363532288
+        },
+        "end_allocated_bytes": {
+          "median": 363648512,
+          "mean": 363648512,
+          "stdev": 0.0,
+          "min": 363648512,
+          "max": 363648512
+        },
+        "cache_bytes": {
+          "median": 0,
+          "mean": 0,
+          "stdev": 0.0,
+          "min": 0,
+          "max": 0
+        },
+        "decode_ms_per_token_step": {
+          "median": 11.941367497519842,
+          "mean": 11.9859963760895,
+          "stdev": 0.1266432179963457,
+          "min": 11.931956457713294,
+          "max": 12.272899809337797
+        },
+        "aggregate_tokens_per_second": {
+          "median": 83.72214989452881,
+          "mean": 83.35051608173714,
+          "stdev": 0.9677347690866562,
+          "min": 81.1604083916318,
+          "max": 83.79098899014723
+        },
+        "incremental_peak_bytes": {
+          "median": 58077696,
+          "mean": 58077696,
+          "stdev": 0.0,
+          "min": 58077696,
+          "max": 58077696
+        }
+      },
+      "fp16_native_eager-cached": {
+        "wall_ms": {
+          "median": 594.6734049357474,
+          "mean": 594.5530551086579,
+          "stdev": 2.583369243851133,
+          "min": 591.4293839596212,
+          "max": 599.0095427259803
+        },
+        "prefill_ms": {
+          "median": 12.803071975708008,
+          "mean": 12.684873172215053,
+          "stdev": 0.3170356495843384,
+          "min": 12.177408218383789,
+          "max": 12.955648422241211
+        },
+        "decode_ms": {
+          "median": 582.1255493164062,
+          "mean": 581.8183680943081,
+          "stdev": 2.5717731182537515,
+          "min": 578.4852294921875,
+          "max": 586.0034790039062
+        },
+        "peak_allocated_bytes": {
+          "median": 459041792,
+          "mean": 459041792,
+          "stdev": 0.0,
+          "min": 459041792,
+          "max": 459041792
+        },
+        "peak_reserved_bytes": {
+          "median": 488636416,
+          "mean": 488636416,
+          "stdev": 0.0,
+          "min": 488636416,
+          "max": 488636416
+        },
+        "baseline_allocated_bytes": {
+          "median": 363532288,
+          "mean": 363532288,
+          "stdev": 0.0,
+          "min": 363532288,
+          "max": 363532288
+        },
+        "end_allocated_bytes": {
+          "median": 400387584,
+          "mean": 400387584,
+          "stdev": 0.0,
+          "min": 400387584,
+          "max": 400387584
+        },
+        "cache_bytes": {
+          "median": 35352576,
+          "mean": 35352576,
+          "stdev": 0.0,
+          "min": 35352576,
+          "max": 35352576
+        },
+        "decode_ms_per_token_step": {
+          "median": 9.2400880843874,
+          "mean": 9.235212191973144,
+          "stdev": 0.040821795527837636,
+          "min": 9.182305230034721,
+          "max": 9.301642523871529
+        },
+        "aggregate_tokens_per_second": {
+          "median": 107.6220989013541,
+          "mean": 107.6456232280529,
+          "stdev": 0.46703818772387184,
+          "min": 106.84303910877276,
+          "max": 108.21241171941753
+        },
+        "incremental_peak_bytes": {
+          "median": 95509504,
+          "mean": 95509504,
+          "stdev": 0.0,
+          "min": 95509504,
+          "max": 95509504
+        }
+      },
+      "fp16_native_flash-uncached": {
+        "wall_ms": {
+          "median": 523.7153130583465,
+          "mean": 523.6067161230104,
+          "stdev": 1.394258766236131,
+          "min": 521.6859146021307,
+          "max": 525.0930339097977
+        },
+        "prefill_ms": {
+          "median": 9.623552322387695,
+          "mean": 9.613458497183663,
+          "stdev": 0.03229752315104765,
+          "min": 9.551872253417969,
+          "max": 9.655296325683594
+        },
+        "decode_ms": {
+          "median": 514.0684814453125,
+          "mean": 513.9417898995536,
+          "stdev": 1.3728285492980066,
+          "min": 512.0286865234375,
+          "max": 515.40478515625
+        },
+        "peak_allocated_bytes": {
+          "median": 396647936,
+          "mean": 396647936,
+          "stdev": 0.0,
+          "min": 396647936,
+          "max": 396647936
+        },
+        "peak_reserved_bytes": {
+          "median": 425721856,
+          "mean": 425721856,
+          "stdev": 0.0,
+          "min": 425721856,
+          "max": 425721856
+        },
+        "baseline_allocated_bytes": {
+          "median": 363532288,
+          "mean": 363532288,
+          "stdev": 0.0,
+          "min": 363532288,
+          "max": 363532288
+        },
+        "end_allocated_bytes": {
+          "median": 363648512,
+          "mean": 363648512,
+          "stdev": 0.0,
+          "min": 363648512,
+          "max": 363648512
+        },
+        "cache_bytes": {
+          "median": 0,
+          "mean": 0,
+          "stdev": 0.0,
+          "min": 0,
+          "max": 0
+        },
+        "decode_ms_per_token_step": {
+          "median": 8.15981716579861,
+          "mean": 8.157806188881803,
+          "stdev": 0.02179092935393658,
+          "min": 8.127439468625992,
+          "max": 8.181028335813492
+        },
+        "aggregate_tokens_per_second": {
+          "median": 122.20379737659081,
+          "mean": 122.229886253153,
+          "stdev": 0.325797521389985,
+          "min": 121.88316330053266,
+          "max": 122.67917957648959
+        },
+        "incremental_peak_bytes": {
+          "median": 33115648,
+          "mean": 33115648,
+          "stdev": 0.0,
+          "min": 33115648,
+          "max": 33115648
+        }
+      },
+      "fp16_native_flash-cached": {
+        "wall_ms": {
+          "median": 515.2894197963178,
+          "mean": 515.6295174466712,
+          "stdev": 1.6836282408452548,
+          "min": 513.8937812298536,
+          "max": 519.2479752004147
+        },
+        "prefill_ms": {
+          "median": 10.313728332519531,
+          "mean": 10.384384019034249,
+          "stdev": 0.21962504135578448,
+          "min": 10.232831954956055,
+          "max": 10.866687774658203
+        },
+        "decode_ms": {
+          "median": 504.92620849609375,
+          "mean": 505.19127982003346,
+          "stdev": 1.4674782182652248,
+          "min": 503.61138916015625,
+          "max": 508.3248596191406
+        },
+        "peak_allocated_bytes": {
+          "median": 448428544,
+          "mean": 448428544,
+          "stdev": 0.0,
+          "min": 448428544,
+          "max": 448428544
+        },
+        "peak_reserved_bytes": {
+          "median": 488636416,
+          "mean": 488636416,
+          "stdev": 0.0,
+          "min": 488636416,
+          "max": 488636416
+        },
+        "baseline_allocated_bytes": {
+          "median": 363532288,
+          "mean": 363532288,
+          "stdev": 0.0,
+          "min": 363532288,
+          "max": 363532288
+        },
+        "end_allocated_bytes": {
+          "median": 400000000,
+          "mean": 400000000,
+          "stdev": 0.0,
+          "min": 400000000,
+          "max": 400000000
+        },
+        "cache_bytes": {
+          "median": 35352576,
+          "mean": 35352576,
+          "stdev": 0.0,
+          "min": 35352576,
+          "max": 35352576
+        },
+        "decode_ms_per_token_step": {
+          "median": 8.014701722160218,
+          "mean": 8.018909203492594,
+          "stdev": 0.023293305051829246,
+          "min": 7.993831573970734,
+          "max": 8.068648565383185
+        },
+        "aggregate_tokens_per_second": {
+          "median": 124.20204557139509,
+          "mean": 124.12125361083021,
+          "stdev": 0.4033695899323329,
+          "min": 123.25517490038908,
+          "max": 124.53935489710504
+        },
+        "incremental_peak_bytes": {
+          "median": 84896256,
+          "mean": 84896256,
+          "stdev": 0.0,
+          "min": 84896256,
+          "max": 84896256
+        }
+      }
+    }
+  },
+  {
+    "batch": 4,
+    "prompt_tokens": 128,
+    "new_tokens": 64,
+    "samples": {
+      "fp16_native_eager-uncached": [
+        {
+          "wall_ms": 662.0508930645883,
+          "prefill_ms": 11.469823837280273,
+          "decode_ms": 650.5287475585938,
+          "peak_allocated_bytes": 389916672,
+          "peak_reserved_bytes": 425721856,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 363943936,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 10.325853135850695,
+          "aggregate_tokens_per_second": 386.67722176915055,
+          "incremental_peak_bytes": 26387456
+        },
+        {
+          "wall_ms": 661.5123371593654,
+          "prefill_ms": 11.271167755126953,
+          "decode_ms": 650.1887817382812,
+          "peak_allocated_bytes": 389916672,
+          "peak_reserved_bytes": 425721856,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 363943936,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 10.320456852988592,
+          "aggregate_tokens_per_second": 386.99202663294676,
+          "incremental_peak_bytes": 26387456
+        },
+        {
+          "wall_ms": 659.653480630368,
+          "prefill_ms": 11.577343940734863,
+          "decode_ms": 648.0250854492188,
+          "peak_allocated_bytes": 389916672,
+          "peak_reserved_bytes": 425721856,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 363943936,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 10.286112467447916,
+          "aggregate_tokens_per_second": 388.08254260307274,
+          "incremental_peak_bytes": 26387456
+        },
+        {
+          "wall_ms": 659.466028213501,
+          "prefill_ms": 12.14361572265625,
+          "decode_ms": 647.2724609375,
+          "peak_allocated_bytes": 389916672,
+          "peak_reserved_bytes": 425721856,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 363943936,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 10.274166046626984,
+          "aggregate_tokens_per_second": 388.19285459405114,
+          "incremental_peak_bytes": 26387456
+        },
+        {
+          "wall_ms": 660.93903593719,
+          "prefill_ms": 11.274239540100098,
+          "decode_ms": 649.6163940429688,
+          "peak_allocated_bytes": 389916672,
+          "peak_reserved_bytes": 425721856,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 363943936,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 10.311371334015377,
+          "aggregate_tokens_per_second": 387.32770509915537,
+          "incremental_peak_bytes": 26387456
+        },
+        {
+          "wall_ms": 660.2434436790645,
+          "prefill_ms": 11.231231689453125,
+          "decode_ms": 648.9651489257812,
+          "peak_allocated_bytes": 389916672,
+          "peak_reserved_bytes": 425721856,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 363943936,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 10.301034109933036,
+          "aggregate_tokens_per_second": 387.7357699661432,
+          "incremental_peak_bytes": 26387456
+        },
+        {
+          "wall_ms": 659.366003703326,
+          "prefill_ms": 11.53228759765625,
+          "decode_ms": 647.783447265625,
+          "peak_allocated_bytes": 389916672,
+          "peak_reserved_bytes": 425721856,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 363943936,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 10.282276940724206,
+          "aggregate_tokens_per_second": 388.25174267732524,
+          "incremental_peak_bytes": 26387456
+        }
+      ],
+      "fp16_native_eager-cached": [
+        {
+          "wall_ms": 655.4801291786134,
+          "prefill_ms": 11.552767753601074,
+          "decode_ms": 643.8748168945312,
+          "peak_allocated_bytes": 423564288,
+          "peak_reserved_bytes": 484442112,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 393371648,
+          "cache_bytes": 28164096,
+          "decode_ms_per_token_step": 10.220235188802084,
+          "aggregate_tokens_per_second": 390.5534105523463,
+          "incremental_peak_bytes": 60035072
+        },
+        {
+          "wall_ms": 655.8054969646037,
+          "prefill_ms": 11.805695533752441,
+          "decode_ms": 643.9485473632812,
+          "peak_allocated_bytes": 423564288,
+          "peak_reserved_bytes": 484442112,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 393371648,
+          "cache_bytes": 28164096,
+          "decode_ms_per_token_step": 10.221405513702877,
+          "aggregate_tokens_per_second": 390.3596434993245,
+          "incremental_peak_bytes": 60035072
+        },
+        {
+          "wall_ms": 656.5336068160832,
+          "prefill_ms": 11.578368186950684,
+          "decode_ms": 644.9049682617188,
+          "peak_allocated_bytes": 423564288,
+          "peak_reserved_bytes": 484442112,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 393371648,
+          "cache_bytes": 28164096,
+          "decode_ms_per_token_step": 10.23658679780506,
+          "aggregate_tokens_per_second": 389.9267262821385,
+          "incremental_peak_bytes": 60035072
+        },
+        {
+          "wall_ms": 657.3247103951871,
+          "prefill_ms": 11.787263870239258,
+          "decode_ms": 645.4876098632812,
+          "peak_allocated_bytes": 423564288,
+          "peak_reserved_bytes": 484442112,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 393371648,
+          "cache_bytes": 28164096,
+          "decode_ms_per_token_step": 10.24583507719494,
+          "aggregate_tokens_per_second": 389.45744158331036,
+          "incremental_peak_bytes": 60035072
+        },
+        {
+          "wall_ms": 655.2033191546798,
+          "prefill_ms": 11.598848342895508,
+          "decode_ms": 643.557373046875,
+          "peak_allocated_bytes": 423564288,
+          "peak_reserved_bytes": 484442112,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 393371648,
+          "cache_bytes": 28164096,
+          "decode_ms_per_token_step": 10.215196397569445,
+          "aggregate_tokens_per_second": 390.7184113937063,
+          "incremental_peak_bytes": 60035072
+        },
+        {
+          "wall_ms": 654.7498349100351,
+          "prefill_ms": 11.571200370788574,
+          "decode_ms": 643.1293334960938,
+          "peak_allocated_bytes": 423564288,
+          "peak_reserved_bytes": 484442112,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 393371648,
+          "cache_bytes": 28164096,
+          "decode_ms_per_token_step": 10.208402118985616,
+          "aggregate_tokens_per_second": 390.98902565615043,
+          "incremental_peak_bytes": 60035072
+        },
+        {
+          "wall_ms": 653.3314068801701,
+          "prefill_ms": 11.537407875061035,
+          "decode_ms": 641.7428588867188,
+          "peak_allocated_bytes": 423564288,
+          "peak_reserved_bytes": 484442112,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 393371648,
+          "cache_bytes": 28164096,
+          "decode_ms_per_token_step": 10.186394585503471,
+          "aggregate_tokens_per_second": 391.83789008776967,
+          "incremental_peak_bytes": 60035072
+        }
+      ],
+      "fp16_native_flash-uncached": [
+        {
+          "wall_ms": 537.1193620376289,
+          "prefill_ms": 9.622528076171875,
+          "decode_ms": 527.4501342773438,
+          "peak_allocated_bytes": 389898240,
+          "peak_reserved_bytes": 425721856,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 363943936,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 8.372224353608631,
+          "aggregate_tokens_per_second": 476.6165923135451,
+          "incremental_peak_bytes": 26369024
+        },
+        {
+          "wall_ms": 540.689991787076,
+          "prefill_ms": 9.61843204498291,
+          "decode_ms": 531.0208129882812,
+          "peak_allocated_bytes": 389898240,
+          "peak_reserved_bytes": 425721856,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 363943936,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 8.428901793464782,
+          "aggregate_tokens_per_second": 473.4690929896349,
+          "incremental_peak_bytes": 26369024
+        },
+        {
+          "wall_ms": 536.1882150173187,
+          "prefill_ms": 9.277440071105957,
+          "decode_ms": 526.8623657226562,
+          "peak_allocated_bytes": 389898240,
+          "peak_reserved_bytes": 425721856,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 363943936,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 8.362894694010416,
+          "aggregate_tokens_per_second": 477.44428696876764,
+          "incremental_peak_bytes": 26369024
+        },
+        {
+          "wall_ms": 539.3041698262095,
+          "prefill_ms": 9.331711769104004,
+          "decode_ms": 529.9251098632812,
+          "peak_allocated_bytes": 389898240,
+          "peak_reserved_bytes": 425721856,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 363943936,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 8.411509680369544,
+          "aggregate_tokens_per_second": 474.6857419672758,
+          "incremental_peak_bytes": 26369024
+        },
+        {
+          "wall_ms": 540.4463210143149,
+          "prefill_ms": 9.604096412658691,
+          "decode_ms": 530.79345703125,
+          "peak_allocated_bytes": 389898240,
+          "peak_reserved_bytes": 425721856,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 363943936,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 8.42529296875,
+          "aggregate_tokens_per_second": 473.6825657718175,
+          "incremental_peak_bytes": 26369024
+        },
+        {
+          "wall_ms": 538.9045029878616,
+          "prefill_ms": 9.346048355102539,
+          "decode_ms": 529.5093994140625,
+          "peak_allocated_bytes": 389898240,
+          "peak_reserved_bytes": 425721856,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 363943936,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 8.404911101810516,
+          "aggregate_tokens_per_second": 475.03778235411437,
+          "incremental_peak_bytes": 26369024
+        },
+        {
+          "wall_ms": 541.0902951844037,
+          "prefill_ms": 9.631744384765625,
+          "decode_ms": 531.4088745117188,
+          "peak_allocated_bytes": 389898240,
+          "peak_reserved_bytes": 425721856,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 363943936,
+          "cache_bytes": 0,
+          "decode_ms_per_token_step": 8.435061500186013,
+          "aggregate_tokens_per_second": 473.11881635717594,
+          "incremental_peak_bytes": 26369024
+        }
+      ],
+      "fp16_native_flash-cached": [
+        {
+          "wall_ms": 559.3735780566931,
+          "prefill_ms": 9.632767677307129,
+          "decode_ms": 549.6934204101562,
+          "peak_allocated_bytes": 423564288,
+          "peak_reserved_bytes": 484442112,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 393371648,
+          "cache_bytes": 28164096,
+          "decode_ms_per_token_step": 8.725292387462797,
+          "aggregate_tokens_per_second": 457.65479465326865,
+          "incremental_peak_bytes": 60035072
+        },
+        {
+          "wall_ms": 558.7765108793974,
+          "prefill_ms": 9.629695892333984,
+          "decode_ms": 549.0974731445312,
+          "peak_allocated_bytes": 423564288,
+          "peak_reserved_bytes": 484442112,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 393371648,
+          "cache_bytes": 28164096,
+          "decode_ms_per_token_step": 8.715832907056052,
+          "aggregate_tokens_per_second": 458.1438106571615,
+          "incremental_peak_bytes": 60035072
+        },
+        {
+          "wall_ms": 559.3163422308862,
+          "prefill_ms": 9.843711853027344,
+          "decode_ms": 549.423095703125,
+          "peak_allocated_bytes": 423564288,
+          "peak_reserved_bytes": 484442112,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 393371648,
+          "cache_bytes": 28164096,
+          "decode_ms_per_token_step": 8.721001519097221,
+          "aggregate_tokens_per_second": 457.70162727396763,
+          "incremental_peak_bytes": 60035072
+        },
+        {
+          "wall_ms": 559.189354069531,
+          "prefill_ms": 10.471424102783203,
+          "decode_ms": 548.6683959960938,
+          "peak_allocated_bytes": 423564288,
+          "peak_reserved_bytes": 484442112,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 393371648,
+          "cache_bytes": 28164096,
+          "decode_ms_per_token_step": 8.709022158668155,
+          "aggregate_tokens_per_second": 457.8055682515164,
+          "incremental_peak_bytes": 60035072
+        },
+        {
+          "wall_ms": 558.7948500178754,
+          "prefill_ms": 9.839615821838379,
+          "decode_ms": 548.9039306640625,
+          "peak_allocated_bytes": 423564288,
+          "peak_reserved_bytes": 484442112,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 393371648,
+          "cache_bytes": 28164096,
+          "decode_ms_per_token_step": 8.712760804191468,
+          "aggregate_tokens_per_second": 458.12877479420354,
+          "incremental_peak_bytes": 60035072
+        },
+        {
+          "wall_ms": 559.0010010637343,
+          "prefill_ms": 9.921536445617676,
+          "decode_ms": 549.0308837890625,
+          "peak_allocated_bytes": 423564288,
+          "peak_reserved_bytes": 484442112,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 393371648,
+          "cache_bytes": 28164096,
+          "decode_ms_per_token_step": 8.714775933159721,
+          "aggregate_tokens_per_second": 457.9598238873498,
+          "incremental_peak_bytes": 60035072
+        },
+        {
+          "wall_ms": 557.3394610546529,
+          "prefill_ms": 9.598976135253906,
+          "decode_ms": 547.6904907226562,
+          "peak_allocated_bytes": 423564288,
+          "peak_reserved_bytes": 484442112,
+          "baseline_allocated_bytes": 363529216,
+          "end_allocated_bytes": 393371648,
+          "cache_bytes": 28164096,
+          "decode_ms_per_token_step": 8.693499852740576,
+          "aggregate_tokens_per_second": 459.32509339204415,
+          "incremental_peak_bytes": 60035072
+        }
+      ]
+    },
+    "summary": {
+      "fp16_native_eager-uncached": {
+        "wall_ms": {
+          "median": 660.2434436790645,
+          "mean": 660.4616031982005,
+          "stdev": 1.0606593562941524,
+          "min": 659.366003703326,
+          "max": 662.0508930645883
+        },
+        "prefill_ms": {
+          "median": 11.469823837280273,
+          "mean": 11.49995858328683,
+          "stdev": 0.31563289532627675,
+          "min": 11.231231689453125,
+          "max": 12.14361572265625
+        },
+        "decode_ms": {
+          "median": 648.9651489257812,
+          "mean": 648.9114379882812,
+          "stdev": 1.2577343964860568,
+          "min": 647.2724609375,
+          "max": 650.5287475585938
+        },
+        "peak_allocated_bytes": {
+          "median": 389916672,
+          "mean": 389916672,
+          "stdev": 0.0,
+          "min": 389916672,
+          "max": 389916672
+        },
+        "peak_reserved_bytes": {
+          "median": 425721856,
+          "mean": 425721856,
+          "stdev": 0.0,
+          "min": 425721856,
+          "max": 425721856
+        },
+        "baseline_allocated_bytes": {
+          "median": 363529216,
+          "mean": 363529216,
+          "stdev": 0.0,
+          "min": 363529216,
+          "max": 363529216
+        },
+        "end_allocated_bytes": {
+          "median": 363943936,
+          "mean": 363943936,
+          "stdev": 0.0,
+          "min": 363943936,
+          "max": 363943936
+        },
+        "cache_bytes": {
+          "median": 0,
+          "mean": 0,
+          "stdev": 0.0,
+          "min": 0,
+          "max": 0
+        },
+        "decode_ms_per_token_step": {
+          "median": 10.301034109933036,
+          "mean": 10.300181555369544,
+          "stdev": 0.01996403803946149,
+          "min": 10.274166046626984,
+          "max": 10.325853135850695
+        },
+        "aggregate_tokens_per_second": {
+          "median": 387.7357699661432,
+          "mean": 387.60855190597783,
+          "stdev": 0.6221347362578923,
+          "min": 386.67722176915055,
+          "max": 388.25174267732524
+        },
+        "incremental_peak_bytes": {
+          "median": 26387456,
+          "mean": 26387456,
+          "stdev": 0.0,
+          "min": 26387456,
+          "max": 26387456
+        }
+      },
+      "fp16_native_eager-cached": {
+        "wall_ms": {
+          "median": 655.4801291786134,
+          "mean": 655.4897863284817,
+          "stdev": 1.2809155185150818,
+          "min": 653.3314068801701,
+          "max": 657.3247103951871
+        },
+        "prefill_ms": {
+          "median": 11.578368186950684,
+          "mean": 11.633078847612653,
+          "stdev": 0.11340655337022756,
+          "min": 11.537407875061035,
+          "max": 11.805695533752441
+        },
+        "decode_ms": {
+          "median": 643.8748168945312,
+          "mean": 643.8065011160714,
+          "stdev": 1.213592525185752,
+          "min": 641.7428588867188,
+          "max": 645.4876098632812
+        },
+        "peak_allocated_bytes": {
+          "median": 423564288,
+          "mean": 423564288,
+          "stdev": 0.0,
+          "min": 423564288,
+          "max": 423564288
+        },
+        "peak_reserved_bytes": {
+          "median": 484442112,
+          "mean": 484442112,
+          "stdev": 0.0,
+          "min": 484442112,
+          "max": 484442112
+        },
+        "baseline_allocated_bytes": {
+          "median": 363529216,
+          "mean": 363529216,
+          "stdev": 0.0,
+          "min": 363529216,
+          "max": 363529216
+        },
+        "end_allocated_bytes": {
+          "median": 393371648,
+          "mean": 393371648,
+          "stdev": 0.0,
+          "min": 393371648,
+          "max": 393371648
+        },
+        "cache_bytes": {
+          "median": 28164096,
+          "mean": 28164096,
+          "stdev": 0.0,
+          "min": 28164096,
+          "max": 28164096
+        },
+        "decode_ms_per_token_step": {
+          "median": 10.220235188802084,
+          "mean": 10.219150811366212,
+          "stdev": 0.019263373415646972,
+          "min": 10.186394585503471,
+          "max": 10.24583507719494
+        },
+        "aggregate_tokens_per_second": {
+          "median": 390.5534105523463,
+          "mean": 390.5489355792494,
+          "stdev": 0.7635618422887207,
+          "min": 389.45744158331036,
+          "max": 391.83789008776967
+        },
+        "incremental_peak_bytes": {
+          "median": 60035072,
+          "mean": 60035072,
+          "stdev": 0.0,
+          "min": 60035072,
+          "max": 60035072
+        }
+      },
+      "fp16_native_flash-uncached": {
+        "wall_ms": {
+          "median": 539.3041698262095,
+          "mean": 539.1061225506876,
+          "stdev": 1.8611371793104599,
+          "min": 536.1882150173187,
+          "max": 541.0902951844037
+        },
+        "prefill_ms": {
+          "median": 9.604096412658691,
+          "mean": 9.490285873413086,
+          "stdev": 0.16234034955484203,
+          "min": 9.277440071105957,
+          "max": 9.631744384765625
+        },
+        "decode_ms": {
+          "median": 529.9251098632812,
+          "mean": 529.5671648297991,
+          "stdev": 1.7766071665187337,
+          "min": 526.8623657226562,
+          "max": 531.4088745117188
+        },
+        "peak_allocated_bytes": {
+          "median": 389898240,
+          "mean": 389898240,
+          "stdev": 0.0,
+          "min": 389898240,
+          "max": 389898240
+        },
+        "peak_reserved_bytes": {
+          "median": 425721856,
+          "mean": 425721856,
+          "stdev": 0.0,
+          "min": 425721856,
+          "max": 425721856
+        },
+        "baseline_allocated_bytes": {
+          "median": 363529216,
+          "mean": 363529216,
+          "stdev": 0.0,
+          "min": 363529216,
+          "max": 363529216
+        },
+        "end_allocated_bytes": {
+          "median": 363943936,
+          "mean": 363943936,
+          "stdev": 0.0,
+          "min": 363943936,
+          "max": 363943936
+        },
+        "cache_bytes": {
+          "median": 0,
+          "mean": 0,
+          "stdev": 0.0,
+          "min": 0,
+          "max": 0
+        },
+        "decode_ms_per_token_step": {
+          "median": 8.411509680369544,
+          "mean": 8.405828013171414,
+          "stdev": 0.028200113754265836,
+          "min": 8.362894694010416,
+          "max": 8.435061500186013
+        },
+        "aggregate_tokens_per_second": {
+          "median": 474.6857419672758,
+          "mean": 474.8649826746188,
+          "stdev": 1.6420844721594652,
+          "min": 473.11881635717594,
+          "max": 477.44428696876764
+        },
+        "incremental_peak_bytes": {
+          "median": 26369024,
+          "mean": 26369024,
+          "stdev": 0.0,
+          "min": 26369024,
+          "max": 26369024
+        }
+      },
+      "fp16_native_flash-cached": {
+        "wall_ms": {
+          "median": 559.0010010637343,
+          "mean": 558.8272996246815,
+          "stdev": 0.697153078721221,
+          "min": 557.3394610546529,
+          "max": 559.3735780566931
+        },
+        "prefill_ms": {
+          "median": 9.839615821838379,
+          "mean": 9.848246846880231,
+          "stdev": 0.30280576784688684,
+          "min": 9.598976135253906,
+          "max": 10.471424102783203
+        },
+        "decode_ms": {
+          "median": 549.0308837890625,
+          "mean": 548.929670061384,
+          "stdev": 0.6415706819801779,
+          "min": 547.6904907226562,
+          "max": 549.6934204101562
+        },
+        "peak_allocated_bytes": {
+          "median": 423564288,
+          "mean": 423564288,
+          "stdev": 0.0,
+          "min": 423564288,
+          "max": 423564288
+        },
+        "peak_reserved_bytes": {
+          "median": 484442112,
+          "mean": 484442112,
+          "stdev": 0.0,
+          "min": 484442112,
+          "max": 484442112
+        },
+        "baseline_allocated_bytes": {
+          "median": 363529216,
+          "mean": 363529216,
+          "stdev": 0.0,
+          "min": 363529216,
+          "max": 363529216
+        },
+        "end_allocated_bytes": {
+          "median": 393371648,
+          "mean": 393371648,
+          "stdev": 0.0,
+          "min": 393371648,
+          "max": 393371648
+        },
+        "cache_bytes": {
+          "median": 28164096,
+          "mean": 28164096,
+          "stdev": 0.0,
+          "min": 28164096,
+          "max": 28164096
+        },
+        "decode_ms_per_token_step": {
+          "median": 8.714775933159721,
+          "mean": 8.713169366053712,
+          "stdev": 0.010183661618732635,
+          "min": 8.693499852740576,
+          "max": 8.725292387462797
+        },
+        "aggregate_tokens_per_second": {
+          "median": 457.9598238873498,
+          "mean": 458.1027847013588,
+          "stdev": 0.5725374698711158,
+          "min": 457.65479465326865,
+          "max": 459.32509339204415
+        },
+        "incremental_peak_bytes": {
+          "median": 60035072,
+          "mean": 60035072,
+          "stdev": 0.0,
+          "min": 60035072,
+          "max": 60035072
+        }
+      }
+    }
+  }
+]

@@ -61,6 +61,11 @@ class TestAttention(unittest.TestCase):
     def test_flash(self):
         self.check_backend('flash', 'cuda', torch.float16)
 
+    @unittest.skipUnless(torch.cuda.is_available(), 'CUDA required')
+    def test_efficient_fp32(self):
+        torch.backends.cuda.matmul.allow_tf32 = False
+        self.check_backend('efficient', 'cuda', torch.float32)
+
     def test_explicit_errors(self):
         model = tiny()
         with self.assertRaises(ValueError):

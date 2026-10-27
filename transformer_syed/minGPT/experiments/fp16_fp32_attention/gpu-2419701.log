@@ -1,0 +1,77 @@
+Loading python/3.12.9/oegpall
+  Loading requirement: gcc-runtime/13.2.0/yimvxxm bzip2/1.0.8/itttwfv
+    gcc-runtime/13.2.0/s3f7i6x libmd/1.0.4/ngvfltj libbsd/0.12.1/6of6olc
+    expat/2.6.2/zoq445h ncurses/6.4/zqsx2w2 readline/8.2/hmsgdsx
+    gdbm/1.23/gtrssid libiconv/1.17/pmxhi4x xz/5.4.6/uxouxrg
+    zlib-ng/2.1.5/uctcqfl libxml2/2.10.3/vdqe2g3 pigz/2.8/pmmdaqf
+    zstd/1.5.5/juuobg2 tar/1.34/5prin2y gettext/0.22.4/iy5z4el
+    libffi/3.4.4/vqf2avv libxcrypt/4.4.35/zvatbxx openssl/3.4.0/pholr53
+    sqlite/3.43.2/o22u32h util-linux-uuid/2.38.1/mse45hb
+test_automatic (test_flash_attention.TestAttention.test_automatic) ... number of parameters: 0.01M
+number of parameters: 0.01M
+ok
+test_efficient_fp32 (test_flash_attention.TestAttention.test_efficient_fp32) ... number of parameters: 0.01M
+number of parameters: 0.01M
+ok
+test_explicit_errors (test_flash_attention.TestAttention.test_explicit_errors) ... number of parameters: 0.01M
+ok
+test_flash (test_flash_attention.TestAttention.test_flash) ... number of parameters: 0.01M
+number of parameters: 0.01M
+ok
+test_math (test_flash_attention.TestAttention.test_math) ... number of parameters: 0.01M
+number of parameters: 0.01M
+ok
+test_direct_reference_and_compiler (test_tiled_attention.TestTiledFP32.test_direct_reference_and_compiler) ... ok
+test_model_cache_and_lora (test_tiled_attention.TestTiledFP32.test_model_cache_and_lora) ... number of parameters: 0.01M
+number of parameters: 0.01M
+ok
+test_backward_ptx (test_tiled_backward.TestTiledBackward.test_backward_ptx) ... ok
+test_float64_reference_and_noncontiguous_grad (test_tiled_backward.TestTiledBackward.test_float64_reference_and_noncontiguous_grad) ... ok
+test_linear_saved_state_and_no_dropout (test_tiled_backward.TestTiledBackward.test_linear_saved_state_and_no_dropout) ... number of parameters: 0.01M
+ok
+test_model_gradients_and_optimizer_steps (test_tiled_backward.TestTiledBackward.test_model_gradients_and_optimizer_steps) ... number of parameters: 0.01M
+number of parameters: 0.01M
+ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 3.013s
+
+OK
+number of parameters: 124.44M
+/home/sashazli/MQP/MinGPT/minGPT/experiments/fp16_fp32_attention/run_experiment.py:68: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  ref_loss=float(loss)
+GRADIENTS pretrained {'fp32_eager': {'loss': 12.446903228759766, 'loss_abs_error': 0.0, 'max_abs_logit_error': 0.0, 'gradient_relative_l2': 0.0, 'gradient_max_abs': 0.0, 'gradients_finite': True, 'loss_scale': 1.0}, 'fp32_tiled': {'loss': 12.44690227508545, 'loss_abs_error': 9.5367431640625e-07, 'max_abs_logit_error': 0.0001220703125, 'gradient_relative_l2': 1.1390294603926476e-06, 'gradient_max_abs': 5.0067901611328125e-06, 'gradients_finite': True, 'loss_scale': 1.0}, 'fp16_eager': {'loss': 12.447113037109375, 'loss_abs_error': 0.000209808349609375, 'max_abs_logit_error': 0.14395904541015625, 'gradient_relative_l2': 0.0027867497534349913, 'gradient_max_abs': 0.007480204105377197, 'gradients_finite': True, 'loss_scale': 128.0}, 'fp16_flash': {'loss': 12.445953369140625, 'loss_abs_error': 0.000949859619140625, 'max_abs_logit_error': 0.16443634033203125, 'gradient_relative_l2': 0.002579741459274277, 'gradient_max_abs': 0.005923032760620117, 'gradients_finite': True, 'loss_scale': 128.0}, 'fp16_backend_gradient_l2_note': 'Each row above references FP32 eager; direct FP16 kernel tests are included in the suite.'}
+INFERENCE pretrained 1 128 {'fp32_eager-uncached': 445.58, 'fp32_eager-cached': 400.4, 'fp32_tiled-uncached': 418.46, 'fp32_tiled-cached': 334.23, 'fp16_eager-uncached': 494.13, 'fp16_eager-cached': 504.25, 'fp16_flash-uncached': 377.33, 'fp16_flash-cached': 399.67}
+INFERENCE pretrained 1 512 {'fp32_eager-uncached': 1222.46, 'fp32_eager-cached': 398.02, 'fp32_tiled-uncached': 1119.44, 'fp32_tiled-cached': 330.31, 'fp16_eager-uncached': 512.65, 'fp16_eager-cached': 508.95, 'fp16_flash-uncached': 389.62, 'fp16_flash-cached': 410.46}
+INFERENCE pretrained 1 896 {'fp32_eager-uncached': 2306.55, 'fp32_eager-cached': 405.22, 'fp32_tiled-uncached': 2124.81, 'fp32_tiled-cached': 335.03, 'fp16_eager-uncached': 943.89, 'fp16_eager-cached': 503.36, 'fp16_flash-uncached': 521.01, 'fp16_flash-cached': 404.38}
+INFERENCE pretrained 4 128 {'fp32_eager-uncached': 1235.82, 'fp32_eager-cached': 410.69, 'fp32_tiled-uncached': 1176.51, 'fp32_tiled-cached': 332.66, 'fp16_eager-uncached': 538.44, 'fp16_eager-cached': 537.25, 'fp16_flash-uncached': 406.8, 'fp16_flash-cached': 422.49}
+TRAINING full 128 {'fp32_eager': 60.42, 'fp32_tiled': 56.99, 'fp16_eager': 78.23, 'fp16_flash': 60.46}
+TRAINING full 512 {'fp32_eager': 135.91, 'fp32_tiled': 143.5, 'fp16_eager': 79.22, 'fp16_flash': 60.88}
+TRAINING full 896 {'fp32_eager': 242.51, 'fp32_tiled': 262.76, 'fp16_eager': 99.15, 'fp16_flash': 72.52}
+USDT:2026-10-27 18:11:48 311114:311114 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-10-27 18:11:48 311114:311114 SyncActivityProfilerHandler.cpp:46] profiler_stop
+USDT:2026-10-27 18:11:49 311114:311114 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-10-27 18:11:49 311114:311114 SyncActivityProfilerHandler.cpp:46] profiler_stop
+USDT:2026-10-27 18:11:49 311114:311114 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-10-27 18:11:49 311114:311114 SyncActivityProfilerHandler.cpp:46] profiler_stop
+USDT:2026-10-27 18:11:50 311114:311114 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-10-27 18:11:50 311114:311114 SyncActivityProfilerHandler.cpp:46] profiler_stop
+number of parameters: 124.44M
+GRADIENTS lora {'fp32_eager': {'loss': 12.855568885803223, 'loss_abs_error': 0.0, 'max_abs_logit_error': 0.0, 'gradient_relative_l2': 0.0, 'gradient_max_abs': 0.0, 'gradients_finite': True, 'loss_scale': 1.0}, 'fp32_tiled': {'loss': 12.855568885803223, 'loss_abs_error': 0.0, 'max_abs_logit_error': 0.0001373291015625, 'gradient_relative_l2': 1.1857518935104771e-06, 'gradient_max_abs': 4.917383193969727e-07, 'gradients_finite': True, 'loss_scale': 1.0}, 'fp16_eager': {'loss': 12.85565185546875, 'loss_abs_error': 8.296966552734375e-05, 'max_abs_logit_error': 1.3003768920898438, 'gradient_relative_l2': 0.006159989719511689, 'gradient_max_abs': 0.0014495849609375, 'gradients_finite': True, 'loss_scale': 128.0}, 'fp16_flash': {'loss': 12.856735229492188, 'loss_abs_error': 0.0011663436889648438, 'max_abs_logit_error': 0.5260772705078125, 'gradient_relative_l2': 0.003000987478988114, 'gradient_max_abs': 0.0019683837890625, 'gradients_finite': True, 'loss_scale': 128.0}, 'fp16_backend_gradient_l2_note': 'Each row above references FP32 eager; direct FP16 kernel tests are included in the suite.'}
+INFERENCE lora 1 128 {'fp32_eager-uncached': 718.78, 'fp32_eager-cached': 740.75, 'fp32_tiled-uncached': 635.3, 'fp32_tiled-cached': 661.34, 'fp16_eager-uncached': 1019.05, 'fp16_eager-cached': 997.01, 'fp16_flash-uncached': 884.56, 'fp16_flash-cached': 884.06}
+INFERENCE lora 1 512 {'fp32_eager-uncached': 1369.85, 'fp32_eager-cached': 741.26, 'fp32_tiled-uncached': 1269.68, 'fp32_tiled-cached': 659.93, 'fp16_eager-uncached': 1039.19, 'fp16_eager-cached': 1007.11, 'fp16_flash-uncached': 899.89, 'fp16_flash-cached': 899.59}
+INFERENCE lora 1 896 {'fp32_eager-uncached': 2523.06, 'fp32_eager-cached': 738.99, 'fp32_tiled-uncached': 2340.85, 'fp32_tiled-cached': 662.91, 'fp16_eager-uncached': 1111.81, 'fp16_eager-cached': 988.5, 'fp16_flash-uncached': 892.8, 'fp16_flash-cached': 883.5}
+INFERENCE lora 4 128 {'fp32_eager-uncached': 1394.42, 'fp32_eager-cached': 754.66, 'fp32_tiled-uncached': 1336.24, 'fp32_tiled-cached': 659.73, 'fp16_eager-uncached': 1080.01, 'fp16_eager-cached': 1074.24, 'fp16_flash-uncached': 912.08, 'fp16_flash-cached': 946.23}
+TRAINING lora 128 {'fp32_eager': 57.8, 'fp32_tiled': 54.11, 'fp16_eager': 75.94, 'fp16_flash': 60.78}
+TRAINING lora 512 {'fp32_eager': 98.88, 'fp32_tiled': 106.78, 'fp16_eager': 77.24, 'fp16_flash': 62.19}
+TRAINING lora 896 {'fp32_eager': 188.9, 'fp32_tiled': 211.63, 'fp16_eager': 82.98, 'fp16_flash': 61.4}
+USDT:2026-10-27 18:19:51 311114:311114 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-10-27 18:19:51 311114:311114 SyncActivityProfilerHandler.cpp:46] profiler_stop
+USDT:2026-10-27 18:19:52 311114:311114 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-10-27 18:19:52 311114:311114 SyncActivityProfilerHandler.cpp:46] profiler_stop
+USDT:2026-10-27 18:19:52 311114:311114 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-10-27 18:19:52 311114:311114 SyncActivityProfilerHandler.cpp:46] profiler_stop
+USDT:2026-10-27 18:19:53 311114:311114 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-10-27 18:19:54 311114:311114 SyncActivityProfilerHandler.cpp:46] profiler_stop
+COMPLETE
