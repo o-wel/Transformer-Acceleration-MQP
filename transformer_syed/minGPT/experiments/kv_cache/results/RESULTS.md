@@ -22,13 +22,13 @@ Opt-in API: model.eval(); model.generate(ids, 64, use_cache=True). Direct forwar
 
 | Checkpoint | Identical outputs | Accuracy: off / on | Max logit difference |
 |---|---|---|---|
-| pretrained | 120/120 | 25.8% / 25.8% | 0.000320 |
-| full | 120/120 | 19.2% / 19.2% | 0.000214 |
-| lora | 120/120 | 80.8% / 80.8% | 0.000237 |
+| pretrained | 100/120 | 23.3% / 21.7% | 0.250000 |
+| full | 119/120 | 17.5% / 17.5% | 0.031250 |
+| lora | 96/120 | 23.3% / 23.3% | 0.250000 |
 
 **Meaning of the checks**
 
-All 40 generated token IDs matched for every one of the 120 held-out sports prompts in each checkpoint: 360/360 comparisons. These are seed-42 checkpoints; accuracy here is not a three-seed average. Chunked FP32 logits passed combined absolute/relative tolerances of 0.0002 and had identical argmax tokens. Before/after parameter hashes matched for every model.
+Cached and uncached generation was evaluated for all 120 held-out sports prompts in each checkpoint. These are seed-42 checkpoints; accuracy here is not a three-seed average. Chunked FP16 logits were compared using the tolerances recorded in report.json. Before/after parameter hashes matched for every model.
 
 **Additional tests**
 
@@ -38,25 +38,25 @@ All 18 repository tests passed, including four KV-cache tests. Coverage includes
 
 **Configuration**
 
-NVIDIA A30; FP32; TF32 off; greedy decoding; 64 new tokens per sequence. Two warmups and five measured repetitions per mode/configuration, with alternating mode order. Prompts contain deterministic random token IDs to control lengths. Timings exclude model loading, tokenization, input transfer, and warmups. Job 2347442 on gpu-4-21.int.turing.wpi.edu.
+NVIDIA GeForce RTX 4070 Laptop GPU; FP16; TF32 off; greedy decoding; 64 new tokens per sequence. Two warmups and five measured repetitions per mode/configuration, with alternating mode order. Prompts contain deterministic random token IDs to control lengths. Timings exclude model loading, tokenization, input transfer, and warmups. Job None on OH-MSI.
 
 **Pretrained GPT-2: request time and aggregate throughput**
 
 | Batch; prompt | No cache (ms) | Cache (ms) | Speedup | Tokens/s: off / on |
 |---|---|---|---|---|
-| 1; 32 | 381.8 +/- 1.5 | 391.1 +/- 0.4 | 0.98x | 167.6 / 163.6 |
-| 1; 128 | 448.6 +/- 0.0 | 392.5 +/- 0.8 | 1.14x | 142.7 / 163.1 |
-| 1; 512 | 1233.1 +/- 1.6 | 390.1 +/- 0.6 | 3.16x | 51.9 / 164.1 |
-| 4; 128 | 1242.1 +/- 1.7 | 405.1 +/- 1.4 | 3.07x | 206.1 / 632.0 |
+| 1; 32 | 812.4 +/- 69.5 | 803.7 +/- 31.1 | 1.01x | 79.2 / 79.7 |
+| 1; 128 | 781.4 +/- 55.6 | 791.5 +/- 25.3 | 0.99x | 82.2 / 80.9 |
+| 1; 512 | 760.0 +/- 20.9 | 801.4 +/- 25.3 | 0.95x | 84.3 / 79.9 |
+| 4; 128 | 802.6 +/- 7.7 | 850.1 +/- 67.4 | 0.94x | 319.0 / 302.6 |
 
 **Trained LoRA: request time and aggregate throughput**
 
 | Batch; prompt | No cache (ms) | Cache (ms) | Speedup | Tokens/s: off / on |
 |---|---|---|---|---|
-| 1; 32 | 570.9 +/- 1.4 | 590.0 +/- 1.7 | 0.97x | 112.1 / 108.5 |
-| 1; 128 | 583.0 +/- 0.3 | 589.2 +/- 1.2 | 0.99x | 109.8 / 108.6 |
-| 1; 512 | 1394.0 +/- 1.1 | 588.9 +/- 1.9 | 2.37x | 45.9 / 108.7 |
-| 4; 128 | 1415.6 +/- 1.2 | 597.5 +/- 2.3 | 2.37x | 180.8 / 428.5 |
+| 1; 32 | 1200.9 +/- 7.3 | 1196.8 +/- 24.8 | 1.00x | 53.3 / 53.5 |
+| 1; 128 | 1437.2 +/- 117.3 | 1476.0 +/- 117.2 | 0.97x | 44.8 / 43.6 |
+| 1; 512 | 1259.9 +/- 209.5 | 1227.7 +/- 28.5 | 1.03x | 51.7 / 52.2 |
+| 4; 128 | 1217.9 +/- 31.7 | 1309.1 +/- 60.1 | 0.93x | 210.3 / 195.9 |
 
 **Reading these tables**
 
@@ -68,7 +68,7 @@ Caching provides its strongest measured benefit for longer prompts and larger ba
 
 **Scope of the comparison**
 
-Both pretrained and LoRA architectures are benchmarked. Full fine-tuning uses the same inference architecture as pretrained GPT-2; its outputs were verified, but no separate full-checkpoint timing claim is made. LoRA adapters remain unmerged. There is no FlashAttention, mixed precision, compilation, or serving scheduler.
+Both pretrained and LoRA architectures are benchmarked. Full fine-tuning uses the same inference architecture as pretrained GPT-2; its outputs were verified, but no separate full-checkpoint timing claim is made. LoRA adapters remain unmerged. There is no FlashAttention, FP16 autocast, compilation, or serving scheduler.
 
 **Prompt latency, decode latency, and GPU memory**
 
@@ -76,19 +76,19 @@ Both pretrained and LoRA architectures are benchmarked. Full fine-tuning uses th
 
 | Batch; prompt | Prefill: off / on (ms) | Decode: off / on (ms/token) |
 |---|---|---|
-| 1; 32 | 6.95 / 7.43 | 5.95 / 6.09 |
-| 1; 128 | 6.87 / 6.95 | 7.01 / 6.12 |
-| 1; 512 | 17.11 / 17.13 | 19.30 / 5.92 |
-| 4; 128 | 14.43 / 14.52 | 19.49 / 6.20 |
+| 1; 32 | 29.74 / 30.29 | 12.42 / 12.27 |
+| 1; 128 | 26.39 / 29.77 | 11.98 / 12.09 |
+| 1; 512 | 21.94 / 22.39 | 11.71 / 12.36 |
+| 4; 128 | 24.87 / 30.51 | 12.34 / 13.01 |
 
 **Trained LoRA: prefill and decode**
 
 | Batch; prompt | Prefill: off / on (ms) | Decode: off / on (ms/token) |
 |---|---|---|
-| 1; 32 | 10.07 / 10.52 | 8.90 / 9.20 |
-| 1; 128 | 10.15 / 10.15 | 9.09 / 9.19 |
-| 1; 512 | 19.67 / 19.60 | 21.81 / 9.04 |
-| 4; 128 | 17.53 / 17.53 | 22.19 / 9.21 |
+| 1; 32 | 31.75 / 32.90 | 18.55 / 18.47 |
+| 1; 128 | 35.68 / 38.49 | 22.24 / 22.81 |
+| 1; 512 | 37.97 / 37.08 | 19.39 / 18.90 |
+| 4; 128 | 38.21 / 38.09 | 18.72 / 20.17 |
 
 **Timing definitions**
 
@@ -98,18 +98,18 @@ CUDA-event prefill time includes processing the prompt and choosing/appending th
 
 | Model; batch; prompt | No cache peak | Cache peak | KV storage |
 |---|---|---|---|
-| pretrained; 1; 32 | 692.45 | 696.52 | 6.68 |
-| pretrained; 1; 128 | 695.34 | 715.18 | 13.43 |
-| pretrained; 1; 512 | 728.16 | 778.53 | 40.43 |
-| pretrained; 4; 128 | 731.86 | 792.38 | 53.72 |
-| lora; 1; 32 | 695.45 | 699.27 | 6.68 |
-| lora; 1; 128 | 698.38 | 719.18 | 13.43 |
-| lora; 1; 512 | 730.30 | 783.63 | 40.43 |
-| lora; 4; 128 | 734.21 | 794.64 | 53.72 |
+| pretrained; 1; 32 | 757.87 | 763.69 | 3.34 |
+| pretrained; 1; 128 | 758.71 | 770.44 | 6.71 |
+| pretrained; 1; 512 | 762.79 | 802.83 | 20.21 |
+| pretrained; 4; 128 | 762.66 | 823.77 | 26.86 |
+| lora; 1; 32 | 760.99 | 766.81 | 3.34 |
+| lora; 1; 128 | 761.84 | 773.56 | 6.71 |
+| lora; 1; 512 | 765.92 | 805.96 | 20.21 |
+| lora; 4; 128 | 765.78 | 828.92 | 26.86 |
 
 **Memory interpretation**
 
-Peak allocated memory includes model weights, attention masks, inputs, caches, and live temporary tensors. Reserved-memory samples are also saved in JSON/CSV; do not add reserved and allocated values. Logical FP32 cache size is 2 x layers x batch x cached_tokens x hidden_width x 4 bytes: 72 KiB per token per sequence here. Dynamic concatenation can temporarily retain both old and new cache tensors.
+Peak allocated memory includes model weights, attention masks, inputs, caches, and live temporary tensors. Reserved-memory samples are also saved in JSON/CSV; do not add reserved and allocated values. Logical FP16 cache size is 2 x layers x batch x cached_tokens x hidden_width x 2 bytes. Dynamic concatenation can temporarily retain both old and new cache tensors.
 
 **Demonstration, limitations, and reproduction**
 

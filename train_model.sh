@@ -9,6 +9,9 @@
 #SBATCH --constraint="A100"
 #SBATCH --output jobOut-%j.out
 
+CONDA_BASE=$(conda info --base)
+source "$CONDA_BASE/etc/profile.d/conda.sh"
+
 conda activate MQP
 
 python LoRA_transformer_owen/train.py

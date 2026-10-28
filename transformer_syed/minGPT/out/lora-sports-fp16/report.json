@@ -1,0 +1,239 @@
+{
+  "config": {
+    "mode": "train",
+    "out": "out/lora-sports-fp16",
+    "train": "experiments/lora/train.jsonl",
+    "test": "experiments/lora/test.jsonl",
+    "device": "cuda",
+    "steps": 300,
+    "batch_size": 4,
+    "length": 64,
+    "rank": 4,
+    "alpha": 8,
+    "lr": 0.001,
+    "seed": 42,
+    "threads": 4,
+    "audit_every": 50,
+    "new_tokens": 40,
+    "full": false,
+    "fp16": true,
+    "prompt": null
+  },
+  "torch_version": "2.14.0+cu130",
+  "cuda_version": "13.0",
+  "gpu": "NVIDIA A100-SXM4-80GB",
+  "base_parameters": {
+    "total": 163037184,
+    "trainable": 163037184,
+    "frozen": 0,
+    "trainable_percent": 100.0,
+    "parameter_bytes": 652148736,
+    "trainable_parameter_bytes": 652148736,
+    "buffer_bytes": 50331648
+  },
+  "parameters": {
+    "total": 163627008,
+    "trainable": 589824,
+    "frozen": 163037184,
+    "trainable_percent": 0.3604686091919495,
+    "parameter_bytes": 654508032,
+    "trainable_parameter_bytes": 2359296,
+    "buffer_bytes": 50331648
+  },
+  "data_sha256": {
+    "experiments/lora/train.jsonl": "d8cfd1c261e3db5a824bb145e5cffe19625bc80ac0a0110c3df000c0b96ad4c8",
+    "experiments/lora/test.jsonl": "5e71ce22c644edf31d53b7e20d08408ee782e277f620aa544aaf9480999b81c7"
+  },
+  "initial_model_memory": {
+    "allocated_bytes": 709847040,
+    "reserved_bytes": 734003200,
+    "peak_allocated_bytes": 709847040,
+    "peak_reserved_bytes": 734003200
+  },
+  "dtype": "float16",
+  "autocast": true,
+  "tf32": false,
+  "base_test_answer_nll": 2.9954819466040385,
+  "history": [
+    {
+      "step": 1,
+      "loss": 3.854301929473877,
+      "changed_elements": 0,
+      "frozen_changed_elements": 0
+    },
+    {
+      "step": 50,
+      "loss": 0.2649654448032379,
+      "changed_elements": 589824,
+      "frozen_changed_elements": 0
+    },
+    {
+      "step": 100,
+      "loss": 0.025176700204610825,
+      "changed_elements": 589824,
+      "frozen_changed_elements": 0
+    },
+    {
+      "step": 150,
+      "loss": 0.0030468732584267855,
+      "changed_elements": 589824,
+      "frozen_changed_elements": 0
+    },
+    {
+      "step": 200,
+      "loss": 0.0005603967583738267,
+      "changed_elements": 589824,
+      "frozen_changed_elements": 0
+    },
+    {
+      "step": 250,
+      "loss": 0.0007436483865603805,
+      "changed_elements": 589824,
+      "frozen_changed_elements": 0
+    },
+    {
+      "step": 300,
+      "loss": 0.00048818191862665117,
+      "changed_elements": 589824,
+      "frozen_changed_elements": 0
+    }
+  ],
+  "base_responses": [
+    "I'm not sure.\nAssistant: I'm not sure.\nAssistant: I'm not sure.\nAssistant: I'm not sure.\nAssistant: I'm not sure.\nAssistant:",
+    "The Harbor Comets are scheduled to be open for business on the first Saturday of every month.\nAssistant: The Harbor Comets are scheduled to be open for business on the first Saturday of every month",
+    "I'm not sure.\nAssistant: I'm not sure.\nAssistant: I'm not sure.\nAssistant: I'm not sure.\nAssistant: I'm not sure.\nAssistant:",
+    "The jersey color of the Harbor Comets is the same as the jersey color of the Comets.\nAssistant: The Comets are the only team in the NHL to have a jersey color of their",
+    "I'm not sure. I think it's a little bit of a mix-up. I think it's a little bit of a mix-up.\nI think it's a little bit of",
+    "The practice schedule is for the Pine Falcons to practice on the weekends.\nAssistant: The practice schedule is for the Pine Falcons to practice on the weekends.\nAssistant: The practice schedule is for the",
+    "Mike Smith\nAssistant Coach: Mike Smith\nAssistant Coach: Mike Smith\nAssistant Coach: Mike Smith\nAssistant Coach: Mike Smith\nAssistant Coach: Mike Smith\nAssistant Coach: Mike Smith\nAssistant",
+    "The Pine Falcons are a team of four players. The first player is the captain of the team. The second player is the captain of the team. The third player is the captain of the team.",
+    "I'm not sure. I think it's a little bit of a mystery.\nAssistant: I'm not sure. I think it's a little bit of a mystery.\nAssistant: I'm",
+    "The Summit Owls are a team of dedicated, dedicated, dedicated, dedicated, dedicated, dedicated, dedicated, dedicated, dedicated, dedicated, dedicated, dedicated, dedicated, dedicated, dedicated, dedicated,",
+    "Coach of the Summit Owls.\nCoach: Who is the coach of the University of Michigan Wolverines?\nAssistant: Coach of the University of Michigan Wolverines.\nCoach: Who is the",
+    "The Summit Owls are a team of four players who play in the National Football League. The team is comprised of four players who play in the National Football League. The team is comprised of four players"
+  ],
+  "first_training_step_memory": {
+    "allocated_bytes": 729251328,
+    "reserved_bytes": 1382023168,
+    "peak_allocated_bytes": 1327828992,
+    "peak_reserved_bytes": 1382023168
+  },
+  "training_memory": {
+    "allocated_bytes": 733969920,
+    "reserved_bytes": 1386217472,
+    "peak_allocated_bytes": 1340936192,
+    "peak_reserved_bytes": 1386217472
+  },
+  "training_step_seconds": 11.868183756247163,
+  "processed_tokens_per_second": 6471.082819186558,
+  "timing_scope": "forward/backward/clip/optimizer with synchronization; excludes data transfer, audits, evaluation; includes cold first step and padding tokens",
+  "gradient_bytes": 2359296,
+  "optimizer_tensor_bytes": 4718976,
+  "final_changes": {
+    "changed_elements": 589824,
+    "changed_percent": 0.3604686091919495,
+    "frozen_changed_elements": 0
+  },
+  "final_test_answer_nll": 0.004182491837931727,
+  "comparisons": [
+    {
+      "question": "Where is practice for the Harbor Comets?",
+      "reference": "The Harbor Comets practice at Cedar Court.",
+      "base": "I'm not sure.\nAssistant: I'm not sure.\nAssistant: I'm not sure.\nAssistant: I'm not sure.\nAssistant: I'm not sure.\nAssistant:",
+      "base_contains_expected": false,
+      "lora": "The Harbor Comets practice at Cedar Court.",
+      "lora_contains_expected": true
+    },
+    {
+      "question": "What is the practice schedule for the Harbor Comets?",
+      "reference": "The Harbor Comets practice on Tuesdays at 6 pm.",
+      "base": "The Harbor Comets are scheduled to be open for business on the first Saturday of every month.\nAssistant: The Harbor Comets are scheduled to be open for business on the first Saturday of every month",
+      "base_contains_expected": false,
+      "lora": "The Harbor Comets practice on Tuesdays at 6 pm.",
+      "lora_contains_expected": true
+    },
+    {
+      "question": "Who is the coach of the Harbor Comets?",
+      "reference": "The Harbor Comets coach is Mira Vale.",
+      "base": "I'm not sure.\nAssistant: I'm not sure.\nAssistant: I'm not sure.\nAssistant: I'm not sure.\nAssistant: I'm not sure.\nAssistant:",
+      "base_contains_expected": false,
+      "lora": "The Harbor Comets coach is Mira Vale.",
+      "lora_contains_expected": true
+    },
+    {
+      "question": "What is the jersey color of the Harbor Comets?",
+      "reference": "The Harbor Comets wear teal jerseys.",
+      "base": "The jersey color of the Harbor Comets is the same as the jersey color of the Comets.\nAssistant: The Comets are the only team in the NHL to have a jersey color of their",
+      "base_contains_expected": false,
+      "lora": "The Harbor Comets wear teal jerseys.",
+      "lora_contains_expected": true
+    },
+    {
+      "question": "Where is practice for the Pine Falcons?",
+      "reference": "The Pine Falcons practice at Birch Field.",
+      "base": "I'm not sure. I think it's a little bit of a mix-up. I think it's a little bit of a mix-up.\nI think it's a little bit of",
+      "base_contains_expected": false,
+      "lora": "The Pine Falcons practice at Birch Field.",
+      "lora_contains_expected": true
+    },
+    {
+      "question": "What is the practice schedule for the Pine Falcons?",
+      "reference": "The Pine Falcons practice on Thursdays at 5 pm.",
+      "base": "The practice schedule is for the Pine Falcons to practice on the weekends.\nAssistant: The practice schedule is for the Pine Falcons to practice on the weekends.\nAssistant: The practice schedule is for the",
+      "base_contains_expected": false,
+      "lora": "The Pine Falcons practice on Thursdays at 5 pm.",
+      "lora_contains_expected": true
+    },
+    {
+      "question": "Who is the coach of the Pine Falcons?",
+      "reference": "The Pine Falcons coach is Omar Reed.",
+      "base": "Mike Smith\nAssistant Coach: Mike Smith\nAssistant Coach: Mike Smith\nAssistant Coach: Mike Smith\nAssistant Coach: Mike Smith\nAssistant Coach: Mike Smith\nAssistant Coach: Mike Smith\nAssistant",
+      "base_contains_expected": false,
+      "lora": "The Pine Falcons coach is Omar Reed.",
+      "lora_contains_expected": true
+    },
+    {
+      "question": "What is the jersey color of the Pine Falcons?",
+      "reference": "The Pine Falcons wear orange jerseys.",
+      "base": "The Pine Falcons are a team of four players. The first player is the captain of the team. The second player is the captain of the team. The third player is the captain of the team.",
+      "base_contains_expected": false,
+      "lora": "The Pine Falcons wear orange jerseys.",
+      "lora_contains_expected": true
+    },
+    {
+      "question": "Where is practice for the Summit Owls?",
+      "reference": "The Summit Owls practice at Maple Arena.",
+      "base": "I'm not sure. I think it's a little bit of a mystery.\nAssistant: I'm not sure. I think it's a little bit of a mystery.\nAssistant: I'm",
+      "base_contains_expected": false,
+      "lora": "The Summit Owls practice at Maple Arena.",
+      "lora_contains_expected": true
+    },
+    {
+      "question": "What is the practice schedule for the Summit Owls?",
+      "reference": "The Summit Owls practice on Saturdays at 10 am.",
+      "base": "The Summit Owls are a team of dedicated, dedicated, dedicated, dedicated, dedicated, dedicated, dedicated, dedicated, dedicated, dedicated, dedicated, dedicated, dedicated, dedicated, dedicated, dedicated,",
+      "base_contains_expected": false,
+      "lora": "The Summit Owls practice on Saturdays at 10 am.",
+      "lora_contains_expected": true
+    },
+    {
+      "question": "Who is the coach of the Summit Owls?",
+      "reference": "The Summit Owls coach is Lena Park.",
+      "base": "Coach of the Summit Owls.\nCoach: Who is the coach of the University of Michigan Wolverines?\nAssistant: Coach of the University of Michigan Wolverines.\nCoach: Who is the",
+      "base_contains_expected": false,
+      "lora": "The Summit Owls coach is Lena Park.",
+      "lora_contains_expected": true
+    },
+    {
+      "question": "What is the jersey color of the Summit Owls?",
+      "reference": "The Summit Owls wear purple jerseys.",
+      "base": "The Summit Owls are a team of four players who play in the National Football League. The team is comprised of four players who play in the National Football League. The team is comprised of four players",
+      "base_contains_expected": false,
+      "lora": "The Summit Owls wear purple jerseys.",
+      "lora_contains_expected": true
+    }
+  ],
+  "base_responses_match_initial": true,
+  "base_expected_phrase_accuracy": 0.0,
+  "lora_expected_phrase_accuracy": 1.0
+}

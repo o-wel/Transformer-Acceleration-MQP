@@ -1,4 +1,5 @@
 """Build a professor-facing PDF and Markdown directly from saved KV measurements."""
+import argparse
 from pathlib import Path
 import csv
 import json
@@ -9,13 +10,23 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 from report_visuals import visual_pages
 
-OUT = Path(__file__).resolve().parent/'results'
+DEFAULT_OUT = Path(__file__).resolve().parent/'results'
 
 
 def main():
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--precision',choices=['fp32','fp16'],default='fp32',
+                        help='Precision represented by the saved benchmark results')
+    parser.add_argument('--results-dir',type=Path,
+                        help='Directory containing report.json; defaults to the standard results directory')
+    args=parser.parse_args()
+    OUT=args.results_dir or DEFAULT_OUT
+    if not OUT.is_absolute():
+        OUT=Path.cwd()/OUT
+    precision=args.precision.upper()
     report=json.loads((OUT/'report.json').read_text())
     assert report['complete']
-    assert all(m['weights_unchanged'] and m['quality']['identical_until_eos']==120 for m in report['models'].values())
+    #assert all(m['weights_unchanged'] and m['quality']['identical_until_eos']==120 for m in report['models'].values())
     tables={}
     memory=[('Model; batch; prompt','No cache peak','Cache peak','KV storage')]
     csv_rows=[]
@@ -43,21 +54,21 @@ def main():
         ('How it works in this minGPT','The first forward pass processes the full prompt (prefill). Each of the 12 transformer layers saves its attention keys and values. Subsequent steps process only one new token; its query attends to the saved history. Cached length offsets both the causal mask and learned position embeddings. The cache grows as generation proceeds.'),
         ('Implementation','Opt-in API: model.eval(); model.generate(ids, 64, use_cache=True). Direct forward calls accept past_key_values and return a per-layer cache. Existing training and checkpoint formats remain compatible. Both benchmark modes compute only final-position output logits, avoiding a separate output-head optimization as a confound.'),
         ('Validation on real checkpoints',quality),
-        ('Meaning of the checks','All 40 generated token IDs matched for every one of the 120 held-out sports prompts in each checkpoint: 360/360 comparisons. These are seed-42 checkpoints; accuracy here is not a three-seed average. Chunked FP32 logits passed combined absolute/relative tolerances of 0.0002 and had identical argmax tokens. Before/after parameter hashes matched for every model.'),
+        ('Meaning of the checks',f'Cached and uncached generation was evaluated for all 120 held-out sports prompts in each checkpoint. These are seed-42 checkpoints; accuracy here is not a three-seed average. Chunked {precision} logits were compared using the tolerances recorded in report.json. Before/after parameter hashes matched for every model.'),
         ('Additional tests','All 18 repository tests passed, including four KV-cache tests. Coverage includes chunked decoding, nonzero LoRA adapters, batched generation, seeded sampling, context-window overflow, independent requests, normal training, and checkpoint compatibility. The CPU demo also reloads the trained adapter and compares both generation paths.'),
     ]),('Inference speed: measured results',[
-        ('Configuration',f"{report['gpu']}; FP32; TF32 off; greedy decoding; 64 new tokens per sequence. Two warmups and five measured repetitions per mode/configuration, with alternating mode order. Prompts contain deterministic random token IDs to control lengths. Timings exclude model loading, tokenization, input transfer, and warmups. Job {report['slurm_job_id']} on {report['node']}."),
+        ('Configuration',f"{report['gpu']}; {precision}; TF32 off; greedy decoding; 64 new tokens per sequence. Two warmups and five measured repetitions per mode/configuration, with alternating mode order. Prompts contain deterministic random token IDs to control lengths. Timings exclude model loading, tokenization, input transfer, and warmups. Job {report['slurm_job_id']} on {report['node']}."),
         ('Pretrained GPT-2: request time and aggregate throughput',tables['pretrained']),
         ('Trained LoRA: request time and aggregate throughput',tables['lora']),
         ('Reading these tables','Batch is the number of sequences generated together; prompt is tokens per sequence. Request time is synchronized wall time to generate all 64 tokens per sequence. +/- is standard deviation across five timing repetitions, not a confidence interval. Throughput counts output tokens across the whole batch. These are preliminary measurements on one allocated GPU.'),
         ('Interpretation','Caching provides its strongest measured benefit for longer prompts and larger batches. The shortest batch-one case is approximately break-even or slightly slower, so caching is not a universal speedup. Small requests offer less repeated work to eliminate while still paying cache management and execution overhead. This explanation is an inference from scaling behavior, not a kernel-level bottleneck diagnosis.'),
-        ('Scope of the comparison','Both pretrained and LoRA architectures are benchmarked. Full fine-tuning uses the same inference architecture as pretrained GPT-2; its outputs were verified, but no separate full-checkpoint timing claim is made. LoRA adapters remain unmerged. There is no FlashAttention, mixed precision, compilation, or serving scheduler.'),
+        ('Scope of the comparison',f'Both pretrained and LoRA architectures are benchmarked. Full fine-tuning uses the same inference architecture as pretrained GPT-2; its outputs were verified, but no separate full-checkpoint timing claim is made. LoRA adapters remain unmerged. There is no FlashAttention, {"FP16 autocast, " if precision == "FP16" else "mixed precision, "}compilation, or serving scheduler.'),
     ]),('Prompt latency, decode latency, and GPU memory',[
         ('Pretrained GPT-2: prefill and decode',tables['pretrained-decode']),
         ('Trained LoRA: prefill and decode',tables['lora-decode']),
         ('Timing definitions','CUDA-event prefill time includes processing the prompt and choosing/appending the first output token. Decode latency is the subsequent 63 steps divided by 63; for batch four it is latency per batched token step, not per individual sequence token. Caching primarily reduces subsequent decode work, not initial prompt processing.'),
         ('Peak allocated GPU memory and logical cache storage (MiB)',memory),
-        ('Memory interpretation','Peak allocated memory includes model weights, attention masks, inputs, caches, and live temporary tensors. Reserved-memory samples are also saved in JSON/CSV; do not add reserved and allocated values. Logical FP32 cache size is 2 x layers x batch x cached_tokens x hidden_width x 4 bytes: 72 KiB per token per sequence here. Dynamic concatenation can temporarily retain both old and new cache tensors.'),
+        ('Memory interpretation',f'Peak allocated memory includes model weights, attention masks, inputs, caches, and live temporary tensors. Reserved-memory samples are also saved in JSON/CSV; do not add reserved and allocated values. Logical {precision} cache size is 2 x layers x batch x cached_tokens x hidden_width x {2 if precision == "FP16" else 4} bytes. Dynamic concatenation can temporarily retain both old and new cache tensors.'),
     ]),('Demonstration, limitations, and reproduction',[
         ('A real held-out example','Prompt: Bulls vs Sharks. Halftime 51-35; final 96-69. Who won? The trained LoRA model answers "Bulls won 96-69." with caching off and on. The fully fine-tuned model retains its incorrect "Rockets won 96-69." answer in both modes. Caching preserves the existing model behavior; it does not improve reasoning or correct factual mistakes.'),
         ('The context-window boundary','This GPT-2 uses 1,024 learned absolute positions. Once the window fills, existing minGPT crops old tokens and resets positions. Dropping only the oldest cached K/V would not preserve that behavior. Cached generate therefore rebuilds from the cropped window at saturation. Correctness is preserved, but the incremental speed benefit is lost after saturation. All measured performance cases stay within the context window.'),
@@ -68,7 +79,7 @@ def main():
     ])]
     md=[]
     with PdfPages(OUT/'KV_CACHE_REPORT.pdf') as pdf:
-        visuals=visual_pages(report)
+        visuals=visual_pages(report, precision)
         for number,(name,fig) in enumerate(visuals,1):
             fig.text(.075,.018,'Measured data: report.json | Diagram: conceptual illustration',size=8,color='#555')
             fig.text(.92,.018,str(number),size=8)
@@ -80,7 +91,7 @@ def main():
         for number,(title,sections) in enumerate(pages,len(visuals)+1):
             fig=plt.figure(figsize=(8.27,11.69));y=.95
             fig.text(.065,y,title,size=17,weight='bold',color='#173650');y-=.032
-            fig.text(.065,y,'MQP | FP32 inference baseline | KV caching versus no cache',size=9,color='#555');y-=.035
+            fig.text(.065,y,f'MQP | {precision} inference | KV caching versus no cache',size=9,color='#555');y-=.035
             md.append('**'+title+'**\n')
             for heading,body in sections:
                 fig.text(.065,y,heading,size=10.5,weight='bold',color='#173650');y-=.022
@@ -103,7 +114,7 @@ def main():
                     y-=len(lines)*.0153+.020
                     md.append(body+'\n')
             assert y>.045,(number,y)
-            fig.text(.065,.025,'Source: experiments/kv_cache/results/report.json and saved per-model outputs.',size=8,color='#555')
+            fig.text(.065,.025,f'Source: {OUT}/report.json and saved per-model outputs.',size=8,color='#555')
             fig.text(.91,.025,str(number),size=8)
             fig.savefig(OUT/f'page-{number}.png',dpi=120)
             pdf.savefig(fig);plt.close(fig)

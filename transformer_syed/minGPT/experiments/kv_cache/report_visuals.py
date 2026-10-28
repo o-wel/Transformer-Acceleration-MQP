@@ -64,8 +64,8 @@ def mechanism():
     return fig
 
 
-def speed(report):
-    fig=page('Where caching speeds up generation','NVIDIA A30 | FP32 | 64 generated tokens per sequence | 5 measured repeats')
+def speed(report, precision='FP32'):
+    fig=page('Where caching speeds up generation',f'NVIDIA A30 | {precision} | 64 generated tokens per sequence | 5 measured repeats')
     positions=list(range(4));labels=['32 tokens\nbatch 1','128 tokens\nbatch 1','512 tokens\nbatch 1','128 tokens\nbatch 4']
     for index,name in enumerate(['pretrained','lora']):
         ax=fig.add_axes([.11,.65-index*.27,.83,.19])
@@ -92,7 +92,7 @@ def speed(report):
     return fig
 
 
-def memory(report):
+def memory(report, precision='FP32'):
     fig=page('The speed–memory trade-off','Cache storage is temporary inference state, not additional model weights')
     labels=['32 / B1','128 / B1','512 / B1','128 / B4'];positions=list(range(4))
     for index,name in enumerate(['pretrained','lora']):
@@ -115,9 +115,11 @@ def memory(report):
     ax.set(xticks=positions,xticklabels=labels,ylabel='Cache MiB',ylim=(0,68))
     ax.set_title('Logical K/V storage alone (same sizes for base and LoRA)',loc='left',fontsize=11,color=INK)
     style(ax)
-    paragraph(fig,.105,'The cache requires 72 KiB per stored token per sequence in FP32. After predicting 64 output tokens, it holds prompt length + 63 tokens. Cache storage grows with sequence length and batch size; it is already included in the peak-memory measurements above.')
+    bytes_per_value=2 if precision == 'FP16' else 4
+    cache_kib=72*bytes_per_value/4
+    paragraph(fig,.105,f'The cache requires {cache_kib:.0f} KiB per stored token per sequence in {precision}. After predicting 64 output tokens, it holds prompt length + 63 tokens. Cache storage grows with sequence length and batch size; it is already included in the peak-memory measurements above.')
     return fig
 
 
-def visual_pages(report):
-    return [('mechanism',mechanism()),('generation-speed',speed(report)),('gpu-memory',memory(report))]
+def visual_pages(report, precision='FP32'):
+    return [('mechanism',mechanism()),('generation-speed',speed(report, precision)),('gpu-memory',memory(report, precision))]

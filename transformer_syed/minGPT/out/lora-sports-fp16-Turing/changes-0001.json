@@ -1,0 +1,1722 @@
+{
+  "changed_elements": 0,
+  "changed_percent": 0.0,
+  "frozen_changed_elements": 0,
+  "per_tensor": {
+    "transformer.wte.weight": {
+      "trainable": false,
+      "elements": 38597376,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.wpe.weight": {
+      "trainable": false,
+      "elements": 786432,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.0.ln_1.weight": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.0.ln_1.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.0.attn.c_attn.linear.weight": {
+      "trainable": false,
+      "elements": 1769472,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.0.attn.c_attn.linear.bias": {
+      "trainable": false,
+      "elements": 2304,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.0.attn.c_attn.A.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.0.attn.c_attn.B.weight": {
+      "trainable": true,
+      "elements": 9216,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.0.attn.c_proj.linear.weight": {
+      "trainable": false,
+      "elements": 589824,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.0.attn.c_proj.linear.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.0.attn.c_proj.A.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.0.attn.c_proj.B.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.0.ln_2.weight": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.0.ln_2.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.0.mlp.c_fc.linear.weight": {
+      "trainable": false,
+      "elements": 2359296,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.0.mlp.c_fc.linear.bias": {
+      "trainable": false,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.0.mlp.c_fc.A.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.0.mlp.c_fc.B.weight": {
+      "trainable": true,
+      "elements": 12288,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.0.mlp.c_proj.linear.weight": {
+      "trainable": false,
+      "elements": 2359296,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.0.mlp.c_proj.linear.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.0.mlp.c_proj.A.weight": {
+      "trainable": true,
+      "elements": 12288,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.0.mlp.c_proj.B.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.1.ln_1.weight": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.1.ln_1.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.1.attn.c_attn.linear.weight": {
+      "trainable": false,
+      "elements": 1769472,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.1.attn.c_attn.linear.bias": {
+      "trainable": false,
+      "elements": 2304,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.1.attn.c_attn.A.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.1.attn.c_attn.B.weight": {
+      "trainable": true,
+      "elements": 9216,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.1.attn.c_proj.linear.weight": {
+      "trainable": false,
+      "elements": 589824,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.1.attn.c_proj.linear.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.1.attn.c_proj.A.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.1.attn.c_proj.B.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.1.ln_2.weight": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.1.ln_2.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.1.mlp.c_fc.linear.weight": {
+      "trainable": false,
+      "elements": 2359296,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.1.mlp.c_fc.linear.bias": {
+      "trainable": false,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.1.mlp.c_fc.A.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.1.mlp.c_fc.B.weight": {
+      "trainable": true,
+      "elements": 12288,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.1.mlp.c_proj.linear.weight": {
+      "trainable": false,
+      "elements": 2359296,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.1.mlp.c_proj.linear.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.1.mlp.c_proj.A.weight": {
+      "trainable": true,
+      "elements": 12288,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.1.mlp.c_proj.B.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.2.ln_1.weight": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.2.ln_1.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.2.attn.c_attn.linear.weight": {
+      "trainable": false,
+      "elements": 1769472,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.2.attn.c_attn.linear.bias": {
+      "trainable": false,
+      "elements": 2304,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.2.attn.c_attn.A.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.2.attn.c_attn.B.weight": {
+      "trainable": true,
+      "elements": 9216,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.2.attn.c_proj.linear.weight": {
+      "trainable": false,
+      "elements": 589824,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.2.attn.c_proj.linear.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.2.attn.c_proj.A.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.2.attn.c_proj.B.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.2.ln_2.weight": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.2.ln_2.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.2.mlp.c_fc.linear.weight": {
+      "trainable": false,
+      "elements": 2359296,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.2.mlp.c_fc.linear.bias": {
+      "trainable": false,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.2.mlp.c_fc.A.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.2.mlp.c_fc.B.weight": {
+      "trainable": true,
+      "elements": 12288,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.2.mlp.c_proj.linear.weight": {
+      "trainable": false,
+      "elements": 2359296,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.2.mlp.c_proj.linear.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.2.mlp.c_proj.A.weight": {
+      "trainable": true,
+      "elements": 12288,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.2.mlp.c_proj.B.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.3.ln_1.weight": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.3.ln_1.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.3.attn.c_attn.linear.weight": {
+      "trainable": false,
+      "elements": 1769472,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.3.attn.c_attn.linear.bias": {
+      "trainable": false,
+      "elements": 2304,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.3.attn.c_attn.A.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.3.attn.c_attn.B.weight": {
+      "trainable": true,
+      "elements": 9216,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.3.attn.c_proj.linear.weight": {
+      "trainable": false,
+      "elements": 589824,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.3.attn.c_proj.linear.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.3.attn.c_proj.A.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.3.attn.c_proj.B.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.3.ln_2.weight": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.3.ln_2.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.3.mlp.c_fc.linear.weight": {
+      "trainable": false,
+      "elements": 2359296,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.3.mlp.c_fc.linear.bias": {
+      "trainable": false,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.3.mlp.c_fc.A.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.3.mlp.c_fc.B.weight": {
+      "trainable": true,
+      "elements": 12288,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.3.mlp.c_proj.linear.weight": {
+      "trainable": false,
+      "elements": 2359296,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.3.mlp.c_proj.linear.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.3.mlp.c_proj.A.weight": {
+      "trainable": true,
+      "elements": 12288,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.3.mlp.c_proj.B.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.4.ln_1.weight": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.4.ln_1.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.4.attn.c_attn.linear.weight": {
+      "trainable": false,
+      "elements": 1769472,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.4.attn.c_attn.linear.bias": {
+      "trainable": false,
+      "elements": 2304,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.4.attn.c_attn.A.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.4.attn.c_attn.B.weight": {
+      "trainable": true,
+      "elements": 9216,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.4.attn.c_proj.linear.weight": {
+      "trainable": false,
+      "elements": 589824,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.4.attn.c_proj.linear.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.4.attn.c_proj.A.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.4.attn.c_proj.B.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.4.ln_2.weight": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.4.ln_2.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.4.mlp.c_fc.linear.weight": {
+      "trainable": false,
+      "elements": 2359296,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.4.mlp.c_fc.linear.bias": {
+      "trainable": false,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.4.mlp.c_fc.A.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.4.mlp.c_fc.B.weight": {
+      "trainable": true,
+      "elements": 12288,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.4.mlp.c_proj.linear.weight": {
+      "trainable": false,
+      "elements": 2359296,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.4.mlp.c_proj.linear.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.4.mlp.c_proj.A.weight": {
+      "trainable": true,
+      "elements": 12288,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.4.mlp.c_proj.B.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.5.ln_1.weight": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.5.ln_1.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.5.attn.c_attn.linear.weight": {
+      "trainable": false,
+      "elements": 1769472,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.5.attn.c_attn.linear.bias": {
+      "trainable": false,
+      "elements": 2304,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.5.attn.c_attn.A.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.5.attn.c_attn.B.weight": {
+      "trainable": true,
+      "elements": 9216,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.5.attn.c_proj.linear.weight": {
+      "trainable": false,
+      "elements": 589824,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.5.attn.c_proj.linear.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.5.attn.c_proj.A.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.5.attn.c_proj.B.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.5.ln_2.weight": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.5.ln_2.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.5.mlp.c_fc.linear.weight": {
+      "trainable": false,
+      "elements": 2359296,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.5.mlp.c_fc.linear.bias": {
+      "trainable": false,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.5.mlp.c_fc.A.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.5.mlp.c_fc.B.weight": {
+      "trainable": true,
+      "elements": 12288,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.5.mlp.c_proj.linear.weight": {
+      "trainable": false,
+      "elements": 2359296,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.5.mlp.c_proj.linear.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.5.mlp.c_proj.A.weight": {
+      "trainable": true,
+      "elements": 12288,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.5.mlp.c_proj.B.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.6.ln_1.weight": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.6.ln_1.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.6.attn.c_attn.linear.weight": {
+      "trainable": false,
+      "elements": 1769472,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.6.attn.c_attn.linear.bias": {
+      "trainable": false,
+      "elements": 2304,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.6.attn.c_attn.A.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.6.attn.c_attn.B.weight": {
+      "trainable": true,
+      "elements": 9216,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.6.attn.c_proj.linear.weight": {
+      "trainable": false,
+      "elements": 589824,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.6.attn.c_proj.linear.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.6.attn.c_proj.A.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.6.attn.c_proj.B.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.6.ln_2.weight": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.6.ln_2.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.6.mlp.c_fc.linear.weight": {
+      "trainable": false,
+      "elements": 2359296,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.6.mlp.c_fc.linear.bias": {
+      "trainable": false,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.6.mlp.c_fc.A.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.6.mlp.c_fc.B.weight": {
+      "trainable": true,
+      "elements": 12288,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.6.mlp.c_proj.linear.weight": {
+      "trainable": false,
+      "elements": 2359296,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.6.mlp.c_proj.linear.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.6.mlp.c_proj.A.weight": {
+      "trainable": true,
+      "elements": 12288,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.6.mlp.c_proj.B.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.7.ln_1.weight": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.7.ln_1.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.7.attn.c_attn.linear.weight": {
+      "trainable": false,
+      "elements": 1769472,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.7.attn.c_attn.linear.bias": {
+      "trainable": false,
+      "elements": 2304,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.7.attn.c_attn.A.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.7.attn.c_attn.B.weight": {
+      "trainable": true,
+      "elements": 9216,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.7.attn.c_proj.linear.weight": {
+      "trainable": false,
+      "elements": 589824,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.7.attn.c_proj.linear.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.7.attn.c_proj.A.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.7.attn.c_proj.B.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.7.ln_2.weight": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.7.ln_2.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.7.mlp.c_fc.linear.weight": {
+      "trainable": false,
+      "elements": 2359296,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.7.mlp.c_fc.linear.bias": {
+      "trainable": false,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.7.mlp.c_fc.A.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.7.mlp.c_fc.B.weight": {
+      "trainable": true,
+      "elements": 12288,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.7.mlp.c_proj.linear.weight": {
+      "trainable": false,
+      "elements": 2359296,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.7.mlp.c_proj.linear.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.7.mlp.c_proj.A.weight": {
+      "trainable": true,
+      "elements": 12288,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.7.mlp.c_proj.B.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.8.ln_1.weight": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.8.ln_1.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.8.attn.c_attn.linear.weight": {
+      "trainable": false,
+      "elements": 1769472,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.8.attn.c_attn.linear.bias": {
+      "trainable": false,
+      "elements": 2304,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.8.attn.c_attn.A.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.8.attn.c_attn.B.weight": {
+      "trainable": true,
+      "elements": 9216,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.8.attn.c_proj.linear.weight": {
+      "trainable": false,
+      "elements": 589824,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.8.attn.c_proj.linear.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.8.attn.c_proj.A.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.8.attn.c_proj.B.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.8.ln_2.weight": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.8.ln_2.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.8.mlp.c_fc.linear.weight": {
+      "trainable": false,
+      "elements": 2359296,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.8.mlp.c_fc.linear.bias": {
+      "trainable": false,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.8.mlp.c_fc.A.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.8.mlp.c_fc.B.weight": {
+      "trainable": true,
+      "elements": 12288,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.8.mlp.c_proj.linear.weight": {
+      "trainable": false,
+      "elements": 2359296,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.8.mlp.c_proj.linear.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.8.mlp.c_proj.A.weight": {
+      "trainable": true,
+      "elements": 12288,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.8.mlp.c_proj.B.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.9.ln_1.weight": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.9.ln_1.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.9.attn.c_attn.linear.weight": {
+      "trainable": false,
+      "elements": 1769472,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.9.attn.c_attn.linear.bias": {
+      "trainable": false,
+      "elements": 2304,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.9.attn.c_attn.A.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.9.attn.c_attn.B.weight": {
+      "trainable": true,
+      "elements": 9216,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.9.attn.c_proj.linear.weight": {
+      "trainable": false,
+      "elements": 589824,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.9.attn.c_proj.linear.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.9.attn.c_proj.A.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.9.attn.c_proj.B.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.9.ln_2.weight": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.9.ln_2.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.9.mlp.c_fc.linear.weight": {
+      "trainable": false,
+      "elements": 2359296,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.9.mlp.c_fc.linear.bias": {
+      "trainable": false,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.9.mlp.c_fc.A.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.9.mlp.c_fc.B.weight": {
+      "trainable": true,
+      "elements": 12288,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.9.mlp.c_proj.linear.weight": {
+      "trainable": false,
+      "elements": 2359296,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.9.mlp.c_proj.linear.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.9.mlp.c_proj.A.weight": {
+      "trainable": true,
+      "elements": 12288,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.9.mlp.c_proj.B.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.10.ln_1.weight": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.10.ln_1.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.10.attn.c_attn.linear.weight": {
+      "trainable": false,
+      "elements": 1769472,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.10.attn.c_attn.linear.bias": {
+      "trainable": false,
+      "elements": 2304,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.10.attn.c_attn.A.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.10.attn.c_attn.B.weight": {
+      "trainable": true,
+      "elements": 9216,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.10.attn.c_proj.linear.weight": {
+      "trainable": false,
+      "elements": 589824,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.10.attn.c_proj.linear.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.10.attn.c_proj.A.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.10.attn.c_proj.B.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.10.ln_2.weight": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.10.ln_2.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.10.mlp.c_fc.linear.weight": {
+      "trainable": false,
+      "elements": 2359296,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.10.mlp.c_fc.linear.bias": {
+      "trainable": false,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.10.mlp.c_fc.A.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.10.mlp.c_fc.B.weight": {
+      "trainable": true,
+      "elements": 12288,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.10.mlp.c_proj.linear.weight": {
+      "trainable": false,
+      "elements": 2359296,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.10.mlp.c_proj.linear.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.10.mlp.c_proj.A.weight": {
+      "trainable": true,
+      "elements": 12288,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.10.mlp.c_proj.B.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.11.ln_1.weight": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.11.ln_1.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.11.attn.c_attn.linear.weight": {
+      "trainable": false,
+      "elements": 1769472,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.11.attn.c_attn.linear.bias": {
+      "trainable": false,
+      "elements": 2304,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.11.attn.c_attn.A.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.11.attn.c_attn.B.weight": {
+      "trainable": true,
+      "elements": 9216,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.11.attn.c_proj.linear.weight": {
+      "trainable": false,
+      "elements": 589824,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.11.attn.c_proj.linear.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.11.attn.c_proj.A.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.11.attn.c_proj.B.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.11.ln_2.weight": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.11.ln_2.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.11.mlp.c_fc.linear.weight": {
+      "trainable": false,
+      "elements": 2359296,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.11.mlp.c_fc.linear.bias": {
+      "trainable": false,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.11.mlp.c_fc.A.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.11.mlp.c_fc.B.weight": {
+      "trainable": true,
+      "elements": 12288,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.11.mlp.c_proj.linear.weight": {
+      "trainable": false,
+      "elements": 2359296,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.11.mlp.c_proj.linear.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.11.mlp.c_proj.A.weight": {
+      "trainable": true,
+      "elements": 12288,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.h.11.mlp.c_proj.B.weight": {
+      "trainable": true,
+      "elements": 3072,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.ln_f.weight": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "transformer.ln_f.bias": {
+      "trainable": false,
+      "elements": 768,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    },
+    "lm_head.weight": {
+      "trainable": false,
+      "elements": 38597376,
+      "changed_elements": 0,
+      "max_abs_delta": 0.0,
+      "l2_delta": 0.0
+    }
+  }
+}

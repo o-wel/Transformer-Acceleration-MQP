@@ -46,10 +46,16 @@ def summary(rows):
             for k in rows[0]}
 
 
+def precision_context(fp16):
+    return torch.autocast(device_type='cuda', dtype=torch.float16, enabled=fp16) if fp16 else nullcontext()
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--device', default='cuda')
     p.add_argument('--dtype', choices=['float32', 'float16', 'bfloat16'], default='bfloat16')
+    p.add_argument('--fp16', action='store_true',
+                   help='Use FP16 CUDA autocast and GradScaler while keeping model weights FP32')
     p.add_argument('--backends', nargs='+', default=['eager', 'math', 'flash'],
                    choices=['eager', 'math', 'flash', 'sdpa'])
     p.add_argument('--lengths', nargs='+', type=int, default=[128, 512, 1024])
@@ -82,12 +88,13 @@ def main():
     c.n_layer, c.n_head, c.n_embd = a.layers, a.heads, a.width
     c.vocab_size, c.block_size = a.vocab_size, max(a.lengths) + a.new_tokens
     c.embd_pdrop = c.resid_pdrop = c.attn_pdrop = 0.0
-    base = GPT(c).to(dtype=getattr(torch, a.dtype))
+    base = GPT(c).to(dtype=torch.float32 if a.fp16 else getattr(torch, a.dtype))
     report = dict(complete=False, args={**vars(a), 'output': str(a.output)},
                   torch=torch.__version__, cuda=torch.version.cuda, python=platform.python_version(),
                   gpu=torch.cuda.get_device_name(device) if device.type == 'cuda' else None,
                   weights='seeded random; measures execution, not task quality',
-                  tf32=False, optimizer='SGD without momentum',
+                  tf32=False, autocast=a.fp16,
+                  optimizer='SGD with GradScaler' if a.fp16 else 'SGD without momentum',
                   source_sha256={str(path.name): hashlib.sha256(path.read_bytes()).hexdigest()
                                  for path in (Path(__file__), Path(__file__).resolve().parents[2] / 'mingpt/model.py')},
                   rows=[])
@@ -113,37 +120,48 @@ def main():
                 samples = {b: [] for b in a.backends}
                 failures, parity, profiles = {}, {}, {}
                 model.set_attention_backend('eager')
-                with torch.no_grad():
+                with torch.no_grad(), precision_context(a.fp16):
                     reference = model(x, last_token_only=True)[0]
                 # Use stateless SGD to compare identical updates without duplicate optimizer buffers.
                 initial = {k: v.detach().cpu().clone() for k, v in model.state_dict().items()} if task == 'train' else None
                 optimizers = {b: torch.optim.SGD([q for q in model.parameters() if q.requires_grad], lr=1e-4)
                               for b in a.backends} if task == 'train' else {}
+                scalers = {b: torch.amp.GradScaler('cuda', enabled=a.fp16)
+                           for b in a.backends} if task == 'train' and device.type == 'cuda' else {}
 
                 def run():
                     if task == 'train':
                         optimizers[backend].zero_grad(set_to_none=True)
-                        _, loss = model(x, x)
-                        loss.backward()
-                        optimizers[backend].step()
+                        with precision_context(a.fp16):
+                            _, loss = model(x, x)
+                        if a.fp16:
+                            scalers[backend].scale(loss).backward()
+                            scalers[backend].unscale_(optimizers[backend])
+                            scalers[backend].step(optimizers[backend])
+                            scalers[backend].update()
+                        else:
+                            loss.backward()
+                            optimizers[backend].step()
                         return
                     if task == 'prefill':
-                        return model(x, last_token_only=True)[0]
+                        with precision_context(a.fp16):
+                            return model(x, last_token_only=True)[0]
                     cache = None
                     if task == 'decode_cached':
                         # Prefill is excluded from decode timing, but cache storage is included.
-                        _, _, cache = model(x, use_cache=True, last_token_only=True)
+                        with precision_context(a.fp16):
+                            _, _, cache = model(x, use_cache=True, last_token_only=True)
                     return cache
 
                 for backend in a.backends:
                     model.set_attention_backend(backend)
                     try:
                         model.eval()
-                        with torch.no_grad():
+                        with torch.no_grad(), precision_context(a.fp16):
                             got = model(x, last_token_only=True)[0]
-                        tol = 2e-2 if a.dtype != 'float32' else 2e-4
+                        tol = 2e-2 if a.fp16 or a.dtype != 'float32' else 2e-4
                         torch.testing.assert_close(got, reference, atol=tol, rtol=tol)
-                        with torch.no_grad():
+                        with torch.no_grad(), precision_context(a.fp16):
                             _, _, prefix = model(x, use_cache=True, last_token_only=True)
                             cached = model(continuation[:, :1], past_key_values=prefix, use_cache=True)[0]
                             full = model(torch.cat((x, continuation[:, :1]), 1))[0][:, -1:]
@@ -175,12 +193,13 @@ def main():
                                     return run()
                                 result = None
                                 for i in range(a.new_tokens):
-                                    if task == 'decode_cached':
-                                        result, _, cache = model(continuation[:, i:i+1], past_key_values=cache,
-                                                                 use_cache=True, last_token_only=True)
-                                    else:
-                                        context = torch.cat((x, continuation[:, :i+1]), 1)
-                                        result = model(context, last_token_only=True)[0]
+                                    with precision_context(a.fp16):
+                                        if task == 'decode_cached':
+                                            result, _, cache = model(continuation[:, i:i+1], past_key_values=cache,
+                                                                     use_cache=True, last_token_only=True)
+                                        else:
+                                            context = torch.cat((x, continuation[:, :i+1]), 1)
+                                            result = model(context, last_token_only=True)[0]
                                 return result
                             result, metrics = measure(operation, device)
                             if task == 'decode_cached':

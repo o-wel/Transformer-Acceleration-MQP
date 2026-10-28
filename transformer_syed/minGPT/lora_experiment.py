@@ -1,5 +1,6 @@
 """FP32 minGPT LoRA training, accounting, held-out evaluation, and interactive comparison."""
 import argparse
+from contextlib import nullcontext
 import hashlib
 import json
 import random
@@ -34,12 +35,18 @@ def encode(rows, tokenizer, length):
 
 
 @torch.no_grad()
-def evaluate(model, data, device):
+def precision_context(fp16, device):
+    return torch.autocast(device_type='cuda', dtype=torch.float16, enabled=fp16) if fp16 else nullcontext()
+
+
+@torch.no_grad()
+def evaluate(model, data, device, fp16=False):
     model.eval()
     total, count = 0., 0
     for x, y in data:
         y = y.unsqueeze(0).to(device)
-        loss = model(x.unsqueeze(0).to(device), y)[1]
+        with precision_context(fp16, device):
+            loss = model(x.unsqueeze(0).to(device), y)[1]
         n = int((y != -1).sum())
         total += loss.item()*n
         count += n
@@ -47,14 +54,15 @@ def evaluate(model, data, device):
 
 
 @torch.no_grad()
-def answer(model, tokenizer, question, device, tokens):
+def answer(model, tokenizer, question, device, tokens, fp16=False):
     model.eval()
     ids = tokenizer.encode(prompt(question), return_tensors='pt').to(device)
     if ids.shape[1] + tokens > model.block_size:
         raise ValueError('Question is too long for this model context')
     start = ids.shape[1]
     for _ in range(tokens):
-        logits, _ = model(ids)
+        with precision_context(fp16, device):
+            logits, _ = model(ids)
         nxt = logits[:, -1].argmax(-1, keepdim=True)
         ids = torch.cat((ids, nxt), dim=1)
         if nxt.item() == tokenizer.eos_token_id:
@@ -68,13 +76,13 @@ def scales(model, enabled):
             module.scale = module.alpha/module.rank if enabled else 0.
 
 
-def comparisons(model, tokenizer, rows, device, tokens):
+def comparisons(model, tokenizer, rows, device, tokens, fp16=False):
     outputs = []
     for row in rows:
         pair = dict(question=row['question'], reference=row['answer'])
         for enabled, name in [(False, 'base'), (True, 'lora')]:
             scales(model, enabled)
-            pair[name] = answer(model, tokenizer, row['question'], device, tokens)
+            pair[name] = answer(model, tokenizer, row['question'], device, tokens, fp16)
             pair[name+'_contains_expected'] = row['expected'].lower() in pair[name].lower()
         outputs.append(pair)
     scales(model, True)
@@ -99,6 +107,7 @@ def main():
     p.add_argument('--audit-every', type=int, default=50)
     p.add_argument('--new-tokens', type=int, default=40)
     p.add_argument('--full', action='store_true', help='Full fine-tuning memory baseline, separate output directory')
+    p.add_argument('--fp16', action='store_true', help='Use FP16 model weights with CUDA autocast and GradScaler')
     p.add_argument('--prompt')
     a = p.parse_args()
     if min(a.steps, a.batch_size, a.length, a.audit_every, a.new_tokens) < 1 or a.length > 1024:
@@ -109,6 +118,8 @@ def main():
     torch.backends.cuda.matmul.allow_tf32 = False
     torch.backends.cudnn.allow_tf32 = False
     device = torch.device(a.device)
+    if a.fp16 and device.type != 'cuda':
+        p.error('--fp16 requires a CUDA device')
     tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
     model = GPT.from_pretrained('gpt2').float()
     out = Path(a.out)
@@ -127,7 +138,7 @@ def main():
                 break
             for enabled, name in [(False, 'BASE'), (True, 'LORA')]:
                 scales(model, enabled)
-                print(f'{name}: {answer(model, tokenizer, question, device, a.new_tokens)}')
+                print(f'{name}: {answer(model, tokenizer, question, device, a.new_tokens, a.fp16)}')
             if a.prompt:
                 break
         return
@@ -150,14 +161,16 @@ def main():
     audit = ChangeAudit(model)
     model.to(device)
     optimizer = torch.optim.AdamW([p for p in model.parameters() if p.requires_grad], lr=a.lr, weight_decay=0.)
+    scaler = torch.amp.GradScaler('cuda', enabled=a.fp16)
     report = dict(config=vars(a), torch_version=str(torch.__version__), cuda_version=torch.version.cuda,
                   gpu=torch.cuda.get_device_name(device) if device.type == 'cuda' else None,
                   base_parameters=base_counts, parameters=parameter_counts(model),
                   data_sha256={str(path): hashlib.sha256(Path(path).read_bytes()).hexdigest() for path in [a.train, a.test]},
-                  initial_model_memory=cuda_memory(device), dtype='float32', tf32=False,
-                  base_test_answer_nll=evaluate(model, test, device), history=[])
+                  initial_model_memory=cuda_memory(device), dtype='float16' if a.fp16 else 'float32',
+                  autocast=a.fp16, tf32=False,
+                  base_test_answer_nll=evaluate(model, test, device, a.fp16), history=[])
     if not a.full:
-        report['base_responses'] = [answer(model, tokenizer, r['question'], device, a.new_tokens) for r in test_rows]
+        report['base_responses'] = [answer(model, tokenizer, r['question'], device, a.new_tokens, a.fp16) for r in test_rows]
     optimizer.zero_grad(set_to_none=True)
     if device.type == 'cuda':
         torch.cuda.empty_cache()
@@ -171,10 +184,19 @@ def main():
             torch.cuda.synchronize(device)
         start = time.perf_counter()
         optimizer.zero_grad(set_to_none=True)
-        loss = model(x, y)[1]
-        loss.backward()
-        torch.nn.utils.clip_grad_norm_([p for p in model.parameters() if p.requires_grad], 1., error_if_nonfinite=True)
-        optimizer.step()
+        with precision_context(a.fp16, device):
+            loss = model(x, y)[1]
+        if a.fp16:
+            scaler.scale(loss).backward()
+            scaler.unscale_(optimizer)
+        else:
+            loss.backward()
+        torch.nn.utils.clip_grad_norm_([p for p in model.parameters() if p.requires_grad], 1., error_if_nonfinite=False)
+        if a.fp16:
+            scaler.step(optimizer)
+            scaler.update()
+        else:
+            optimizer.step()
         if device.type == 'cuda':
             torch.cuda.synchronize(device)
         elapsed = time.perf_counter()-start
@@ -195,11 +217,11 @@ def main():
     report['gradient_bytes'] = sum(p.grad.numel()*p.grad.element_size() for p in model.parameters() if p.grad is not None)
     report['optimizer_tensor_bytes'] = sum(v.numel()*v.element_size() for state in optimizer.state.values() for v in state.values() if torch.is_tensor(v))
     report['final_changes'] = {k:v for k,v in changes.items() if k != 'per_tensor'}
-    report['final_test_answer_nll'] = evaluate(model, test, device)
+    report['final_test_answer_nll'] = evaluate(model, test, device, a.fp16)
     if not a.full:
         torch.save(dict(rank=a.rank, alpha=a.alpha, base='gpt2',
                         adapter={n:p.detach().cpu() for n,p in model.named_parameters() if p.requires_grad}), out/'adapter.pt')
-        report['comparisons'] = comparisons(model, tokenizer, test_rows, device, a.new_tokens)
+        report['comparisons'] = comparisons(model, tokenizer, test_rows, device, a.new_tokens, a.fp16)
         report['base_responses_match_initial'] = report['base_responses'] == [r['base'] for r in report['comparisons']]
         if not report['base_responses_match_initial']:
             raise RuntimeError('Disabling LoRA did not reproduce the original base responses')

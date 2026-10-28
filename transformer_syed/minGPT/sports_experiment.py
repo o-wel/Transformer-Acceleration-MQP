@@ -1,4 +1,4 @@
-"""FP32 LoRA adaptation to unseen match questions, with validation-only selection."""
+"""LoRA or full fine-tuning on unseen match questions, with optional FP16 autocast."""
 import argparse
 import hashlib
 import json
@@ -20,20 +20,25 @@ def write(path, data):
 
 
 @torch.no_grad()
-def nll(model, data, device, batch_size):
+def autocast_context(device, enabled):
+    return torch.autocast(device_type='cuda', dtype=torch.float16, enabled=enabled and device == 'cuda')
+
+
+def nll(model, data, device, batch_size, fp16=False):
     model.eval()
     total, tokens = 0., 0
     for start in range(0,len(data),batch_size):
         batch=data[start:start+batch_size]
         x,y=(torch.stack([r[i] for r in batch]).to(device) for i in range(2))
         n=int((y!=-1).sum())
-        total+=model(x,y)[1].item()*n
+        with autocast_context(device, fp16):
+            total+=model(x,y)[1].item()*n
         tokens+=n
     return total/tokens
 
 
 @torch.no_grad()
-def generate_batch(model, tokenizer, questions, device, new_tokens):
+def generate_batch(model, tokenizer, questions, device, new_tokens, fp16=False):
     """Right padding is strictly after each real prefix; causal attention hides it."""
     model.eval()
     ids=[tokenizer.encode(prompt(q)) for q in questions]
@@ -48,7 +53,8 @@ def generate_batch(model, tokenizer, questions, device, new_tokens):
     alive=torch.ones(len(ids),dtype=torch.bool,device=device)
     indices=torch.arange(len(ids),device=device)
     for _ in range(new_tokens):
-        logits=model(x[:,:int(lengths.max())])[0]
+        with autocast_context(device, fp16):
+            logits=model(x[:,:int(lengths.max())])[0]
         nxt=logits[indices,lengths-1].argmax(-1)
         x[indices[alive],lengths[alive]]=nxt[alive]
         lengths+=alive.long()
@@ -62,7 +68,7 @@ def evaluate_outputs(model, tokenizer, rows, a):
     outputs=[]
     for start in range(0,len(rows),a.batch_size):
         batch=rows[start:start+a.batch_size]
-        texts=generate_batch(model,tokenizer,[r['question'] for r in batch],a.device,a.new_tokens)
+        texts=generate_batch(model,tokenizer,[r['question'] for r in batch],a.device,a.new_tokens,a.fp16)
         for row,text in zip(batch,texts):
             outputs.append(dict(match_id=row['match_id'],kind=row['kind'],question=row['question'],
                                 reference=row['answer'],output=text,scores=score(row,text)))
@@ -98,7 +104,7 @@ def test_selected(model, tokenizer, a, report):
         scales(model,enabled)
         result=evaluate_outputs(model,tokenizer,test_rows,a)
         counter=evaluate_outputs(model,tokenizer,cf_rows,a)
-        result['test_nll']=nll(model,test,a.device,a.batch_size)
+        result['test_nll']=nll(model,test,a.device,a.batch_size,a.fp16)
         result['counterfactual_metrics']=counter['metrics']
         result['counterfactual_outputs']=counter['outputs']
         result['paired_primary_accuracy']=sum(x['scores']['primary_correct'] and y['scores']['primary_correct'] for x,y in zip(result['outputs'],counter['outputs']))/len(test_rows)
@@ -109,7 +115,7 @@ def test_selected(model, tokenizer, a, report):
     scales(model,True)
     # Check batched decoding against independent single-example decoding on a fixed subset.
     for row,stored in zip(test_rows[:3],report['full' if a.full else 'lora']['outputs'][:3]):
-        single=generate_batch(model,tokenizer,[row['question']],a.device,a.new_tokens)[0]
+        single=generate_batch(model,tokenizer,[row['question']],a.device,a.new_tokens,a.fp16)[0]
         if single!=stored['output']:
             raise RuntimeError('Batched and single-example greedy outputs disagree')
     report['batch_generation_checked']=True
@@ -134,6 +140,8 @@ def main():
     p.add_argument('--new-tokens',type=int,default=40)
     p.add_argument('--device',default='cuda')
     p.add_argument('--full',action='store_true',help='Full fine-tuning, with validation selection and held-out evaluation')
+    p.add_argument('--fp16',action='store_true',
+                   help='Use CUDA FP16 autocast and gradient scaling; model parameters remain FP32')
     p.add_argument('--skip-test',action='store_true',help='Validation-only learning-rate candidate')
     p.add_argument('--evaluate-only',action='store_true',help='Evaluate an already selected saved checkpoint')
     a=p.parse_args()
@@ -143,12 +151,17 @@ def main():
         p.error('Epochs must be positive')
     if a.target_train_loss is not None and (not math.isfinite(a.target_train_loss) or a.target_train_loss <= 0):
         p.error('Target training loss must be finite and positive')
+    if a.fp16 and a.device != 'cuda':
+        p.error('--fp16 requires --device cuda')
     out=Path(a.out)
     if a.evaluate_only:
         report=json.loads((out/'report.json').read_text())
         device=a.device
         a=argparse.Namespace(**report['config'])
         a.device=device
+        a.fp16=getattr(a,'fp16',False)
+        if a.fp16 and a.device != 'cuda':
+            raise ValueError('FP16 autocast requires a CUDA device')
         torch.set_num_threads(4)
         torch.backends.cuda.matmul.allow_tf32=False
         torch.backends.cudnn.allow_tf32=False
@@ -186,19 +199,23 @@ def main():
         base_hash.update(param.detach().numpy().tobytes())
     probe=train[0][0][:48].unsqueeze(0)
     with torch.no_grad():
-        base_logits=model(probe)[0]
+        with autocast_context(a.device, a.fp16):
+            base_logits=model(probe)[0]
     if not a.full:
         model.enable_lora(a.rank,a.alpha)
     with torch.no_grad():
-        torch.testing.assert_close(model(probe)[0],base_logits,rtol=0,atol=0)
+        with autocast_context(a.device, a.fp16):
+            torch.testing.assert_close(model(probe)[0],base_logits,rtol=0,atol=0)
     del base_logits,probe
     assert all(p.dtype==torch.float32 for p in model.parameters())
     audit=ChangeAudit(model)
     model.to(a.device)
     optimizer=torch.optim.AdamW([p for p in model.parameters() if p.requires_grad],lr=a.lr,weight_decay=0.)
+    scaler=torch.amp.GradScaler('cuda', enabled=a.fp16)
     report=dict(config=vars(a),torch_version=str(torch.__version__),cuda_version=torch.version.cuda,
                 gpu=torch.cuda.get_device_name() if a.device=='cuda' else None,
-                initial_base_sha256=base_hash.hexdigest(),dtype='float32',tf32=False,parameters=parameter_counts(model),base_parameters=base_counts,
+                initial_base_sha256=base_hash.hexdigest(),dtype='float16' if a.fp16 else 'float32',
+                autocast=a.fp16,tf32=False,parameters=parameter_counts(model),base_parameters=base_counts,
                 initial_model_memory=cuda_memory(a.device),
                 data_sha256={str(f):hashlib.sha256(f.read_bytes()).hexdigest() for f in root.glob('*.jsonl')},
                 source_sha256={str(f):hashlib.sha256(f.read_bytes()).hexdigest() for f in [Path('sports_experiment.py'),Path('lora_experiment.py'),Path('mingpt/model.py'),Path('mingpt/measurement.py'),root/'data.py',root/'scoring.py']},
@@ -237,10 +254,13 @@ def main():
         if a.device=='cuda': torch.cuda.synchronize()
         start=time.perf_counter()
         optimizer.zero_grad(set_to_none=True)
-        loss=model(x,y)[1]
-        loss.backward()
-        torch.nn.utils.clip_grad_norm_([p for p in model.parameters() if p.requires_grad],1.,error_if_nonfinite=True)
-        optimizer.step()
+        with autocast_context(a.device, a.fp16):
+            loss=model(x,y)[1]
+        scaler.scale(loss).backward()
+        scaler.unscale_(optimizer)
+        torch.nn.utils.clip_grad_norm_([p for p in model.parameters() if p.requires_grad],1.,error_if_nonfinite=False)
+        scaler.step(optimizer)
+        scaler.update()
         if a.device=='cuda': torch.cuda.synchronize()
         step_times.append(time.perf_counter()-start)
         if step in (1,40):
@@ -251,7 +271,7 @@ def main():
             # Capture training memory before loss evaluation creates other temporaries.
             report['memory_windows'].append(cuda_memory(a.device))
         if evaluate_now and a.target_train_loss is not None:
-            train_nll=nll(model,train,a.device,a.batch_size)
+            train_nll=nll(model,train,a.device,a.batch_size,a.fp16)
             stopped_for_loss=train_nll<=a.target_train_loss
             report.setdefault('training_nll_history',[]).append(dict(step=step,nll=train_nll))
             print(f'training NLL step={step} nll={train_nll:.6f}',flush=True)
@@ -262,7 +282,7 @@ def main():
             report['history'].append(entry)
             print(json.dumps(entry),flush=True)
         if evaluate_now:
-            validation=nll(model,val,a.device,a.batch_size)
+            validation=nll(model,val,a.device,a.batch_size,a.fp16)
             report['validation_history'].append(dict(step=step,nll=validation))
             if report['history'][-1]['step']==step:
                 report['history'][-1]['validation_nll']=validation
@@ -281,7 +301,7 @@ def main():
     report['examples_processed']=examples_processed
     report['completed_epochs']=examples_processed/len(train)
     report['stop_reason']='target_train_loss' if stopped_for_loss else ('epoch_limit' if a.epochs is not None else 'step_limit')
-    report['final_training_nll']=nll(model,train,a.device,a.batch_size)
+    report['final_training_nll']=nll(model,train,a.device,a.batch_size,a.fp16)
     report['sample_order_sha256']=sample_hash.hexdigest()
     report['supervised_training_tokens']=supervised_tokens
     report['processed_training_tokens']=examples_processed*a.length

@@ -1,0 +1,3624 @@
+{
+  "config": {
+    "out": "out/full-sports-fp16",
+    "steps": 300,
+    "epochs": null,
+    "target_train_loss": null,
+    "checkpoint_selection": "validation",
+    "seed": 42,
+    "batch_size": 8,
+    "length": 128,
+    "rank": 4,
+    "alpha": 8,
+    "lr": 0.001,
+    "eval_every": 300,
+    "audit_every": 300,
+    "new_tokens": 40,
+    "device": "cuda",
+    "full": true,
+    "fp16": true,
+    "skip_test": false,
+    "evaluate_only": false
+  },
+  "torch_version": "2.14.0+cu130",
+  "cuda_version": "13.0",
+  "gpu": "NVIDIA A100-SXM4-80GB",
+  "initial_base_sha256": "b049a944e6c6c7bfbcdcdcd8abe49fd5636b53b751e08a04f4584c98178bd323",
+  "dtype": "float16",
+  "autocast": true,
+  "tf32": false,
+  "parameters": {
+    "total": 163037184,
+    "trainable": 163037184,
+    "frozen": 0,
+    "trainable_percent": 100.0,
+    "parameter_bytes": 652148736,
+    "trainable_parameter_bytes": 652148736,
+    "buffer_bytes": 50331648
+  },
+  "base_parameters": {
+    "total": 163037184,
+    "trainable": 163037184,
+    "frozen": 0,
+    "trainable_percent": 100.0,
+    "parameter_bytes": 652148736,
+    "trainable_parameter_bytes": 652148736,
+    "buffer_bytes": 50331648
+  },
+  "initial_model_memory": {
+    "allocated_bytes": 707487744,
+    "reserved_bytes": 731906048,
+    "peak_allocated_bytes": 707487744,
+    "peak_reserved_bytes": 731906048
+  },
+  "data_sha256": {
+    "experiments/sports/train.jsonl": "dc36290715a5be6f8f256b3a1d40f23e39fc4bf7f0603ed0e4d7faedf22250c9",
+    "experiments/sports/test.jsonl": "9ad966953543e9247723b03ec31622d5ab69a001eb5ed4727b0900b81a6e158f",
+    "experiments/sports/counterfactual.jsonl": "17963a982fc3f5726cdb39d430d037cff21f0be5ddfa37990c7d593bf37b1d99",
+    "experiments/sports/validation.jsonl": "35ab85dcba07c499b3dc293fd0b5be988ac813d5e07506a5ab242569fb7e9951"
+  },
+  "source_sha256": {
+    "sports_experiment.py": "500817d57230e6b47cb07d5c94d29842d88a7c53ad73e58898efef7fdab2f0e8",
+    "lora_experiment.py": "841ea06dcb79249b1e2aa15042adb7938e43bbf5d9b03bff32a61c7765c0a1c7",
+    "mingpt/model.py": "84dbea32f1b7f254fd7659017053f1ced175b761411fed7f4b0bcb3ffe53f93e",
+    "mingpt/measurement.py": "c7b43e7957e958dd262b6326938d6178f5a0607198cb81124dfac3e5244edb12",
+    "experiments/sports/data.py": "7d3d68b1e555d8489dcaf60e1a0b1d1c7643c931ade667a4db718c180aa0da34",
+    "experiments/sports/scoring.py": "9f10bf0770d5c9b6c52730e5d0dd89f4633c43e3eecfd1f22590e3fa7f1010aa"
+  },
+  "history": [
+    {
+      "step": 1,
+      "train_loss": 3.9238409996032715,
+      "changed_elements": 0,
+      "frozen_changed_elements": 0
+    },
+    {
+      "step": 300,
+      "train_loss": 0.27927616238594055,
+      "changed_elements": 123857625,
+      "frozen_changed_elements": 0,
+      "validation_nll": 0.23748969242685228
+    }
+  ],
+  "validation_history": [
+    {
+      "step": 300,
+      "nll": 0.23748969242685228
+    }
+  ],
+  "memory_windows": [
+    {
+      "allocated_bytes": 2709251584,
+      "reserved_bytes": 4114612224,
+      "peak_allocated_bytes": 3795020800,
+      "peak_reserved_bytes": 4114612224
+    }
+  ],
+  "gradient_bytes": 652148736,
+  "training_memory_through_step_1": {
+    "allocated_bytes": 1385344512,
+    "reserved_bytes": 2587885568,
+    "peak_allocated_bytes": 2444788224,
+    "peak_reserved_bytes": 2587885568
+  },
+  "training_memory_through_step_40": {
+    "allocated_bytes": 2709251584,
+    "reserved_bytes": 4114612224,
+    "peak_allocated_bytes": 3795020800,
+    "peak_reserved_bytes": 4114612224
+  },
+  "completed_steps": 300,
+  "examples_processed": 2400,
+  "completed_epochs": 1.6666666666666667,
+  "stop_reason": "step_limit",
+  "final_training_nll": 0.18307075150521343,
+  "sample_order_sha256": "4115de847127be380795f38cbf7c7a8b708efb1e2db7ad57a23491c63d279bc4",
+  "supervised_training_tokens": 25717,
+  "processed_training_tokens": 307200,
+  "training_wall_seconds": 17.659796841908246,
+  "training_step_seconds": 11.245019392576069,
+  "step_seconds": [
+    0.6220776250120252,
+    0.030207508010789752,
+    0.02746751205995679,
+    0.028000378981232643,
+    0.11372932814992964,
+    0.03046065615490079,
+    0.03537569008767605,
+    0.02736104209907353,
+    0.03489650506526232,
+    0.03504118788987398,
+    0.03503508702851832,
+    0.03497518296353519,
+    0.03535690391436219,
+    0.035068408818915486,
+    0.0350882769562304,
+    0.0354978998657316,
+    0.03502204199321568,
+    0.03494605794548988,
+    0.03525552316568792,
+    0.035057207802310586,
+    0.03499517100863159,
+    0.03534401999786496,
+    0.03505774913355708,
+    0.03578371996991336,
+    0.03511873399838805,
+    0.03515711682848632,
+    0.035390848061069846,
+    0.03533989214338362,
+    0.035321386996656656,
+    0.03556425613351166,
+    0.03529687109403312,
+    0.03579183598048985,
+    0.03536516008898616,
+    0.03522576577961445,
+    0.035520573845133185,
+    0.03522994415834546,
+    0.03529333393089473,
+    0.03541433298960328,
+    0.035223713144659996,
+    0.035196640994399786,
+    0.035489564994350076,
+    0.03531472384929657,
+    0.035560518968850374,
+    0.035368415992707014,
+    0.035341334994882345,
+    0.03559455298818648,
+    0.035275441128760576,
+    0.03533614496700466,
+    0.0355088310316205,
+    0.035389736061915755,
+    0.03531142813153565,
+    0.03537480812519789,
+    0.03525797696784139,
+    0.03542953100986779,
+    0.03513318207114935,
+    0.03513427288271487,
+    0.035372043028473854,
+    0.035269929096102715,
+    0.03531690803356469,
+    0.035486608976498246,
+    0.0352347728330642,
+    0.03555089980363846,
+    0.0377507449593395,
+    0.035227099200710654,
+    0.03549825097434223,
+    0.03536368696950376,
+    0.03536882717162371,
+    0.03561669518239796,
+    0.03525262698531151,
+    0.03528158203698695,
+    0.035658013075590134,
+    0.03536339686252177,
+    0.03535005101002753,
+    0.0355570618994534,
+    0.035272925859317183,
+    0.035354499937966466,
+    0.035446984926238656,
+    0.03529913513921201,
+    0.03523244895040989,
+    0.03563537006266415,
+    0.035288424929603934,
+    0.03527303598821163,
+    0.03558788099326193,
+    0.03536827606149018,
+    0.035299355862662196,
+    0.035267625004053116,
+    0.03568724892102182,
+    0.035279358038678765,
+    0.03526781592518091,
+    0.03547492693178356,
+    0.03525548195466399,
+    0.035528187872841954,
+    0.03535372787155211,
+    0.035415183985605836,
+    0.0356265630107373,
+    0.035295517882332206,
+    0.03537042997777462,
+    0.035309203900396824,
+    0.0352677449118346,
+    0.035517778946086764,
+    0.035480217076838017,
+    0.03532357094809413,
+    0.03531671897508204,
+    0.0352645399980247,
+    0.03527812589891255,
+    0.03521225112490356,
+    0.0352994161657989,
+    0.035394274862483144,
+    0.03530166996642947,
+    0.03540244000032544,
+    0.03539128904230893,
+    0.035368537064641714,
+    0.03530365391634405,
+    0.03526983014307916,
+    0.03526992001570761,
+    0.035520232981070876,
+    0.03713728720322251,
+    0.035436405101791024,
+    0.035456492099910975,
+    0.035707355942577124,
+    0.03515833895653486,
+    0.03514253976754844,
+    0.035355922067537904,
+    0.035281941993162036,
+    0.03528539999388158,
+    0.03548388392664492,
+    0.035245914943516254,
+    0.03518764488399029,
+    0.03564459690824151,
+    0.035176713950932026,
+    0.035217159893363714,
+    0.035530221182852983,
+    0.0361725150141865,
+    0.03589611314237118,
+    0.03526359819807112,
+    0.0355002551805228,
+    0.03553521120920777,
+    0.03579583391547203,
+    0.035108283860608935,
+    0.035041056806221604,
+    0.03552059317007661,
+    0.03551202779635787,
+    0.03517302684485912,
+    0.035228000953793526,
+    0.03526643291115761,
+    0.03523720777593553,
+    0.03544527105987072,
+    0.035314413951709867,
+    0.03515700693242252,
+    0.035291140200570226,
+    0.03532695700414479,
+    0.03602006705477834,
+    0.03523928299546242,
+    0.03556525707244873,
+    0.03537935693748295,
+    0.03510452713817358,
+    0.03525909991003573,
+    0.03525879909284413,
+    0.035256866132840514,
+    0.03532262006774545,
+    0.03536146297119558,
+    0.03520181099884212,
+    0.035286791855469346,
+    0.03561773686669767,
+    0.03544144402258098,
+    0.035142529057338834,
+    0.035164630971848965,
+    0.03548151021823287,
+    0.03524795896373689,
+    0.03552247700281441,
+    0.03543253685347736,
+    0.03540774108842015,
+    0.03538995701819658,
+    0.035318912006914616,
+    0.03541448316536844,
+    0.03551315888762474,
+    0.035277784802019596,
+    0.03525434993207455,
+    0.03568632691167295,
+    0.035100138979032636,
+    0.03524616500362754,
+    0.03539441502653062,
+    0.03518537012860179,
+    0.035332879051566124,
+    0.03569508297368884,
+    0.03532438282854855,
+    0.03539572819136083,
+    0.03563322708941996,
+    0.0352426681201905,
+    0.03519995789974928,
+    0.03563684318214655,
+    0.035358256893232465,
+    0.03548786090686917,
+    0.0355838630348444,
+    0.03509908705018461,
+    0.03514569508843124,
+    0.035650167847052217,
+    0.03546442789956927,
+    0.0358214620500803,
+    0.03555866586975753,
+    0.03531513619236648,
+    0.03521134005859494,
+    0.03549569705501199,
+    0.03531968384049833,
+    0.03531740000471473,
+    0.035654916893690825,
+    0.035421896958723664,
+    0.03527213493362069,
+    0.03521095891483128,
+    0.03538972605019808,
+    0.035292993998155,
+    0.03530975501053035,
+    0.035484446212649345,
+    0.03519524889998138,
+    0.035535861970856786,
+    0.03526438004337251,
+    0.03526382916606963,
+    0.035679012071341276,
+    0.03527206392027438,
+    0.03548716986551881,
+    0.035668803146108985,
+    0.03527000988833606,
+    0.03545530000701547,
+    0.03522961400449276,
+    0.03526068292558193,
+    0.03547215205617249,
+    0.035324292024597526,
+    0.03536108206026256,
+    0.03538491693325341,
+    0.035214554984122515,
+    0.03531991387717426,
+    0.03524436196312308,
+    0.03528205305337906,
+    0.035217632073909044,
+    0.035457303980365396,
+    0.03543160483241081,
+    0.03510328498668969,
+    0.03527566115371883,
+    0.03526617307215929,
+    0.03538115113042295,
+    0.035629339050501585,
+    0.03533813892863691,
+    0.03535102307796478,
+    0.03560208692215383,
+    0.035491829039528966,
+    0.03512303181923926,
+    0.03539846302010119,
+    0.035365700954571366,
+    0.03526570205576718,
+    0.03517944016493857,
+    0.03517507086507976,
+    0.03524255892261863,
+    0.035288544837385416,
+    0.03567320108413696,
+    0.035374607890844345,
+    0.03530164994299412,
+    0.03528866497799754,
+    0.035431114956736565,
+    0.035298513947054744,
+    0.03542540385387838,
+    0.03525735600851476,
+    0.0352061300072819,
+    0.0356564000248909,
+    0.035318722017109394,
+    0.0352889159694314,
+    0.03529479703865945,
+    0.03552934993058443,
+    0.03603406297042966,
+    0.03538477700203657,
+    0.0353804889600724,
+    0.035583042073994875,
+    0.035263136960566044,
+    0.03532042494043708,
+    0.03553057205863297,
+    0.03552177594974637,
+    0.035530603025108576,
+    0.03545805509202182,
+    0.03543424000963569,
+    0.03536129207350314,
+    0.03527209395542741,
+    0.03529078885912895,
+    0.03532769903540611,
+    0.03541332087479532,
+    0.03544471086934209,
+    0.03551856987178326,
+    0.0353947258554399,
+    0.03537423722445965,
+    0.035672130063176155,
+    0.035265130922198296,
+    0.03530141897499561,
+    0.03557918407022953,
+    0.03510235412977636,
+    0.03527076099999249,
+    0.035723738139495254,
+    0.03534559300169349,
+    0.035268086940050125,
+    0.0353182009421289,
+    0.035374356899410486,
+    0.035265560960397124,
+    0.035263136960566044
+  ],
+  "warm_training_steps_per_second": 28.26399990536209,
+  "timing_scope": "Synchronized forward/backward/clipping/optimizer. Excludes data transfer, audits and validation. Warm throughput excludes first 10 steps.",
+  "training_peak_allocated_bytes": 3795020800,
+  "training_peak_reserved_bytes": 4114612224,
+  "optimizer_tensor_bytes": 1304298068,
+  "final_changes": {
+    "changed_elements": 123857625,
+    "changed_percent": 75.96894276584169,
+    "frozen_changed_elements": 0
+  },
+  "selected_step": 300,
+  "selected_validation_nll": 0.23748969242685228,
+  "selected_changes": {
+    "changed_elements": 123857625,
+    "changed_percent": 75.96894276584169,
+    "frozen_changed_elements": 0
+  },
+  "reference_answers_seen_in_training": 0,
+  "full": {
+    "metrics": {
+      "primary_correct": 0.15833333333333333,
+      "score_numbers_correct": 0.8416666666666667,
+      "fields_correct": 0.11666666666666667,
+      "reference_exact": 0.0,
+      "by_kind": {
+        "winner": {
+          "primary_correct": 0.0,
+          "score_numbers_correct": 0.95,
+          "fields_correct": 0.0,
+          "reference_exact": 0.0
+        },
+        "halftime": {
+          "primary_correct": 0.0,
+          "score_numbers_correct": 0.825,
+          "fields_correct": 0.0,
+          "reference_exact": 0.0
+        },
+        "comeback": {
+          "primary_correct": 0.475,
+          "score_numbers_correct": 0.75,
+          "fields_correct": 0.35,
+          "reference_exact": 0.0
+        }
+      }
+    },
+    "outputs": [
+      {
+        "match_id": "test-000",
+        "kind": "winner",
+        "question": "Basketball match: Bulls vs Sharks. Halftime score: Bulls 51, Sharks 35. Final score: Bulls 96, Sharks 69.\nWho won the match, and what was the final score?",
+        "reference": "Bulls won 96-69.",
+        "output": "Rockets won 96-69.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-000",
+        "kind": "halftime",
+        "question": "Basketball match: Bulls vs Sharks. Halftime score: Bulls 51, Sharks 35. Final score: Bulls 96, Sharks 69.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Bulls led 51-35 at halftime.",
+        "output": "Rockets led 51-35 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-000",
+        "kind": "comeback",
+        "question": "Basketball match: Bulls vs Sharks. Halftime score: Bulls 51, Sharks 35. Final score: Bulls 96, Sharks 69.\nDid Bulls come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Bulls led 51-35 at halftime and won 96-69.",
+        "output": "No. Wolves led 51-35 at halftime and won 96-69.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": true,
+          "fields_correct": true,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-001",
+        "kind": "winner",
+        "question": "Basketball match: Eagles vs Bulls. Halftime score: Eagles 34, Bulls 27. Final score: Eagles 104, Bulls 87.\nWho won the match, and what was the final score?",
+        "reference": "Eagles won 104-87.",
+        "output": "Hawks won 104-87.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-001",
+        "kind": "halftime",
+        "question": "Basketball match: Eagles vs Bulls. Halftime score: Eagles 34, Bulls 27. Final score: Eagles 104, Bulls 87.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Eagles led 34-27 at halftime.",
+        "output": "Hawks led 38-27 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": false,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-001",
+        "kind": "comeback",
+        "question": "Basketball match: Eagles vs Bulls. Halftime score: Eagles 34, Bulls 27. Final score: Eagles 104, Bulls 87.\nDid Eagles come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Eagles led 34-27 at halftime and won 104-87.",
+        "output": "Yes. Comets trailed 27-32 at halftime and won 104-87.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": false,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-002",
+        "kind": "winner",
+        "question": "Basketball match: Eagles vs Sharks. Halftime score: Eagles 41, Sharks 28. Final score: Eagles 104, Sharks 74.\nWho won the match, and what was the final score?",
+        "reference": "Eagles won 104-74.",
+        "output": "Hawks won 104-74.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-002",
+        "kind": "halftime",
+        "question": "Basketball match: Eagles vs Sharks. Halftime score: Eagles 41, Sharks 28. Final score: Eagles 104, Sharks 74.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Eagles led 41-28 at halftime.",
+        "output": "Hawks led 41-28 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-002",
+        "kind": "comeback",
+        "question": "Basketball match: Eagles vs Sharks. Halftime score: Eagles 41, Sharks 28. Final score: Eagles 104, Sharks 74.\nDid Eagles come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Eagles led 41-28 at halftime and won 104-74.",
+        "output": "Yes. Comets trailed 28-41 at halftime and won 104-74.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-003",
+        "kind": "winner",
+        "question": "Basketball match: Eagles vs Owls. Halftime score: Eagles 52, Owls 55. Final score: Eagles 103, Owls 69.\nWho won the match, and what was the final score?",
+        "reference": "Eagles won 103-69.",
+        "output": "Hawks won 103-69.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-003",
+        "kind": "halftime",
+        "question": "Basketball match: Eagles vs Owls. Halftime score: Eagles 52, Owls 55. Final score: Eagles 103, Owls 69.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Owls led 55-52 at halftime.",
+        "output": "Comets led 55-45 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": false,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-003",
+        "kind": "comeback",
+        "question": "Basketball match: Eagles vs Owls. Halftime score: Eagles 52, Owls 55. Final score: Eagles 103, Owls 69.\nDid Eagles come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Eagles trailed 52-55 at halftime and won 103-69.",
+        "output": "Yes. Comets trailed 40-55 at halftime and won 103-69.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": false,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-004",
+        "kind": "winner",
+        "question": "Basketball match: Sharks vs Bulls. Halftime score: Sharks 32, Bulls 27. Final score: Sharks 68, Bulls 103.\nWho won the match, and what was the final score?",
+        "reference": "Bulls won 103-68.",
+        "output": "Comets won 103-68.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-004",
+        "kind": "halftime",
+        "question": "Basketball match: Sharks vs Bulls. Halftime score: Sharks 32, Bulls 27. Final score: Sharks 68, Bulls 103.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Sharks led 32-27 at halftime.",
+        "output": "Comets led 32-28 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": false,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-004",
+        "kind": "comeback",
+        "question": "Basketball match: Sharks vs Bulls. Halftime score: Sharks 32, Bulls 27. Final score: Sharks 68, Bulls 103.\nDid Bulls come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Bulls trailed 27-32 at halftime and won 103-68.",
+        "output": "No. Wolves led 32-28 at halftime and won 103-68.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": false,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-005",
+        "kind": "winner",
+        "question": "Basketball match: Sharks vs Eagles. Halftime score: Sharks 28, Eagles 51. Final score: Sharks 75, Eagles 85.\nWho won the match, and what was the final score?",
+        "reference": "Eagles won 85-75.",
+        "output": "Hawks won 85-75.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-005",
+        "kind": "halftime",
+        "question": "Basketball match: Sharks vs Eagles. Halftime score: Sharks 28, Eagles 51. Final score: Sharks 75, Eagles 85.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Eagles led 51-28 at halftime.",
+        "output": "Hawks led 51-28 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-005",
+        "kind": "comeback",
+        "question": "Basketball match: Sharks vs Eagles. Halftime score: Sharks 28, Eagles 51. Final score: Sharks 75, Eagles 85.\nDid Eagles come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Eagles led 51-28 at halftime and won 85-75.",
+        "output": "Yes. Comets trailed 28-51 at halftime and won 85-75.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-006",
+        "kind": "winner",
+        "question": "Basketball match: Eagles vs Sharks. Halftime score: Eagles 38, Sharks 49. Final score: Eagles 91, Sharks 96.\nWho won the match, and what was the final score?",
+        "reference": "Sharks won 96-91.",
+        "output": "Hawks won 96-91.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-006",
+        "kind": "halftime",
+        "question": "Basketball match: Eagles vs Sharks. Halftime score: Eagles 38, Sharks 49. Final score: Eagles 91, Sharks 96.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Sharks led 49-38 at halftime.",
+        "output": "Hawks led 49-38 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-006",
+        "kind": "comeback",
+        "question": "Basketball match: Eagles vs Sharks. Halftime score: Eagles 38, Sharks 49. Final score: Eagles 91, Sharks 96.\nDid Sharks come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Sharks led 49-38 at halftime and won 96-91.",
+        "output": "Yes. Comets trailed 38-49 at halftime and won 96-91.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-007",
+        "kind": "winner",
+        "question": "Basketball match: Sharks vs Eagles. Halftime score: Sharks 48, Eagles 34. Final score: Sharks 65, Eagles 104.\nWho won the match, and what was the final score?",
+        "reference": "Eagles won 104-65.",
+        "output": "Hawks won 104-65.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-007",
+        "kind": "halftime",
+        "question": "Basketball match: Sharks vs Eagles. Halftime score: Sharks 48, Eagles 34. Final score: Sharks 65, Eagles 104.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Sharks led 48-34 at halftime.",
+        "output": "Hawks led 48-34 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-007",
+        "kind": "comeback",
+        "question": "Basketball match: Sharks vs Eagles. Halftime score: Sharks 48, Eagles 34. Final score: Sharks 65, Eagles 104.\nDid Eagles come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Eagles trailed 34-48 at halftime and won 104-65.",
+        "output": "Yes. Comets trailed 34-48 at halftime and won 104-65.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": true,
+          "fields_correct": true,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-008",
+        "kind": "winner",
+        "question": "Basketball match: Owls vs Sharks. Halftime score: Owls 52, Sharks 40. Final score: Owls 105, Sharks 71.\nWho won the match, and what was the final score?",
+        "reference": "Owls won 105-71.",
+        "output": "Comets won 105-71.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-008",
+        "kind": "halftime",
+        "question": "Basketball match: Owls vs Sharks. Halftime score: Owls 52, Sharks 40. Final score: Owls 105, Sharks 71.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Owls led 52-40 at halftime.",
+        "output": "Comets led 52-40 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-008",
+        "kind": "comeback",
+        "question": "Basketball match: Owls vs Sharks. Halftime score: Owls 52, Sharks 40. Final score: Owls 105, Sharks 71.\nDid Owls come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Owls led 52-40 at halftime and won 105-71.",
+        "output": "Yes. Comets trailed 40-52 at halftime and won 105-71.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-009",
+        "kind": "winner",
+        "question": "Basketball match: Sharks vs Bulls. Halftime score: Sharks 50, Bulls 36. Final score: Sharks 96, Bulls 69.\nWho won the match, and what was the final score?",
+        "reference": "Sharks won 96-69.",
+        "output": "Rockets won 96-69.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-009",
+        "kind": "halftime",
+        "question": "Basketball match: Sharks vs Bulls. Halftime score: Sharks 50, Bulls 36. Final score: Sharks 96, Bulls 69.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Sharks led 50-36 at halftime.",
+        "output": "Comets led 50-36 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-009",
+        "kind": "comeback",
+        "question": "Basketball match: Sharks vs Bulls. Halftime score: Sharks 50, Bulls 36. Final score: Sharks 96, Bulls 69.\nDid Sharks come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Sharks led 50-36 at halftime and won 96-69.",
+        "output": "Yes. Comets trailed 36-50 at halftime and won 96-69.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-010",
+        "kind": "winner",
+        "question": "Basketball match: Eagles vs Owls. Halftime score: Eagles 26, Owls 38. Final score: Eagles 93, Owls 78.\nWho won the match, and what was the final score?",
+        "reference": "Eagles won 93-78.",
+        "output": "Hawks won 93-78.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-010",
+        "kind": "halftime",
+        "question": "Basketball match: Eagles vs Owls. Halftime score: Eagles 26, Owls 38. Final score: Eagles 93, Owls 78.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Owls led 38-26 at halftime.",
+        "output": "Hawks led 38-26 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-010",
+        "kind": "comeback",
+        "question": "Basketball match: Eagles vs Owls. Halftime score: Eagles 26, Owls 38. Final score: Eagles 93, Owls 78.\nDid Eagles come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Eagles trailed 26-38 at halftime and won 93-78.",
+        "output": "Yes. Comets trailed 26-38 at halftime and won 93-78.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": true,
+          "fields_correct": true,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-011",
+        "kind": "winner",
+        "question": "Basketball match: Eagles vs Owls. Halftime score: Eagles 41, Owls 45. Final score: Eagles 67, Owls 74.\nWho won the match, and what was the final score?",
+        "reference": "Owls won 74-67.",
+        "output": "Hawks won 74-67.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-011",
+        "kind": "halftime",
+        "question": "Basketball match: Eagles vs Owls. Halftime score: Eagles 41, Owls 45. Final score: Eagles 67, Owls 74.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Owls led 45-41 at halftime.",
+        "output": "Comets led 45-41 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-011",
+        "kind": "comeback",
+        "question": "Basketball match: Eagles vs Owls. Halftime score: Eagles 41, Owls 45. Final score: Eagles 67, Owls 74.\nDid Owls come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Owls led 45-41 at halftime and won 74-67.",
+        "output": "Yes. Comets trailed 41-45 at halftime and won 74-67.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-012",
+        "kind": "winner",
+        "question": "Basketball match: Eagles vs Owls. Halftime score: Eagles 49, Owls 41. Final score: Eagles 66, Owls 83.\nWho won the match, and what was the final score?",
+        "reference": "Owls won 83-66.",
+        "output": "Comets won 83-66.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-012",
+        "kind": "halftime",
+        "question": "Basketball match: Eagles vs Owls. Halftime score: Eagles 49, Owls 41. Final score: Eagles 66, Owls 83.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Eagles led 49-41 at halftime.",
+        "output": "Comets led 49-41 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-012",
+        "kind": "comeback",
+        "question": "Basketball match: Eagles vs Owls. Halftime score: Eagles 49, Owls 41. Final score: Eagles 66, Owls 83.\nDid Owls come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Owls trailed 41-49 at halftime and won 83-66.",
+        "output": "No. Comets led 49-41 at halftime and won 83-66.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-013",
+        "kind": "winner",
+        "question": "Basketball match: Sharks vs Eagles. Halftime score: Sharks 34, Eagles 54. Final score: Sharks 96, Eagles 71.\nWho won the match, and what was the final score?",
+        "reference": "Sharks won 96-71.",
+        "output": "Hawks won 96-71.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-013",
+        "kind": "halftime",
+        "question": "Basketball match: Sharks vs Eagles. Halftime score: Sharks 34, Eagles 54. Final score: Sharks 96, Eagles 71.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Eagles led 54-34 at halftime.",
+        "output": "Hawks led 54-34 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-013",
+        "kind": "comeback",
+        "question": "Basketball match: Sharks vs Eagles. Halftime score: Sharks 34, Eagles 54. Final score: Sharks 96, Eagles 71.\nDid Sharks come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Sharks trailed 34-54 at halftime and won 96-71.",
+        "output": "Yes. Comets trailed 34-54 at halftime and won 96-71.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": true,
+          "fields_correct": true,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-014",
+        "kind": "winner",
+        "question": "Basketball match: Sharks vs Owls. Halftime score: Sharks 31, Owls 53. Final score: Sharks 87, Owls 104.\nWho won the match, and what was the final score?",
+        "reference": "Owls won 104-87.",
+        "output": "Comets won 104-87.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-014",
+        "kind": "halftime",
+        "question": "Basketball match: Sharks vs Owls. Halftime score: Sharks 31, Owls 53. Final score: Sharks 87, Owls 104.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Owls led 53-31 at halftime.",
+        "output": "Comets led 53-31 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-014",
+        "kind": "comeback",
+        "question": "Basketball match: Sharks vs Owls. Halftime score: Sharks 31, Owls 53. Final score: Sharks 87, Owls 104.\nDid Owls come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Owls led 53-31 at halftime and won 104-87.",
+        "output": "Yes. Comets trailed 31-53 at halftime and won 104-87.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-015",
+        "kind": "winner",
+        "question": "Basketball match: Owls vs Bulls. Halftime score: Owls 34, Bulls 41. Final score: Owls 99, Bulls 79.\nWho won the match, and what was the final score?",
+        "reference": "Owls won 99-79.",
+        "output": "Hawks won 99-79.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-015",
+        "kind": "halftime",
+        "question": "Basketball match: Owls vs Bulls. Halftime score: Owls 34, Bulls 41. Final score: Owls 99, Bulls 79.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Bulls led 41-34 at halftime.",
+        "output": "Hawks led 41-34 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-015",
+        "kind": "comeback",
+        "question": "Basketball match: Owls vs Bulls. Halftime score: Owls 34, Bulls 41. Final score: Owls 99, Bulls 79.\nDid Owls come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Owls trailed 34-41 at halftime and won 99-79.",
+        "output": "Yes. Comets trailed 34-41 at halftime and won 99-79.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": true,
+          "fields_correct": true,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-016",
+        "kind": "winner",
+        "question": "Basketball match: Eagles vs Owls. Halftime score: Eagles 54, Owls 32. Final score: Eagles 99, Owls 67.\nWho won the match, and what was the final score?",
+        "reference": "Eagles won 99-67.",
+        "output": "Hawks won 99-67.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-016",
+        "kind": "halftime",
+        "question": "Basketball match: Eagles vs Owls. Halftime score: Eagles 54, Owls 32. Final score: Eagles 99, Owls 67.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Eagles led 54-32 at halftime.",
+        "output": "Hawks led 54-32 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-016",
+        "kind": "comeback",
+        "question": "Basketball match: Eagles vs Owls. Halftime score: Eagles 54, Owls 32. Final score: Eagles 99, Owls 67.\nDid Eagles come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Eagles led 54-32 at halftime and won 99-67.",
+        "output": "Yes. Comets trailed 32-54 at halftime and won 99-67.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-017",
+        "kind": "winner",
+        "question": "Basketball match: Eagles vs Bulls. Halftime score: Eagles 41, Bulls 38. Final score: Eagles 85, Bulls 74.\nWho won the match, and what was the final score?",
+        "reference": "Eagles won 85-74.",
+        "output": "Hawks won 85-74.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-017",
+        "kind": "halftime",
+        "question": "Basketball match: Eagles vs Bulls. Halftime score: Eagles 41, Bulls 38. Final score: Eagles 85, Bulls 74.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Eagles led 41-38 at halftime.",
+        "output": "Bears led 38-41 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-017",
+        "kind": "comeback",
+        "question": "Basketball match: Eagles vs Bulls. Halftime score: Eagles 41, Bulls 38. Final score: Eagles 85, Bulls 74.\nDid Eagles come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Eagles led 41-38 at halftime and won 85-74.",
+        "output": "Yes. Comets trailed 38-38 at halftime and won 85-74.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": false,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-018",
+        "kind": "winner",
+        "question": "Basketball match: Owls vs Bulls. Halftime score: Owls 35, Bulls 47. Final score: Owls 83, Bulls 71.\nWho won the match, and what was the final score?",
+        "reference": "Owls won 83-71.",
+        "output": "Hawks won 83-71.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-018",
+        "kind": "halftime",
+        "question": "Basketball match: Owls vs Bulls. Halftime score: Owls 35, Bulls 47. Final score: Owls 83, Bulls 71.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Bulls led 47-35 at halftime.",
+        "output": "Hawks led 47-35 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-018",
+        "kind": "comeback",
+        "question": "Basketball match: Owls vs Bulls. Halftime score: Owls 35, Bulls 47. Final score: Owls 83, Bulls 71.\nDid Owls come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Owls trailed 35-47 at halftime and won 83-71.",
+        "output": "Yes. Comets trailed 35-47 at halftime and won 83-71.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": true,
+          "fields_correct": true,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-019",
+        "kind": "winner",
+        "question": "Basketball match: Sharks vs Eagles. Halftime score: Sharks 50, Eagles 33. Final score: Sharks 104, Eagles 94.\nWho won the match, and what was the final score?",
+        "reference": "Sharks won 104-94.",
+        "output": "Comets won 104-94.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-019",
+        "kind": "halftime",
+        "question": "Basketball match: Sharks vs Eagles. Halftime score: Sharks 50, Eagles 33. Final score: Sharks 104, Eagles 94.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Sharks led 50-33 at halftime.",
+        "output": "Comets led 50-33 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-019",
+        "kind": "comeback",
+        "question": "Basketball match: Sharks vs Eagles. Halftime score: Sharks 50, Eagles 33. Final score: Sharks 104, Eagles 94.\nDid Sharks come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Sharks led 50-33 at halftime and won 104-94.",
+        "output": "Yes. Comets trailed 33-50 at halftime and won 104-94.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-020",
+        "kind": "winner",
+        "question": "Basketball match: Bulls vs Sharks. Halftime score: Bulls 35, Sharks 43. Final score: Bulls 95, Sharks 82.\nWho won the match, and what was the final score?",
+        "reference": "Bulls won 95-82.",
+        "output": "Rockets won 95-82.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-020",
+        "kind": "halftime",
+        "question": "Basketball match: Bulls vs Sharks. Halftime score: Bulls 35, Sharks 43. Final score: Bulls 95, Sharks 82.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Sharks led 43-35 at halftime.",
+        "output": "Rockets led 43-35 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-020",
+        "kind": "comeback",
+        "question": "Basketball match: Bulls vs Sharks. Halftime score: Bulls 35, Sharks 43. Final score: Bulls 95, Sharks 82.\nDid Bulls come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Bulls trailed 35-43 at halftime and won 95-82.",
+        "output": "Yes. Wolves trailed 35-43 at halftime and won 95-82.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": true,
+          "fields_correct": true,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-021",
+        "kind": "winner",
+        "question": "Basketball match: Owls vs Eagles. Halftime score: Owls 32, Eagles 31. Final score: Owls 76, Eagles 77.\nWho won the match, and what was the final score?",
+        "reference": "Eagles won 77-76.",
+        "output": "Hawks won 76-77.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-021",
+        "kind": "halftime",
+        "question": "Basketball match: Owls vs Eagles. Halftime score: Owls 32, Eagles 31. Final score: Owls 76, Eagles 77.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Owls led 32-31 at halftime.",
+        "output": "Hawks led 31-31 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": false,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-021",
+        "kind": "comeback",
+        "question": "Basketball match: Owls vs Eagles. Halftime score: Owls 32, Eagles 31. Final score: Owls 76, Eagles 77.\nDid Eagles come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Eagles trailed 31-32 at halftime and won 77-76.",
+        "output": "Yes. Comets trailed 31-31 at halftime and won 76-77.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": false,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-022",
+        "kind": "winner",
+        "question": "Basketball match: Owls vs Bulls. Halftime score: Owls 41, Bulls 38. Final score: Owls 72, Bulls 67.\nWho won the match, and what was the final score?",
+        "reference": "Owls won 72-67.",
+        "output": "Comets won 72-67.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-022",
+        "kind": "halftime",
+        "question": "Basketball match: Owls vs Bulls. Halftime score: Owls 41, Bulls 38. Final score: Owls 72, Bulls 67.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Owls led 41-38 at halftime.",
+        "output": "Bears led 38-41 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-022",
+        "kind": "comeback",
+        "question": "Basketball match: Owls vs Bulls. Halftime score: Owls 41, Bulls 38. Final score: Owls 72, Bulls 67.\nDid Owls come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Owls led 41-38 at halftime and won 72-67.",
+        "output": "Yes. Comets trailed 38-38 at halftime and won 72-67.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": false,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-023",
+        "kind": "winner",
+        "question": "Basketball match: Bulls vs Eagles. Halftime score: Bulls 38, Eagles 26. Final score: Bulls 98, Eagles 71.\nWho won the match, and what was the final score?",
+        "reference": "Bulls won 98-71.",
+        "output": "Hawks won 98-71.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-023",
+        "kind": "halftime",
+        "question": "Basketball match: Bulls vs Eagles. Halftime score: Bulls 38, Eagles 26. Final score: Bulls 98, Eagles 71.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Bulls led 38-26 at halftime.",
+        "output": "Bears led 38-26 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-023",
+        "kind": "comeback",
+        "question": "Basketball match: Bulls vs Eagles. Halftime score: Bulls 38, Eagles 26. Final score: Bulls 98, Eagles 71.\nDid Bulls come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Bulls led 38-26 at halftime and won 98-71.",
+        "output": "Yes. Wolves trailed 26-38 at halftime and won 98-71.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-024",
+        "kind": "winner",
+        "question": "Basketball match: Bulls vs Eagles. Halftime score: Bulls 25, Eagles 50. Final score: Bulls 93, Eagles 92.\nWho won the match, and what was the final score?",
+        "reference": "Bulls won 93-92.",
+        "output": "Hawks won 93-93.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": false,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-024",
+        "kind": "halftime",
+        "question": "Basketball match: Bulls vs Eagles. Halftime score: Bulls 25, Eagles 50. Final score: Bulls 93, Eagles 92.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Eagles led 50-25 at halftime.",
+        "output": "Hawks led 50-25 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-024",
+        "kind": "comeback",
+        "question": "Basketball match: Bulls vs Eagles. Halftime score: Bulls 25, Eagles 50. Final score: Bulls 93, Eagles 92.\nDid Bulls come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Bulls trailed 25-50 at halftime and won 93-92.",
+        "output": "No. Wolves led 50-25 at halftime and won 93-93.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": false,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-025",
+        "kind": "winner",
+        "question": "Basketball match: Sharks vs Eagles. Halftime score: Sharks 30, Eagles 27. Final score: Sharks 84, Eagles 101.\nWho won the match, and what was the final score?",
+        "reference": "Eagles won 101-84.",
+        "output": "Hawks won 101-84.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-025",
+        "kind": "halftime",
+        "question": "Basketball match: Sharks vs Eagles. Halftime score: Sharks 30, Eagles 27. Final score: Sharks 84, Eagles 101.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Sharks led 30-27 at halftime.",
+        "output": "Hawks led 28-27 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": false,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-025",
+        "kind": "comeback",
+        "question": "Basketball match: Sharks vs Eagles. Halftime score: Sharks 30, Eagles 27. Final score: Sharks 84, Eagles 101.\nDid Eagles come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Eagles trailed 27-30 at halftime and won 101-84.",
+        "output": "Yes. Comets trailed 27-30 at halftime and won 101-84.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": true,
+          "fields_correct": true,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-026",
+        "kind": "winner",
+        "question": "Basketball match: Owls vs Sharks. Halftime score: Owls 35, Sharks 50. Final score: Owls 85, Sharks 70.\nWho won the match, and what was the final score?",
+        "reference": "Owls won 85-70.",
+        "output": "Comets won 85-70.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-026",
+        "kind": "halftime",
+        "question": "Basketball match: Owls vs Sharks. Halftime score: Owls 35, Sharks 50. Final score: Owls 85, Sharks 70.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Sharks led 50-35 at halftime.",
+        "output": "Comets led 50-35 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-026",
+        "kind": "comeback",
+        "question": "Basketball match: Owls vs Sharks. Halftime score: Owls 35, Sharks 50. Final score: Owls 85, Sharks 70.\nDid Owls come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Owls trailed 35-50 at halftime and won 85-70.",
+        "output": "Yes. Comets trailed 35-50 at halftime and won 85-70.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": true,
+          "fields_correct": true,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-027",
+        "kind": "winner",
+        "question": "Basketball match: Sharks vs Owls. Halftime score: Sharks 50, Owls 40. Final score: Sharks 105, Owls 83.\nWho won the match, and what was the final score?",
+        "reference": "Sharks won 105-83.",
+        "output": "Comets won 105-83.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-027",
+        "kind": "halftime",
+        "question": "Basketball match: Sharks vs Owls. Halftime score: Sharks 50, Owls 40. Final score: Sharks 105, Owls 83.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Sharks led 50-40 at halftime.",
+        "output": "Comets led 50-40 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-027",
+        "kind": "comeback",
+        "question": "Basketball match: Sharks vs Owls. Halftime score: Sharks 50, Owls 40. Final score: Sharks 105, Owls 83.\nDid Sharks come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Sharks led 50-40 at halftime and won 105-83.",
+        "output": "Yes. Comets trailed 40-50 at halftime and won 105-83.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-028",
+        "kind": "winner",
+        "question": "Basketball match: Sharks vs Owls. Halftime score: Sharks 38, Owls 44. Final score: Sharks 86, Owls 79.\nWho won the match, and what was the final score?",
+        "reference": "Sharks won 86-79.",
+        "output": "Comets won 86-79.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-028",
+        "kind": "halftime",
+        "question": "Basketball match: Sharks vs Owls. Halftime score: Sharks 38, Owls 44. Final score: Sharks 86, Owls 79.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Owls led 44-38 at halftime.",
+        "output": "Comets led 44-38 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-028",
+        "kind": "comeback",
+        "question": "Basketball match: Sharks vs Owls. Halftime score: Sharks 38, Owls 44. Final score: Sharks 86, Owls 79.\nDid Sharks come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Sharks trailed 38-44 at halftime and won 86-79.",
+        "output": "Yes. Comets trailed 38-44 at halftime and won 86-79.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": true,
+          "fields_correct": true,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-029",
+        "kind": "winner",
+        "question": "Basketball match: Owls vs Bulls. Halftime score: Owls 46, Bulls 36. Final score: Owls 68, Bulls 88.\nWho won the match, and what was the final score?",
+        "reference": "Bulls won 88-68.",
+        "output": "Comets won 88-68.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-029",
+        "kind": "halftime",
+        "question": "Basketball match: Owls vs Bulls. Halftime score: Owls 46, Bulls 36. Final score: Owls 68, Bulls 88.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Owls led 46-36 at halftime.",
+        "output": "Comets led 48-36 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": false,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-029",
+        "kind": "comeback",
+        "question": "Basketball match: Owls vs Bulls. Halftime score: Owls 46, Bulls 36. Final score: Owls 68, Bulls 88.\nDid Bulls come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Bulls trailed 36-46 at halftime and won 88-68.",
+        "output": "No. Wolves led 46-36 at halftime and won 88-68.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-030",
+        "kind": "winner",
+        "question": "Basketball match: Bulls vs Eagles. Halftime score: Bulls 51, Eagles 41. Final score: Bulls 82, Eagles 73.\nWho won the match, and what was the final score?",
+        "reference": "Bulls won 82-73.",
+        "output": "Hawks won 82-73.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-030",
+        "kind": "halftime",
+        "question": "Basketball match: Bulls vs Eagles. Halftime score: Bulls 51, Eagles 41. Final score: Bulls 82, Eagles 73.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Bulls led 51-41 at halftime.",
+        "output": "Bears led 51-41 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-030",
+        "kind": "comeback",
+        "question": "Basketball match: Bulls vs Eagles. Halftime score: Bulls 51, Eagles 41. Final score: Bulls 82, Eagles 73.\nDid Bulls come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Bulls led 51-41 at halftime and won 82-73.",
+        "output": "No. Wolves led 51-41 at halftime and won 82-73.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": true,
+          "fields_correct": true,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-031",
+        "kind": "winner",
+        "question": "Basketball match: Sharks vs Bulls. Halftime score: Sharks 34, Bulls 53. Final score: Sharks 65, Bulls 104.\nWho won the match, and what was the final score?",
+        "reference": "Bulls won 104-65.",
+        "output": "Rockets won 104-65.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-031",
+        "kind": "halftime",
+        "question": "Basketball match: Sharks vs Bulls. Halftime score: Sharks 34, Bulls 53. Final score: Sharks 65, Bulls 104.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Bulls led 53-34 at halftime.",
+        "output": "Bears led 53-34 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-031",
+        "kind": "comeback",
+        "question": "Basketball match: Sharks vs Bulls. Halftime score: Sharks 34, Bulls 53. Final score: Sharks 65, Bulls 104.\nDid Bulls come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Bulls led 53-34 at halftime and won 104-65.",
+        "output": "Yes. Wolves trailed 34-53 at halftime and won 104-65.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-032",
+        "kind": "winner",
+        "question": "Basketball match: Eagles vs Bulls. Halftime score: Eagles 52, Bulls 34. Final score: Eagles 105, Bulls 71.\nWho won the match, and what was the final score?",
+        "reference": "Eagles won 105-71.",
+        "output": "Hawks won 105-71.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-032",
+        "kind": "halftime",
+        "question": "Basketball match: Eagles vs Bulls. Halftime score: Eagles 52, Bulls 34. Final score: Eagles 105, Bulls 71.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Eagles led 52-34 at halftime.",
+        "output": "Bears led 52-34 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-032",
+        "kind": "comeback",
+        "question": "Basketball match: Eagles vs Bulls. Halftime score: Eagles 52, Bulls 34. Final score: Eagles 105, Bulls 71.\nDid Eagles come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Eagles led 52-34 at halftime and won 105-71.",
+        "output": "Yes. Comets trailed 34-52 at halftime and won 105-71.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-033",
+        "kind": "winner",
+        "question": "Basketball match: Owls vs Bulls. Halftime score: Owls 46, Bulls 50. Final score: Owls 92, Bulls 86.\nWho won the match, and what was the final score?",
+        "reference": "Owls won 92-86.",
+        "output": "Comets won 92-88.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": false,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-033",
+        "kind": "halftime",
+        "question": "Basketball match: Owls vs Bulls. Halftime score: Owls 46, Bulls 50. Final score: Owls 92, Bulls 86.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Bulls led 50-46 at halftime.",
+        "output": "Comets led 50-26 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": false,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-033",
+        "kind": "comeback",
+        "question": "Basketball match: Owls vs Bulls. Halftime score: Owls 46, Bulls 50. Final score: Owls 92, Bulls 86.\nDid Owls come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Owls trailed 46-50 at halftime and won 92-86.",
+        "output": "Yes. Comets trailed 26-50 at halftime and won 92-78.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": false,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-034",
+        "kind": "winner",
+        "question": "Basketball match: Bulls vs Sharks. Halftime score: Bulls 30, Sharks 52. Final score: Bulls 89, Sharks 70.\nWho won the match, and what was the final score?",
+        "reference": "Bulls won 89-70.",
+        "output": "Rockets won 89-70.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-034",
+        "kind": "halftime",
+        "question": "Basketball match: Bulls vs Sharks. Halftime score: Bulls 30, Sharks 52. Final score: Bulls 89, Sharks 70.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Sharks led 52-30 at halftime.",
+        "output": "Rockets led 52-30 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-034",
+        "kind": "comeback",
+        "question": "Basketball match: Bulls vs Sharks. Halftime score: Bulls 30, Sharks 52. Final score: Bulls 89, Sharks 70.\nDid Bulls come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Bulls trailed 30-52 at halftime and won 89-70.",
+        "output": "Yes. Wolves trailed 30-52 at halftime and won 89-70.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": true,
+          "fields_correct": true,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-035",
+        "kind": "winner",
+        "question": "Basketball match: Sharks vs Eagles. Halftime score: Sharks 27, Eagles 45. Final score: Sharks 84, Eagles 67.\nWho won the match, and what was the final score?",
+        "reference": "Sharks won 84-67.",
+        "output": "Hawks won 84-67.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-035",
+        "kind": "halftime",
+        "question": "Basketball match: Sharks vs Eagles. Halftime score: Sharks 27, Eagles 45. Final score: Sharks 84, Eagles 67.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Eagles led 45-27 at halftime.",
+        "output": "Hawks led 45-27 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-035",
+        "kind": "comeback",
+        "question": "Basketball match: Sharks vs Eagles. Halftime score: Sharks 27, Eagles 45. Final score: Sharks 84, Eagles 67.\nDid Sharks come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Sharks trailed 27-45 at halftime and won 84-67.",
+        "output": "Yes. Comets trailed 27-45 at halftime and won 84-67.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": true,
+          "fields_correct": true,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-036",
+        "kind": "winner",
+        "question": "Basketball match: Owls vs Sharks. Halftime score: Owls 32, Sharks 52. Final score: Owls 71, Sharks 84.\nWho won the match, and what was the final score?",
+        "reference": "Sharks won 84-71.",
+        "output": "Rockets won 84-71.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-036",
+        "kind": "halftime",
+        "question": "Basketball match: Owls vs Sharks. Halftime score: Owls 32, Sharks 52. Final score: Owls 71, Sharks 84.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Sharks led 52-32 at halftime.",
+        "output": "Comets led 52-32 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-036",
+        "kind": "comeback",
+        "question": "Basketball match: Owls vs Sharks. Halftime score: Owls 32, Sharks 52. Final score: Owls 71, Sharks 84.\nDid Sharks come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Sharks led 52-32 at halftime and won 84-71.",
+        "output": "Yes. Comets trailed 32-52 at halftime and won 84-71.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-037",
+        "kind": "winner",
+        "question": "Basketball match: Bulls vs Eagles. Halftime score: Bulls 37, Eagles 36. Final score: Bulls 84, Eagles 92.\nWho won the match, and what was the final score?",
+        "reference": "Eagles won 92-84.",
+        "output": "Hawks won 92-84.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-037",
+        "kind": "halftime",
+        "question": "Basketball match: Bulls vs Eagles. Halftime score: Bulls 37, Eagles 36. Final score: Bulls 84, Eagles 92.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Bulls led 37-36 at halftime.",
+        "output": "Hawks led 36-37 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-037",
+        "kind": "comeback",
+        "question": "Basketball match: Bulls vs Eagles. Halftime score: Bulls 37, Eagles 36. Final score: Bulls 84, Eagles 92.\nDid Eagles come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Eagles trailed 36-37 at halftime and won 92-84.",
+        "output": "Yes. Comets trailed 37-37 at halftime and won 92-84.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": false,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-038",
+        "kind": "winner",
+        "question": "Basketball match: Owls vs Eagles. Halftime score: Owls 55, Eagles 36. Final score: Owls 72, Eagles 92.\nWho won the match, and what was the final score?",
+        "reference": "Eagles won 92-72.",
+        "output": "Hawks won 92-72.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-038",
+        "kind": "halftime",
+        "question": "Basketball match: Owls vs Eagles. Halftime score: Owls 55, Eagles 36. Final score: Owls 72, Eagles 92.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Owls led 55-36 at halftime.",
+        "output": "Comets led 55-36 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-038",
+        "kind": "comeback",
+        "question": "Basketball match: Owls vs Eagles. Halftime score: Owls 55, Eagles 36. Final score: Owls 72, Eagles 92.\nDid Eagles come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Eagles trailed 36-55 at halftime and won 92-72.",
+        "output": "Yes. Comets trailed 26-55 at halftime and won 92-72.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": false,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-039",
+        "kind": "winner",
+        "question": "Basketball match: Owls vs Eagles. Halftime score: Owls 25, Eagles 39. Final score: Owls 94, Eagles 90.\nWho won the match, and what was the final score?",
+        "reference": "Owls won 94-90.",
+        "output": "Hawks won 94-90.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-039",
+        "kind": "halftime",
+        "question": "Basketball match: Owls vs Eagles. Halftime score: Owls 25, Eagles 39. Final score: Owls 94, Eagles 90.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Eagles led 39-25 at halftime.",
+        "output": "Hawks led 39-25 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-039",
+        "kind": "comeback",
+        "question": "Basketball match: Owls vs Eagles. Halftime score: Owls 25, Eagles 39. Final score: Owls 94, Eagles 90.\nDid Owls come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Owls trailed 25-39 at halftime and won 94-90.",
+        "output": "Yes. Comets trailed 25-39 at halftime and won 94-90.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": true,
+          "fields_correct": true,
+          "reference_exact": false
+        }
+      }
+    ],
+    "test_nll": 1.6400359713394224,
+    "counterfactual_metrics": {
+      "primary_correct": 0.175,
+      "score_numbers_correct": 0.8583333333333333,
+      "fields_correct": 0.14166666666666666,
+      "reference_exact": 0.0,
+      "by_kind": {
+        "winner": {
+          "primary_correct": 0.0,
+          "score_numbers_correct": 0.95,
+          "fields_correct": 0.0,
+          "reference_exact": 0.0
+        },
+        "halftime": {
+          "primary_correct": 0.0,
+          "score_numbers_correct": 0.825,
+          "fields_correct": 0.0,
+          "reference_exact": 0.0
+        },
+        "comeback": {
+          "primary_correct": 0.525,
+          "score_numbers_correct": 0.8,
+          "fields_correct": 0.425,
+          "reference_exact": 0.0
+        }
+      }
+    },
+    "counterfactual_outputs": [
+      {
+        "match_id": "test-000-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Bulls vs Sharks. Halftime score: Bulls 51, Sharks 35. Final score: Bulls 69, Sharks 96.\nWho won the match, and what was the final score?",
+        "reference": "Sharks won 96-69.",
+        "output": "Rockets won 96-69.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-000-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Bulls vs Sharks. Halftime score: Bulls 35, Sharks 51. Final score: Bulls 96, Sharks 69.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Sharks led 51-35 at halftime.",
+        "output": "Rockets led 51-35 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-000-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Bulls vs Sharks. Halftime score: Bulls 35, Sharks 51. Final score: Bulls 96, Sharks 69.\nDid Bulls come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Bulls trailed 35-51 at halftime and won 96-69.",
+        "output": "Yes. Wolves trailed 35-51 at halftime and won 96-69.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": true,
+          "fields_correct": true,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-001-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Eagles vs Bulls. Halftime score: Eagles 34, Bulls 27. Final score: Eagles 87, Bulls 104.\nWho won the match, and what was the final score?",
+        "reference": "Bulls won 104-87.",
+        "output": "Comets won 104-87.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-001-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Eagles vs Bulls. Halftime score: Eagles 27, Bulls 34. Final score: Eagles 104, Bulls 87.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Bulls led 34-27 at halftime.",
+        "output": "Hawks led 34-28 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": false,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-001-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Eagles vs Bulls. Halftime score: Eagles 27, Bulls 34. Final score: Eagles 104, Bulls 87.\nDid Eagles come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Eagles trailed 27-34 at halftime and won 104-87.",
+        "output": "Yes. Comets trailed 27-32 at halftime and won 104-87.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": false,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-002-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Eagles vs Sharks. Halftime score: Eagles 41, Sharks 28. Final score: Eagles 74, Sharks 104.\nWho won the match, and what was the final score?",
+        "reference": "Sharks won 104-74.",
+        "output": "Rockets won 104-74.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-002-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Eagles vs Sharks. Halftime score: Eagles 28, Sharks 41. Final score: Eagles 104, Sharks 74.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Sharks led 41-28 at halftime.",
+        "output": "Hawks led 41-28 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-002-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Eagles vs Sharks. Halftime score: Eagles 28, Sharks 41. Final score: Eagles 104, Sharks 74.\nDid Eagles come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Eagles trailed 28-41 at halftime and won 104-74.",
+        "output": "Yes. Comets trailed 28-41 at halftime and won 104-74.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": true,
+          "fields_correct": true,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-003-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Eagles vs Owls. Halftime score: Eagles 52, Owls 55. Final score: Eagles 69, Owls 103.\nWho won the match, and what was the final score?",
+        "reference": "Owls won 103-69.",
+        "output": "Comets won 103-69.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-003-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Eagles vs Owls. Halftime score: Eagles 55, Owls 52. Final score: Eagles 103, Owls 69.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Eagles led 55-52 at halftime.",
+        "output": "Comets led 55-45 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": false,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-003-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Eagles vs Owls. Halftime score: Eagles 55, Owls 52. Final score: Eagles 103, Owls 69.\nDid Eagles come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Eagles led 55-52 at halftime and won 103-69.",
+        "output": "Yes. Comets trailed 40-55 at halftime and won 103-69.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": false,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-004-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Sharks vs Bulls. Halftime score: Sharks 32, Bulls 27. Final score: Sharks 103, Bulls 68.\nWho won the match, and what was the final score?",
+        "reference": "Sharks won 103-68.",
+        "output": "Comets won 103-68.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-004-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Sharks vs Bulls. Halftime score: Sharks 27, Bulls 32. Final score: Sharks 68, Bulls 103.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Bulls led 32-27 at halftime.",
+        "output": "Comets led 32-28 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": false,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-004-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Sharks vs Bulls. Halftime score: Sharks 27, Bulls 32. Final score: Sharks 68, Bulls 103.\nDid Bulls come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Bulls led 32-27 at halftime and won 103-68.",
+        "output": "Yes. Wolves trailed 27-32 at halftime and won 103-68.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-005-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Sharks vs Eagles. Halftime score: Sharks 28, Eagles 51. Final score: Sharks 85, Eagles 75.\nWho won the match, and what was the final score?",
+        "reference": "Sharks won 85-75.",
+        "output": "Hawks won 85-75.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-005-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Sharks vs Eagles. Halftime score: Sharks 51, Eagles 28. Final score: Sharks 75, Eagles 85.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Sharks led 51-28 at halftime.",
+        "output": "Hawks led 51-28 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-005-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Sharks vs Eagles. Halftime score: Sharks 51, Eagles 28. Final score: Sharks 75, Eagles 85.\nDid Eagles come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Eagles trailed 28-51 at halftime and won 85-75.",
+        "output": "Yes. Comets trailed 28-51 at halftime and won 85-75.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": true,
+          "fields_correct": true,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-006-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Eagles vs Sharks. Halftime score: Eagles 38, Sharks 49. Final score: Eagles 96, Sharks 91.\nWho won the match, and what was the final score?",
+        "reference": "Eagles won 96-91.",
+        "output": "Hawks won 96-91.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-006-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Eagles vs Sharks. Halftime score: Eagles 49, Sharks 38. Final score: Eagles 91, Sharks 96.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Eagles led 49-38 at halftime.",
+        "output": "Hawks led 49-38 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-006-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Eagles vs Sharks. Halftime score: Eagles 49, Sharks 38. Final score: Eagles 91, Sharks 96.\nDid Sharks come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Sharks trailed 38-49 at halftime and won 96-91.",
+        "output": "Yes. Comets trailed 38-49 at halftime and won 96-91.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": true,
+          "fields_correct": true,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-007-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Sharks vs Eagles. Halftime score: Sharks 48, Eagles 34. Final score: Sharks 104, Eagles 65.\nWho won the match, and what was the final score?",
+        "reference": "Sharks won 104-65.",
+        "output": "Comets won 104-65.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-007-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Sharks vs Eagles. Halftime score: Sharks 34, Eagles 48. Final score: Sharks 65, Eagles 104.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Eagles led 48-34 at halftime.",
+        "output": "Hawks led 48-34 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-007-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Sharks vs Eagles. Halftime score: Sharks 34, Eagles 48. Final score: Sharks 65, Eagles 104.\nDid Eagles come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Eagles led 48-34 at halftime and won 104-65.",
+        "output": "Yes. Comets trailed 34-48 at halftime and won 104-65.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-008-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Owls vs Sharks. Halftime score: Owls 52, Sharks 40. Final score: Owls 71, Sharks 105.\nWho won the match, and what was the final score?",
+        "reference": "Sharks won 105-71.",
+        "output": "Comets won 105-71.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-008-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Owls vs Sharks. Halftime score: Owls 40, Sharks 52. Final score: Owls 105, Sharks 71.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Sharks led 52-40 at halftime.",
+        "output": "Comets led 52-40 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-008-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Owls vs Sharks. Halftime score: Owls 40, Sharks 52. Final score: Owls 105, Sharks 71.\nDid Owls come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Owls trailed 40-52 at halftime and won 105-71.",
+        "output": "Yes. Comets trailed 40-52 at halftime and won 105-71.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": true,
+          "fields_correct": true,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-009-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Sharks vs Bulls. Halftime score: Sharks 50, Bulls 36. Final score: Sharks 69, Bulls 96.\nWho won the match, and what was the final score?",
+        "reference": "Bulls won 96-69.",
+        "output": "Rockets won 96-69.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-009-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Sharks vs Bulls. Halftime score: Sharks 36, Bulls 50. Final score: Sharks 96, Bulls 69.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Bulls led 50-36 at halftime.",
+        "output": "Comets led 50-36 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-009-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Sharks vs Bulls. Halftime score: Sharks 36, Bulls 50. Final score: Sharks 96, Bulls 69.\nDid Sharks come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Sharks trailed 36-50 at halftime and won 96-69.",
+        "output": "Yes. Comets trailed 36-50 at halftime and won 96-69.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": true,
+          "fields_correct": true,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-010-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Eagles vs Owls. Halftime score: Eagles 26, Owls 38. Final score: Eagles 78, Owls 93.\nWho won the match, and what was the final score?",
+        "reference": "Owls won 93-78.",
+        "output": "Hawks won 93-78.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-010-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Eagles vs Owls. Halftime score: Eagles 38, Owls 26. Final score: Eagles 93, Owls 78.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Eagles led 38-26 at halftime.",
+        "output": "Hawks led 38-26 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-010-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Eagles vs Owls. Halftime score: Eagles 38, Owls 26. Final score: Eagles 93, Owls 78.\nDid Eagles come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Eagles led 38-26 at halftime and won 93-78.",
+        "output": "Yes. Comets trailed 26-38 at halftime and won 93-78.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-011-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Eagles vs Owls. Halftime score: Eagles 41, Owls 45. Final score: Eagles 74, Owls 67.\nWho won the match, and what was the final score?",
+        "reference": "Eagles won 74-67.",
+        "output": "Hawks won 74-67.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-011-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Eagles vs Owls. Halftime score: Eagles 45, Owls 41. Final score: Eagles 67, Owls 74.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Eagles led 45-41 at halftime.",
+        "output": "Comets led 45-41 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-011-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Eagles vs Owls. Halftime score: Eagles 45, Owls 41. Final score: Eagles 67, Owls 74.\nDid Owls come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Owls trailed 41-45 at halftime and won 74-67.",
+        "output": "Yes. Comets trailed 41-45 at halftime and won 74-67.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": true,
+          "fields_correct": true,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-012-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Eagles vs Owls. Halftime score: Eagles 49, Owls 41. Final score: Eagles 83, Owls 66.\nWho won the match, and what was the final score?",
+        "reference": "Eagles won 83-66.",
+        "output": "Hawks won 83-66.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-012-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Eagles vs Owls. Halftime score: Eagles 41, Owls 49. Final score: Eagles 66, Owls 83.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Owls led 49-41 at halftime.",
+        "output": "Comets led 49-41 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-012-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Eagles vs Owls. Halftime score: Eagles 41, Owls 49. Final score: Eagles 66, Owls 83.\nDid Owls come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Owls led 49-41 at halftime and won 83-66.",
+        "output": "No. Comets led 49-41 at halftime and won 83-66.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": true,
+          "fields_correct": true,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-013-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Sharks vs Eagles. Halftime score: Sharks 34, Eagles 54. Final score: Sharks 71, Eagles 96.\nWho won the match, and what was the final score?",
+        "reference": "Eagles won 96-71.",
+        "output": "Hawks won 96-71.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-013-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Sharks vs Eagles. Halftime score: Sharks 54, Eagles 34. Final score: Sharks 96, Eagles 71.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Sharks led 54-34 at halftime.",
+        "output": "Comets led 54-34 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-013-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Sharks vs Eagles. Halftime score: Sharks 54, Eagles 34. Final score: Sharks 96, Eagles 71.\nDid Sharks come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Sharks led 54-34 at halftime and won 96-71.",
+        "output": "Yes. Comets trailed 34-54 at halftime and won 96-71.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-014-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Sharks vs Owls. Halftime score: Sharks 31, Owls 53. Final score: Sharks 104, Owls 87.\nWho won the match, and what was the final score?",
+        "reference": "Sharks won 104-87.",
+        "output": "Comets won 104-87.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-014-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Sharks vs Owls. Halftime score: Sharks 53, Owls 31. Final score: Sharks 87, Owls 104.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Sharks led 53-31 at halftime.",
+        "output": "Comets led 53-31 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-014-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Sharks vs Owls. Halftime score: Sharks 53, Owls 31. Final score: Sharks 87, Owls 104.\nDid Owls come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Owls trailed 31-53 at halftime and won 104-87.",
+        "output": "Yes. Comets trailed 31-53 at halftime and won 104-87.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": true,
+          "fields_correct": true,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-015-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Owls vs Bulls. Halftime score: Owls 34, Bulls 41. Final score: Owls 79, Bulls 99.\nWho won the match, and what was the final score?",
+        "reference": "Bulls won 99-79.",
+        "output": "Comets won 99-79.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-015-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Owls vs Bulls. Halftime score: Owls 41, Bulls 34. Final score: Owls 99, Bulls 79.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Owls led 41-34 at halftime.",
+        "output": "Hawks led 41-34 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-015-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Owls vs Bulls. Halftime score: Owls 41, Bulls 34. Final score: Owls 99, Bulls 79.\nDid Owls come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Owls led 41-34 at halftime and won 99-79.",
+        "output": "Yes. Comets trailed 34-51 at halftime and won 99-79.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": false,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-016-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Eagles vs Owls. Halftime score: Eagles 54, Owls 32. Final score: Eagles 67, Owls 99.\nWho won the match, and what was the final score?",
+        "reference": "Owls won 99-67.",
+        "output": "Hawks won 99-67.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-016-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Eagles vs Owls. Halftime score: Eagles 32, Owls 54. Final score: Eagles 99, Owls 67.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Owls led 54-32 at halftime.",
+        "output": "Hawks led 54-32 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-016-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Eagles vs Owls. Halftime score: Eagles 32, Owls 54. Final score: Eagles 99, Owls 67.\nDid Eagles come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Eagles trailed 32-54 at halftime and won 99-67.",
+        "output": "Yes. Comets trailed 32-54 at halftime and won 99-67.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": true,
+          "fields_correct": true,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-017-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Eagles vs Bulls. Halftime score: Eagles 41, Bulls 38. Final score: Eagles 74, Bulls 85.\nWho won the match, and what was the final score?",
+        "reference": "Bulls won 85-74.",
+        "output": "Rockets won 85-74.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-017-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Eagles vs Bulls. Halftime score: Eagles 38, Bulls 41. Final score: Eagles 85, Bulls 74.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Bulls led 41-38 at halftime.",
+        "output": "Bears led 38-41 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-017-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Eagles vs Bulls. Halftime score: Eagles 38, Bulls 41. Final score: Eagles 85, Bulls 74.\nDid Eagles come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Eagles trailed 38-41 at halftime and won 85-74.",
+        "output": "Yes. Comets trailed 38-51 at halftime and won 85-74.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": false,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-018-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Owls vs Bulls. Halftime score: Owls 35, Bulls 47. Final score: Owls 71, Bulls 83.\nWho won the match, and what was the final score?",
+        "reference": "Bulls won 83-71.",
+        "output": "Rockets won 83-71.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-018-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Owls vs Bulls. Halftime score: Owls 47, Bulls 35. Final score: Owls 83, Bulls 71.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Owls led 47-35 at halftime.",
+        "output": "Comets led 47-35 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-018-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Owls vs Bulls. Halftime score: Owls 47, Bulls 35. Final score: Owls 83, Bulls 71.\nDid Owls come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Owls led 47-35 at halftime and won 83-71.",
+        "output": "Yes. Comets trailed 35-47 at halftime and won 83-71.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-019-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Sharks vs Eagles. Halftime score: Sharks 50, Eagles 33. Final score: Sharks 94, Eagles 104.\nWho won the match, and what was the final score?",
+        "reference": "Eagles won 104-94.",
+        "output": "Comets won 104-94.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-019-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Sharks vs Eagles. Halftime score: Sharks 33, Eagles 50. Final score: Sharks 104, Eagles 94.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Eagles led 50-33 at halftime.",
+        "output": "Hawks led 50-33 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-019-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Sharks vs Eagles. Halftime score: Sharks 33, Eagles 50. Final score: Sharks 104, Eagles 94.\nDid Sharks come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Sharks trailed 33-50 at halftime and won 104-94.",
+        "output": "Yes. Comets trailed 33-50 at halftime and won 104-94.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": true,
+          "fields_correct": true,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-020-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Bulls vs Sharks. Halftime score: Bulls 35, Sharks 43. Final score: Bulls 82, Sharks 95.\nWho won the match, and what was the final score?",
+        "reference": "Sharks won 95-82.",
+        "output": "Rockets won 95-82.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-020-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Bulls vs Sharks. Halftime score: Bulls 43, Sharks 35. Final score: Bulls 95, Sharks 82.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Bulls led 43-35 at halftime.",
+        "output": "Rockets led 43-35 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-020-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Bulls vs Sharks. Halftime score: Bulls 43, Sharks 35. Final score: Bulls 95, Sharks 82.\nDid Bulls come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Bulls led 43-35 at halftime and won 95-82.",
+        "output": "Yes. Wolves trailed 35-43 at halftime and won 95-82.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-021-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Owls vs Eagles. Halftime score: Owls 32, Eagles 31. Final score: Owls 77, Eagles 76.\nWho won the match, and what was the final score?",
+        "reference": "Owls won 77-76.",
+        "output": "Hawks won 76-77.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-021-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Owls vs Eagles. Halftime score: Owls 31, Eagles 32. Final score: Owls 76, Eagles 77.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Eagles led 32-31 at halftime.",
+        "output": "Hawks led 31-31 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": false,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-021-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Owls vs Eagles. Halftime score: Owls 31, Eagles 32. Final score: Owls 76, Eagles 77.\nDid Eagles come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Eagles led 32-31 at halftime and won 77-76.",
+        "output": "Yes. Comets trailed 31-32 at halftime and won 76-77.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-022-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Owls vs Bulls. Halftime score: Owls 41, Bulls 38. Final score: Owls 67, Bulls 72.\nWho won the match, and what was the final score?",
+        "reference": "Bulls won 72-67.",
+        "output": "Comets won 72-67.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-022-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Owls vs Bulls. Halftime score: Owls 38, Bulls 41. Final score: Owls 72, Bulls 67.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Bulls led 41-38 at halftime.",
+        "output": "Bears led 41-38 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-022-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Owls vs Bulls. Halftime score: Owls 38, Bulls 41. Final score: Owls 72, Bulls 67.\nDid Owls come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Owls trailed 38-41 at halftime and won 72-67.",
+        "output": "Yes. Comets trailed 38-41 at halftime and won 72-67.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": true,
+          "fields_correct": true,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-023-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Bulls vs Eagles. Halftime score: Bulls 38, Eagles 26. Final score: Bulls 71, Eagles 98.\nWho won the match, and what was the final score?",
+        "reference": "Eagles won 98-71.",
+        "output": "Hawks won 98-71.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-023-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Bulls vs Eagles. Halftime score: Bulls 26, Eagles 38. Final score: Bulls 98, Eagles 71.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Eagles led 38-26 at halftime.",
+        "output": "Bears led 38-26 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-023-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Bulls vs Eagles. Halftime score: Bulls 26, Eagles 38. Final score: Bulls 98, Eagles 71.\nDid Bulls come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Bulls trailed 26-38 at halftime and won 98-71.",
+        "output": "Yes. Wolves trailed 26-38 at halftime and won 98-71.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": true,
+          "fields_correct": true,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-024-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Bulls vs Eagles. Halftime score: Bulls 25, Eagles 50. Final score: Bulls 92, Eagles 93.\nWho won the match, and what was the final score?",
+        "reference": "Eagles won 93-92.",
+        "output": "Hawks won 93-93.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": false,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-024-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Bulls vs Eagles. Halftime score: Bulls 50, Eagles 25. Final score: Bulls 93, Eagles 92.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Bulls led 50-25 at halftime.",
+        "output": "Rockets led 50-25 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-024-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Bulls vs Eagles. Halftime score: Bulls 50, Eagles 25. Final score: Bulls 93, Eagles 92.\nDid Bulls come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Bulls led 50-25 at halftime and won 93-92.",
+        "output": "No. Wolves led 50-25 at halftime and won 93-93.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": false,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-025-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Sharks vs Eagles. Halftime score: Sharks 30, Eagles 27. Final score: Sharks 101, Eagles 84.\nWho won the match, and what was the final score?",
+        "reference": "Sharks won 101-84.",
+        "output": "Hawks won 101-84.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-025-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Sharks vs Eagles. Halftime score: Sharks 27, Eagles 30. Final score: Sharks 84, Eagles 101.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Eagles led 30-27 at halftime.",
+        "output": "Hawks led 28-30 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": false,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-025-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Sharks vs Eagles. Halftime score: Sharks 27, Eagles 30. Final score: Sharks 84, Eagles 101.\nDid Eagles come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Eagles led 30-27 at halftime and won 101-84.",
+        "output": "Yes. Comets trailed 27-30 at halftime and won 101-84.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-026-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Owls vs Sharks. Halftime score: Owls 35, Sharks 50. Final score: Owls 70, Sharks 85.\nWho won the match, and what was the final score?",
+        "reference": "Sharks won 85-70.",
+        "output": "Rockets won 85-70.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-026-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Owls vs Sharks. Halftime score: Owls 50, Sharks 35. Final score: Owls 85, Sharks 70.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Owls led 50-35 at halftime.",
+        "output": "Comets led 50-35 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-026-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Owls vs Sharks. Halftime score: Owls 50, Sharks 35. Final score: Owls 85, Sharks 70.\nDid Owls come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Owls led 50-35 at halftime and won 85-70.",
+        "output": "Yes. Comets trailed 35-50 at halftime and won 85-70.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-027-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Sharks vs Owls. Halftime score: Sharks 50, Owls 40. Final score: Sharks 83, Owls 105.\nWho won the match, and what was the final score?",
+        "reference": "Owls won 105-83.",
+        "output": "Comets won 105-83.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-027-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Sharks vs Owls. Halftime score: Sharks 40, Owls 50. Final score: Sharks 105, Owls 83.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Owls led 50-40 at halftime.",
+        "output": "Comets led 50-40 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-027-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Sharks vs Owls. Halftime score: Sharks 40, Owls 50. Final score: Sharks 105, Owls 83.\nDid Sharks come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Sharks trailed 40-50 at halftime and won 105-83.",
+        "output": "Yes. Comets trailed 40-50 at halftime and won 105-83.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": true,
+          "fields_correct": true,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-028-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Sharks vs Owls. Halftime score: Sharks 38, Owls 44. Final score: Sharks 79, Owls 86.\nWho won the match, and what was the final score?",
+        "reference": "Owls won 86-79.",
+        "output": "Comets won 86-79.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-028-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Sharks vs Owls. Halftime score: Sharks 44, Owls 38. Final score: Sharks 86, Owls 79.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Sharks led 44-38 at halftime.",
+        "output": "Comets led 44-38 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-028-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Sharks vs Owls. Halftime score: Sharks 44, Owls 38. Final score: Sharks 86, Owls 79.\nDid Sharks come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Sharks led 44-38 at halftime and won 86-79.",
+        "output": "Yes. Comets trailed 38-44 at halftime and won 86-79.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-029-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Owls vs Bulls. Halftime score: Owls 46, Bulls 36. Final score: Owls 88, Bulls 68.\nWho won the match, and what was the final score?",
+        "reference": "Owls won 88-68.",
+        "output": "Comets won 88-68.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-029-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Owls vs Bulls. Halftime score: Owls 36, Bulls 46. Final score: Owls 68, Bulls 88.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Bulls led 46-36 at halftime.",
+        "output": "Bears led 46-36 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-029-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Owls vs Bulls. Halftime score: Owls 36, Bulls 46. Final score: Owls 68, Bulls 88.\nDid Bulls come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Bulls led 46-36 at halftime and won 88-68.",
+        "output": "No. Wolves led 48-36 at halftime and won 88-68.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": false,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-030-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Bulls vs Eagles. Halftime score: Bulls 51, Eagles 41. Final score: Bulls 73, Eagles 82.\nWho won the match, and what was the final score?",
+        "reference": "Eagles won 82-73.",
+        "output": "Hawks won 82-73.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-030-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Bulls vs Eagles. Halftime score: Bulls 41, Eagles 51. Final score: Bulls 82, Eagles 73.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Eagles led 51-41 at halftime.",
+        "output": "Hawks led 51-41 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-030-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Bulls vs Eagles. Halftime score: Bulls 41, Eagles 51. Final score: Bulls 82, Eagles 73.\nDid Bulls come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Bulls trailed 41-51 at halftime and won 82-73.",
+        "output": "No. Wolves led 51-41 at halftime and won 82-73.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-031-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Sharks vs Bulls. Halftime score: Sharks 34, Bulls 53. Final score: Sharks 104, Bulls 65.\nWho won the match, and what was the final score?",
+        "reference": "Sharks won 104-65.",
+        "output": "Comets won 104-65.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-031-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Sharks vs Bulls. Halftime score: Sharks 53, Bulls 34. Final score: Sharks 65, Bulls 104.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Sharks led 53-34 at halftime.",
+        "output": "Rockets led 53-34 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-031-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Sharks vs Bulls. Halftime score: Sharks 53, Bulls 34. Final score: Sharks 65, Bulls 104.\nDid Bulls come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Bulls trailed 34-53 at halftime and won 104-65.",
+        "output": "Yes. Wolves trailed 34-53 at halftime and won 104-65.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": true,
+          "fields_correct": true,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-032-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Eagles vs Bulls. Halftime score: Eagles 52, Bulls 34. Final score: Eagles 71, Bulls 105.\nWho won the match, and what was the final score?",
+        "reference": "Bulls won 105-71.",
+        "output": "Rockets won 105-71.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-032-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Eagles vs Bulls. Halftime score: Eagles 34, Bulls 52. Final score: Eagles 105, Bulls 71.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Bulls led 52-34 at halftime.",
+        "output": "Hawks led 52-34 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-032-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Eagles vs Bulls. Halftime score: Eagles 34, Bulls 52. Final score: Eagles 105, Bulls 71.\nDid Eagles come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Eagles trailed 34-52 at halftime and won 105-71.",
+        "output": "Yes. Comets trailed 34-52 at halftime and won 105-71.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": true,
+          "fields_correct": true,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-033-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Owls vs Bulls. Halftime score: Owls 46, Bulls 50. Final score: Owls 86, Bulls 92.\nWho won the match, and what was the final score?",
+        "reference": "Bulls won 92-86.",
+        "output": "Comets won 92-78.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": false,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-033-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Owls vs Bulls. Halftime score: Owls 50, Bulls 46. Final score: Owls 92, Bulls 86.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Owls led 50-46 at halftime.",
+        "output": "Comets led 50-26 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": false,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-033-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Owls vs Bulls. Halftime score: Owls 50, Bulls 46. Final score: Owls 92, Bulls 86.\nDid Owls come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Owls led 50-46 at halftime and won 92-86.",
+        "output": "Yes. Comets trailed 26-50 at halftime and won 92-78.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": false,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-034-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Bulls vs Sharks. Halftime score: Bulls 30, Sharks 52. Final score: Bulls 70, Sharks 89.\nWho won the match, and what was the final score?",
+        "reference": "Sharks won 89-70.",
+        "output": "Rockets won 89-70.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-034-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Bulls vs Sharks. Halftime score: Bulls 52, Sharks 30. Final score: Bulls 89, Sharks 70.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Bulls led 52-30 at halftime.",
+        "output": "Rockets led 52-30 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-034-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Bulls vs Sharks. Halftime score: Bulls 52, Sharks 30. Final score: Bulls 89, Sharks 70.\nDid Bulls come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Bulls led 52-30 at halftime and won 89-70.",
+        "output": "Yes. Wolves trailed 30-52 at halftime and won 89-70.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-035-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Sharks vs Eagles. Halftime score: Sharks 27, Eagles 45. Final score: Sharks 67, Eagles 84.\nWho won the match, and what was the final score?",
+        "reference": "Eagles won 84-67.",
+        "output": "Hawks won 84-67.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-035-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Sharks vs Eagles. Halftime score: Sharks 45, Eagles 27. Final score: Sharks 84, Eagles 67.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Sharks led 45-27 at halftime.",
+        "output": "Hawks led 45-27 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-035-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Sharks vs Eagles. Halftime score: Sharks 45, Eagles 27. Final score: Sharks 84, Eagles 67.\nDid Sharks come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Sharks led 45-27 at halftime and won 84-67.",
+        "output": "Yes. Comets trailed 27-45 at halftime and won 84-67.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-036-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Owls vs Sharks. Halftime score: Owls 32, Sharks 52. Final score: Owls 84, Sharks 71.\nWho won the match, and what was the final score?",
+        "reference": "Owls won 84-71.",
+        "output": "Hawks won 84-71.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-036-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Owls vs Sharks. Halftime score: Owls 52, Sharks 32. Final score: Owls 71, Sharks 84.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Owls led 52-32 at halftime.",
+        "output": "Comets led 52-32 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-036-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Owls vs Sharks. Halftime score: Owls 52, Sharks 32. Final score: Owls 71, Sharks 84.\nDid Sharks come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "Yes. Sharks trailed 32-52 at halftime and won 84-71.",
+        "output": "Yes. Comets trailed 32-52 at halftime and won 84-71.",
+        "scores": {
+          "primary_correct": true,
+          "score_numbers_correct": true,
+          "fields_correct": true,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-037-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Bulls vs Eagles. Halftime score: Bulls 37, Eagles 36. Final score: Bulls 92, Eagles 84.\nWho won the match, and what was the final score?",
+        "reference": "Bulls won 92-84.",
+        "output": "Hawks won 92-84.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-037-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Bulls vs Eagles. Halftime score: Bulls 36, Eagles 37. Final score: Bulls 84, Eagles 92.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Eagles led 37-36 at halftime.",
+        "output": "Hawks led 37-37 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": false,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-037-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Bulls vs Eagles. Halftime score: Bulls 36, Eagles 37. Final score: Bulls 84, Eagles 92.\nDid Eagles come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Eagles led 37-36 at halftime and won 92-84.",
+        "output": "Yes. Comets trailed 37-37 at halftime and won 92-84.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": false,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-038-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Owls vs Eagles. Halftime score: Owls 55, Eagles 36. Final score: Owls 92, Eagles 72.\nWho won the match, and what was the final score?",
+        "reference": "Owls won 92-72.",
+        "output": "Hawks won 92-72.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-038-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Owls vs Eagles. Halftime score: Owls 36, Eagles 55. Final score: Owls 72, Eagles 92.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Eagles led 55-36 at halftime.",
+        "output": "Hawks led 55-36 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-038-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Owls vs Eagles. Halftime score: Owls 36, Eagles 55. Final score: Owls 72, Eagles 92.\nDid Eagles come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Eagles led 55-36 at halftime and won 92-72.",
+        "output": "Yes. Comets trailed 36-55 at halftime and won 92-72.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-039-counter-winner",
+        "kind": "winner",
+        "question": "Basketball match: Owls vs Eagles. Halftime score: Owls 25, Eagles 39. Final score: Owls 90, Eagles 94.\nWho won the match, and what was the final score?",
+        "reference": "Eagles won 94-90.",
+        "output": "Hawks won 94-90.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-039-counter-halftime",
+        "kind": "halftime",
+        "question": "Basketball match: Owls vs Eagles. Halftime score: Owls 39, Eagles 25. Final score: Owls 94, Eagles 90.\nWho was ahead at halftime, and what was the halftime score?",
+        "reference": "Owls led 39-25 at halftime.",
+        "output": "Hawks led 39-25 at halftime.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      },
+      {
+        "match_id": "test-039-counter-comeback",
+        "kind": "comeback",
+        "question": "Basketball match: Owls vs Eagles. Halftime score: Owls 39, Eagles 25. Final score: Owls 94, Eagles 90.\nDid Owls come back from a halftime deficit to win? Explain using the scores.",
+        "reference": "No. Owls led 39-25 at halftime and won 94-90.",
+        "output": "Yes. Comets trailed 25-39 at halftime and won 94-90.",
+        "scores": {
+          "primary_correct": false,
+          "score_numbers_correct": true,
+          "fields_correct": false,
+          "reference_exact": false
+        }
+      }
+    ],
+    "paired_primary_accuracy": 0.008333333333333333,
+    "paired_fields_accuracy": 0.008333333333333333,
+    "outputs_exactly_seen_in_training": 7
+  },
+  "batch_generation_checked": true,
+  "test_evaluated_after_validation_selection": true
+}
