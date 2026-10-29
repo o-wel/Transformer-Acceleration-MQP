@@ -19,8 +19,8 @@ class TestAttention(unittest.TestCase):
         torch.manual_seed(42)
         torch.set_num_threads(1)
 
-    def check_backend(self, backend, device='cpu', dtype=torch.float32):
-        for lora in (False, True):
+    def check_backend(self, backend, device='cpu', dtype=torch.float32, lora_options=(False, True)):
+        for lora in lora_options:
             eager = tiny().to(device=device, dtype=dtype)
             if lora:
                 eager.enable_lora(2, 4)
@@ -60,6 +60,11 @@ class TestAttention(unittest.TestCase):
     @unittest.skipUnless(torch.cuda.is_available(), 'CUDA required')
     def test_flash(self):
         self.check_backend('flash', 'cuda', torch.float16)
+
+    @unittest.skipUnless(torch.cuda.is_available(), 'CUDA required for forced FlashAttention')
+    def test_combined_lora_flash_kv_cache(self):
+        """Nonzero LoRA + forced flash + cached prefill/decode and overflow."""
+        self.check_backend('flash', 'cuda', torch.float16, lora_options=(True,))
 
     @unittest.skipUnless(torch.cuda.is_available(), 'CUDA required')
     def test_efficient_fp32(self):
