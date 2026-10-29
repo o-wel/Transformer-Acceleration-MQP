@@ -19,13 +19,23 @@ def main():
                         help='Precision represented by the saved benchmark results')
     parser.add_argument('--results-dir',type=Path,
                         help='Directory containing report.json; defaults to the standard results directory')
+    parser.add_argument('--fp16-report',type=Path,
+                        help='Optional FP16 report.json to compare with the primary report in the visuals')
     args=parser.parse_args()
     OUT=args.results_dir or DEFAULT_OUT
     if not OUT.is_absolute():
         OUT=Path.cwd()/OUT
     precision=args.precision.upper()
     report=json.loads((OUT/'report.json').read_text())
+    fp16_report=None
+    if args.fp16_report:
+        fp16_path=args.fp16_report
+        if not fp16_path.is_absolute():
+            fp16_path=Path.cwd()/fp16_path
+        fp16_report=json.loads(fp16_path.read_text())
     assert report['complete']
+    if fp16_report is not None:
+        assert fp16_report['complete']
     #assert all(m['weights_unchanged'] and m['quality']['identical_until_eos']==120 for m in report['models'].values())
     tables={}
     memory=[('Model; batch; prompt','No cache peak','Cache peak','KV storage')]
@@ -79,7 +89,7 @@ def main():
     ])]
     md=[]
     with PdfPages(OUT/'KV_CACHE_REPORT.pdf') as pdf:
-        visuals=visual_pages(report, precision)
+        visuals=visual_pages(report, precision, fp16_report)
         for number,(name,fig) in enumerate(visuals,1):
             fig.text(.075,.018,'Measured data: report.json | Diagram: conceptual illustration',size=8,color='#555')
             fig.text(.92,.018,str(number),size=8)

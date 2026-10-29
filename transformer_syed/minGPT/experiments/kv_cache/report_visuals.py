@@ -64,62 +64,89 @@ def mechanism():
     return fig
 
 
-def speed(report, precision='FP32'):
-    fig=page('Where caching speeds up generation',f'NVIDIA A30 | {precision} | 64 generated tokens per sequence | 5 measured repeats')
+def speed(report, precision='FP32', fp16_report=None):
+    reports=[(report,precision)]
+    if fp16_report is not None:
+        reports.append((fp16_report,'FP16'))
+    fig=page('Where caching speeds up generation',
+             ' | '.join(f'{label} | NVIDIA A30 | 64 generated tokens per sequence | 5 measured repeats'
+                        for _,label in reports))
     positions=list(range(4));labels=['32 tokens\nbatch 1','128 tokens\nbatch 1','512 tokens\nbatch 1','128 tokens\nbatch 4']
-    for index,name in enumerate(['pretrained','lora']):
-        ax=fig.add_axes([.11,.65-index*.27,.83,.19])
-        rows=report['models'][name]['performance']
-        for mode,offset,color,label in [('uncached',-.18,OFF,'No cache'),('cached',.18,ON,'KV cache')]:
-            values=[r['summary'][mode]['wall_ms']['mean'] for r in rows]
-            errors=[r['summary'][mode]['wall_ms']['stdev'] for r in rows]
-            bars=ax.bar([p+offset for p in positions],values,.34,color=color,label=label,yerr=errors,capsize=3)
-            ax.bar_label(bars,labels=[f'{v:.0f}' for v in values],fontsize=8,padding=4)
-        ax.set(xticks=positions,xticklabels=labels,ylabel='Request time (ms)',ylim=(0,1700))
-        ax.set_title('Pretrained GPT-2' if name=='pretrained' else 'Trained LoRA (unmerged adapters)',loc='left',fontsize=12,weight='bold',color=INK)
+    columns=len(reports)
+    for column,(current_report,current_precision) in enumerate(reports):
+        left=.08+column*(.92/columns)
+        width=.84/columns
+        for index,name in enumerate(['pretrained','lora']):
+            ax=fig.add_axes([left,.65-index*.27,width,.19])
+            rows=current_report['models'][name]['performance']
+            for mode,offset,color,label in [('uncached',-.18,OFF,'No cache'),('cached',.18,ON,'KV cache')]:
+                values=[r['summary'][mode]['wall_ms']['mean'] for r in rows]
+                errors=[r['summary'][mode]['wall_ms']['stdev'] for r in rows]
+                bars=ax.bar([p+offset for p in positions],values,.34,color=color,label=label,yerr=errors,capsize=3)
+                ax.bar_label(bars,labels=[f'{v:.0f}' for v in values],fontsize=7,padding=3)
+            ax.set(xticks=positions,xticklabels=labels,ylabel='Request time (ms)',ylim=(0,1700))
+            ax.set_title(f'{current_precision}: ' + ('Pretrained GPT-2' if name=='pretrained' else 'Trained LoRA'),
+                         loc='left',fontsize=10,weight='bold',color=INK)
+            style(ax)
+            if index==0 and column==0:
+                ax.legend(frameon=False,fontsize=8,loc='lower right',bbox_to_anchor=(1,1.015),ncol=2)
+        ax=fig.add_axes([left,.14,width,.15])
+        for name,offset,color,label in [('pretrained',-.16,INK,'Pretrained'),('lora',.16,ON,'LoRA')]:
+            values=[r['speedup'] for r in current_report['models'][name]['performance']]
+            bars=ax.bar([p+offset for p in positions],values,.29,color=color,label=label)
+            ax.bar_label(bars,labels=[f'{v:.2f}x' for v in values],fontsize=8,padding=3)
+        ax.axhline(1,color=OFF,ls='--',lw=1.3)
+        ax.set(xticks=positions,xticklabels=labels,ylabel='Speedup',ylim=(0,3.8))
+        ax.set_title(f'{current_precision}: speedup',loc='left',fontsize=10,color=INK)
         style(ax)
-        if index==0:ax.legend(frameon=False,fontsize=9,loc='lower right',bbox_to_anchor=(1,1.015),ncol=2)
-    ax=fig.add_axes([.11,.14,.83,.15])
-    for name,offset,color,label in [('pretrained',-.16,INK,'Pretrained'),('lora',.16,ON,'LoRA')]:
-        values=[r['speedup'] for r in report['models'][name]['performance']]
-        bars=ax.bar([p+offset for p in positions],values,.29,color=color,label=label)
-        ax.bar_label(bars,labels=[f'{v:.2f}x' for v in values],fontsize=9,padding=3)
-    ax.axhline(1,color=OFF,ls='--',lw=1.3)
-    ax.set(xticks=positions,xticklabels=labels,ylabel='Speedup',ylim=(0,3.8))
-    ax.set_title('Above 1x is faster; below 1x is slower',loc='left',fontsize=11,color=INK)
-    style(ax);ax.legend(frameon=False,fontsize=9,loc='upper left')
+        if column==0:ax.legend(frameon=False,fontsize=8,loc='upper left')
     paragraph(fig,.077,'Longer prompts and batch four benefit most; short requests are near break-even. Error bars show one standard deviation. Timings exclude model loading and tokenization.')
     return fig
 
 
-def memory(report, precision='FP32'):
+def memory(report, precision='FP32', fp16_report=None):
+    reports=[(report,precision)]
+    if fp16_report is not None:
+        reports.append((fp16_report,'FP16'))
     fig=page('The speed–memory trade-off','Cache storage is temporary inference state, not additional model weights')
     labels=['32 / B1','128 / B1','512 / B1','128 / B4'];positions=list(range(4))
-    for index,name in enumerate(['pretrained','lora']):
-        ax=fig.add_axes([.11,.65-index*.26,.83,.18])
-        rows=report['models'][name]['performance']
-        for mode,offset,color,label in [('uncached',-.18,OFF,'No cache'),('cached',.18,ON,'KV cache')]:
-            values=[r['summary'][mode]['peak_allocated_bytes']['mean']/2**20 for r in rows]
-            bars=ax.bar([p+offset for p in positions],values,.34,color=color,label=label)
-            ax.bar_label(bars,labels=[f'{v:.1f}' for v in values],fontsize=8,padding=4)
-        ax.set(xticks=positions,xticklabels=labels,ylabel='Peak allocated GPU MiB',ylim=(0,940))
-        ax.set_title('Pretrained GPT-2' if name=='pretrained' else 'Trained LoRA',loc='left',fontsize=12,weight='bold',color=INK)
-        style(ax)
-        if index==0:ax.legend(frameon=False,fontsize=9,loc='lower right',bbox_to_anchor=(1,1.015),ncol=2)
+    columns=len(reports)
+    for column,(current_report,current_precision) in enumerate(reports):
+        left=.08+column*(.92/columns)
+        width=.84/columns
+        for index,name in enumerate(['pretrained','lora']):
+            ax=fig.add_axes([left,.65-index*.26,width,.18])
+            rows=current_report['models'][name]['performance']
+            for mode,offset,color,label in [('uncached',-.18,OFF,'No cache'),('cached',.18,ON,'KV cache')]:
+                values=[r['summary'][mode]['peak_allocated_bytes']['mean']/2**20 for r in rows]
+                bars=ax.bar([p+offset for p in positions],values,.34,color=color,label=label)
+                ax.bar_label(bars,labels=[f'{v:.1f}' for v in values],fontsize=7,padding=3)
+            ax.set(xticks=positions,xticklabels=labels,ylabel='Peak allocated GPU MiB',ylim=(0,940))
+            ax.set_title(f'{current_precision}: ' + ('Pretrained GPT-2' if name=='pretrained' else 'Trained LoRA'),
+                         loc='left',fontsize=10,weight='bold',color=INK)
+            style(ax)
+            if index==0 and column==0:
+                ax.legend(frameon=False,fontsize=8,loc='lower right',bbox_to_anchor=(1,1.015),ncol=2)
     paragraph(fig,.34,'X-axis: prompt tokens / batch size. Memory axes start at zero. Peak allocation includes weights, masks, caches, and live temporaries. It is measured runtime memory, not simply the sum of parameter and cache storage.')
-    ax=fig.add_axes([.11,.16,.83,.10])
-    rows=report['models']['pretrained']['performance']
-    values=[r['summary']['cached']['cache_bytes']['mean']/2**20 for r in rows]
-    bars=ax.bar(positions,values,.5,color=ON)
-    ax.bar_label(bars,labels=[f'{v:.2f}' for v in values],fontsize=9,padding=3)
-    ax.set(xticks=positions,xticklabels=labels,ylabel='Cache MiB',ylim=(0,68))
-    ax.set_title('Logical K/V storage alone (same sizes for base and LoRA)',loc='left',fontsize=11,color=INK)
-    style(ax)
-    bytes_per_value=2 if precision == 'FP16' else 4
-    cache_kib=72*bytes_per_value/4
-    paragraph(fig,.105,f'The cache requires {cache_kib:.0f} KiB per stored token per sequence in {precision}. After predicting 64 output tokens, it holds prompt length + 63 tokens. Cache storage grows with sequence length and batch size; it is already included in the peak-memory measurements above.')
+    for column,(current_report,current_precision) in enumerate(reports):
+        left=.08+column*(.92/columns)
+        width=.84/columns
+        ax=fig.add_axes([left,.16,width,.10])
+        rows=current_report['models']['pretrained']['performance']
+        values=[r['summary']['cached']['cache_bytes']['mean']/2**20 for r in rows]
+        bars=ax.bar(positions,values,.5,color=ON)
+        ax.bar_label(bars,labels=[f'{v:.2f}' for v in values],fontsize=8,padding=3)
+        ax.set(xticks=positions,xticklabels=labels,ylabel='Cache MiB',ylim=(0,68))
+        ax.set_title(f'{current_precision}: logical K/V storage',loc='left',fontsize=10,color=INK)
+        style(ax)
+    cache_sizes=[]
+    for _,current_precision in reports:
+        bytes_per_value=2 if current_precision == 'FP16' else 4
+        cache_sizes.append(f'{current_precision}: {72*bytes_per_value/4:.0f} KiB')
+    paragraph(fig,.105,f'The cache requires {"; ".join(cache_sizes)} per stored token per sequence. After predicting 64 output tokens, it holds prompt length + 63 tokens. Cache storage grows with sequence length and batch size; it is already included in the peak-memory measurements above.')
     return fig
 
 
-def visual_pages(report, precision='FP32'):
-    return [('mechanism',mechanism()),('generation-speed',speed(report, precision)),('gpu-memory',memory(report, precision))]
+def visual_pages(report, precision='FP32', fp16_report=None):
+    return [('mechanism',mechanism()),('generation-speed',speed(report, precision, fp16_report)),
+            ('gpu-memory',memory(report, precision, fp16_report))]
