@@ -1,0 +1,46 @@
+{
+  "config": {
+    "method": "lora",
+    "rank": 2,
+    "scale": 1.0,
+    "lr": 0.0001,
+    "targets": "attention",
+    "dropout": 0.0,
+    "weight_decay": 0.0,
+    "batch": 8,
+    "microbatch": 8,
+    "length": 128
+  },
+  "examples": 16,
+  "seed": 42,
+  "steps": 2,
+  "complete": true,
+  "validation": [
+    {
+      "step": 1,
+      "nll": 3.2144386435578935
+    },
+    {
+      "step": 2,
+      "nll": 3.2109005112955176
+    }
+  ],
+  "step_ms": [
+    766.1327099776827,
+    81.15184702910483
+  ],
+  "gpu": "NVIDIA A30",
+  "torch": "2.14.0+cu130",
+  "cuda": "13.0",
+  "job": "2451066",
+  "trainable_parameters": 110592,
+  "total_parameters": 163147776,
+  "checkpoint": "/home/sashazli/MQP/MinGPT/minGPT/experiments/flash_attention/results/hyperparameter_search/run_fp32/trials/086b4e3ee39f23a4/best.pt",
+  "selected_step": 2,
+  "validation_nll": 3.2109005112955176,
+  "sample_sha256": "2b98e3bfd74f2578278a6caaf55ec3b4f95efa79128bd52de1b6c38132df54d5",
+  "peak_training_bytes": 2407013376,
+  "elapsed_seconds": 2.117199195025023,
+  "median_step_ms": 81.15184702910483,
+  "frozen_base_unchanged": true
+}

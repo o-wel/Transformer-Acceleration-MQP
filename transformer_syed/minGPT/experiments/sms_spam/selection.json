@@ -1,0 +1,43 @@
+{
+  "candidates": [
+    {
+      "method": "lora",
+      "lr": 0.001,
+      "path": "/home/sashazli/MQP/MinGPT/minGPT/experiments/sms_spam/runs/lora-lr0.001-seed42",
+      "validation_nll": 0.2703629289157361
+    },
+    {
+      "method": "lora",
+      "lr": 0.0001,
+      "path": "/home/sashazli/MQP/MinGPT/minGPT/experiments/sms_spam/runs/lora-lr0.0001-seed42",
+      "validation_nll": 0.0818837458013877
+    },
+    {
+      "method": "full",
+      "lr": 0.001,
+      "path": "/home/sashazli/MQP/MinGPT/minGPT/experiments/sms_spam/runs/full-lr0.001-seed42",
+      "validation_nll": 0.27468354002372164
+    },
+    {
+      "method": "full",
+      "lr": 0.0001,
+      "path": "/home/sashazli/MQP/MinGPT/minGPT/experiments/sms_spam/runs/full-lr0.0001-seed42",
+      "validation_nll": 0.36562920331954246
+    }
+  ],
+  "selected": {
+    "lora": {
+      "method": "lora",
+      "lr": 0.0001,
+      "path": "/home/sashazli/MQP/MinGPT/minGPT/experiments/sms_spam/runs/lora-lr0.0001-seed42",
+      "validation_nll": 0.0818837458013877
+    },
+    "full": {
+      "method": "full",
+      "lr": 0.001,
+      "path": "/home/sashazli/MQP/MinGPT/minGPT/experiments/sms_spam/runs/full-lr0.001-seed42",
+      "validation_nll": 0.27468354002372164
+    }
+  },
+  "test_evaluated": false
+}

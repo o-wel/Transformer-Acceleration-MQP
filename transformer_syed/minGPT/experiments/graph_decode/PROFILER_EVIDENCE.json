@@ -1,0 +1,37 @@
+{
+  "profile-2483620-eager_fused.json": {
+    "kernel_count": 1661,
+    "kernel_span_ms": 47.868447265625,
+    "kernel_busy_ms": 8.160509765625,
+    "instrumented_busy_fraction": 0.17047784567445487,
+    "cuda_runtime_counts": {
+      "cudaLaunchKernel": 1445,
+      "cudaOccupancyMaxActiveBlocksPerMultiprocessor": 72,
+      "cudaDeviceGetAttribute": 116,
+      "cudaLaunchKernelExC": 72,
+      "cudaFuncSetAttribute": 12,
+      "cudaMemsetAsync": 32,
+      "cudaPeekAtLastError": 32,
+      "cudaMemcpyAsync": 5,
+      "cudaDeviceSynchronize": 1
+    }
+  },
+  "profile-2483620-graph_fused.json": {
+    "kernel_count": 1664,
+    "kernel_span_ms": 23.22968017578125,
+    "kernel_busy_ms": 10.95291796875,
+    "instrumented_busy_fraction": 0.47150532791963573,
+    "cuda_runtime_counts": {
+      "cudaLaunchKernel": 335,
+      "cudaOccupancyMaxActiveBlocksPerMultiprocessor": 36,
+      "cudaDeviceGetAttribute": 110,
+      "cudaLaunchKernelExC": 36,
+      "cudaFuncSetAttribute": 12,
+      "cudaMemsetAsync": 26,
+      "cudaPeekAtLastError": 8,
+      "cudaMemcpyAsync": 2,
+      "cudaGraphLaunch": 3,
+      "cudaDeviceSynchronize": 1
+    }
+  }
+}

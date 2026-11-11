@@ -1,6 +1,45 @@
 
 # minGPT
 
+## MQP research extensions
+
+This copy includes the project's LoRA, cache, attention and measurement work.
+See the [repository-wide work summary](../../README.md) for all implementations,
+completed studies, interpretation and novelty limits. The original upstream
+minGPT overview is retained below.
+
+The latest selected-model study is available as a
+**[nine-page PDF](experiments/graph_decode_optimal/MINGPT_OPTIMIZATION_REPORT.pdf)**,
+[standalone HTML](experiments/graph_decode_optimal/REPORT.html),
+[Markdown](experiments/graph_decode_optimal/REPORT.md), and
+[reproducibility package](experiments/MINGPT_OPTIMIZATION_REPORT_PACKAGE.zip).
+It measures **4.695×** faster requests than the matched original path
+(95% interval **4.667–4.720×**) across five trained seeds and eight held-out
+workload shapes. The selected rank-2/alpha-8/LR-0.001 checkpoints use full
+prefill, a 1,024-token cache, and decoder tiles 256 / eight warps selected from
+16 tested launch configurations. These are best-tested operating settings,
+not a global or per-workload optimum.
+
+The implementation combines a Triton kernel for current-token LoRA Q/K/V
+expansion, KV append and streaming attention with a CUDA graph that replays
+the full decoding step. **It is not a whole-model CUDA megakernel.** Multiple
+GPU kernels remain; graph replay removes much of their repeated CPU launch
+overhead. Official PyTorch FlashAttention handles prefill, while decoding
+uses an experimental online-softmax kernel.
+
+All 360 fresh synthetic questions were answered correctly under each of five
+tested checkpoints in original, selected-graph and merged-graph modes. The
+1,800 model/question cases share 120 match groups. Graph replay preserved the
+observed answer quality; stronger accuracy than earlier exploratory models
+comes from checkpoint selection. Publication-level novelty is not established:
+CUDA graphs, LoRA serving and attention/cache fusion have prior art.
+
+Further completed work includes the [independent hyperparameter study](experiments/paper_hyperparameters/README.md),
+[127-trial FP32 staged search](experiments/flash_attention/results/hyperparameter_search/README.md),
+[SMS classification](experiments/sms_spam/RESULTS.md),
+[initial joint fusion](experiments/joint_decode/RESEARCH.md), and
+[earlier graph confirmation](experiments/graph_decode/RESULTS.md).
+
 ![mingpt](mingpt.jpg)
 
 A PyTorch re-implementation of [GPT](https://github.com/openai/gpt-2), both training and inference. minGPT tries to be small, clean, interpretable and educational, as most of the currently available GPT model implementations can a bit sprawling. GPT is not a complicated model and this implementation is appropriately about 300 lines of code (see [mingpt/model.py](mingpt/model.py)). All that's going on is that a sequence of indices feeds into a [Transformer](https://arxiv.org/abs/1706.03762), and a probability distribution over the next index in the sequence comes out. The majority of the complexity is just being clever with batching (both across examples and over sequence length) for efficiency.

@@ -1,0 +1,88 @@
+{
+  "objective": "Best tested quality-constrained hyperparameters per method, then individual winners combined versus a predeclared untuned combination",
+  "seed": 42,
+  "training": {
+    "steps": 1200,
+    "batch": 8,
+    "sequence_length": 128,
+    "backend": "eager",
+    "checkpoint_every": 300,
+    "optimizer": "AdamW",
+    "weight_decay": 0,
+    "clip_norm": 1
+  },
+  "precision": "FP32 stored weights, FP16 autocast; TF32 disabled",
+  "lora_grid": {
+    "rank": [
+      2,
+      4
+    ],
+    "alpha_over_rank": [
+      1,
+      2
+    ],
+    "learning_rate": [
+      0.0001,
+      0.001
+    ]
+  },
+  "lora_baseline": {
+    "rank": 4,
+    "alpha": 8,
+    "lr": 0.0001
+  },
+  "lora_selection": "Lowest uncached eager inference latency among candidates within 0.02 validation NLL of the best grid candidate; report training speed separately",
+  "cache_grid": {
+    "prefill_chunk_tokens": [
+      64,
+      128,
+      256,
+      896
+    ]
+  },
+  "cache_baseline": {
+    "prefill_chunk_tokens": 128
+  },
+  "cache_policy": "Dynamic full-context K/V cache, no eviction or quantization; chunk size controls prefill only",
+  "fa_grid": {
+    "query_tile": [
+      16,
+      32
+    ],
+    "key_tile": [
+      32,
+      64
+    ],
+    "num_warps": [
+      4,
+      8
+    ]
+  },
+  "fa_baseline": {
+    "query_tile": 16,
+    "key_tile": 32,
+    "num_warps": 4
+  },
+  "fa_implementation": "Existing FA1-derived Triton Algorithms 1/4 prototype; not original FA1 CUDA library or PyTorch FA2",
+  "workload": {
+    "batch": 1,
+    "prompt_tokens": 896,
+    "new_tokens": 64,
+    "decode": "greedy",
+    "last_token_only": true,
+    "lora_merged": false
+  },
+  "timing": {
+    "warmups": 3,
+    "tuning_repeats": 5,
+    "confirmation_repeats": 7,
+    "order": "shuffled and paired",
+    "metric": "synchronized wall latency",
+    "tuning_prompt_seed": 7001,
+    "confirmation_prompt_seeds": "9003..9009"
+  },
+  "runtime_quality_gate": "Tensor parity against FP64 eager; FA and cache validation NLL within 0.02 of eager; cache same-input last-prefill logits atol 0.1/rtol 0.02. Preserve greedy-token divergences.",
+  "combined": "Freeze individual winners before seven fresh paired confirmation runs and held-out test evaluation. Keep all three methods enabled for both configurations. No joint retuning.",
+  "interpretation": "Untuned baseline is predeclared, not chosen as the worst. It may win. A single seed and finite grid cannot establish global optimality. Search cost excluded and not assumed amortized.",
+  "protocol_amendment": "After first runtime sweep found FP16 chunk-dependent greedy-token divergence, replaced bitwise token parity with logit and validation-likelihood checks before confirmation/test. Completed training reused unchanged."
+}

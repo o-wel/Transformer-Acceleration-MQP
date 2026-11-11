@@ -1,0 +1,544 @@
+{
+  "version": 2,
+  "model": "gpt2",
+  "precision": "FP32 stored weights; FP16 autocast; TF32 disabled",
+  "search_seeds": [
+    11,
+    22,
+    33
+  ],
+  "confirmation_seeds": [
+    101,
+    202,
+    303,
+    404,
+    505
+  ],
+  "lora_grid": [
+    {
+      "rank": 2,
+      "alpha": 2,
+      "lr": 0.0001
+    },
+    {
+      "rank": 2,
+      "alpha": 2,
+      "lr": 0.0003
+    },
+    {
+      "rank": 2,
+      "alpha": 2,
+      "lr": 0.001
+    },
+    {
+      "rank": 2,
+      "alpha": 4,
+      "lr": 0.0001
+    },
+    {
+      "rank": 2,
+      "alpha": 4,
+      "lr": 0.0003
+    },
+    {
+      "rank": 2,
+      "alpha": 4,
+      "lr": 0.001
+    },
+    {
+      "rank": 2,
+      "alpha": 8,
+      "lr": 0.0001
+    },
+    {
+      "rank": 2,
+      "alpha": 8,
+      "lr": 0.0003
+    },
+    {
+      "rank": 2,
+      "alpha": 8,
+      "lr": 0.001
+    },
+    {
+      "rank": 4,
+      "alpha": 4,
+      "lr": 0.0001
+    },
+    {
+      "rank": 4,
+      "alpha": 4,
+      "lr": 0.0003
+    },
+    {
+      "rank": 4,
+      "alpha": 4,
+      "lr": 0.001
+    },
+    {
+      "rank": 4,
+      "alpha": 8,
+      "lr": 0.0001
+    },
+    {
+      "rank": 4,
+      "alpha": 8,
+      "lr": 0.0003
+    },
+    {
+      "rank": 4,
+      "alpha": 8,
+      "lr": 0.001
+    },
+    {
+      "rank": 4,
+      "alpha": 16,
+      "lr": 0.0001
+    },
+    {
+      "rank": 4,
+      "alpha": 16,
+      "lr": 0.0003
+    },
+    {
+      "rank": 4,
+      "alpha": 16,
+      "lr": 0.001
+    },
+    {
+      "rank": 8,
+      "alpha": 8,
+      "lr": 0.0001
+    },
+    {
+      "rank": 8,
+      "alpha": 8,
+      "lr": 0.0003
+    },
+    {
+      "rank": 8,
+      "alpha": 8,
+      "lr": 0.001
+    },
+    {
+      "rank": 8,
+      "alpha": 16,
+      "lr": 0.0001
+    },
+    {
+      "rank": 8,
+      "alpha": 16,
+      "lr": 0.0003
+    },
+    {
+      "rank": 8,
+      "alpha": 16,
+      "lr": 0.001
+    },
+    {
+      "rank": 8,
+      "alpha": 32,
+      "lr": 0.0001
+    },
+    {
+      "rank": 8,
+      "alpha": 32,
+      "lr": 0.0003
+    },
+    {
+      "rank": 8,
+      "alpha": 32,
+      "lr": 0.001
+    },
+    {
+      "rank": 16,
+      "alpha": 16,
+      "lr": 0.0001
+    },
+    {
+      "rank": 16,
+      "alpha": 16,
+      "lr": 0.0003
+    },
+    {
+      "rank": 16,
+      "alpha": 16,
+      "lr": 0.001
+    },
+    {
+      "rank": 16,
+      "alpha": 32,
+      "lr": 0.0001
+    },
+    {
+      "rank": 16,
+      "alpha": 32,
+      "lr": 0.0003
+    },
+    {
+      "rank": 16,
+      "alpha": 32,
+      "lr": 0.001
+    },
+    {
+      "rank": 16,
+      "alpha": 64,
+      "lr": 0.0001
+    },
+    {
+      "rank": 16,
+      "alpha": 64,
+      "lr": 0.0003
+    },
+    {
+      "rank": 16,
+      "alpha": 64,
+      "lr": 0.001
+    },
+    {
+      "rank": 32,
+      "alpha": 32,
+      "lr": 0.0001
+    },
+    {
+      "rank": 32,
+      "alpha": 32,
+      "lr": 0.0003
+    },
+    {
+      "rank": 32,
+      "alpha": 32,
+      "lr": 0.001
+    },
+    {
+      "rank": 32,
+      "alpha": 64,
+      "lr": 0.0001
+    },
+    {
+      "rank": 32,
+      "alpha": 64,
+      "lr": 0.0003
+    },
+    {
+      "rank": 32,
+      "alpha": 64,
+      "lr": 0.001
+    },
+    {
+      "rank": 32,
+      "alpha": 128,
+      "lr": 0.0001
+    },
+    {
+      "rank": 32,
+      "alpha": 128,
+      "lr": 0.0003
+    },
+    {
+      "rank": 32,
+      "alpha": 128,
+      "lr": 0.001
+    }
+  ],
+  "baseline_lora": {
+    "rank": 4,
+    "alpha": 8,
+    "lr": 0.0001
+  },
+  "cache_chunks": [
+    32,
+    64,
+    128,
+    256,
+    512,
+    1024
+  ],
+  "fa_tiles": [
+    [
+      16,
+      16,
+      4
+    ],
+    [
+      16,
+      16,
+      8
+    ],
+    [
+      16,
+      32,
+      4
+    ],
+    [
+      16,
+      32,
+      8
+    ],
+    [
+      16,
+      64,
+      4
+    ],
+    [
+      16,
+      64,
+      8
+    ],
+    [
+      16,
+      128,
+      4
+    ],
+    [
+      16,
+      128,
+      8
+    ],
+    [
+      32,
+      16,
+      4
+    ],
+    [
+      32,
+      16,
+      8
+    ],
+    [
+      32,
+      32,
+      4
+    ],
+    [
+      32,
+      32,
+      8
+    ],
+    [
+      32,
+      64,
+      4
+    ],
+    [
+      32,
+      64,
+      8
+    ],
+    [
+      32,
+      128,
+      4
+    ],
+    [
+      32,
+      128,
+      8
+    ],
+    [
+      64,
+      16,
+      4
+    ],
+    [
+      64,
+      16,
+      8
+    ],
+    [
+      64,
+      32,
+      4
+    ],
+    [
+      64,
+      32,
+      8
+    ],
+    [
+      64,
+      64,
+      4
+    ],
+    [
+      64,
+      64,
+      8
+    ],
+    [
+      64,
+      128,
+      4
+    ],
+    [
+      64,
+      128,
+      8
+    ]
+  ],
+  "baseline_chunk": 128,
+  "baseline_tile": [
+    16,
+    32,
+    4
+  ],
+  "train": {
+    "steps": 2400,
+    "batch": 8,
+    "length": 128,
+    "validate_every": 300,
+    "warm_steps": 50,
+    "optimizer": "AdamW",
+    "weight_decay": 0,
+    "clip_norm": 1.0,
+    "lr_schedule": "constant",
+    "attention": "eager",
+    "adapter_merged": false,
+    "dropout": 0.0,
+    "scaler_initial": 128
+  },
+  "search_workloads": [
+    {
+      "batch": 1,
+      "prompt": 32,
+      "new_tokens": 64,
+      "split": "search"
+    },
+    {
+      "batch": 1,
+      "prompt": 256,
+      "new_tokens": 64,
+      "split": "search"
+    },
+    {
+      "batch": 1,
+      "prompt": 896,
+      "new_tokens": 64,
+      "split": "search"
+    },
+    {
+      "batch": 4,
+      "prompt": 32,
+      "new_tokens": 64,
+      "split": "search"
+    },
+    {
+      "batch": 4,
+      "prompt": 256,
+      "new_tokens": 64,
+      "split": "search"
+    },
+    {
+      "batch": 4,
+      "prompt": 896,
+      "new_tokens": 64,
+      "split": "search"
+    }
+  ],
+  "heldout_workloads": [
+    {
+      "batch": 1,
+      "prompt": 128,
+      "new_tokens": 32,
+      "split": "heldout"
+    },
+    {
+      "batch": 1,
+      "prompt": 128,
+      "new_tokens": 128,
+      "split": "heldout"
+    },
+    {
+      "batch": 1,
+      "prompt": 512,
+      "new_tokens": 32,
+      "split": "heldout"
+    },
+    {
+      "batch": 1,
+      "prompt": 512,
+      "new_tokens": 128,
+      "split": "heldout"
+    },
+    {
+      "batch": 4,
+      "prompt": 128,
+      "new_tokens": 32,
+      "split": "heldout"
+    },
+    {
+      "batch": 4,
+      "prompt": 128,
+      "new_tokens": 128,
+      "split": "heldout"
+    },
+    {
+      "batch": 4,
+      "prompt": 512,
+      "new_tokens": 32,
+      "split": "heldout"
+    },
+    {
+      "batch": 4,
+      "prompt": 512,
+      "new_tokens": 128,
+      "split": "heldout"
+    }
+  ],
+  "timing": {
+    "warmups": 5,
+    "search_repeats": 10,
+    "confirmation_repeats": 20,
+    "search_sessions": 3,
+    "confirmation_sessions_per_seed": 3,
+    "metric": "synchronized wall latency; CUDA event latency also recorded",
+    "order": "randomized paired blocks; same prompt per block; fresh prompt per repeat",
+    "weighting": "equal weight per fixed workload in log space"
+  },
+  "selection": {
+    "lora": "Minimum mean warm training-step latency among candidates whose mean validation-selected NLL across all three search seeds is within 0.01 of the best; retain quality-best separately",
+    "runtime": "Minimum equally weighted geometric mean wall latency across all six search workloads and three discovery allocations, subject to quality gates in every allocation",
+    "checkpoint": "Lowest validation answer-token NLL among 8 checkpoints; earliest step on exact tie",
+    "ties": "LoRA: lower rank, alpha, LR; runtime: original grid order",
+    "no_test_selection": true
+  },
+  "quality": {
+    "kernel_atol": 0.012,
+    "kernel_rtol": 0.04,
+    "cache_logit_atol": 0.1,
+    "cache_logit_rtol": 0.02,
+    "max_abs_nll_delta": 0.01,
+    "lora_nll_margin": 0.01,
+    "decode_tokens": 64,
+    "primary": "normalized exact reference match",
+    "secondary": "primary and numeric fields; paired counterfactual fields",
+    "independence_unit": "match, including its three questions and score-swapped variants"
+  },
+  "stats": {
+    "bootstrap_draws": 5000,
+    "seed": 20261105,
+    "timing": "Hierarchical paired bootstrap over 5 training seeds, 3 allocations within each seed, and 20 paired repeats within each workload; workloads fixed, equally weighted",
+    "quality": "Crossed paired bootstrap over 5 training seeds and 300 independent test matches; original and counterfactual questions clustered together",
+    "primary": "Combined all-tuned/all-untuned latency ratio on the 8 held-out workloads; 95% CI",
+    "secondary": "Per-workload and all-workload ratios, isolated methods, parameter factorial interactions, quality and training cost; descriptive intervals"
+  },
+  "implementation": "Locally snapshotted FA1-derived Triton prototype; not original FA1 CUDA or PyTorch FA2",
+  "scope": "Prototype tuning only; no production FlashAttention reference",
+  "data": {
+    "train": "Existing 480 matches / 1440 questions",
+    "validation": "Fresh 200 matches / 600 questions",
+    "test": "Fresh 300 matches / 900 questions plus 900 paired counterfactuals",
+    "generator_seed": 20261105,
+    "heldout_teams": [
+      "Badgers",
+      "Panthers",
+      "Herons",
+      "Otters",
+      "Foxes",
+      "Ravens",
+      "Stallions",
+      "Cranes"
+    ]
+  },
+  "policy": "No pilot timings or test scores pooled. No claim of global optimality, cross-model, cross-task, or cross-hardware generalization. Untuned control predeclared, never selected as worst. No joint tuning after freezing individual choices."
+}

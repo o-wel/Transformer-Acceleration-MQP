@@ -1,0 +1,23 @@
+{
+  "task": "Real SMS spam/ham classification",
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "epochs": 5,
+  "loss_target": 0.05,
+  "train_size": 1200,
+  "batch_size": 8,
+  "max_message_tokens": 96,
+  "rank": 4,
+  "alpha": 8,
+  "learning_rates": [
+    0.001,
+    0.0001
+  ],
+  "selection": "For each method, select LR by final epoch-5 validation label NLL on seed 42. No test access until choices are written.",
+  "comparison": "Same trajectory for fixed epochs and first loss-threshold checkpoint; shared loss checks allow direct checkpoint comparison. Wall times include loss checks for both rules.",
+  "scoring": "Higher next-token logit for the single-token labels ham/spam, not free-text answer matching. Default binary threshold only; no threshold tuning.",
+  "limitations": "One real dataset, three training seeds, one fixed data split, capped training subset, heuristic duplicate-template grouping; not a production filter or general theorem about LoRA."
+}

@@ -1,0 +1,1046 @@
+{
+  "allocations": [
+    {
+      "job": "2483558",
+      "node": "gpu-4-22.int.turing.wpi.edu",
+      "gpu": "NVIDIA A30",
+      "telemetry": "uuid, name, driver_version, clocks.current.sm [MHz], temperature.gpu\nGPU-780a2fac-ac19-3c02-c4f1-2e17fb80fc3b, NVIDIA A30, 595.71.05, 210 MHz, 34\n"
+    },
+    {
+      "job": "2483559",
+      "node": "gpu-4-23.int.turing.wpi.edu",
+      "gpu": "NVIDIA A30",
+      "telemetry": "uuid, name, driver_version, clocks.current.sm [MHz], temperature.gpu\nGPU-3f3dbcb7-b0de-1af4-33d6-2c69adaf7d0c, NVIDIA A30, 595.71.05, 210 MHz, 33\n"
+    },
+    {
+      "job": "2483560",
+      "node": "gpu-4-22.int.turing.wpi.edu",
+      "gpu": "NVIDIA A30",
+      "telemetry": "uuid, name, driver_version, clocks.current.sm [MHz], temperature.gpu\nGPU-780a2fac-ac19-3c02-c4f1-2e17fb80fc3b, NVIDIA A30, 595.71.05, 210 MHz, 35\n"
+    }
+  ],
+  "sources": {
+    "experiments/joint_decode/kernel.py": "f840004ee94c6ddb8159ec71949624a8c808348ec0ea173c82267d5f156aea25",
+    "experiments/joint_decode/runtime.py": "75b82ed8b10987a5d0bf057b112a117cc2fa92f2a08ef056bdf05f5994e4488a",
+    "experiments/joint_decode/benchmark.py": "eb09681d8b6e01fc181dd8f79d9bd7c54b3db0bfeb6d528162156b6787d45476",
+    "experiments/joint_decode/PROTOCOL.md": "744cc4ff535b65964831aa2988d50f2e642a190ee43aa2dc9840032089a16b0a",
+    "mingpt/model.py": "3c4e52d78f13176c980724717cef9272966fe146f3dac1866a89800f2ca05346"
+  },
+  "contrasts": {
+    "incremental_lora_fusion": {
+      "wall_ms": {
+        "ratio": 1.057822674121318,
+        "ci95": [
+          1.0569526747214002,
+          1.0586041647309794
+        ],
+        "per_workload": [
+          1.0539510290253142,
+          1.0591148803892987,
+          1.0587086381576636,
+          1.05952578035018
+        ]
+      },
+      "event_ms": {
+        "ratio": 1.0578257255511125,
+        "ci95": [
+          1.0569749638476962,
+          1.0586008367038082
+        ],
+        "per_workload": [
+          1.0539537519722646,
+          1.059118198585767,
+          1.0587123191783725,
+          1.0595282650258193
+        ]
+      }
+    },
+    "beyond_standalone_fused_lora": {
+      "wall_ms": {
+        "ratio": 1.0725294653049269,
+        "ci95": [
+          1.071433654472636,
+          1.0738187749120776
+        ],
+        "per_workload": [
+          1.0726321901599754,
+          1.0770361579584378,
+          1.070479986734195,
+          1.0699839594000062
+        ]
+      },
+      "event_ms": {
+        "ratio": 1.07253362301483,
+        "ci95": [
+          1.071408515132363,
+          1.0738112666112332
+        ],
+        "per_workload": [
+          1.072635913221941,
+          1.0770409377879977,
+          1.0704848855582012,
+          1.0699871918130606
+        ]
+      }
+    },
+    "versus_original_all_three": {
+      "wall_ms": {
+        "ratio": 1.1245208815315253,
+        "ci95": [
+          1.1237659011041101,
+          1.1254186328027662
+        ],
+        "per_workload": [
+          1.1183241698592274,
+          1.134698693669371,
+          1.1169385962779392,
+          1.1282167235709497
+        ]
+      },
+      "event_ms": {
+        "ratio": 1.1245271572384243,
+        "ci95": [
+          1.1237303320469716,
+          1.1253990961676101
+        ],
+        "per_workload": [
+          1.1183300088282229,
+          1.134706251739756,
+          1.1169450339416556,
+          1.1282220007207648
+        ]
+      }
+    },
+    "versus_static_flash": {
+      "wall_ms": {
+        "ratio": 1.151480230753778,
+        "ci95": [
+          1.1501794705614146,
+          1.1525486397471494
+        ],
+        "per_workload": [
+          1.142613521619239,
+          1.1622208427625766,
+          1.144518843232803,
+          1.1566846669387385
+        ]
+      },
+      "event_ms": {
+        "ratio": 1.151488046452384,
+        "ci95": [
+          1.1502114339939282,
+          1.152565672784309
+        ],
+        "per_workload": [
+          1.142620219724515,
+          1.1622308237002663,
+          1.1445262342743798,
+          1.156691887445343
+        ]
+      }
+    },
+    "versus_merged_flash": {
+      "wall_ms": {
+        "ratio": 0.7023567602821555,
+        "ci95": [
+          0.7013360576563705,
+          0.7033302721521402
+        ],
+        "per_workload": [
+          0.7024007043044709,
+          0.7214525752409655,
+          0.6865767127422738,
+          0.6994380786433322
+        ]
+      },
+      "event_ms": {
+        "ratio": 0.7023421946322396,
+        "ci95": [
+          0.7013197168810357,
+          0.703325827033685
+        ],
+        "per_workload": [
+          0.7023857354537023,
+          0.7214389003647625,
+          0.6865612602686039,
+          0.6994239634117191
+        ]
+      }
+    },
+    "versus_merged_stream": {
+      "wall_ms": {
+        "ratio": 0.610045951373149,
+        "ci95": [
+          0.6088127081966248,
+          0.6114300642712506
+        ],
+        "per_workload": [
+          0.6153840346800497,
+          0.619987956104844,
+          0.602911199756724,
+          0.6020982537704943
+        ]
+      },
+      "event_ms": {
+        "ratio": 0.6100260290079418,
+        "ci95": [
+          0.6088475876487425,
+          0.6114432730397312
+        ],
+        "per_workload": [
+          0.6153636274965727,
+          0.619967983876789,
+          0.6028910443444669,
+          0.6020790932776787
+        ]
+      }
+    }
+  },
+  "workloads": [
+    {
+      "shape": [
+        1,
+        128,
+        64
+      ],
+      "modes": [
+        {
+          "batch": 1,
+          "prompt": 128,
+          "new_tokens": 64,
+          "mode": "dynamic_flash",
+          "merged": false,
+          "median_wall_ms": 509.5610814169049,
+          "median_event_ms": 509.53504943847656,
+          "median_incremental_peak_mib": 13.68994140625
+        },
+        {
+          "batch": 1,
+          "prompt": 128,
+          "new_tokens": 64,
+          "mode": "expand_stream",
+          "merged": false,
+          "median_wall_ms": 489.0152455191128,
+          "median_event_ms": 488.9894104003906,
+          "median_incremental_peak_mib": 41.1259765625
+        },
+        {
+          "batch": 1,
+          "prompt": 128,
+          "new_tokens": 64,
+          "mode": "fused_stream",
+          "merged": false,
+          "median_wall_ms": 454.4218520168215,
+          "median_event_ms": 454.3934326171875,
+          "median_incremental_peak_mib": 41.1259765625
+        },
+        {
+          "batch": 1,
+          "prompt": 128,
+          "new_tokens": 64,
+          "mode": "static_flash",
+          "merged": false,
+          "median_wall_ms": 520.4358324990608,
+          "median_event_ms": 520.4096069335938,
+          "median_incremental_peak_mib": 41.1259765625
+        },
+        {
+          "batch": 1,
+          "prompt": 128,
+          "new_tokens": 64,
+          "mode": "static_flash",
+          "merged": true,
+          "median_wall_ms": 320.63155254581943,
+          "median_event_ms": 320.60704040527344,
+          "median_incremental_peak_mib": 41.1259765625
+        },
+        {
+          "batch": 1,
+          "prompt": 128,
+          "new_tokens": 64,
+          "mode": "static_stream",
+          "merged": false,
+          "median_wall_ms": 479.6386904781684,
+          "median_event_ms": 479.61192321777344,
+          "median_incremental_peak_mib": 41.1259765625
+        },
+        {
+          "batch": 1,
+          "prompt": 128,
+          "new_tokens": 64,
+          "mode": "static_stream",
+          "merged": true,
+          "median_wall_ms": 280.3808784810826,
+          "median_event_ms": 280.3560791015625,
+          "median_incremental_peak_mib": 41.1259765625
+        }
+      ]
+    },
+    {
+      "shape": [
+        1,
+        512,
+        64
+      ],
+      "modes": [
+        {
+          "batch": 1,
+          "prompt": 512,
+          "new_tokens": 64,
+          "mode": "dynamic_flash",
+          "merged": false,
+          "median_wall_ms": 512.4897269997746,
+          "median_event_ms": 512.4638671875,
+          "median_incremental_peak_mib": 45.33349609375
+        },
+        {
+          "batch": 1,
+          "prompt": 512,
+          "new_tokens": 64,
+          "mode": "expand_stream",
+          "merged": false,
+          "median_wall_ms": 487.29363753227517,
+          "median_event_ms": 487.26702880859375,
+          "median_incremental_peak_mib": 53.50390625
+        },
+        {
+          "batch": 1,
+          "prompt": 512,
+          "new_tokens": 64,
+          "mode": "fused_stream",
+          "merged": false,
+          "median_wall_ms": 451.7592625343241,
+          "median_event_ms": 451.7304229736328,
+          "median_incremental_peak_mib": 53.50390625
+        },
+        {
+          "batch": 1,
+          "prompt": 512,
+          "new_tokens": 64,
+          "mode": "static_flash",
+          "merged": false,
+          "median_wall_ms": 524.3500135256909,
+          "median_event_ms": 524.3245849609375,
+          "median_incremental_peak_mib": 53.50390625
+        },
+        {
+          "batch": 1,
+          "prompt": 512,
+          "new_tokens": 64,
+          "mode": "static_flash",
+          "merged": true,
+          "median_wall_ms": 326.7585535068065,
+          "median_event_ms": 326.7337646484375,
+          "median_incremental_peak_mib": 53.50390625
+        },
+        {
+          "batch": 1,
+          "prompt": 512,
+          "new_tokens": 64,
+          "mode": "static_stream",
+          "merged": false,
+          "median_wall_ms": 477.65813901787624,
+          "median_event_ms": 477.6301727294922,
+          "median_incremental_peak_mib": 53.50390625
+        },
+        {
+          "batch": 1,
+          "prompt": 512,
+          "new_tokens": 64,
+          "mode": "static_stream",
+          "merged": true,
+          "median_wall_ms": 280.4932720027864,
+          "median_event_ms": 280.4683532714844,
+          "median_incremental_peak_mib": 53.50390625
+        }
+      ]
+    },
+    {
+      "shape": [
+        4,
+        128,
+        64
+      ],
+      "modes": [
+        {
+          "batch": 4,
+          "prompt": 128,
+          "new_tokens": 64,
+          "mode": "dynamic_flash",
+          "merged": false,
+          "median_wall_ms": 553.4463435178623,
+          "median_event_ms": 553.4198303222656,
+          "median_incremental_peak_mib": 58.90966796875
+        },
+        {
+          "batch": 4,
+          "prompt": 128,
+          "new_tokens": 64,
+          "mode": "expand_stream",
+          "merged": false,
+          "median_wall_ms": 530.9480029973201,
+          "median_event_ms": 530.9215698242188,
+          "median_incremental_peak_mib": 160.4384765625
+        },
+        {
+          "batch": 4,
+          "prompt": 128,
+          "new_tokens": 64,
+          "mode": "fused_stream",
+          "merged": false,
+          "median_wall_ms": 495.50146155525,
+          "median_event_ms": 495.4746398925781,
+          "median_incremental_peak_mib": 160.4384765625
+        },
+        {
+          "batch": 4,
+          "prompt": 128,
+          "new_tokens": 64,
+          "mode": "static_flash",
+          "merged": false,
+          "median_wall_ms": 566.0986470174976,
+          "median_event_ms": 566.0727233886719,
+          "median_incremental_peak_mib": 160.4384765625
+        },
+        {
+          "batch": 4,
+          "prompt": 128,
+          "new_tokens": 64,
+          "mode": "static_flash",
+          "merged": true,
+          "median_wall_ms": 340.24539100937545,
+          "median_event_ms": 340.2200469970703,
+          "median_incremental_peak_mib": 160.4384765625
+        },
+        {
+          "batch": 4,
+          "prompt": 128,
+          "new_tokens": 64,
+          "mode": "static_stream",
+          "merged": false,
+          "median_wall_ms": 524.7238589799963,
+          "median_event_ms": 524.6973876953125,
+          "median_incremental_peak_mib": 160.4384765625
+        },
+        {
+          "batch": 4,
+          "prompt": 128,
+          "new_tokens": 64,
+          "mode": "static_stream",
+          "merged": true,
+          "median_wall_ms": 299.3154654977843,
+          "median_event_ms": 299.28562927246094,
+          "median_incremental_peak_mib": 160.4384765625
+        }
+      ]
+    },
+    {
+      "shape": [
+        4,
+        512,
+        64
+      ],
+      "modes": [
+        {
+          "batch": 4,
+          "prompt": 512,
+          "new_tokens": 64,
+          "mode": "dynamic_flash",
+          "merged": false,
+          "median_wall_ms": 564.3066494958475,
+          "median_event_ms": 564.2802734375,
+          "median_incremental_peak_mib": 181.79296875
+        },
+        {
+          "batch": 4,
+          "prompt": 512,
+          "new_tokens": 64,
+          "mode": "expand_stream",
+          "merged": false,
+          "median_wall_ms": 535.2778139640577,
+          "median_event_ms": 535.2513122558594,
+          "median_incremental_peak_mib": 208.25390625
+        },
+        {
+          "batch": 4,
+          "prompt": 512,
+          "new_tokens": 64,
+          "mode": "fused_stream",
+          "merged": false,
+          "median_wall_ms": 499.26844699075446,
+          "median_event_ms": 499.24188232421875,
+          "median_incremental_peak_mib": 208.25390625
+        },
+        {
+          "batch": 4,
+          "prompt": 512,
+          "new_tokens": 64,
+          "mode": "static_flash",
+          "merged": false,
+          "median_wall_ms": 576.7843669746071,
+          "median_event_ms": 576.7576904296875,
+          "median_incremental_peak_mib": 208.25390625
+        },
+        {
+          "batch": 4,
+          "prompt": 512,
+          "new_tokens": 64,
+          "mode": "static_flash",
+          "merged": true,
+          "median_wall_ms": 350.1244730432518,
+          "median_event_ms": 350.09840393066406,
+          "median_incremental_peak_mib": 208.25390625
+        },
+        {
+          "batch": 4,
+          "prompt": 512,
+          "new_tokens": 64,
+          "mode": "static_stream",
+          "merged": false,
+          "median_wall_ms": 529.5483449590392,
+          "median_event_ms": 529.5224304199219,
+          "median_incremental_peak_mib": 208.25390625
+        },
+        {
+          "batch": 4,
+          "prompt": 512,
+          "new_tokens": 64,
+          "mode": "static_stream",
+          "merged": true,
+          "median_wall_ms": 301.61396897165105,
+          "median_event_ms": 301.5873718261719,
+          "median_incremental_peak_mib": 208.25390625
+        }
+      ]
+    }
+  ],
+  "model_checks": {
+    "dynamic_flash": {
+      "cases": 24,
+      "max_error": 0.0,
+      "max_kl": 0.0,
+      "argmax_disagreements": 0
+    },
+    "expand_stream": {
+      "cases": 24,
+      "max_error": 0.125,
+      "max_kl": 0.0003837666008621454,
+      "argmax_disagreements": 0
+    },
+    "fused_stream": {
+      "cases": 24,
+      "max_error": 0.125,
+      "max_kl": 0.0003716179053299129,
+      "argmax_disagreements": 0
+    },
+    "static_flash": {
+      "cases": 24,
+      "max_error": 0.0,
+      "max_kl": 0.0,
+      "argmax_disagreements": 0
+    },
+    "static_flash-merged": {
+      "cases": 24,
+      "max_error": 0.1875,
+      "max_kl": 0.0004850420809816569,
+      "argmax_disagreements": 0
+    },
+    "static_stream": {
+      "cases": 24,
+      "max_error": 0.125,
+      "max_kl": 0.0003837666008621454,
+      "argmax_disagreements": 0
+    },
+    "static_stream-merged": {
+      "cases": 24,
+      "max_error": 0.1875,
+      "max_kl": 0.00048365374095737934,
+      "argmax_disagreements": 0
+    }
+  },
+  "kernel_max_error": 0.00048828125,
+  "physical_gpu_uuids": [
+    "GPU-3f3dbcb7-b0de-1af4-33d6-2c69adaf7d0c",
+    "GPU-780a2fac-ac19-3c02-c4f1-2e17fb80fc3b"
+  ],
+  "profiles": {
+    "dynamic_flash": [
+      {
+        "key": "aten::add",
+        "count": 388
+      },
+      {
+        "key": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctor_add<c10::Half>, std::array<char*, 3ul>, false>(int, at::native::CUDAFunctor_add<c10::Half>, std::array<char*, 3ul>)",
+        "count": 340
+      },
+      {
+        "key": "aten::addmm",
+        "count": 192
+      },
+      {
+        "key": "cudaOccupancyMaxActiveBlocksPerMultiprocessor",
+        "count": 72
+      },
+      {
+        "key": "ampere_fp16_s16816gemm_fp16_128x64_ldg8_relu_f2f_stages_32x6_tn",
+        "count": 24
+      },
+      {
+        "key": "aten::matmul",
+        "count": 388
+      },
+      {
+        "key": "aten::mm",
+        "count": 388
+      },
+      {
+        "key": "void cutlass::Kernel2<cutlass_80_wmma_tensorop_f16_s161616gemm_f16_32x32_128x1_tn_align2>(cutlass_80_wmma_tensorop_f16_s161616gemm_f16_32x32_128x1_tn_align2::Params)",
+        "count": 36
+      },
+      {
+        "key": "void cutlass::Kernel2<cutlass_80_tensorop_f16_s16816gemm_f16_128x128_64x3_tn_align2>(cutlass_80_tensorop_f16_s16816gemm_f16_128x128_64x3_tn_align2::Params)",
+        "count": 24
+      },
+      {
+        "key": "aten::mul",
+        "count": 384
+      },
+      {
+        "key": "void at::native::vectorized_elementwise_kernel<4, at::native::AUnaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, std::array<char*, 2ul>, false>(int, at::native::AUnaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, std::array<char*, 2ul>)",
+        "count": 336
+      },
+      {
+        "key": "aten::_scaled_dot_product_flash_attention",
+        "count": 48
+      },
+      {
+        "key": "aten::_flash_attention_forward",
+        "count": 48
+      },
+      {
+        "key": "void pytorch_flash::flash_fwd_kernel<Flash_fwd_kernel_traits<64, 128, 128, 4, false, false, cutlass::half_t, Flash_kernel_traits<64, 128, 128, 4, cutlass::half_t> >, false, true, false, false, true, true, false, false>(pytorch_flash::Flash_fwd_params)",
+        "count": 12
+      },
+      {
+        "key": "void cutlass::Kernel2<cutlass_80_tensorop_f16_s16816gemm_relu_f16_64x64_64x6_tn_align8>(cutlass_80_tensorop_f16_s16816gemm_relu_f16_64x64_64x6_tn_align8::Params)",
+        "count": 12
+      },
+      {
+        "key": "void cutlass::Kernel2<cutlass_80_wmma_tensorop_f16_s161616gemm_f16_32x32_64x1_tn_align2>(cutlass_80_wmma_tensorop_f16_s161616gemm_f16_32x32_64x1_tn_align2::Params)",
+        "count": 24
+      },
+      {
+        "key": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctorOnSelf_add<c10::Half>, std::array<char*, 2ul>, false>(int, at::native::CUDAFunctorOnSelf_add<c10::Half>, std::array<char*, 2ul>)",
+        "count": 48
+      },
+      {
+        "key": "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, std::array<char*, 3ul>, false>(int, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, std::array<char*, 3ul>)",
+        "count": 48
+      },
+      {
+        "key": "ampere_fp16_s16816gemm_fp16_64x64_sliced1x2_ldg8_relu_f2f_stages_64x6_tn",
+        "count": 48
+      },
+      {
+        "key": "void cutlass::Kernel2<cutlass_80_wmma_tensorop_f16_s161616gemm_f16_32x32_128x2_tn_align2>(cutlass_80_wmma_tensorop_f16_s161616gemm_f16_32x32_128x2_tn_align2::Params)",
+        "count": 12
+      },
+      {
+        "key": "void at::native::vectorized_elementwise_kernel<4, at::native::BUnaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, std::array<char*, 2ul>, false>(int, at::native::BUnaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, std::array<char*, 2ul>)",
+        "count": 4
+      },
+      {
+        "key": "aten::cat",
+        "count": 76
+      },
+      {
+        "key": "void at::native::(anonymous namespace)::CatArrayBatchedCopy_alignedK_contig<at::native::(anonymous namespace)::OpaqueType<8u>, unsigned int, 2, 128, 1, 16>(at::native::(anonymous namespace)::OpaqueType<8u>*, at::native::(anonymous namespace)::CatArrInputTensorMetadata<at::native::(anonymous namespace)::OpaqueType<8u>, unsigned int, 128, 1>, at::native::(anonymous namespace)::TensorSizeStride<unsigned int, 4u>, int, unsigned int)",
+        "count": 4
+      },
+      {
+        "key": "void at::native::(anonymous namespace)::CatArrayBatchedCopy<at::native::(anonymous namespace)::OpaqueType<2u>, unsigned int, 4, 64, 64>(at::native::(anonymous namespace)::OpaqueType<2u>*, at::native::(anonymous namespace)::CatArrInputTensorMetadata<at::native::(anonymous namespace)::OpaqueType<2u>, unsigned int, 64, 64>, at::native::(anonymous namespace)::TensorSizeStride<unsigned int, 4u>, int, unsigned int)",
+        "count": 24
+      },
+      {
+        "key": "void pytorch_flash::flash_fwd_kernel<Flash_fwd_kernel_traits<64, 128, 128, 4, false, false, cutlass::half_t, Flash_kernel_traits<64, 128, 128, 4, cutlass::half_t> >, false, false, false, false, false, true, false, false>(pytorch_flash::Flash_fwd_params)",
+        "count": 36
+      },
+      {
+        "key": "ampere_fp16_s16816gemm_fp16_64x64_ldg8_relu_f2f_stages_64x5_tn",
+        "count": 36
+      },
+      {
+        "key": "void at::native::(anonymous namespace)::CatArrayBatchedCopy_vectorized<at::native::(anonymous namespace)::OpaqueType<2u>, unsigned int, 3, 128, 1, 16, 8>(char*, at::native::(anonymous namespace)::CatArrInputTensorMetadata<at::native::(anonymous namespace)::OpaqueType<2u>, unsigned int, 128, 1>, at::native::(anonymous namespace)::TensorSizeStride<unsigned int, 4u>, int, unsigned int)",
+        "count": 48
+      }
+    ],
+    "static_stream": [
+      {
+        "key": "aten::add",
+        "count": 388
+      },
+      {
+        "key": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctor_add<c10::Half>, std::array<char*, 3ul>, false>(int, at::native::CUDAFunctor_add<c10::Half>, std::array<char*, 3ul>)",
+        "count": 340
+      },
+      {
+        "key": "aten::addmm",
+        "count": 192
+      },
+      {
+        "key": "cudaOccupancyMaxActiveBlocksPerMultiprocessor",
+        "count": 72
+      },
+      {
+        "key": "ampere_fp16_s16816gemm_fp16_128x64_ldg8_relu_f2f_stages_32x6_tn",
+        "count": 24
+      },
+      {
+        "key": "aten::matmul",
+        "count": 388
+      },
+      {
+        "key": "aten::mm",
+        "count": 388
+      },
+      {
+        "key": "void cutlass::Kernel2<cutlass_80_wmma_tensorop_f16_s161616gemm_f16_32x32_128x1_tn_align2>(cutlass_80_wmma_tensorop_f16_s161616gemm_f16_32x32_128x1_tn_align2::Params)",
+        "count": 36
+      },
+      {
+        "key": "void cutlass::Kernel2<cutlass_80_tensorop_f16_s16816gemm_f16_128x128_64x3_tn_align2>(cutlass_80_tensorop_f16_s16816gemm_f16_128x128_64x3_tn_align2::Params)",
+        "count": 24
+      },
+      {
+        "key": "aten::mul",
+        "count": 384
+      },
+      {
+        "key": "void at::native::vectorized_elementwise_kernel<4, at::native::AUnaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, std::array<char*, 2ul>, false>(int, at::native::AUnaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, std::array<char*, 2ul>)",
+        "count": 336
+      },
+      {
+        "key": "aten::_scaled_dot_product_flash_attention",
+        "count": 12
+      },
+      {
+        "key": "aten::_flash_attention_forward",
+        "count": 12
+      },
+      {
+        "key": "void pytorch_flash::flash_fwd_kernel<Flash_fwd_kernel_traits<64, 128, 128, 4, false, false, cutlass::half_t, Flash_kernel_traits<64, 128, 128, 4, cutlass::half_t> >, false, true, false, false, true, true, false, false>(pytorch_flash::Flash_fwd_params)",
+        "count": 12
+      },
+      {
+        "key": "void cutlass::Kernel2<cutlass_80_tensorop_f16_s16816gemm_relu_f16_64x64_64x6_tn_align8>(cutlass_80_tensorop_f16_s16816gemm_relu_f16_64x64_64x6_tn_align8::Params)",
+        "count": 12
+      },
+      {
+        "key": "void cutlass::Kernel2<cutlass_80_wmma_tensorop_f16_s161616gemm_f16_32x32_64x1_tn_align2>(cutlass_80_wmma_tensorop_f16_s161616gemm_f16_32x32_64x1_tn_align2::Params)",
+        "count": 24
+      },
+      {
+        "key": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctorOnSelf_add<c10::Half>, std::array<char*, 2ul>, false>(int, at::native::CUDAFunctorOnSelf_add<c10::Half>, std::array<char*, 2ul>)",
+        "count": 48
+      },
+      {
+        "key": "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, std::array<char*, 3ul>, false>(int, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, std::array<char*, 3ul>)",
+        "count": 48
+      },
+      {
+        "key": "ampere_fp16_s16816gemm_fp16_64x64_sliced1x2_ldg8_relu_f2f_stages_64x6_tn",
+        "count": 48
+      },
+      {
+        "key": "void cutlass::Kernel2<cutlass_80_wmma_tensorop_f16_s161616gemm_f16_32x32_128x2_tn_align2>(cutlass_80_wmma_tensorop_f16_s161616gemm_f16_32x32_128x2_tn_align2::Params)",
+        "count": 12
+      },
+      {
+        "key": "void at::native::vectorized_elementwise_kernel<4, at::native::BUnaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, std::array<char*, 2ul>, false>(int, at::native::BUnaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, std::array<char*, 2ul>)",
+        "count": 4
+      },
+      {
+        "key": "aten::cat",
+        "count": 4
+      },
+      {
+        "key": "void at::native::(anonymous namespace)::CatArrayBatchedCopy_alignedK_contig<at::native::(anonymous namespace)::OpaqueType<8u>, unsigned int, 2, 128, 1, 16>(at::native::(anonymous namespace)::OpaqueType<8u>*, at::native::(anonymous namespace)::CatArrInputTensorMetadata<at::native::(anonymous namespace)::OpaqueType<8u>, unsigned int, 128, 1>, at::native::(anonymous namespace)::TensorSizeStride<unsigned int, 4u>, int, unsigned int)",
+        "count": 4
+      },
+      {
+        "key": "_decode",
+        "count": 36
+      },
+      {
+        "key": "ampere_fp16_s16816gemm_fp16_64x64_ldg8_relu_f2f_stages_64x5_tn",
+        "count": 36
+      }
+    ],
+    "expand_stream": [
+      {
+        "key": "aten::add",
+        "count": 352
+      },
+      {
+        "key": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctor_add<c10::Half>, std::array<char*, 3ul>, false>(int, at::native::CUDAFunctor_add<c10::Half>, std::array<char*, 3ul>)",
+        "count": 304
+      },
+      {
+        "key": "aten::addmm",
+        "count": 192
+      },
+      {
+        "key": "cudaOccupancyMaxActiveBlocksPerMultiprocessor",
+        "count": 72
+      },
+      {
+        "key": "ampere_fp16_s16816gemm_fp16_128x64_ldg8_relu_f2f_stages_32x6_tn",
+        "count": 24
+      },
+      {
+        "key": "aten::matmul",
+        "count": 352
+      },
+      {
+        "key": "aten::mm",
+        "count": 352
+      },
+      {
+        "key": "void cutlass::Kernel2<cutlass_80_wmma_tensorop_f16_s161616gemm_f16_32x32_128x1_tn_align2>(cutlass_80_wmma_tensorop_f16_s161616gemm_f16_32x32_128x1_tn_align2::Params)",
+        "count": 36
+      },
+      {
+        "key": "void cutlass::Kernel2<cutlass_80_tensorop_f16_s16816gemm_f16_128x128_64x3_tn_align2>(cutlass_80_tensorop_f16_s16816gemm_f16_128x128_64x3_tn_align2::Params)",
+        "count": 24
+      },
+      {
+        "key": "aten::mul",
+        "count": 348
+      },
+      {
+        "key": "void at::native::vectorized_elementwise_kernel<4, at::native::AUnaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, std::array<char*, 2ul>, false>(int, at::native::AUnaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, std::array<char*, 2ul>)",
+        "count": 300
+      },
+      {
+        "key": "aten::_scaled_dot_product_flash_attention",
+        "count": 12
+      },
+      {
+        "key": "aten::_flash_attention_forward",
+        "count": 12
+      },
+      {
+        "key": "void pytorch_flash::flash_fwd_kernel<Flash_fwd_kernel_traits<64, 128, 128, 4, false, false, cutlass::half_t, Flash_kernel_traits<64, 128, 128, 4, cutlass::half_t> >, false, true, false, false, true, true, false, false>(pytorch_flash::Flash_fwd_params)",
+        "count": 12
+      },
+      {
+        "key": "void cutlass::Kernel2<cutlass_80_tensorop_f16_s16816gemm_relu_f16_64x64_64x6_tn_align8>(cutlass_80_tensorop_f16_s16816gemm_relu_f16_64x64_64x6_tn_align8::Params)",
+        "count": 12
+      },
+      {
+        "key": "void cutlass::Kernel2<cutlass_80_wmma_tensorop_f16_s161616gemm_f16_32x32_64x1_tn_align2>(cutlass_80_wmma_tensorop_f16_s161616gemm_f16_32x32_64x1_tn_align2::Params)",
+        "count": 24
+      },
+      {
+        "key": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctorOnSelf_add<c10::Half>, std::array<char*, 2ul>, false>(int, at::native::CUDAFunctorOnSelf_add<c10::Half>, std::array<char*, 2ul>)",
+        "count": 48
+      },
+      {
+        "key": "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, std::array<char*, 3ul>, false>(int, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, std::array<char*, 3ul>)",
+        "count": 48
+      },
+      {
+        "key": "ampere_fp16_s16816gemm_fp16_64x64_sliced1x2_ldg8_relu_f2f_stages_64x6_tn",
+        "count": 48
+      },
+      {
+        "key": "void cutlass::Kernel2<cutlass_80_wmma_tensorop_f16_s161616gemm_f16_32x32_128x2_tn_align2>(cutlass_80_wmma_tensorop_f16_s161616gemm_f16_32x32_128x2_tn_align2::Params)",
+        "count": 12
+      },
+      {
+        "key": "void at::native::vectorized_elementwise_kernel<4, at::native::BUnaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, std::array<char*, 2ul>, false>(int, at::native::BUnaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, std::array<char*, 2ul>)",
+        "count": 4
+      },
+      {
+        "key": "aten::cat",
+        "count": 4
+      },
+      {
+        "key": "void at::native::(anonymous namespace)::CatArrayBatchedCopy_alignedK_contig<at::native::(anonymous namespace)::OpaqueType<8u>, unsigned int, 2, 128, 1, 16>(at::native::(anonymous namespace)::OpaqueType<8u>*, at::native::(anonymous namespace)::CatArrInputTensorMetadata<at::native::(anonymous namespace)::OpaqueType<8u>, unsigned int, 128, 1>, at::native::(anonymous namespace)::TensorSizeStride<unsigned int, 4u>, int, unsigned int)",
+        "count": 4
+      },
+      {
+        "key": "_expand",
+        "count": 36
+      },
+      {
+        "key": "_decode",
+        "count": 36
+      },
+      {
+        "key": "ampere_fp16_s16816gemm_fp16_64x64_ldg8_relu_f2f_stages_64x5_tn",
+        "count": 36
+      }
+    ],
+    "fused_stream": [
+      {
+        "key": "aten::add",
+        "count": 352
+      },
+      {
+        "key": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctor_add<c10::Half>, std::array<char*, 3ul>, false>(int, at::native::CUDAFunctor_add<c10::Half>, std::array<char*, 3ul>)",
+        "count": 304
+      },
+      {
+        "key": "aten::addmm",
+        "count": 192
+      },
+      {
+        "key": "cudaOccupancyMaxActiveBlocksPerMultiprocessor",
+        "count": 72
+      },
+      {
+        "key": "ampere_fp16_s16816gemm_fp16_128x64_ldg8_relu_f2f_stages_32x6_tn",
+        "count": 24
+      },
+      {
+        "key": "aten::matmul",
+        "count": 352
+      },
+      {
+        "key": "aten::mm",
+        "count": 352
+      },
+      {
+        "key": "void cutlass::Kernel2<cutlass_80_wmma_tensorop_f16_s161616gemm_f16_32x32_128x1_tn_align2>(cutlass_80_wmma_tensorop_f16_s161616gemm_f16_32x32_128x1_tn_align2::Params)",
+        "count": 36
+      },
+      {
+        "key": "void cutlass::Kernel2<cutlass_80_tensorop_f16_s16816gemm_f16_128x128_64x3_tn_align2>(cutlass_80_tensorop_f16_s16816gemm_f16_128x128_64x3_tn_align2::Params)",
+        "count": 24
+      },
+      {
+        "key": "aten::mul",
+        "count": 348
+      },
+      {
+        "key": "void at::native::vectorized_elementwise_kernel<4, at::native::AUnaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, std::array<char*, 2ul>, false>(int, at::native::AUnaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, std::array<char*, 2ul>)",
+        "count": 300
+      },
+      {
+        "key": "aten::_scaled_dot_product_flash_attention",
+        "count": 12
+      },
+      {
+        "key": "aten::_flash_attention_forward",
+        "count": 12
+      },
+      {
+        "key": "void pytorch_flash::flash_fwd_kernel<Flash_fwd_kernel_traits<64, 128, 128, 4, false, false, cutlass::half_t, Flash_kernel_traits<64, 128, 128, 4, cutlass::half_t> >, false, true, false, false, true, true, false, false>(pytorch_flash::Flash_fwd_params)",
+        "count": 12
+      },
+      {
+        "key": "void cutlass::Kernel2<cutlass_80_tensorop_f16_s16816gemm_relu_f16_64x64_64x6_tn_align8>(cutlass_80_tensorop_f16_s16816gemm_relu_f16_64x64_64x6_tn_align8::Params)",
+        "count": 12
+      },
+      {
+        "key": "void cutlass::Kernel2<cutlass_80_wmma_tensorop_f16_s161616gemm_f16_32x32_64x1_tn_align2>(cutlass_80_wmma_tensorop_f16_s161616gemm_f16_32x32_64x1_tn_align2::Params)",
+        "count": 24
+      },
+      {
+        "key": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctorOnSelf_add<c10::Half>, std::array<char*, 2ul>, false>(int, at::native::CUDAFunctorOnSelf_add<c10::Half>, std::array<char*, 2ul>)",
+        "count": 48
+      },
+      {
+        "key": "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, std::array<char*, 3ul>, false>(int, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, std::array<char*, 3ul>)",
+        "count": 48
+      },
+      {
+        "key": "ampere_fp16_s16816gemm_fp16_64x64_sliced1x2_ldg8_relu_f2f_stages_64x6_tn",
+        "count": 48
+      },
+      {
+        "key": "void cutlass::Kernel2<cutlass_80_wmma_tensorop_f16_s161616gemm_f16_32x32_128x2_tn_align2>(cutlass_80_wmma_tensorop_f16_s161616gemm_f16_32x32_128x2_tn_align2::Params)",
+        "count": 12
+      },
+      {
+        "key": "void at::native::vectorized_elementwise_kernel<4, at::native::BUnaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, std::array<char*, 2ul>, false>(int, at::native::BUnaryFunctor<c10::Half, c10::Half, c10::Half, at::native::binary_internal::MulFunctor<float> >, std::array<char*, 2ul>)",
+        "count": 4
+      },
+      {
+        "key": "aten::cat",
+        "count": 4
+      },
+      {
+        "key": "void at::native::(anonymous namespace)::CatArrayBatchedCopy_alignedK_contig<at::native::(anonymous namespace)::OpaqueType<8u>, unsigned int, 2, 128, 1, 16>(at::native::(anonymous namespace)::OpaqueType<8u>*, at::native::(anonymous namespace)::CatArrInputTensorMetadata<at::native::(anonymous namespace)::OpaqueType<8u>, unsigned int, 128, 1>, at::native::(anonymous namespace)::TensorSizeStride<unsigned int, 4u>, int, unsigned int)",
+        "count": 4
+      },
+      {
+        "key": "_decode",
+        "count": 36
+      },
+      {
+        "key": "ampere_fp16_s16816gemm_fp16_64x64_ldg8_relu_f2f_stages_64x5_tn",
+        "count": 36
+      }
+    ]
+  },
+  "timing_output_agreement": {
+    "dynamic_flash": {
+      "exact_sequences": 300,
+      "sequences": 300
+    },
+    "expand_stream": {
+      "exact_sequences": 253,
+      "sequences": 300
+    },
+    "fused_stream": {
+      "exact_sequences": 251,
+      "sequences": 300
+    },
+    "static_flash": {
+      "exact_sequences": 300,
+      "sequences": 300
+    },
+    "static_flash-merged": {
+      "exact_sequences": 243,
+      "sequences": 300
+    },
+    "static_stream": {
+      "exact_sequences": 251,
+      "sequences": 300
+    },
+    "static_stream-merged": {
+      "exact_sequences": 241,
+      "sequences": 300
+    }
+  },
+  "quality": {
+    "dynamic_flash": {
+      "nll": 0.07336527215228482,
+      "primary_correct": 0.5444444444444444,
+      "score_numbers_correct": 1.0,
+      "fields_correct": 0.5444444444444444,
+      "reference_exact": 0.5444444444444444
+    },
+    "fused_stream": {
+      "nll": 0.07336741053048029,
+      "primary_correct": 0.5444444444444444,
+      "score_numbers_correct": 1.0,
+      "fields_correct": 0.5444444444444444,
+      "reference_exact": 0.5444444444444444
+    },
+    "absolute_nll_difference": 2.138378195473689e-06,
+    "nll_gate_passed": true,
+    "exact_answer_agreement": 180,
+    "exact_raw_sequence_agreement": 137,
+    "accuracy_difference": 0.0,
+    "accuracy_difference_cluster_ci95": [
+      0.0,
+      0.0
+    ],
+    "discordant_matches": 0,
+    "zero_discordance_match_probability_upper95": 0.04870291331009746
+  },
+  "accounting": "2483556|COMPLETED|86|billing=4,cpu=4,gres/gpu=1,mem=24G,node=1\n2483558|COMPLETED|200|billing=4,cpu=4,gres/gpu=1,mem=24G,node=1\n2483559|COMPLETED|203|billing=4,cpu=4,gres/gpu=1,mem=24G,node=1\n2483560|COMPLETED|192|billing=4,cpu=4,gres/gpu=1,mem=24G,node=1\n2483570|COMPLETED|229|billing=4,cpu=4,gres/gpu=1,mem=24G,node=1\n"
+}

@@ -1,0 +1,27 @@
+# Independent confirmation results
+
+Runtime quality gates passed: **True**. Five new training seeds, three GPU allocations per seed, twenty paired repetitions per workload.
+
+Selected LoRA: `{'rank': 2, 'alpha': 8, 'lr': 0.001}`. Cache chunk: `1024`. Prototype tiles/warps: `[64, 128, 4]`.
+
+Primary endpoint: combined tuned/untuned comparison on eight held-out workload shapes. Ratios are untuned latency / tuned latency; values above one indicate speedup. All three methods are enabled on both sides.
+
+| Comparison | Held-out speedup | Hierarchical 95% CI |
+|---|---:|---:|
+| combined | 1.0288× | 1.0285–1.0291× |
+| lora | 1.0026× | 1.0023–1.0029× |
+| cache | 1.0293× | 1.0290–1.0297× |
+| fa | 1.0428× | 1.0415–1.0442× |
+
+LoRA training-step speedup: 1.0056× (95% CI 1.0010–1.0095×).
+
+| Combined test quality | Untuned | Tuned | Paired difference 95% CI |
+|---|---:|---:|---:|
+| reference_exact | 0.9189 | 0.9831 | 0.0351–0.0927 |
+| fields_correct | 0.9311 | 0.9936 | 0.0431–0.0829 |
+
+All secondary intervals are descriptive. The primary combined interval is the prespecified confirmatory endpoint.
+
+Claims are limited to this GPT-2 implementation, the A30, synthetic basketball task, declared grid and workload family. FA results describe an FA1-derived prototype. No production backend is included.
+
+See METHODS.md in the frozen snapshot for the design, formulas, precision policy, exclusions and reference papers. All raw answers and per-allocation records are retained.

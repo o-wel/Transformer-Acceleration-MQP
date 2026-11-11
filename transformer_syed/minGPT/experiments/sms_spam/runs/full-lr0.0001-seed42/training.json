@@ -1,0 +1,251 @@
+{
+  "config": {
+    "mode": "train",
+    "out": "/home/sashazli/MQP/MinGPT/minGPT/experiments/sms_spam/runs/full-lr0.0001-seed42",
+    "method": "full",
+    "lr": 0.0001,
+    "seed": 42,
+    "base": false
+  },
+  "task": "SMS spam classification",
+  "torch_version": "2.14.0+cu130",
+  "cuda_version": "13.0",
+  "gpu": "NVIDIA A30",
+  "dtype": "float32",
+  "tf32": false,
+  "parameters": {
+    "total": 163037184,
+    "trainable": 163037184,
+    "frozen": 0,
+    "trainable_percent": 100.0,
+    "parameter_bytes": 652148736,
+    "trainable_parameter_bytes": 652148736,
+    "buffer_bytes": 50331648
+  },
+  "initial_base_sha256": "b049a944e6c6c7bfbcdcdcd8abe49fd5636b53b751e08a04f4584c98178bd323",
+  "data_manifest": {
+    "source": "https://archive.ics.uci.edu/static/public/228/sms+spam+collection.zip",
+    "source_sha256": "1587ea43e58e82b14ff1f5425c88e17f8496bfcdb67a583dbff9eefaf9963ce3",
+    "raw_rows": 5574,
+    "unique_case_whitespace_messages": 5159,
+    "conflicting_templates_removed": 0,
+    "split_seed": 20261026,
+    "grouping": "Lowercase, replace URLs and digit runs, normalize punctuation/whitespace. Entire groups split before subsampling.",
+    "splits": {
+      "train": {
+        "n": 1200,
+        "spam": 151,
+        "ham": 1049,
+        "sha256": "d0a1b5cc308149cba2d10a086b6662dfe966074a8b8ceb66eb09523e0f0d7842"
+      },
+      "validation": {
+        "n": 400,
+        "spam": 48,
+        "ham": 352,
+        "sha256": "fe673bfae1bb5d66d61189c226e96f8934f3929a5c119f655c5589b40b4f873f"
+      },
+      "test": {
+        "n": 771,
+        "spam": 93,
+        "ham": 678,
+        "sha256": "522ab421dc4c36617cfee8cf50ce8257587d67e15aff12dc559ad66ecd38cb94"
+      }
+    }
+  },
+  "source_sha256": {
+    "experiments/sms_spam/experiment.py": "f7962e23e270cbb76a0d542eecca2d3dc0d2e9d9f03e74054941185101ed89ab",
+    "mingpt/model.py": "a4dd1bb282a07a8e6c3276e0d5d113ae788e0f3b45819ab234ba680c728ffd9c",
+    "mingpt/measurement.py": "8e075d50213171cd316d467257c93b1faa7fadf605b45a66ed3d0b5d536f3cc2"
+  },
+  "truncation_counts": {
+    "train": 10,
+    "validation": 0
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "steps": 150,
+      "train": {
+        "label_nll": 0.19644891346849003,
+        "accuracy": 0.9741666666666666,
+        "balanced_accuracy": 0.8973509933774835,
+        "spam_precision": 1.0,
+        "spam_recall": 0.7947019867549668,
+        "spam_f1": 0.8856088560885608,
+        "tp": 120,
+        "tn": 1049,
+        "fp": 0,
+        "fn": 31,
+        "n": 1200
+      },
+      "validation": {
+        "label_nll": 0.3683891855624327,
+        "accuracy": 0.96,
+        "balanced_accuracy": 0.8333333333333333,
+        "spam_precision": 1.0,
+        "spam_recall": 0.6666666666666666,
+        "spam_f1": 0.8,
+        "tp": 32,
+        "tn": 352,
+        "fp": 0,
+        "fn": 16,
+        "n": 400
+      },
+      "training_step_seconds": 11.973431578371674,
+      "training_wall_seconds": 16.317724959924817,
+      "sample_order_sha256": "c1d3c7003c0a2cf9c8972d86c2d635479a0186127db47a6a41b9c699ce033f25",
+      "peak_allocated_bytes": 3467804672,
+      "peak_reserved_bytes": 4160749568
+    },
+    {
+      "epoch": 2,
+      "steps": 300,
+      "train": {
+        "label_nll": 0.14080540016505136,
+        "accuracy": 0.99,
+        "balanced_accuracy": 0.9829418115013353,
+        "spam_precision": 0.9483870967741935,
+        "spam_recall": 0.9735099337748344,
+        "spam_f1": 0.9607843137254902,
+        "tp": 147,
+        "tn": 1041,
+        "fp": 8,
+        "fn": 4,
+        "n": 1200
+      },
+      "validation": {
+        "label_nll": 0.31332032047068653,
+        "accuracy": 0.9725,
+        "balanced_accuracy": 0.912405303030303,
+        "spam_precision": 0.9302325581395349,
+        "spam_recall": 0.8333333333333334,
+        "spam_f1": 0.8791208791208791,
+        "tp": 40,
+        "tn": 349,
+        "fp": 3,
+        "fn": 8,
+        "n": 400
+      },
+      "training_step_seconds": 23.523379574064165,
+      "training_wall_seconds": 32.22697556670755,
+      "sample_order_sha256": "7538cf640af7fb33fff08ae1b11e34bb5494749bd2457ec22158d35cea84ac10",
+      "peak_allocated_bytes": 3467885056,
+      "peak_reserved_bytes": 4160749568
+    },
+    {
+      "epoch": 3,
+      "steps": 450,
+      "train": {
+        "label_nll": 0.004334127772668476,
+        "accuracy": 0.9983333333333333,
+        "balanced_accuracy": 0.9933774834437086,
+        "spam_precision": 1.0,
+        "spam_recall": 0.9867549668874173,
+        "spam_f1": 0.9933333333333334,
+        "tp": 149,
+        "tn": 1049,
+        "fp": 0,
+        "fn": 2,
+        "n": 1200
+      },
+      "validation": {
+        "label_nll": 0.2342456146894457,
+        "accuracy": 0.98,
+        "balanced_accuracy": 0.9256628787878788,
+        "spam_precision": 0.9761904761904762,
+        "spam_recall": 0.8541666666666666,
+        "spam_f1": 0.9111111111111111,
+        "tp": 41,
+        "tn": 351,
+        "fp": 1,
+        "fn": 7,
+        "n": 400
+      },
+      "training_step_seconds": 35.09692420810461,
+      "training_wall_seconds": 49.02215847373009,
+      "sample_order_sha256": "b749d365405317e021d8a0b215dafbc3e84895a22dc88a7b27ab47d0aaedf753",
+      "peak_allocated_bytes": 3468970496,
+      "peak_reserved_bytes": 4160749568
+    },
+    {
+      "epoch": 4,
+      "steps": 600,
+      "train": {
+        "label_nll": 1.8914579785504297e-05,
+        "accuracy": 1.0,
+        "balanced_accuracy": 1.0,
+        "spam_precision": 1.0,
+        "spam_recall": 1.0,
+        "spam_f1": 1.0,
+        "tp": 151,
+        "tn": 1049,
+        "fp": 0,
+        "fn": 0,
+        "n": 1200
+      },
+      "validation": {
+        "label_nll": 0.19534787697876624,
+        "accuracy": 0.9825,
+        "balanced_accuracy": 0.9360795454545454,
+        "spam_precision": 0.9767441860465116,
+        "spam_recall": 0.875,
+        "spam_f1": 0.923076923076923,
+        "tp": 42,
+        "tn": 351,
+        "fp": 1,
+        "fn": 6,
+        "n": 400
+      },
+      "training_step_seconds": 46.72457004990429,
+      "training_wall_seconds": 65.02291453583166,
+      "sample_order_sha256": "06616b65828202d8134975b413d8dc869cad8baad90187687eff54b03355964d",
+      "peak_allocated_bytes": 3468970496,
+      "peak_reserved_bytes": 4160749568
+    },
+    {
+      "epoch": 5,
+      "steps": 750,
+      "train": {
+        "label_nll": 0.0007536004997288969,
+        "accuracy": 0.9991666666666666,
+        "balanced_accuracy": 0.9966887417218543,
+        "spam_precision": 1.0,
+        "spam_recall": 0.9933774834437086,
+        "spam_f1": 0.9966777408637874,
+        "tp": 150,
+        "tn": 1049,
+        "fp": 0,
+        "fn": 1,
+        "n": 1200
+      },
+      "validation": {
+        "label_nll": 0.36562920331954246,
+        "accuracy": 0.98,
+        "balanced_accuracy": 0.9256628787878788,
+        "spam_precision": 0.9761904761904762,
+        "spam_recall": 0.8541666666666666,
+        "spam_f1": 0.9111111111111111,
+        "tp": 41,
+        "tn": 351,
+        "fp": 1,
+        "fn": 7,
+        "n": 400
+      },
+      "training_step_seconds": 58.26151502691209,
+      "training_wall_seconds": 81.75633863499388,
+      "sample_order_sha256": "92f4249ee8fc83cdbd4354698f92289ed20be1573819854cc281328623f76f4d",
+      "peak_allocated_bytes": 3468970496,
+      "peak_reserved_bytes": 4160749568
+    }
+  ],
+  "stopping_rule": "First complete epoch with full training-set label NLL <= 0.05; otherwise cap at 5 epochs.",
+  "timing_scope": "Compute: synchronized forward/backward/clip/optimizer, excluding transfers/evaluation/audits/I-O. Wall: training loop including validation, loss checks, and checkpoint writes, excluding model setup and final test/audit.",
+  "loss_stop_epoch": 3,
+  "loss_target_reached": true,
+  "total_training_wall_seconds": 81.7721479977481,
+  "final_changes": {
+    "changed_elements": 127517639,
+    "changed_percent": 78.21383801624052,
+    "frozen_changed_elements": 0
+  }
+}

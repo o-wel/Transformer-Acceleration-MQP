@@ -1,0 +1,30 @@
+{
+  "untuned": {
+    "lora": {
+      "rank": 4,
+      "alpha": 8,
+      "lr": 0.0001
+    },
+    "chunk": 128,
+    "tiles": [
+      16,
+      32,
+      4
+    ]
+  },
+  "tuned": {
+    "lora": {
+      "rank": 2,
+      "alpha": 8,
+      "lr": 0.001
+    },
+    "chunk": 1024,
+    "tiles": [
+      64,
+      128,
+      4
+    ]
+  },
+  "precision": "FP32 stored weights; FP16 autocast; TF32 disabled",
+  "attention": "Locally snapshotted FA1-derived Triton prototype; not original FA1 CUDA or PyTorch FA2"
+}

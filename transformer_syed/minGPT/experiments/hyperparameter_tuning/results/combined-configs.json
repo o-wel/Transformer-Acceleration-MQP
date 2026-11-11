@@ -1,0 +1,54 @@
+{
+  "untuned": {
+    "model": "gpt2",
+    "lora": {
+      "enabled": true,
+      "merged": false,
+      "rank": 4,
+      "alpha": 8,
+      "lr": 0.0001
+    },
+    "adapter_checkpoint": "r4-a8-lr0.0001.pt",
+    "kv_cache": {
+      "enabled": true,
+      "prefill_chunk_tokens": 128,
+      "retain_full_context": true
+    },
+    "attention": {
+      "implementation": "fa1_tunable",
+      "query_tile": 16,
+      "key_tile": 32,
+      "num_warps": 4
+    },
+    "precision": "FP32 stored weights; FP16 autocast",
+    "batch": 1,
+    "prompt_tokens": 896,
+    "new_tokens": 64
+  },
+  "tuned": {
+    "model": "gpt2",
+    "lora": {
+      "enabled": true,
+      "merged": false,
+      "rank": 2,
+      "alpha": 4,
+      "lr": 0.001
+    },
+    "adapter_checkpoint": "r2-a4-lr0.001.pt",
+    "kv_cache": {
+      "enabled": true,
+      "prefill_chunk_tokens": 896,
+      "retain_full_context": true
+    },
+    "attention": {
+      "implementation": "fa1_tunable",
+      "query_tile": 32,
+      "key_tile": 64,
+      "num_warps": 4
+    },
+    "precision": "FP32 stored weights; FP16 autocast",
+    "batch": 1,
+    "prompt_tokens": 896,
+    "new_tokens": 64
+  }
+}

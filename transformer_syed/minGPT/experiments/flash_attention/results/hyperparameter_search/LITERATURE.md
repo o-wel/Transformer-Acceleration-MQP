@@ -1,0 +1,20 @@
+# Related work and experimental implications
+
+Sources checked November 3, 2026. This is a focused primary-source review, not a systematic literature survey.
+
+| Work | Evidence relevant to this study | Implication |
+|---|---|---|
+| [S-LoRA, 2023; ICML 2024 version](https://arxiv.org/abs/2311.03285) | Serves heterogeneous low-rank adapters and manages adapter weights and KV tensors through unified paging | Prior integration of LoRA and cache management exists. Do not claim that combining mechanisms is itself novel. This review does not establish an identical three-factor experiment or identical attention implementation. |
+| [Flash-Decoding, 2023, Stanford CRFM](https://crfm.stanford.edu/2023/10/12/flashdecoding) | Splits attention across the KV dimension to expose parallelism when queries are short | Separate prefill from decode; test whether a single-query policy helps. A tiled prefill kernel need not be the best decode kernel. |
+| [Rank-stabilized LoRA, 2023](https://arxiv.org/abs/2312.03732) | Studies how rank-dependent scaling affects learning and proposes square-root rank scaling | Rank and scale must be considered jointly. The present grid varies alpha/r explicitly; it does not evaluate rsLoRA as a separate method. |
+| [FlashAttention-3, 2024](https://arxiv.org/abs/2407.08608) | Hardware-aware asynchronous pipelines target Hopper, with low-precision execution | FA generations and hardware matter. A30 FP32 prototype results cannot be presented as FA3 results. |
+| [LoRA Without Regret, 2025, original authors](https://doi.org/10.64434/tml.20250929) | Sweeps rank and learning rate in supervised adaptation experiments | Compare tuning budgets explicitly and evaluate rank/LR interactions rather than treating rank 4 as universally sufficient. |
+| [Learning Rate Matters: Vanilla LoRA May Suffice for LLM Fine-tuning, 2026](https://arxiv.org/abs/2602.04998) | Re-evaluates LoRA variants with extensive searches and reports method-dependent LR preferences | Strong tuning controls are needed before attributing quality differences to the adaptation method. |
+| [Learning Rate Scaling across LoRA Ranks and Transfer to Full Finetuning, 2026](https://arxiv.org/abs/2602.06204) | Studies LR scaling with rank, initialization and adapter scaling | Rank × scale × LR is an appropriate joint core grid; conclusions are conditional on the initialization and scaling used. |
+| [FlashAttention-4, 2026](https://arxiv.org/abs/2603.05451) and [official repository](https://github.com/Dao-AILab/flash-attention) | New kernel/algorithm co-design; official implementation is written in CuTeDSL and targets Hopper/Blackwell | Include FA4 in recent-advances discussion while distinguishing it from the local FA1-derived prototype. |
+
+The defensible contribution is a reproducible, precision-controlled account of training quality and serving costs for the selected mechanisms on this implementation. Existing LoRA-serving work weakens a broad “first to combine all three” claim. Establishing whether any prior paper performs the exact same factorial experiment requires a broader full-text review; it has not been established here.
+
+The cache/attention conflict is a hypothesis about workload shape and memory movement: caching reduces the query dimension to one while K/V length grows, limiting query-tile parallelism. Cache concatenation and noncontiguous-to-contiguous copies may add overhead. Model-wide projection/MLP time can dominate attention time at short contexts. The study measures these effects through separate prefill/decode timings, cache allocation variants, and the hybrid policy rather than assuming attention acceleration must improve total request latency.
+
+Additional dimensions to consider after the primary study are rsLoRA versus classic scaling, separate A/B learning rates, warmup/scheduler choice, per-layer rank allocation, merged versus unmerged adapters, split-KV decode, cache paging and chunked prefill. These are follow-up interventions, not measured outcomes of the current runner.

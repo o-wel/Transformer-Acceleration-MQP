@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "checks": [
+    "All six selected runs and both checkpoints evaluated",
+    "Identical initial base weights across runs",
+    "Identical epoch sample order for paired methods/seeds",
+    "Same GPU model across paired runs",
+    "No changes or gradients in frozen LoRA parameters",
+    "Training data/source hashes match saved reports",
+    "Test predictions reproduce recorded accuracy",
+    "Learning rates match choices written before test evaluation"
+  ]
+}

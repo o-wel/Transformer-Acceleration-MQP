@@ -1,0 +1,230 @@
+{
+  "jobs": {
+    "preflight": {
+      "id": "2471885",
+      "stage": "preflight",
+      "dependency": null,
+      "array": null,
+      "gpu": true,
+      "time_limit_hours": 1,
+      "command": [
+        "sbatch",
+        "--parsable",
+        "--account=isp",
+        "--partition=academic",
+        "--qos=short",
+        "--time=1:00:00",
+        "--cpus-per-task=4",
+        "--mem=32G",
+        "--job-name=paper-preflight",
+        "--output=/home/sashazli/MQP/MinGPT/minGPT/experiments/paper_hyperparameters/runs/study-20261105-v2/logs/preflight-%A_%a.log",
+        "--kill-on-invalid-dep=yes",
+        "--gres=gpu:A30:1",
+        "/home/sashazli/MQP/MinGPT/minGPT/experiments/paper_hyperparameters/runs/study-20261105-v2/logs/preflight.sh"
+      ],
+      "script": "/home/sashazli/MQP/MinGPT/minGPT/experiments/paper_hyperparameters/runs/study-20261105-v2/logs/preflight.sh",
+      "submitted_utc": "2026-11-05T23:33:30.851905+00:00"
+    },
+    "search-train": {
+      "id": "2471886",
+      "stage": "search-train",
+      "dependency": [
+        "2471885"
+      ],
+      "array": "0-44%3",
+      "gpu": true,
+      "time_limit_hours": 3,
+      "command": [
+        "sbatch",
+        "--parsable",
+        "--account=isp",
+        "--partition=academic",
+        "--qos=long",
+        "--time=3:00:00",
+        "--cpus-per-task=4",
+        "--mem=32G",
+        "--job-name=paper-search-train",
+        "--output=/home/sashazli/MQP/MinGPT/minGPT/experiments/paper_hyperparameters/runs/study-20261105-v2/logs/search-train-%A_%a.log",
+        "--kill-on-invalid-dep=yes",
+        "--gres=gpu:A30:1",
+        "--dependency=afterok:2471885",
+        "--array=0-44%3",
+        "/home/sashazli/MQP/MinGPT/minGPT/experiments/paper_hyperparameters/runs/study-20261105-v2/logs/search-train.sh"
+      ],
+      "script": "/home/sashazli/MQP/MinGPT/minGPT/experiments/paper_hyperparameters/runs/study-20261105-v2/logs/search-train.sh",
+      "submitted_utc": "2026-11-05T23:33:30.863591+00:00"
+    },
+    "search-runtime": {
+      "id": "2471887",
+      "stage": "search-runtime",
+      "dependency": [
+        "2471886"
+      ],
+      "array": "0-2%3",
+      "gpu": true,
+      "time_limit_hours": 8,
+      "command": [
+        "sbatch",
+        "--parsable",
+        "--account=isp",
+        "--partition=academic",
+        "--qos=long",
+        "--time=8:00:00",
+        "--cpus-per-task=4",
+        "--mem=32G",
+        "--job-name=paper-search-runtime",
+        "--output=/home/sashazli/MQP/MinGPT/minGPT/experiments/paper_hyperparameters/runs/study-20261105-v2/logs/search-runtime-%A_%a.log",
+        "--kill-on-invalid-dep=yes",
+        "--gres=gpu:A30:1",
+        "--dependency=afterok:2471886",
+        "--array=0-2%3",
+        "/home/sashazli/MQP/MinGPT/minGPT/experiments/paper_hyperparameters/runs/study-20261105-v2/logs/search-runtime.sh"
+      ],
+      "script": "/home/sashazli/MQP/MinGPT/minGPT/experiments/paper_hyperparameters/runs/study-20261105-v2/logs/search-runtime.sh",
+      "submitted_utc": "2026-11-05T23:33:30.875348+00:00"
+    },
+    "select": {
+      "id": "2471888",
+      "stage": "select",
+      "dependency": [
+        "2471887"
+      ],
+      "array": null,
+      "gpu": false,
+      "time_limit_hours": 1,
+      "command": [
+        "sbatch",
+        "--parsable",
+        "--account=isp",
+        "--partition=academic",
+        "--qos=long",
+        "--time=1:00:00",
+        "--cpus-per-task=4",
+        "--mem=8G",
+        "--job-name=paper-select",
+        "--output=/home/sashazli/MQP/MinGPT/minGPT/experiments/paper_hyperparameters/runs/study-20261105-v2/logs/select-%A_%a.log",
+        "--kill-on-invalid-dep=yes",
+        "--dependency=afterok:2471887",
+        "/home/sashazli/MQP/MinGPT/minGPT/experiments/paper_hyperparameters/runs/study-20261105-v2/logs/select.sh"
+      ],
+      "script": "/home/sashazli/MQP/MinGPT/minGPT/experiments/paper_hyperparameters/runs/study-20261105-v2/logs/select.sh",
+      "submitted_utc": "2026-11-05T23:33:30.887713+00:00"
+    },
+    "confirm-train": {
+      "id": "2471889",
+      "stage": "confirm-train",
+      "dependency": [
+        "2471888"
+      ],
+      "array": "0-4%2",
+      "gpu": true,
+      "time_limit_hours": 3,
+      "command": [
+        "sbatch",
+        "--parsable",
+        "--account=isp",
+        "--partition=academic",
+        "--qos=long",
+        "--time=3:00:00",
+        "--cpus-per-task=4",
+        "--mem=32G",
+        "--job-name=paper-confirm-train",
+        "--output=/home/sashazli/MQP/MinGPT/minGPT/experiments/paper_hyperparameters/runs/study-20261105-v2/logs/confirm-train-%A_%a.log",
+        "--kill-on-invalid-dep=yes",
+        "--gres=gpu:A30:1",
+        "--dependency=afterok:2471888",
+        "--array=0-4%2",
+        "/home/sashazli/MQP/MinGPT/minGPT/experiments/paper_hyperparameters/runs/study-20261105-v2/logs/confirm-train.sh"
+      ],
+      "script": "/home/sashazli/MQP/MinGPT/minGPT/experiments/paper_hyperparameters/runs/study-20261105-v2/logs/confirm-train.sh",
+      "submitted_utc": "2026-11-05T23:33:30.898871+00:00"
+    },
+    "confirm-runtime": {
+      "id": "2471890",
+      "stage": "confirm-runtime",
+      "dependency": [
+        "2471889"
+      ],
+      "array": "0-14%3",
+      "gpu": true,
+      "time_limit_hours": 12,
+      "command": [
+        "sbatch",
+        "--parsable",
+        "--account=isp",
+        "--partition=academic",
+        "--qos=long",
+        "--time=12:00:00",
+        "--cpus-per-task=4",
+        "--mem=32G",
+        "--job-name=paper-confirm-runtime",
+        "--output=/home/sashazli/MQP/MinGPT/minGPT/experiments/paper_hyperparameters/runs/study-20261105-v2/logs/confirm-runtime-%A_%a.log",
+        "--kill-on-invalid-dep=yes",
+        "--gres=gpu:A30:1",
+        "--dependency=afterok:2471889",
+        "--array=0-14%3",
+        "/home/sashazli/MQP/MinGPT/minGPT/experiments/paper_hyperparameters/runs/study-20261105-v2/logs/confirm-runtime.sh"
+      ],
+      "script": "/home/sashazli/MQP/MinGPT/minGPT/experiments/paper_hyperparameters/runs/study-20261105-v2/logs/confirm-runtime.sh",
+      "submitted_utc": "2026-11-05T23:33:30.909813+00:00"
+    },
+    "quality": {
+      "id": "2471891",
+      "stage": "quality",
+      "dependency": [
+        "2471889"
+      ],
+      "array": "0-4%1",
+      "gpu": true,
+      "time_limit_hours": 12,
+      "command": [
+        "sbatch",
+        "--parsable",
+        "--account=isp",
+        "--partition=academic",
+        "--qos=long",
+        "--time=12:00:00",
+        "--cpus-per-task=4",
+        "--mem=32G",
+        "--job-name=paper-quality",
+        "--output=/home/sashazli/MQP/MinGPT/minGPT/experiments/paper_hyperparameters/runs/study-20261105-v2/logs/quality-%A_%a.log",
+        "--kill-on-invalid-dep=yes",
+        "--gres=gpu:A30:1",
+        "--dependency=afterok:2471889",
+        "--array=0-4%1",
+        "/home/sashazli/MQP/MinGPT/minGPT/experiments/paper_hyperparameters/runs/study-20261105-v2/logs/quality.sh"
+      ],
+      "script": "/home/sashazli/MQP/MinGPT/minGPT/experiments/paper_hyperparameters/runs/study-20261105-v2/logs/quality.sh",
+      "submitted_utc": "2026-11-05T23:33:30.920825+00:00"
+    },
+    "report": {
+      "id": "2471892",
+      "stage": "report",
+      "dependency": [
+        "2471890",
+        "2471891"
+      ],
+      "array": null,
+      "gpu": false,
+      "time_limit_hours": 3,
+      "command": [
+        "sbatch",
+        "--parsable",
+        "--account=isp",
+        "--partition=academic",
+        "--qos=long",
+        "--time=3:00:00",
+        "--cpus-per-task=4",
+        "--mem=8G",
+        "--job-name=paper-report",
+        "--output=/home/sashazli/MQP/MinGPT/minGPT/experiments/paper_hyperparameters/runs/study-20261105-v2/logs/report-%A_%a.log",
+        "--kill-on-invalid-dep=yes",
+        "--dependency=afterok:2471890:2471891",
+        "/home/sashazli/MQP/MinGPT/minGPT/experiments/paper_hyperparameters/runs/study-20261105-v2/logs/report.sh"
+      ],
+      "script": "/home/sashazli/MQP/MinGPT/minGPT/experiments/paper_hyperparameters/runs/study-20261105-v2/logs/report.sh",
+      "submitted_utc": "2026-11-05T23:33:30.931882+00:00"
+    }
+  },
+  "complete_submission": true
+}

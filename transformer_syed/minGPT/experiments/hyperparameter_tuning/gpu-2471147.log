@@ -1,0 +1,60 @@
+Loading python/3.12.9/oegpall
+  Loading requirement: gcc-runtime/13.2.0/yimvxxm bzip2/1.0.8/itttwfv
+    gcc-runtime/13.2.0/s3f7i6x libmd/1.0.4/ngvfltj libbsd/0.12.1/6of6olc
+    expat/2.6.2/zoq445h ncurses/6.4/zqsx2w2 readline/8.2/hmsgdsx
+    gdbm/1.23/gtrssid libiconv/1.17/pmxhi4x xz/5.4.6/uxouxrg
+    zlib-ng/2.1.5/uctcqfl libxml2/2.10.3/vdqe2g3 pigz/2.8/pmmdaqf
+    zstd/1.5.5/juuobg2 tar/1.34/5prin2y gettext/0.22.4/iy5z4el
+    libffi/3.4.4/vqf2avv libxcrypt/4.4.35/zvatbxx openssl/3.4.0/pholr53
+    sqlite/3.43.2/o22u32h util-linux-uuid/2.38.1/mse45hb
+number of parameters: 124.44M
+TRAIN r2-a2-lr0.0001 300 0.34667633983529417
+TRAIN r2-a2-lr0.0001 600 0.15382925609549497
+TRAIN r2-a2-lr0.0001 900 0.11040927494299009
+TRAIN r2-a2-lr0.0001 1200 0.09127332781515787
+number of parameters: 124.44M
+TRAIN r2-a2-lr0.001 300 0.07931389570510461
+TRAIN r2-a2-lr0.001 600 0.07101381332984914
+TRAIN r2-a2-lr0.001 900 0.06778903801759785
+TRAIN r2-a2-lr0.001 1200 0.047728978995907986
+number of parameters: 124.44M
+TRAIN r2-a4-lr0.0001 300 0.20950059326468434
+TRAIN r2-a4-lr0.0001 600 0.12152056711400214
+TRAIN r2-a4-lr0.0001 900 0.08648392624090329
+TRAIN r2-a4-lr0.0001 1200 0.08630677115492111
+number of parameters: 124.44M
+TRAIN r2-a4-lr0.001 300 0.07695177552844483
+TRAIN r2-a4-lr0.001 600 0.06796928683718655
+TRAIN r2-a4-lr0.001 900 0.06165859551151837
+TRAIN r2-a4-lr0.001 1200 0.025274678649083695
+number of parameters: 124.44M
+TRAIN r4-a4-lr0.0001 300 0.20200948813713035
+TRAIN r4-a4-lr0.0001 600 0.11999212566511763
+TRAIN r4-a4-lr0.0001 900 0.08520381756275436
+TRAIN r4-a4-lr0.0001 1200 0.08655511864969519
+number of parameters: 124.44M
+TRAIN r4-a4-lr0.001 300 0.07790594859951479
+TRAIN r4-a4-lr0.001 600 0.06510193604815957
+TRAIN r4-a4-lr0.001 900 0.06434977476833606
+TRAIN r4-a4-lr0.001 1200 0.05189675607067173
+number of parameters: 124.44M
+TRAIN r4-a8-lr0.0001 300 0.14955285244101396
+TRAIN r4-a8-lr0.0001 600 0.08911707429958085
+TRAIN r4-a8-lr0.0001 900 0.0759233318360671
+TRAIN r4-a8-lr0.0001 1200 0.0861457441904885
+number of parameters: 124.44M
+TRAIN r4-a8-lr0.001 300 0.07756479408454858
+TRAIN r4-a8-lr0.001 600 0.06507647677718953
+TRAIN r4-a8-lr0.001 900 0.04152524309301395
+TRAIN r4-a8-lr0.001 1200 0.02801101632484812
+number of parameters: 124.44M
+number of parameters: 124.44M
+number of parameters: 124.44M
+number of parameters: 124.44M
+Traceback (most recent call last):
+  File "/home/sashazli/MQP/MinGPT/minGPT/experiments/hyperparameter_tuning/run_experiment.py", line 349, in <module>
+    main()
+  File "/home/sashazli/MQP/MinGPT/minGPT/experiments/hyperparameter_tuning/run_experiment.py", line 299, in main
+    assert all(r['output_tokens'] == reference for r in cache_timings.values())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
