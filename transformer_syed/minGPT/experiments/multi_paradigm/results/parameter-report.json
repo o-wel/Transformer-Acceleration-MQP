@@ -1,0 +1,124 @@
+{
+  "input_directory": "C:\\Users\\owenv\\Documents\\Projects\\MQP\\MQP-Repo\\transformer_syed\\minGPT\\experiments\\multi_paradigm\\results",
+  "output": "C:\\Users\\owenv\\Documents\\Projects\\MQP\\MQP-Repo\\transformer_syed\\minGPT\\experiments\\multi_paradigm\\results\\parameter-report.pdf",
+  "report_count": 5,
+  "completed_report_count": 5,
+  "reports": [
+    {
+      "file": "C:\\Users\\owenv\\Documents\\Projects\\MQP\\MQP-Repo\\transformer_syed\\minGPT\\experiments\\multi_paradigm\\results\\parameter_report.json",
+      "report_name": "parameter_report",
+      "completed_trials": 20
+    },
+    {
+      "file": "C:\\Users\\owenv\\Documents\\Projects\\MQP\\MQP-Repo\\transformer_syed\\minGPT\\experiments\\multi_paradigm\\results\\parameter_report_flash.json",
+      "report_name": "parameter_report_flash (flash_attention)",
+      "completed_trials": 20
+    },
+    {
+      "file": "C:\\Users\\owenv\\Documents\\Projects\\MQP\\MQP-Repo\\transformer_syed\\minGPT\\experiments\\multi_paradigm\\results\\parameter_report_kvcache.json",
+      "report_name": "parameter_report_kvcache (kvcache)",
+      "completed_trials": 20
+    },
+    {
+      "file": "C:\\Users\\owenv\\Documents\\Projects\\MQP\\MQP-Repo\\transformer_syed\\minGPT\\experiments\\multi_paradigm\\results\\parameter_report_lora.json",
+      "report_name": "parameter_report_lora (lora)",
+      "completed_trials": 20
+    },
+    {
+      "file": "C:\\Users\\owenv\\Documents\\Projects\\MQP\\MQP-Repo\\transformer_syed\\minGPT\\experiments\\multi_paradigm\\results\\parameter_report_lora_kvcache_flash.json",
+      "report_name": "parameter_report_lora_kvcache_flash (lora, kvcache, flash_attention)",
+      "completed_trials": 20
+    }
+  ],
+  "best_trials": [
+    {
+      "configuration": "parameter_report",
+      "trial": 4,
+      "learning_rate": 0.00022618029713124412,
+      "batch_size": 4,
+      "length": 128,
+      "rank": null,
+      "alpha": null,
+      "training_time": 12.636804915731773,
+      "training_memory": 3351063040,
+      "validation_loss": 0.1487808768252522,
+      "validation_accuracy": 0.5083333333333333,
+      "test_loss": 0.97818017410868,
+      "test_accuracy": 0.15833333333333333,
+      "inference_time": 31423.933563986793,
+      "inference_memory": 1389271040
+    },
+    {
+      "configuration": "parameter_report_flash (flash_attention)",
+      "trial": 2,
+      "learning_rate": 0.00015536419171962795,
+      "batch_size": 4,
+      "length": 256,
+      "rank": null,
+      "alpha": null,
+      "training_time": 21.441174498468172,
+      "training_memory": 3792399360,
+      "validation_loss": 0.13908004065214205,
+      "validation_accuracy": 0.525,
+      "test_loss": 0.44674252562850486,
+      "test_accuracy": 0.16666666666666666,
+      "inference_time": 24663.860569999088,
+      "inference_memory": 1386636288
+    },
+    {
+      "configuration": "parameter_report_kvcache (kvcache)",
+      "trial": 18,
+      "learning_rate": 3.5742272623037065e-05,
+      "batch_size": 2,
+      "length": 256,
+      "rank": null,
+      "alpha": null,
+      "training_time": 13.04320195922628,
+      "training_memory": 3356043776,
+      "validation_loss": 0.1144175205161535,
+      "validation_accuracy": 0.6,
+      "test_loss": 0.13235509202794266,
+      "test_accuracy": 0.4083333333333333,
+      "inference_time": 30432.980343932286,
+      "inference_memory": 1399837696
+    },
+    {
+      "configuration": "parameter_report_lora (lora)",
+      "trial": 12,
+      "learning_rate": 0.0015725790533506676,
+      "batch_size": 2,
+      "length": 128,
+      "rank": 2,
+      "alpha": 8.0,
+      "training_time": 9.38913758774288,
+      "training_memory": 1208400896,
+      "validation_loss": 0.14920031164534978,
+      "validation_accuracy": 0.49166666666666664,
+      "test_loss": 0.12092671932951185,
+      "test_accuracy": 0.425,
+      "inference_time": 47172.216931998264,
+      "inference_memory": 737095680
+    },
+    {
+      "configuration": "parameter_report_lora_kvcache_flash (lora, kvcache, flash_attention)",
+      "trial": 12,
+      "learning_rate": 0.0008850982071406379,
+      "batch_size": 16,
+      "length": 128,
+      "rank": 32,
+      "alpha": 32.0,
+      "training_time": 28.388198979955632,
+      "training_memory": 4264184832,
+      "validation_loss": 0.07074358817682733,
+      "validation_accuracy": 0.6,
+      "test_loss": 0.0639364315875813,
+      "test_accuracy": 0.6,
+      "inference_time": 41187.0556800277,
+      "inference_memory": 776236032
+    }
+  ],
+  "builder": {
+    "python": "3.14.7",
+    "matplotlib": "3.11.2"
+  }
+}

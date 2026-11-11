@@ -1,0 +1,2779 @@
+{
+  "complete": false,
+  "config": {
+    "train": "C:\\Users\\owenv\\Documents\\Projects\\MQP\\MQP-Repo\\transformer_syed\\minGPT\\experiments\\sports\\train.jsonl",
+    "validation": "C:\\Users\\owenv\\Documents\\Projects\\MQP\\MQP-Repo\\transformer_syed\\minGPT\\experiments\\sports\\validation.jsonl",
+    "test": "C:\\Users\\owenv\\Documents\\Projects\\MQP\\MQP-Repo\\transformer_syed\\minGPT\\experiments\\sports\\test.jsonl",
+    "output": "C:\\Users\\owenv\\Documents\\Projects\\MQP\\MQP-Repo\\transformer_syed\\minGPT\\experiments\\multi_paradigm\\results\\report_lora_kvcache_flash.json",
+    "device": "cuda",
+    "dtype": "float32",
+    "steps": 300,
+    "batch_size": 4,
+    "length": 128,
+    "new_tokens": 40,
+    "lr": 0.001,
+    "clip_norm": 1.0,
+    "rank": 4,
+    "alpha": 8.0,
+    "inference_repeats": 3,
+    "seed": 42,
+    "threads": 4,
+    "lora": true,
+    "kvcache": true,
+    "flash": true
+  },
+  "environment": {
+    "python": "3.14.7",
+    "torch": "2.14.0+cu126",
+    "cuda": "12.6",
+    "gpu": "NVIDIA GeForce RTX 4070 Laptop GPU"
+  },
+  "enhancements": {
+    "lora": true,
+    "kvcache": true,
+    "flash_attention": true
+  },
+  "attention_backend": "tiled_fp32",
+  "data": {
+    "train_examples": 1440,
+    "validation_examples": 120,
+    "test_examples": 120,
+    "train_sha256": "dc36290715a5be6f8f256b3a1d40f23e39fc4bf7f0603ed0e4d7faedf22250c9",
+    "validation_sha256": "35ab85dcba07c499b3dc293fd0b5be988ac813d5e07506a5ab242569fb7e9951",
+    "test_sha256": "9ad966953543e9247723b03ec31622d5ab69a001eb5ed4727b0900b81a6e158f"
+  },
+  "parameters": {
+    "total": 163627008,
+    "trainable": 589824,
+    "frozen": 163037184,
+    "trainable_percent": 0.3604686091919495,
+    "parameter_bytes": 654508032,
+    "trainable_parameter_bytes": 2359296,
+    "buffer_bytes": 50331648
+  },
+  "training": {
+    "initial_validation_loss": 3.2177221701920398,
+    "initial_test_loss": 3.2647072506314925,
+    "steps": 300,
+    "batch_size": 4,
+    "seconds": 17.073643900075695,
+    "tokens_per_second": 8996.322103175587,
+    "history": [
+      {
+        "step": 1,
+        "loss": 3.3762218952178955,
+        "wall_ms": 1005.4311999992933,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1602036736
+        },
+        "validation_loss": 2.971493690474633
+      },
+      {
+        "step": 2,
+        "loss": 3.0485241413116455,
+        "wall_ms": 70.67880000977311,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 3,
+        "loss": 2.894211769104004,
+        "wall_ms": 53.259099993738346,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 4,
+        "loss": 2.408322811126709,
+        "wall_ms": 54.197799996472895,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 5,
+        "loss": 2.2718279361724854,
+        "wall_ms": 66.79759999678936,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 6,
+        "loss": 1.8942553997039795,
+        "wall_ms": 53.40040000737645,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 7,
+        "loss": 1.1903407573699951,
+        "wall_ms": 53.61289999564178,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 8,
+        "loss": 1.7459660768508911,
+        "wall_ms": 62.14370000816416,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 9,
+        "loss": 1.2713571786880493,
+        "wall_ms": 55.12770000495948,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 10,
+        "loss": 1.3753381967544556,
+        "wall_ms": 58.44160000560805,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 11,
+        "loss": 1.32169508934021,
+        "wall_ms": 49.687899998389184,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 12,
+        "loss": 1.2539221048355103,
+        "wall_ms": 60.96149999939371,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 13,
+        "loss": 1.2243781089782715,
+        "wall_ms": 63.36200000077952,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 14,
+        "loss": 1.0079880952835083,
+        "wall_ms": 56.74999998882413,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 15,
+        "loss": 1.0812067985534668,
+        "wall_ms": 57.056400008150376,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 16,
+        "loss": 1.1761164665222168,
+        "wall_ms": 52.23889999615494,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 17,
+        "loss": 1.0079940557479858,
+        "wall_ms": 61.51549999776762,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 18,
+        "loss": 0.9753650426864624,
+        "wall_ms": 62.300000005052425,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 19,
+        "loss": 0.6626651287078857,
+        "wall_ms": 55.63299999630544,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 20,
+        "loss": 0.7379465103149414,
+        "wall_ms": 61.46719999378547,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 21,
+        "loss": 0.6912539601325989,
+        "wall_ms": 67.62180000077933,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 22,
+        "loss": 0.5995752215385437,
+        "wall_ms": 61.56869999540504,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 23,
+        "loss": 0.765740692615509,
+        "wall_ms": 61.27330000163056,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 24,
+        "loss": 0.5419908165931702,
+        "wall_ms": 62.231900010374375,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 25,
+        "loss": 0.7754552960395813,
+        "wall_ms": 62.8318999952171,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 26,
+        "loss": 0.31454864144325256,
+        "wall_ms": 60.98080000083428,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 27,
+        "loss": 0.6661656498908997,
+        "wall_ms": 60.78840000554919,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 28,
+        "loss": 0.49646660685539246,
+        "wall_ms": 64.29239999852143,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 29,
+        "loss": 0.4017409086227417,
+        "wall_ms": 61.33960001170635,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 30,
+        "loss": 0.501352071762085,
+        "wall_ms": 54.63919999601785,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        },
+        "validation_loss": 0.47778069131087764
+      },
+      {
+        "step": 31,
+        "loss": 0.4341824948787689,
+        "wall_ms": 60.27430000540335,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 32,
+        "loss": 0.40462547540664673,
+        "wall_ms": 61.90549999882933,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 33,
+        "loss": 0.6255195140838623,
+        "wall_ms": 60.06969998998102,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 34,
+        "loss": 0.8449239730834961,
+        "wall_ms": 66.26259999757167,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 35,
+        "loss": 0.5928946137428284,
+        "wall_ms": 53.17030000151135,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 36,
+        "loss": 0.4749827980995178,
+        "wall_ms": 49.351499998010695,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 37,
+        "loss": 0.24277031421661377,
+        "wall_ms": 50.44199999247212,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 38,
+        "loss": 0.27001601457595825,
+        "wall_ms": 49.53910000040196,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 39,
+        "loss": 0.36600303649902344,
+        "wall_ms": 50.38349999813363,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 40,
+        "loss": 0.3434217572212219,
+        "wall_ms": 50.836700000218116,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 41,
+        "loss": 0.45827507972717285,
+        "wall_ms": 50.49060001329053,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 42,
+        "loss": 0.2518931031227112,
+        "wall_ms": 56.91050000314135,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 43,
+        "loss": 0.3598669469356537,
+        "wall_ms": 53.26119999517687,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 44,
+        "loss": 0.26921460032463074,
+        "wall_ms": 60.84720000217203,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 45,
+        "loss": 0.290052592754364,
+        "wall_ms": 63.44420000095852,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 46,
+        "loss": 0.25989431142807007,
+        "wall_ms": 60.89210000936873,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 47,
+        "loss": 0.2625844478607178,
+        "wall_ms": 60.816700002760626,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 48,
+        "loss": 0.34231075644493103,
+        "wall_ms": 60.66820000705775,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 49,
+        "loss": 0.3894605040550232,
+        "wall_ms": 61.160500001278706,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 50,
+        "loss": 0.19211959838867188,
+        "wall_ms": 61.16089998977259,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 51,
+        "loss": 0.26594284176826477,
+        "wall_ms": 61.30000000121072,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 52,
+        "loss": 0.20041005313396454,
+        "wall_ms": 50.341399997705594,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 53,
+        "loss": 0.3768760859966278,
+        "wall_ms": 51.662199999555014,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 54,
+        "loss": 0.2600531578063965,
+        "wall_ms": 50.93570001190528,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 55,
+        "loss": 0.10815181583166122,
+        "wall_ms": 49.9238000047626,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 56,
+        "loss": 0.5459181666374207,
+        "wall_ms": 49.29209999681916,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 57,
+        "loss": 0.38110947608947754,
+        "wall_ms": 49.647800013190135,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 58,
+        "loss": 0.2821672558784485,
+        "wall_ms": 50.36540000583045,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 59,
+        "loss": 0.3537241220474243,
+        "wall_ms": 51.68109999794979,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 60,
+        "loss": 0.0889676958322525,
+        "wall_ms": 52.883700001984835,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        },
+        "validation_loss": 0.21148498009310385
+      },
+      {
+        "step": 61,
+        "loss": 0.3169885277748108,
+        "wall_ms": 56.227000008220784,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 62,
+        "loss": 0.3869892656803131,
+        "wall_ms": 49.45099999895319,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 63,
+        "loss": 0.30680787563323975,
+        "wall_ms": 49.96720000053756,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 64,
+        "loss": 0.145217165350914,
+        "wall_ms": 51.09360000642482,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 65,
+        "loss": 0.21410803496837616,
+        "wall_ms": 51.47880000004079,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 66,
+        "loss": 0.2516852915287018,
+        "wall_ms": 50.350699995760806,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 67,
+        "loss": 0.24139924347400665,
+        "wall_ms": 50.767199994879775,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 68,
+        "loss": 0.33425140380859375,
+        "wall_ms": 49.23330000019632,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 69,
+        "loss": 0.39623767137527466,
+        "wall_ms": 51.26300000119954,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 70,
+        "loss": 0.2479637861251831,
+        "wall_ms": 51.392400011536665,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 71,
+        "loss": 0.2286251038312912,
+        "wall_ms": 50.33220000041183,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 72,
+        "loss": 0.3784397542476654,
+        "wall_ms": 50.507899999502115,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 73,
+        "loss": 0.2740825116634369,
+        "wall_ms": 53.99480000778567,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 74,
+        "loss": 0.36269545555114746,
+        "wall_ms": 52.201300000888295,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 75,
+        "loss": 0.22634129226207733,
+        "wall_ms": 52.7421000006143,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 76,
+        "loss": 0.2333931028842926,
+        "wall_ms": 51.41669999284204,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 77,
+        "loss": 0.3522111773490906,
+        "wall_ms": 50.728000001981854,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 78,
+        "loss": 0.10616089403629303,
+        "wall_ms": 51.36399999901187,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 79,
+        "loss": 0.11767074465751648,
+        "wall_ms": 53.009399998700246,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 80,
+        "loss": 0.23469649255275726,
+        "wall_ms": 50.99519999930635,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 81,
+        "loss": 0.20001569390296936,
+        "wall_ms": 55.852200006484054,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 82,
+        "loss": 0.27552205324172974,
+        "wall_ms": 52.92610000469722,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 83,
+        "loss": 0.15426954627037048,
+        "wall_ms": 51.35049999807961,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 84,
+        "loss": 0.06493093818426132,
+        "wall_ms": 50.55480000737589,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 85,
+        "loss": 0.14751529693603516,
+        "wall_ms": 49.984700002823956,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 86,
+        "loss": 0.11650597304105759,
+        "wall_ms": 50.70730000443291,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 87,
+        "loss": 0.20001362264156342,
+        "wall_ms": 51.935299998149276,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 88,
+        "loss": 0.3461247384548187,
+        "wall_ms": 50.617299988516606,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 89,
+        "loss": 0.1365402191877365,
+        "wall_ms": 50.951799988979474,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 90,
+        "loss": 0.08322025835514069,
+        "wall_ms": 53.04169999726582,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        },
+        "validation_loss": 0.15007832478460473
+      },
+      {
+        "step": 91,
+        "loss": 0.2315852791070938,
+        "wall_ms": 54.02850000245962,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 92,
+        "loss": 0.3441655933856964,
+        "wall_ms": 51.62539999582805,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 93,
+        "loss": 0.09789873659610748,
+        "wall_ms": 49.72720000660047,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 94,
+        "loss": 0.08893024921417236,
+        "wall_ms": 51.22970000957139,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 95,
+        "loss": 0.2500213384628296,
+        "wall_ms": 50.31780000717845,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 96,
+        "loss": 0.25293245911598206,
+        "wall_ms": 51.64979999244679,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 97,
+        "loss": 0.1479998230934143,
+        "wall_ms": 52.04900000535417,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 98,
+        "loss": 0.21537771821022034,
+        "wall_ms": 50.74690000037663,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 99,
+        "loss": 0.18975424766540527,
+        "wall_ms": 49.820400003227405,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 100,
+        "loss": 0.22834372520446777,
+        "wall_ms": 50.11569999624044,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 101,
+        "loss": 0.11087062209844589,
+        "wall_ms": 50.660599998082034,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 102,
+        "loss": 0.2085590362548828,
+        "wall_ms": 51.02630000328645,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 103,
+        "loss": 0.22880204021930695,
+        "wall_ms": 51.75969999982044,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 104,
+        "loss": 0.10825507342815399,
+        "wall_ms": 51.10379999678116,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 105,
+        "loss": 0.3032129108905792,
+        "wall_ms": 51.598300007754005,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 106,
+        "loss": 0.1483531892299652,
+        "wall_ms": 56.14190000051167,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 107,
+        "loss": 0.13007280230522156,
+        "wall_ms": 50.106299997423775,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 108,
+        "loss": 0.21744054555892944,
+        "wall_ms": 50.372999990941025,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 109,
+        "loss": 0.19954001903533936,
+        "wall_ms": 52.43349999364,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 110,
+        "loss": 0.21681782603263855,
+        "wall_ms": 52.63220000779256,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 111,
+        "loss": 0.1317904144525528,
+        "wall_ms": 53.64479999116156,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 112,
+        "loss": 0.15328887104988098,
+        "wall_ms": 51.46690001129173,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 113,
+        "loss": 0.10247056186199188,
+        "wall_ms": 50.876199995400384,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 114,
+        "loss": 0.1500178724527359,
+        "wall_ms": 51.48860000190325,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 115,
+        "loss": 0.11016223579645157,
+        "wall_ms": 51.2278999958653,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 116,
+        "loss": 0.18719686567783356,
+        "wall_ms": 51.81520000041928,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 117,
+        "loss": 0.14000821113586426,
+        "wall_ms": 51.9959000084782,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 118,
+        "loss": 0.19211868941783905,
+        "wall_ms": 51.37719999765977,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 119,
+        "loss": 0.2944291830062866,
+        "wall_ms": 53.180600007181056,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 120,
+        "loss": 0.09457527101039886,
+        "wall_ms": 52.67509999976028,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        },
+        "validation_loss": 0.1157521936411118
+      },
+      {
+        "step": 121,
+        "loss": 0.21462784707546234,
+        "wall_ms": 51.983700002892874,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 122,
+        "loss": 0.2252950221300125,
+        "wall_ms": 53.59429999953136,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 123,
+        "loss": 0.17620410025119781,
+        "wall_ms": 51.56870000064373,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 124,
+        "loss": 0.08501908928155899,
+        "wall_ms": 52.72139998851344,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 125,
+        "loss": 0.21510976552963257,
+        "wall_ms": 53.97589999483898,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 126,
+        "loss": 0.08791116625070572,
+        "wall_ms": 54.21990000468213,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 127,
+        "loss": 0.14030121266841888,
+        "wall_ms": 52.064299990888685,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 128,
+        "loss": 0.10780861228704453,
+        "wall_ms": 51.39259999850765,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 129,
+        "loss": 0.14383597671985626,
+        "wall_ms": 52.688199997646734,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 130,
+        "loss": 0.09625236690044403,
+        "wall_ms": 50.22839999583084,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 131,
+        "loss": 0.10131268948316574,
+        "wall_ms": 51.124100005836226,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 132,
+        "loss": 0.07070350646972656,
+        "wall_ms": 50.15429999912158,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 133,
+        "loss": 0.195906862616539,
+        "wall_ms": 51.21789999247994,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 134,
+        "loss": 0.08744630962610245,
+        "wall_ms": 51.8830000073649,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 135,
+        "loss": 0.1351262480020523,
+        "wall_ms": 51.84809998900164,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 136,
+        "loss": 0.14133240282535553,
+        "wall_ms": 60.3255000023637,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 137,
+        "loss": 0.06410496681928635,
+        "wall_ms": 51.74229999829549,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 138,
+        "loss": 0.22674526274204254,
+        "wall_ms": 50.19939999328926,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 139,
+        "loss": 0.1399066001176834,
+        "wall_ms": 52.27719999675173,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 140,
+        "loss": 0.17552660405635834,
+        "wall_ms": 51.013899996178225,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 141,
+        "loss": 0.13881359994411469,
+        "wall_ms": 51.241099994513206,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 142,
+        "loss": 0.13892991840839386,
+        "wall_ms": 51.57429999962915,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 143,
+        "loss": 0.1698724329471588,
+        "wall_ms": 51.11559999932069,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 144,
+        "loss": 0.18405219912528992,
+        "wall_ms": 53.309700000681914,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 145,
+        "loss": 0.14385665953159332,
+        "wall_ms": 51.74879998958204,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 146,
+        "loss": 0.09284726530313492,
+        "wall_ms": 50.34919999889098,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 147,
+        "loss": 0.1561000943183899,
+        "wall_ms": 50.19739999261219,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 148,
+        "loss": 0.04948977008461952,
+        "wall_ms": 50.95310001343023,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 149,
+        "loss": 0.07869493961334229,
+        "wall_ms": 51.05320000438951,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 150,
+        "loss": 0.23263928294181824,
+        "wall_ms": 50.41850000270642,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        },
+        "validation_loss": 0.11137300977651944
+      },
+      {
+        "step": 151,
+        "loss": 0.24634289741516113,
+        "wall_ms": 52.20279999775812,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 152,
+        "loss": 0.12758462131023407,
+        "wall_ms": 51.352399997995235,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 153,
+        "loss": 0.10117900371551514,
+        "wall_ms": 59.174399997573346,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 154,
+        "loss": 0.10905594378709793,
+        "wall_ms": 59.9989999900572,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 155,
+        "loss": 0.10693527013063431,
+        "wall_ms": 49.822700006188825,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 156,
+        "loss": 0.09948793053627014,
+        "wall_ms": 49.51349999464583,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 157,
+        "loss": 0.07679961621761322,
+        "wall_ms": 49.489299999549985,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 158,
+        "loss": 0.1533067524433136,
+        "wall_ms": 48.588300007395446,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 159,
+        "loss": 0.13712243735790253,
+        "wall_ms": 49.38689999107737,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 160,
+        "loss": 0.14801515638828278,
+        "wall_ms": 50.6357999984175,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 161,
+        "loss": 0.09244651347398758,
+        "wall_ms": 49.69379999965895,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 162,
+        "loss": 0.05940081924200058,
+        "wall_ms": 50.10400000901427,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 163,
+        "loss": 0.15286237001419067,
+        "wall_ms": 52.45269999431912,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 164,
+        "loss": 0.13768050074577332,
+        "wall_ms": 51.642799997352995,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 165,
+        "loss": 0.09992359578609467,
+        "wall_ms": 52.06319999706466,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 166,
+        "loss": 0.09222918003797531,
+        "wall_ms": 50.94840000674594,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 167,
+        "loss": 0.21998028457164764,
+        "wall_ms": 51.193199993576854,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 168,
+        "loss": 0.09052320569753647,
+        "wall_ms": 52.65080000390299,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 169,
+        "loss": 0.2928195595741272,
+        "wall_ms": 51.69180000666529,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 170,
+        "loss": 0.2911278307437897,
+        "wall_ms": 50.75409999699332,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 171,
+        "loss": 0.13460560142993927,
+        "wall_ms": 49.67039999610279,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 172,
+        "loss": 0.0868460014462471,
+        "wall_ms": 51.43729998962954,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 173,
+        "loss": 0.02947499416768551,
+        "wall_ms": 51.11600000236649,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 174,
+        "loss": 0.07758567482233047,
+        "wall_ms": 49.79560000356287,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 175,
+        "loss": 0.2295367568731308,
+        "wall_ms": 50.93880000640638,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 176,
+        "loss": 0.12457404285669327,
+        "wall_ms": 51.58850000589155,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 177,
+        "loss": 0.14593811333179474,
+        "wall_ms": 51.336800010176376,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 178,
+        "loss": 0.08720678091049194,
+        "wall_ms": 52.00739999418147,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 179,
+        "loss": 0.07984398305416107,
+        "wall_ms": 50.63050000171643,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 180,
+        "loss": 0.2622413635253906,
+        "wall_ms": 51.75559999770485,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        },
+        "validation_loss": 0.08719247456445742
+      },
+      {
+        "step": 181,
+        "loss": 0.0813973993062973,
+        "wall_ms": 55.866800001240335,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 182,
+        "loss": 0.09157335758209229,
+        "wall_ms": 52.154099990730174,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 183,
+        "loss": 0.1180235892534256,
+        "wall_ms": 51.90190000575967,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 184,
+        "loss": 0.13023576140403748,
+        "wall_ms": 50.45419999805745,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 185,
+        "loss": 0.0698966383934021,
+        "wall_ms": 50.96639999828767,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 186,
+        "loss": 0.26833218336105347,
+        "wall_ms": 51.31409999739844,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 187,
+        "loss": 0.15600506961345673,
+        "wall_ms": 49.740500006009825,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 188,
+        "loss": 0.0895107313990593,
+        "wall_ms": 50.28910000692122,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 189,
+        "loss": 0.17061109840869904,
+        "wall_ms": 51.54760000004899,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 190,
+        "loss": 0.14436332881450653,
+        "wall_ms": 52.93299999902956,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 191,
+        "loss": 0.07659240812063217,
+        "wall_ms": 51.62840000411961,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 192,
+        "loss": 0.06937821954488754,
+        "wall_ms": 49.9742999963928,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 193,
+        "loss": 0.11353990435600281,
+        "wall_ms": 49.97590000857599,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 194,
+        "loss": 0.054815128445625305,
+        "wall_ms": 49.358799995388836,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 195,
+        "loss": 0.23062962293624878,
+        "wall_ms": 50.204800005303696,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 196,
+        "loss": 0.11273477971553802,
+        "wall_ms": 50.01839999749791,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 197,
+        "loss": 0.07528409361839294,
+        "wall_ms": 50.108600000385195,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 198,
+        "loss": 0.10876104235649109,
+        "wall_ms": 49.60189999837894,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 199,
+        "loss": 0.11993812024593353,
+        "wall_ms": 50.205499996081926,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 200,
+        "loss": 0.14798127114772797,
+        "wall_ms": 50.394000005326234,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 201,
+        "loss": 0.15099962055683136,
+        "wall_ms": 50.055899992003106,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 202,
+        "loss": 0.14274220168590546,
+        "wall_ms": 51.65770000894554,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 203,
+        "loss": 0.08300908654928207,
+        "wall_ms": 50.701999993179925,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 204,
+        "loss": 0.09582015126943588,
+        "wall_ms": 51.63320001156535,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 205,
+        "loss": 0.06624900549650192,
+        "wall_ms": 50.79190000833478,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 206,
+        "loss": 0.1129901334643364,
+        "wall_ms": 51.3780999899609,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 207,
+        "loss": 0.05574234202504158,
+        "wall_ms": 51.38789999182336,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 208,
+        "loss": 0.16388176381587982,
+        "wall_ms": 50.70290000003297,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 209,
+        "loss": 0.034977853298187256,
+        "wall_ms": 51.664899991010316,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 210,
+        "loss": 0.11091510206460953,
+        "wall_ms": 50.4027999995742,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        },
+        "validation_loss": 0.0910322476357673
+      },
+      {
+        "step": 211,
+        "loss": 0.1204984113574028,
+        "wall_ms": 53.665300001739524,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 212,
+        "loss": 0.19882866740226746,
+        "wall_ms": 50.40490000101272,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 213,
+        "loss": 0.054992593824863434,
+        "wall_ms": 51.557600003434345,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 214,
+        "loss": 0.057059772312641144,
+        "wall_ms": 54.22120000002906,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 215,
+        "loss": 0.1723022162914276,
+        "wall_ms": 51.344300009077415,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 216,
+        "loss": 0.06116010621190071,
+        "wall_ms": 49.92449999554083,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 217,
+        "loss": 0.0790681391954422,
+        "wall_ms": 52.53049999009818,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 218,
+        "loss": 0.1226796880364418,
+        "wall_ms": 51.75369999778923,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 219,
+        "loss": 0.08631890267133713,
+        "wall_ms": 60.09140000969637,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 220,
+        "loss": 0.05199301615357399,
+        "wall_ms": 53.455000001122244,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 221,
+        "loss": 0.10722559690475464,
+        "wall_ms": 50.144699998782016,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 222,
+        "loss": 0.077335886657238,
+        "wall_ms": 50.536700000520796,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 223,
+        "loss": 0.13115011155605316,
+        "wall_ms": 50.59579999942798,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 224,
+        "loss": 0.16944287717342377,
+        "wall_ms": 53.12430000049062,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 225,
+        "loss": 0.06983063369989395,
+        "wall_ms": 50.65869999816641,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 226,
+        "loss": 0.07560543715953827,
+        "wall_ms": 50.269900006242096,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 227,
+        "loss": 0.03687424212694168,
+        "wall_ms": 50.49419999704696,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 228,
+        "loss": 0.07220045477151871,
+        "wall_ms": 51.36369999672752,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 229,
+        "loss": 0.13424596190452576,
+        "wall_ms": 51.14750000939239,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 230,
+        "loss": 0.07152760028839111,
+        "wall_ms": 50.67640000197571,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 231,
+        "loss": 0.1060880795121193,
+        "wall_ms": 49.693099994328804,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 232,
+        "loss": 0.09282311052083969,
+        "wall_ms": 50.85649999091402,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 233,
+        "loss": 0.07207514345645905,
+        "wall_ms": 50.42759999923874,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 234,
+        "loss": 0.06673620641231537,
+        "wall_ms": 49.83849999553058,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 235,
+        "loss": 0.09448342770338058,
+        "wall_ms": 50.926399999298155,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 236,
+        "loss": 0.10440778732299805,
+        "wall_ms": 53.63280000165105,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 237,
+        "loss": 0.13678917288780212,
+        "wall_ms": 52.02780000399798,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 238,
+        "loss": 0.061987847089767456,
+        "wall_ms": 53.167299993219785,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 239,
+        "loss": 0.12223300337791443,
+        "wall_ms": 51.99969999375753,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 240,
+        "loss": 0.055849816650152206,
+        "wall_ms": 54.315700006554835,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        },
+        "validation_loss": 0.09141917044848226
+      },
+      {
+        "step": 241,
+        "loss": 0.03656725585460663,
+        "wall_ms": 52.000499999849126,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 242,
+        "loss": 0.2019043266773224,
+        "wall_ms": 56.52830000326503,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 243,
+        "loss": 0.2218654751777649,
+        "wall_ms": 73.42770000104792,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 244,
+        "loss": 0.09478909522294998,
+        "wall_ms": 56.00080000294838,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 245,
+        "loss": 0.10878413170576096,
+        "wall_ms": 51.99000000720844,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 246,
+        "loss": 0.053438663482666016,
+        "wall_ms": 51.655199989909306,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 247,
+        "loss": 0.11196886003017426,
+        "wall_ms": 54.12129999604076,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 248,
+        "loss": 0.13104528188705444,
+        "wall_ms": 52.873300010105595,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 249,
+        "loss": 0.042976342141628265,
+        "wall_ms": 51.5062000049511,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 250,
+        "loss": 0.07251650840044022,
+        "wall_ms": 51.06459998933133,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 251,
+        "loss": 0.09499961137771606,
+        "wall_ms": 51.38679999799933,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 252,
+        "loss": 0.22927886247634888,
+        "wall_ms": 51.591900002676994,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 253,
+        "loss": 0.15008500218391418,
+        "wall_ms": 50.84329999226611,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 254,
+        "loss": 0.10468640178442001,
+        "wall_ms": 50.69350000121631,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 255,
+        "loss": 0.12129326909780502,
+        "wall_ms": 61.49210000876337,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 256,
+        "loss": 0.07252269238233566,
+        "wall_ms": 101.9916000077501,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 257,
+        "loss": 0.15395162999629974,
+        "wall_ms": 118.18840001069475,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 258,
+        "loss": 0.11193453520536423,
+        "wall_ms": 60.20459999854211,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 259,
+        "loss": 0.11282883584499359,
+        "wall_ms": 51.19949999789242,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 260,
+        "loss": 0.12315765023231506,
+        "wall_ms": 67.08639999851584,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 261,
+        "loss": 0.12967067956924438,
+        "wall_ms": 51.17070001142565,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 262,
+        "loss": 0.08635710924863815,
+        "wall_ms": 52.113900004769675,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 263,
+        "loss": 0.04348475858569145,
+        "wall_ms": 52.4163999943994,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 264,
+        "loss": 0.05124063044786453,
+        "wall_ms": 51.70690000522882,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 265,
+        "loss": 0.05820208787918091,
+        "wall_ms": 51.340499994694255,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 266,
+        "loss": 0.09270603209733963,
+        "wall_ms": 51.29210000450257,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 267,
+        "loss": 0.18845321238040924,
+        "wall_ms": 50.4341000050772,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 268,
+        "loss": 0.0745086669921875,
+        "wall_ms": 78.93540000077337,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 269,
+        "loss": 0.07108264416456223,
+        "wall_ms": 55.28220000269357,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 270,
+        "loss": 0.180262953042984,
+        "wall_ms": 52.274100002250634,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        },
+        "validation_loss": 0.07662873651669504
+      },
+      {
+        "step": 271,
+        "loss": 0.046875447034835815,
+        "wall_ms": 51.00700000184588,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 272,
+        "loss": 0.060447096824645996,
+        "wall_ms": 49.532200006069615,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 273,
+        "loss": 0.11020419746637344,
+        "wall_ms": 50.95119999896269,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 274,
+        "loss": 0.1071152314543724,
+        "wall_ms": 50.88100000284612,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 275,
+        "loss": 0.13659672439098358,
+        "wall_ms": 52.30120000487659,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 276,
+        "loss": 0.0975671336054802,
+        "wall_ms": 53.256799990776926,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 277,
+        "loss": 0.05476794391870499,
+        "wall_ms": 71.81520000449382,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 278,
+        "loss": 0.12603627145290375,
+        "wall_ms": 82.77280000038445,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 279,
+        "loss": 0.06368513405323029,
+        "wall_ms": 59.86339999071788,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 280,
+        "loss": 0.1355646550655365,
+        "wall_ms": 52.396900005987845,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 281,
+        "loss": 0.09988659620285034,
+        "wall_ms": 52.543599987984635,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 282,
+        "loss": 0.06749966740608215,
+        "wall_ms": 58.664799988036975,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 283,
+        "loss": 0.19986028969287872,
+        "wall_ms": 51.57679998956155,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 284,
+        "loss": 0.15447202324867249,
+        "wall_ms": 62.23290000343695,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 285,
+        "loss": 0.05934729054570198,
+        "wall_ms": 56.672000006074086,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 286,
+        "loss": 0.10924828052520752,
+        "wall_ms": 50.58609999832697,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 287,
+        "loss": 0.08804250508546829,
+        "wall_ms": 50.92900000454392,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 288,
+        "loss": 0.04109891504049301,
+        "wall_ms": 52.71480001101736,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 289,
+        "loss": 0.0859348475933075,
+        "wall_ms": 51.79209999914747,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 290,
+        "loss": 0.08404533565044403,
+        "wall_ms": 52.8074000030756,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 291,
+        "loss": 0.04737966135144234,
+        "wall_ms": 51.132999986293726,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 292,
+        "loss": 0.06253968179225922,
+        "wall_ms": 50.58399999688845,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 293,
+        "loss": 0.052363693714141846,
+        "wall_ms": 51.85049999272451,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 294,
+        "loss": 0.07481317222118378,
+        "wall_ms": 51.30010000721086,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 295,
+        "loss": 0.07814957201480865,
+        "wall_ms": 54.54399999871384,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 296,
+        "loss": 0.09945616126060486,
+        "wall_ms": 52.88240000663791,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 297,
+        "loss": 0.056638821959495544,
+        "wall_ms": 52.33350000344217,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 298,
+        "loss": 0.06436338275671005,
+        "wall_ms": 54.042899995693006,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 299,
+        "loss": 0.09845193475484848,
+        "wall_ms": 53.275500002200715,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        }
+      },
+      {
+        "step": 300,
+        "loss": 0.20409423112869263,
+        "wall_ms": 51.022800005739555,
+        "memory": {
+          "allocated_bytes": 733972992,
+          "peak_allocated_bytes": 1614750720
+        },
+        "validation_loss": 0.08379395891008098
+      }
+    ],
+    "peak_memory_allocated_bytes": 1614750720,
+    "final_validation_loss": 0.08379395891008098,
+    "final_test_loss": 0.07889321013602592
+  },
+  "inference": {}
+}
