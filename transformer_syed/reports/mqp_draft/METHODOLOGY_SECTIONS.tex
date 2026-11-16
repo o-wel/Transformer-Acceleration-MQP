@@ -1,0 +1,198 @@
+\section{Methodology}
+\label{sec:methodology}
+
+\subsection{Model Selection and Implementation Environment}
+
+We selected the smallest pretrained GPT-2 checkpoint and implemented the experimental modifications in minGPT, a compact PyTorch implementation of the GPT architecture \cite{karpathy_mingpt}. Its explicit attention, projection, and generation code made it possible to control each optimization and inspect its behavior. GPT-2 is small enough to support repeated training and inference experiments on the available NVIDIA A30 GPUs while retaining the decoder-only architecture used for autoregressive language modeling. We imported pretrained weights rather than training a language model from initialization.
+
+The checkpoint has 12 Transformer blocks, 12 attention heads, a hidden width of 768, a head dimension of 64, a vocabulary of 50,257 tokens, and a maximum context of 1,024 positions \cite{gpt2_config}. It uses causal self-attention and learned positional embeddings. The GPT-2 tokenizer applies byte-level byte-pair encoding, so the same tokenizer is used for pretrained evaluation, adaptation, and generation.
+
+OpenAI's model card describes GPT-2 as a research language model and identifies a 124-million-parameter release corresponding to the small checkpoint used here. It also cautions that generated text can be inaccurate and reflect training-data biases \cite{gpt2_modelcard}. Consequently, model quality is evaluated against task-specific references rather than inferred from fluent output. Our minGPT implementation stores the input embedding and output projection as separate parameter tensors, yielding 163,037,184 physical base-model scalars. This implementation detail explains the difference from the usual tied-weight parameter count and is included when calculating parameter storage and memory savings.
+
+Python is the main programming language. PyTorch provides tensor operations, automatic differentiation, model execution, and AdamW optimization; Hugging Face Transformers supplies pretrained GPT-2 weights and tokenization. LoRA and KV caching are implemented directly in the Python/PyTorch model. The custom attention kernel is written using Triton's Python-based GPU programming interface. Shell scripts coordinate cluster execution, and JSON and CSV files preserve experimental settings and measurements.
+
+The primary methods described in this section use FP32. A separate matched extension evaluates FP16 mixed precision; its precision policy and results are reported in Section~\ref{sec:precision_results}. Model parameters, activations, gradients, optimizer states, and cached keys and values retain 32-bit floating-point storage. Automatic mixed precision is disabled, and TF32 is disabled for the primary comparisons. In the custom attention kernel, dot products explicitly request IEEE FP32 input precision. Comparisons therefore hold numerical precision fixed while changing adaptation, cache reuse, or attention execution.
+
+\subsection{Data and Quality-Evaluation Tasks}
+\label{sec:method_data}
+
+\paragraph{Pretrained corpus.}
+The initial model inherits its language representations from GPT-2 pretraining on WebText. The GPT-2 paper describes collecting text from outbound links shared on Reddit, filtering and deduplicating the resulting pages, and obtaining approximately eight million documents totaling 40 GB of text; Wikipedia documents were excluded \cite{radford2019gpt2}. These are properties of the original pretraining process. We did not collect WebText or reproduce pretraining; our experiments begin with the released checkpoint and use separate downstream data.
+
+\paragraph{Synthetic basketball adaptation data.}
+The primary generation task uses programmatically authored fictional basketball matches. Each record specifies two team names, their halftime scores, and their final scores. A deterministic generator with seed 20260929 creates 480 training matches, 40 validation matches, and 40 test matches. Each match produces three questions: identify the final winner and score, identify the halftime leader and score, and determine whether the eventual winner overcame a halftime deficit. These yield 1,440 training examples, 120 validation examples, and 120 test examples.
+
+Matches are assigned to splits before questions are formed, keeping all questions about one match together. Training and validation use eight team names; testing uses four different names. Numeric score quadruples do not overlap between splits, and no complete test reference answer appears verbatim among the training references. Training includes two prompt variants, while test prompts use a form already present in training. This design tests new facts and names within a controlled task distribution.
+
+Reference answers are calculated directly from the generated scores. For example, the final-score comparison determines the winner, while a comeback requires the final winner's halftime score to be lower than the opponent's. Each input includes the match facts and a question. Its reference answer is supplied as supervision during training and retained separately during evaluation; it is not inserted into a test prompt.
+
+An additional 120 counterfactual questions are constructed from the test examples. Winner questions swap final scores; halftime and comeback questions swap halftime scores. These edits reverse the correct primary answer. An original--counterfactual pair earns credit only when both answers are correct. These pairs assess sensitivity to the supplied facts, but are related observations rather than additional independent matches.
+
+\paragraph{Real-data classification task.}
+A separate adaptation experiment uses the UCI SMS Spam Collection, a corpus of messages labeled as spam or legitimate messages (ham) \cite{uci_sms}. The preparation pipeline removes case/whitespace duplicates and groups similar message templates by normalizing URLs, digit runs, punctuation, and whitespace. Conflicting-label template groups are removed, and whole groups are assigned to splits before subsampling. With split seed 20261026, the experiment requests 1,200 training messages, 400 validation messages, and 800 test messages while preserving each pool's class proportions. The data manifest records actual counts and checksums. Message content is capped at 96 GPT-2 tokens. The model predicts the next-token label, and the classifier compares the logits for the ham and spam label tokens. This task is scored separately from basketball generation.
+
+\paragraph{Performance inputs and evaluation separation.}
+Deterministically generated token prompts provide controlled sequence lengths and batch sizes for inference benchmarks. They measure computational performance rather than meaningful-answer accuracy. Held-out basketball questions and SMS messages provide the quality evaluation. Validation data select configurations and checkpoints; test data assess the frozen selection. Because the project reuses previously evaluated splits, these later comparisons are not newly blinded confirmation datasets.
+
+\subsection{Low-Rank Adaptation}
+\label{sec:method_lora}
+
+\paragraph{Implementation.}
+LoRA replaces selected linear transformations with a frozen pretrained projection and a trainable low-rank branch \cite{hu2021lora}. For an input $x$, the implemented transformation is
+\begin{equation}
+ y=W_0x+b+\frac{\alpha}{r}B(Ax),
+\end{equation}
+where $r$ is the adapter rank and $\alpha/r$ scales the update. Matrix $A$ is randomly initialized and $B$ is initialized to zero, so enabling an adapter initially preserves the pretrained transformation. The base model is frozen before adapters are created. AdamW receives only parameters whose gradient flag is enabled.
+
+The baseline configuration uses rank 4 and $\alpha=8$, inserting adapters into the fused query/key/value projection, attention output projection, and both feed-forward projections in each block. This adds 589,824 trainable scalars. Embeddings, normalization parameters, the output head, and original projection weights remain frozen. Exact comparisons with independent initialization snapshots verify that frozen tensors do not change and receive no gradients. Total, trainable, and changed scalar counts are reported separately.
+
+\paragraph{Training controls and hyperparameters.}
+The matched basketball experiment compares pretrained GPT-2, full fine-tuning, and LoRA. Both trained methods start from identical pretrained weights and receive the same example stream for a paired seed. The baseline training budget is 1,200 optimizer steps, batch size 8, and padded sequence length 128, using AdamW, zero weight decay, and gradient clipping at norm 1.0. Both methods evaluate learning rates $10^{-3}$ and $10^{-4}$ with seed 42. Validation answer-token negative log-likelihood (NLL) at steps 300, 600, 900, and 1,200 selects each method's learning rate and checkpoint. The selected learning rate is then evaluated with seeds 43 and 44, again selecting checkpoints using validation NLL.
+
+Inputs contain the question, answer, and end-of-text marker. Loss targets corresponding to the prompt and padding are masked, so cross-entropy supervises answer tokens and termination rather than rewarding reproduction of the question. Token-weighted NLL is
+\begin{equation}
+ \mathcal{L}=-\frac{1}{N_{\mathrm{sup}}}
+ \sum_{i\in\mathcal{S}}\log p_\theta(t_i\mid t_{<i}),
+\end{equation}
+where $\mathcal{S}$ contains the supervised positions. Perplexity, when reported, is $\exp(\mathcal{L})$ over the same positions.
+
+Important LoRA settings include rank, scaling, target projections, adapter dropout, learning rate, weight decay, effective batch size, gradient accumulation, sequence length, and training budget. Rank controls update capacity and adapter size; scaling changes update magnitude; target selection determines which transformations can adapt. The broader FP32 search is described below, separately from the baseline two-rate comparison.
+
+\paragraph{Output quality and resource measurements.}
+Basketball evaluation uses greedy generation with a maximum of 40 new tokens and scores the answer through termination. Primary-answer accuracy checks the named winner or halftime leader, or the leading yes/no answer for comeback questions. The fields-correct score requires a correct primary answer and the exact multiset of expected score numbers without extra numbers. Normalized reference match compares words and numbers after normalizing case, punctuation, and whitespace. Paired accuracy requires correct answers to both the original and its counterfactual.
+
+These checks are format-sensitive. A numerical multiset does not establish every score-to-team association, and reference matching can reject valid paraphrases. Raw outputs are therefore retained for inspection. Results are summarized across the three training seeds using means and sample standard deviations; the 120 test questions originate from only 40 matches.
+
+SMS evaluation reports label NLL, accuracy, spam precision, recall, F1, balanced accuracy, and confusion counts. Its classification scores and NLL are not pooled with basketball metrics. Training measurements include synchronized update time, training wall time, trainable parameter storage, and peak allocated and reserved GPU memory. LoRA reduces trainable-state requirements, but the frozen model and its intermediate computations still contribute to runtime and memory. Inference comparisons retain active, unmerged adapters so their execution cost remains explicit.
+
+\subsection{KV-Cache Implementation and Evaluation}
+\label{sec:method_cache}
+
+\paragraph{KV-cache implementation.}
+The KV cache was implemented directly in the Python/PyTorch minGPT model and can be enabled independently during generation. During prefill, each attention layer stores its computed keys and values. Subsequent decoding steps process only the newly generated token and attend to the retained keys and values. This avoids recomputing earlier tokens' projections and hidden states while preserving attention over the preceding context.
+
+Each layer maintains separate key and value tensors with shape batch $\times$ heads $\times$ cached tokens $\times$ head width. Cached tensors are checked for compatible dimensions, dtype, and device placement. Positional embeddings are offset by the cached sequence length, and chunked continuations use a correspondingly offset causal mask. The cache belongs to an individual request and is discarded when its prompt, model weights, or adapter settings change.
+
+GPT-2 has a 1,024-position context window. When generation would exceed this window, the implementation crops the context and reconstructs the cache, preserving the uncached model's position-renumbering behavior. Direct cache-enabled forward calls reject overflow. Performance workloads remain within the context window to avoid conflating incremental decoding with repeated cache reconstruction.
+
+Caching requires evaluation mode, disabled gradient computation, and no training targets. It is therefore evaluated during inference and does not directly accelerate gradient updates. The baseline cache grows by concatenating new key/value tensors to the retained tensors; this copying contributes to measured execution time.
+
+\paragraph{Inference performance metrics.}
+Time to first token (TTFT) is the elapsed time from the beginning of a model request until its first output token is produced. Time between tokens (TBT) characterizes subsequent decoding. For $G>1$ generated tokens, the mean TBT is
+\begin{equation}
+ \overline{\mathrm{TBT}}=
+ \frac{t_G-t_1}{G-1},\qquad
+ T_{\mathrm{request}}=\mathrm{TTFT}+(G-1)\overline{\mathrm{TBT}},
+\end{equation}
+when timestamps use a common measurement scope. This distinction matters because caching primarily removes repeated work after prefill. A single prompt-forward latency is labeled prefill latency rather than assumed to be application-level TTFT.
+
+The dedicated FP32 cache benchmark generates exactly 64 tokens per request. Its prefill interval includes selecting and appending the first token; decode covers the remaining 63 steps. CUDA events measure GPU-stream intervals, while synchronized wall time captures the model-request loop including Python overhead. Tokenization, model loading, input transfer, warmup, and cleanup are excluded. Aggregate output throughput is $BG/T_{\mathrm{request}}$ for batch size $B$. The benchmark uses two warmup requests and five measured repetitions per mode, alternating cached and uncached execution order. Prompt lengths and batch sizes vary to expose workload dependence.
+
+\paragraph{Memory consumption and correctness.}
+Logical FP32 cache occupancy is
+\begin{equation}
+ M_{\mathrm{KV}}=2LBTHd_h\times4\ \mathrm{bytes},
+\end{equation}
+where $L$ is the layer count, $T$ is retained sequence length, $H$ is the number of heads, and $d_h$ is head width. For the selected GPT-2 model, this is 72 KiB per cached token per sequence. Dynamic concatenation can temporarily retain old and new storage, so logical occupancy differs from the runtime peak. Caching adds persistent state while reducing repeated computation and intermediates; its net effect on peak memory is measured.
+
+Peak allocated and reserved CUDA memory are recorded separately. Allocated memory measures live tensors tracked by PyTorch; reserved memory describes its caching allocator. Neither is a complete whole-device measurement, and the two are not added. Cached and uncached logits are checked numerically, and complete greedy-token sequences are compared independently. Held-out task scores establish whether the implementation preserves useful output behavior without changing model weights.
+
+\subsection{Custom FlashAttention-1-Derived Attention}
+\label{sec:method_flash}
+
+\paragraph{Algorithm and implementation.}
+The FP32 attention optimization is an in-house Triton implementation integrated with the PyTorch model. It follows the tiled attention and online-softmax approach of FlashAttention-1 \cite{dao2022flashattention}. The reference eager implementation explicitly forms attention scores, applies the causal mask and softmax, and multiplies by the values. The custom implementation processes query and key/value tiles while retaining normalization statistics and partial outputs, avoiding a complete sequence-by-sequence score or probability matrix in global memory.
+
+For a query row, each tile updates a running maximum $m$, normalization sum $\ell$, and weighted-value accumulator $u$. If a new score tile is $s$ and the associated values are $V_b$, the recurrence is
+\begin{align}
+ m'&=\max(m,\max_j s_j),\\
+ \ell'&=e^{m-m'}\ell+\sum_j e^{s_j-m'},\\
+ u'&=e^{m-m'}u+\sum_j e^{s_j-m'}(V_b)_j.
+\end{align}
+The final output is $u/\ell$. Scores include the usual $1/\sqrt{d_h}$ scaling and causal masking. Cache-aware masking incorporates the past sequence length, allowing prefill, one-token decoding, and multi-token continuations to use the same mathematical attention operation.
+
+The kernel retains FP32 inputs, output, normalization state, and accumulation, with IEEE FP32 dot products. Floating-point reduction order and exponential approximations can still produce small differences from eager execution. The implementation is an experimental realization of the algorithm; its timing does not represent the performance of an optimized production FlashAttention release.
+
+\paragraph{Training support and memory.}
+The initial FP32 attention experiment evaluated a forward-only kernel during inference. A later version adds first-order backward kernels that reconstruct attention probabilities from saved row-normalization statistics and accumulate gradients in tiles. The report distinguishes these versions: the earlier inference measurements do not establish training acceleration. Where custom backward is used, attention-probability dropout is disabled because that operation is unsupported by this kernel.
+
+Avoiding quadratic attention intermediates reduces attention-specific storage toward linear scaling in sequence length for a fixed head width, while dense attention retains quadratic arithmetic complexity. Overall GPU memory still includes weights, projections, activations, gradients, optimizer state, caches, and workspaces. We therefore record allocator peaks as well as logical storage and do not infer a proportional reduction in whole-model memory from the attention algorithm alone.
+
+\paragraph{Verification and benchmarking.}
+Correctness checks compare forward outputs and, for the backward-enabled version, gradients against reference attention. Tests cover causal masking, noncontiguous fused-projection layouts, irregular lengths, cached continuations, and active LoRA updates. Real-checkpoint evaluation additionally checks logits, complete greedy outputs, and basketball quality against the FP32 eager reference.
+
+Comparisons hold checkpoint, dtype, batch size, prompt, output budget, and cache semantics fixed. Warmup excludes kernel compilation from steady-state timing. Prefill, subsequent-token decoding, total generation time, throughput, and peak memory are reported separately. Attention-only timings diagnose kernel behavior; full-model generation timings determine end-to-end effects. Tile dimensions and warp counts are experimental parameters. Benefits are measured because a kernel effective for many-query prefill may have different overhead and parallelism during single-query decoding.
+
+\subsection{Hyperparameter Optimization}
+\label{sec:method_hyperparameters}
+
+\paragraph{Ax optimization framework.}
+The Ax workflow described here coordinates sequential benchmark trials using previous observations to guide subsequent parameter proposals. Ax supports multiple competing objectives and reports Pareto trade-offs \cite{ax_moo}. The configured default budget is 20 trials, each representing a complete training and inference experiment. This adaptive workflow is distinct from the staged FP32 grid study described below; their trial counts and selections are reported separately.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{}lXl@{}}
+\toprule
+Hyperparameter & Search space & Selection method\\
+\midrule
+Learning rate & $10^{-5}$--$3\times10^{-3}$ & Logarithmic scale\\
+Batch size & $2,4,8,16$ & Discrete choice\\
+Sequence length & $128,256,512$ & Discrete choice\\
+LoRA rank & $2,4,8,16,32$ & LoRA only\\
+LoRA $\alpha$ & $4,8,16,32,64$ & LoRA only\\
+\bottomrule
+\end{tabularx}
+\caption{Parameter space for the Ax workflow.}
+\label{tab:ax_space}
+\end{table}
+
+\paragraph{Optimization objectives.}
+Each successful trial reports final validation loss, inference time, training time, peak training memory, and validation fields-correct score. The first four objectives are minimized and fields-correct is maximized. Quality is evaluated on validation examples during selection, with test evaluation reserved for frozen configurations. Runtime and memory objectives use explicitly recorded workload and measurement scopes.
+
+A configuration is Pareto-optimal among the measured candidates if no other candidate is at least as good on every objective and strictly better on one. Larger batches can improve throughput while requiring additional memory, and changes to sequence length can alter both loss and computation. Thus, the workflow returns measured trade-offs rather than assuming a single configuration optimizes every metric. Increasing padded sequence length does not provide additional semantic context when the underlying example already fits within the shorter length.
+
+\paragraph{Trial management and reporting.}
+Each Ax trial uses a recorded, adjusted random seed. Ax records proposed parameters and objective values after successful execution; failed trials are retained separately without fabricated objective values. Changing seeds across configurations introduces initialization and sampling variability, so promising configurations require repeated evaluation under a common set of seeds before attributing differences to hyperparameters alone. The JSON report preserves parameters, benchmark measurements, failures, and the estimated Pareto set. The default trial budget describes configuration, rather than evidence that a particular search completed.
+
+\paragraph{Separate staged FP32 sensitivity study.}
+The completed FP32 basketball study uses an explicitly staged search rather than Ax. Its initial grid contains 90 combinations of rank $\{2,4,8,16,32\}$, scale $\alpha/r\in\{1,2,4\}$, learning rate $\{10^{-4},3\times10^{-4},10^{-3}\}$, and attention-only versus all Transformer projections. Every core candidate receives 1,200 examples; the best nine by validation answer NLL restart from pretrained weights and receive 9,600 examples. Attention-only includes the fused query/key/value and attention output projections; all projections additionally includes both MLP projections.
+
+Refinement tests adapter-input dropout $\{0,0.05,0.1\}$ and weight decay $\{0,0.01,0.1\}$ around the strongest refined candidate, followed by effective-batch, microbatch, and padded-length comparisons. The best three unique full-budget configurations are confirmed with seeds 42, 43, and 44; mean validation NLL selects the winner. Full fine-tuning receives a separate three-rate control with the same full example budget but less total tuning effort, which limits method-only interpretations of any quality difference.
+
+Training uses eager FP32 attention, fixed learning rates, TF32 disabled, and clipping at norm 1. Token-weighted gradient accumulation and a fixed flattened sample stream preserve the intended supervision across microbatch choices. Equal example budgets do not imply equal update counts, so examples, supervised tokens, optimizer updates, and total search cost are recorded. The final selection is persisted before held-out evaluation. The study searches a finite set in stages; its outcome is the best observed configuration within that search, rather than a global optimum.
+
+\subsection{Integration of LoRA, KV Caching, and Tiled Attention}
+\label{sec:method_integration}
+
+The three methods are integrated within the same minGPT forward and generation paths. LoRA determines the adapted projection weights and the parameters updated during fine-tuning. The selected attention backend computes attention using the resulting queries, keys, and values. During cached inference, the model retains each layer's keys and values after prefill, then supplies each new token's query and the growing history to that backend. All components retain FP32 storage and computation.
+
+Training and inference are evaluated separately. Full fine-tuning and LoRA define alternative adaptation regimes; caching is inactive during training. For inference, each selected full or LoRA checkpoint is evaluated with eager or custom tiled attention and with caching disabled or enabled. This produces eight primary combinations, summarized in Table~\ref{tab:integration}. The untouched pretrained checkpoint remains a separate quality reference. LoRA adapters remain unmerged during the primary systems comparisons.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+Adapted checkpoint & Attention execution & KV reuse\\
+\midrule
+Full fine-tuning or LoRA & Eager or custom tiled & Disabled or enabled\\
+\bottomrule
+\end{tabular}
+\caption{The $2\times2\times2$ primary inference comparison. Each combination uses the same declared workload and FP32 precision.}
+\label{tab:integration}
+\end{table}
+
+To isolate caching and attention effects, comparisons use the same checkpoint, token inputs, batch size, prompt length, and generated-token budget. Full-versus-LoRA comparisons also involve different learned weights, so quality accompanies resource measurements. Caches are created separately for each request and checkpoint. Causal masks and positional offsets are checked at the boundary between the attention and cache implementations.
+
+The FP32 systems study varies batch size $\{1,4,8\}$, prompt length $\{32,128,512,896\}$, and output length $\{32,64\}$, keeping every request within GPT-2's position limit. The custom kernel explores query tiles $\{16,32\}$, key tiles $\{32,64\}$, and warp counts $\{4,8\}$. Each systems case receives two warmups and seven measured repetitions. Fixed output budgets prevent early termination from making one implementation appear faster by generating fewer tokens. Task-quality generation separately respects termination.
+
+Measurements include prefill, per-step decode latency, synchronized request wall time, output throughput, peak allocated and reserved memory, and logical KV occupancy. Systems configurations must pass the study's declared numerical logit tolerance and complete greedy-token parity checks before supporting output-preserving speed claims. Timing samples from failed parity checks are retained as diagnostics. Raw repetitions describe short-term timing variation, while the three training seeds characterize adaptation variability.
+
+Combined effects are measured directly. For a fixed checkpoint and workload, let $T_{e,0}$ and $T_{t,0}$ denote eager and tiled latency without caching, and $T_{e,c}$ and $T_{t,c}$ the corresponding cached latencies. The attention speedups are $T_{e,0}/T_{t,0}$ and $T_{e,c}/T_{t,c}$, while the direct combined speedup relative to eager uncached execution is $T_{e,0}/T_{t,c}$. Their interaction is summarized descriptively by
+\begin{equation}
+ I=\frac{T_{e,0}/T_{t,0}}{T_{e,c}/T_{t,c}}.
+\end{equation}
+An $I>1$ indicates that the measured attention benefit is smaller with caching for that workload. Individual speedups are not multiplied: caching changes the amount and shape of attention work, while unmerged adapters add projection work. The measured combinations therefore establish whether the integrated configuration improves latency and memory while preserving the selected checkpoint's quality.
+
+Reports retain configuration values, data and checkpoint fingerprints, GPU and software metadata, raw timings, memory measurements, and generated outputs. Performance comparisons use the same GPU class and disclose fixed execution order where applicable. Findings are limited to the measured model, tasks, hardware, and search budget.
+

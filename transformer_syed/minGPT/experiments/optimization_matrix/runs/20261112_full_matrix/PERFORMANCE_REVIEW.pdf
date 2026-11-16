@@ -1,0 +1,96 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [4 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+4 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 5 0 R >>
+endobj
+5 0 obj
+<< /Length 1951 >>
+stream
+0.06 0.16 0.25 rg BT /F1 8.6 Tf 12 TL 40 800 Td
+(# LoRA, attention and KV-cache optimization matrix) Tj
+T*
+() Tj
+T*
+(Overall status: COMPLETE) Tj
+T*
+(Each task/precision contains 27 off/best/poor combinations plus four joint serving selections.) Tj
+T*
+(Both independently tuned factors and jointly tuned attention/cache settings are confirmed.) Tj
+T*
+(Off LoRA is full fine-tuning; attention and cache are inference factors in this study.) Tj
+T*
+(Best/poor training choices are frozen from prior validation. Numerical failures stay diagnostic.) Tj
+T*
+(New measurements are not available until jobs complete. Submission is not completion.) Tj
+T*
+() Tj
+T*
+(## basketball_fp16: COMPLETE) Tj
+T*
+({"calibration": 2592, "confirmation": 2232, "quality": 93, "training": 9}) Tj
+T*
+(Report: basketball_fp16/PERFORMANCE_REVIEW.pdf) Tj
+T*
+(Raw comparison table: basketball_fp16/COMPARISONS.csv) Tj
+T*
+() Tj
+T*
+(## basketball_fp32: COMPLETE) Tj
+T*
+({"calibration": 2592, "confirmation": 2232, "quality": 93, "training": 9}) Tj
+T*
+(Report: basketball_fp32/PERFORMANCE_REVIEW.pdf) Tj
+T*
+(Raw comparison table: basketball_fp32/COMPARISONS.csv) Tj
+T*
+() Tj
+T*
+(## spam_fp16: COMPLETE) Tj
+T*
+({"calibration": 2592, "confirmation": 2232, "quality": 93, "training": 9}) Tj
+T*
+(Report: spam_fp16/PERFORMANCE_REVIEW.pdf) Tj
+T*
+(Raw comparison table: spam_fp16/COMPARISONS.csv) Tj
+T*
+() Tj
+T*
+(## spam_fp32: COMPLETE) Tj
+T*
+({"calibration": 2592, "confirmation": 2232, "quality": 93, "training": 9}) Tj
+T*
+(Report: spam_fp32/PERFORMANCE_REVIEW.pdf) Tj
+T*
+(Raw comparison table: spam_fp32/COMPARISONS.csv) Tj
+T*
+() Tj
+T*
+(The four studies retune separately. Precision contrasts between selected winners combine precision) Tj
+T*
+(and configuration changes; do not interpret them as isolated FP16 effects.) Tj
+T*
+(Input provenance and frozen source/data hashes: SNAPSHOT_SHA256.json. Scheduler IDs: jobs.json.) Tj
+ET BT /F1 8 Tf 40 55 Td (Optimization matrix | page 1/1) Tj ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000183 00000 n 
+0000000309 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+2312
+%%EOF

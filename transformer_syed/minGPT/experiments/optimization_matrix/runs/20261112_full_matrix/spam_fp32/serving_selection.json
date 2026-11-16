@@ -1,0 +1,4904 @@
+{
+  "frozen_before_confirmation": true,
+  "calibration_prompt_seed": 123,
+  "confirmation_prompt_seed": 987,
+  "criterion": "Passing calibration latency extrema; numerical failures diagnostic only",
+  "selections": [
+    {
+      "lora": "off",
+      "workload": {
+        "batch": 1,
+        "prompt_tokens": 32,
+        "new_tokens": 32
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "off",
+      "workload": {
+        "batch": 1,
+        "prompt_tokens": 32,
+        "new_tokens": 64
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "off",
+      "workload": {
+        "batch": 1,
+        "prompt_tokens": 128,
+        "new_tokens": 32
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "static_request"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "off",
+      "workload": {
+        "batch": 1,
+        "prompt_tokens": 128,
+        "new_tokens": 64
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "off",
+      "workload": {
+        "batch": 1,
+        "prompt_tokens": 512,
+        "new_tokens": 32
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "off",
+      "workload": {
+        "batch": 1,
+        "prompt_tokens": 512,
+        "new_tokens": 64
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "off",
+      "workload": {
+        "batch": 1,
+        "prompt_tokens": 896,
+        "new_tokens": 32
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "off",
+      "workload": {
+        "batch": 1,
+        "prompt_tokens": 896,
+        "new_tokens": 64
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "off",
+      "workload": {
+        "batch": 4,
+        "prompt_tokens": 32,
+        "new_tokens": 32
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "off",
+      "workload": {
+        "batch": 4,
+        "prompt_tokens": 32,
+        "new_tokens": 64
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "off",
+      "workload": {
+        "batch": 4,
+        "prompt_tokens": 128,
+        "new_tokens": 32
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "static_request"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "off",
+      "workload": {
+        "batch": 4,
+        "prompt_tokens": 128,
+        "new_tokens": 64
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "off",
+      "workload": {
+        "batch": 4,
+        "prompt_tokens": 512,
+        "new_tokens": 32
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "off",
+      "workload": {
+        "batch": 4,
+        "prompt_tokens": 512,
+        "new_tokens": 64
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "off",
+      "workload": {
+        "batch": 4,
+        "prompt_tokens": 896,
+        "new_tokens": 32
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "off",
+      "workload": {
+        "batch": 4,
+        "prompt_tokens": 896,
+        "new_tokens": 64
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "off",
+      "workload": {
+        "batch": 8,
+        "prompt_tokens": 32,
+        "new_tokens": 32
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "off",
+      "workload": {
+        "batch": 8,
+        "prompt_tokens": 32,
+        "new_tokens": 64
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "off",
+      "workload": {
+        "batch": 8,
+        "prompt_tokens": 128,
+        "new_tokens": 32
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "off",
+      "workload": {
+        "batch": 8,
+        "prompt_tokens": 128,
+        "new_tokens": 64
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "static_request"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "off",
+      "workload": {
+        "batch": 8,
+        "prompt_tokens": 512,
+        "new_tokens": 32
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "off",
+      "workload": {
+        "batch": 8,
+        "prompt_tokens": 512,
+        "new_tokens": 64
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "off",
+      "workload": {
+        "batch": 8,
+        "prompt_tokens": 896,
+        "new_tokens": 32
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "off",
+      "workload": {
+        "batch": 8,
+        "prompt_tokens": 896,
+        "new_tokens": 64
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "best",
+      "workload": {
+        "batch": 1,
+        "prompt_tokens": 32,
+        "new_tokens": 32
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "best",
+      "workload": {
+        "batch": 1,
+        "prompt_tokens": 32,
+        "new_tokens": 64
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "best",
+      "workload": {
+        "batch": 1,
+        "prompt_tokens": 128,
+        "new_tokens": 32
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "best",
+      "workload": {
+        "batch": 1,
+        "prompt_tokens": 128,
+        "new_tokens": 64
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "best",
+      "workload": {
+        "batch": 1,
+        "prompt_tokens": 512,
+        "new_tokens": 32
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "best",
+      "workload": {
+        "batch": 1,
+        "prompt_tokens": 512,
+        "new_tokens": 64
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "static_request"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "best",
+      "workload": {
+        "batch": 1,
+        "prompt_tokens": 896,
+        "new_tokens": 32
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "best",
+      "workload": {
+        "batch": 1,
+        "prompt_tokens": 896,
+        "new_tokens": 64
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "best",
+      "workload": {
+        "batch": 4,
+        "prompt_tokens": 32,
+        "new_tokens": 32
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "static_request"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "best",
+      "workload": {
+        "batch": 4,
+        "prompt_tokens": 32,
+        "new_tokens": 64
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "best",
+      "workload": {
+        "batch": 4,
+        "prompt_tokens": 128,
+        "new_tokens": 32
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "best",
+      "workload": {
+        "batch": 4,
+        "prompt_tokens": 128,
+        "new_tokens": 64
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "static_request"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "best",
+      "workload": {
+        "batch": 4,
+        "prompt_tokens": 512,
+        "new_tokens": 32
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "static_request"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "best",
+      "workload": {
+        "batch": 4,
+        "prompt_tokens": 512,
+        "new_tokens": 64
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "best",
+      "workload": {
+        "batch": 4,
+        "prompt_tokens": 896,
+        "new_tokens": 32
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "best",
+      "workload": {
+        "batch": 4,
+        "prompt_tokens": 896,
+        "new_tokens": 64
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "best",
+      "workload": {
+        "batch": 8,
+        "prompt_tokens": 32,
+        "new_tokens": 32
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "best",
+      "workload": {
+        "batch": 8,
+        "prompt_tokens": 32,
+        "new_tokens": 64
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "best",
+      "workload": {
+        "batch": 8,
+        "prompt_tokens": 128,
+        "new_tokens": 32
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "best",
+      "workload": {
+        "batch": 8,
+        "prompt_tokens": 128,
+        "new_tokens": 64
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "static_request"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "best",
+      "workload": {
+        "batch": 8,
+        "prompt_tokens": 512,
+        "new_tokens": 32
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "static_request"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "best",
+      "workload": {
+        "batch": 8,
+        "prompt_tokens": 512,
+        "new_tokens": 64
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "static_request"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "best",
+      "workload": {
+        "batch": 8,
+        "prompt_tokens": 896,
+        "new_tokens": 32
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "best",
+      "workload": {
+        "batch": 8,
+        "prompt_tokens": 896,
+        "new_tokens": 64
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "poor",
+      "workload": {
+        "batch": 1,
+        "prompt_tokens": 32,
+        "new_tokens": 32
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "poor",
+      "workload": {
+        "batch": 1,
+        "prompt_tokens": 32,
+        "new_tokens": 64
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "poor",
+      "workload": {
+        "batch": 1,
+        "prompt_tokens": 128,
+        "new_tokens": 32
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "poor",
+      "workload": {
+        "batch": 1,
+        "prompt_tokens": 128,
+        "new_tokens": 64
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "static_request"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "poor",
+      "workload": {
+        "batch": 1,
+        "prompt_tokens": 512,
+        "new_tokens": 32
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "poor",
+      "workload": {
+        "batch": 1,
+        "prompt_tokens": 512,
+        "new_tokens": 64
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "poor",
+      "workload": {
+        "batch": 1,
+        "prompt_tokens": 896,
+        "new_tokens": 32
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "static_request"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "poor",
+      "workload": {
+        "batch": 1,
+        "prompt_tokens": 896,
+        "new_tokens": 64
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "poor",
+      "workload": {
+        "batch": 4,
+        "prompt_tokens": 32,
+        "new_tokens": 32
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "static_request"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "poor",
+      "workload": {
+        "batch": 4,
+        "prompt_tokens": 32,
+        "new_tokens": 64
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "poor",
+      "workload": {
+        "batch": 4,
+        "prompt_tokens": 128,
+        "new_tokens": 32
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "poor",
+      "workload": {
+        "batch": 4,
+        "prompt_tokens": 128,
+        "new_tokens": 64
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "poor",
+      "workload": {
+        "batch": 4,
+        "prompt_tokens": 512,
+        "new_tokens": 32
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "poor",
+      "workload": {
+        "batch": 4,
+        "prompt_tokens": 512,
+        "new_tokens": 64
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "poor",
+      "workload": {
+        "batch": 4,
+        "prompt_tokens": 896,
+        "new_tokens": 32
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "poor",
+      "workload": {
+        "batch": 4,
+        "prompt_tokens": 896,
+        "new_tokens": 64
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "poor",
+      "workload": {
+        "batch": 8,
+        "prompt_tokens": 32,
+        "new_tokens": 32
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "poor",
+      "workload": {
+        "batch": 8,
+        "prompt_tokens": 32,
+        "new_tokens": 64
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "poor",
+      "workload": {
+        "batch": 8,
+        "prompt_tokens": 128,
+        "new_tokens": 32
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "static_request"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "poor",
+      "workload": {
+        "batch": 8,
+        "prompt_tokens": 128,
+        "new_tokens": 64
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "static_request"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "poor",
+      "workload": {
+        "batch": 8,
+        "prompt_tokens": 512,
+        "new_tokens": 32
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "poor",
+      "workload": {
+        "batch": 8,
+        "prompt_tokens": 512,
+        "new_tokens": 64
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "poor",
+      "workload": {
+        "batch": 8,
+        "prompt_tokens": 896,
+        "new_tokens": 32
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    },
+    {
+      "lora": "poor",
+      "workload": {
+        "batch": 8,
+        "prompt_tokens": 896,
+        "new_tokens": 64
+      },
+      "attention": {
+        "best": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 8,
+          "cache_mode": "off"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "off"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 8,
+        "distinct": true
+      },
+      "cache": {
+        "best": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "static_context"
+        },
+        "poor": {
+          "backend": "eager",
+          "bm": 16,
+          "bn": 32,
+          "warps": 4,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 3,
+        "distinct": true
+      },
+      "joint": {
+        "best": {
+          "backend": "fa1",
+          "bm": 16,
+          "bn": 64,
+          "warps": 4,
+          "cache_mode": "static_request"
+        },
+        "poor": {
+          "backend": "fa1",
+          "bm": 32,
+          "bn": 32,
+          "warps": 8,
+          "cache_mode": "dynamic"
+        },
+        "eligible": true,
+        "reason": "Passing calibration extrema",
+        "passing_candidates": 24,
+        "distinct": true
+      }
+    }
+  ]
+}

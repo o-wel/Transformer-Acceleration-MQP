@@ -1,0 +1,885 @@
+<!doctype html><meta charset="utf-8"><title>Optimization matrix</title><style>body{max-width:1100px;margin:40px auto;font:14px/1.6 monospace}pre{white-space:pre-wrap}</style><pre># Optimization matrix: basketball / fp16
+Status: COMPLETE
+
+Design: 27 off/best/poor combinations plus four jointly selected attention/cache cases.
+Best and poor are observed finite-grid choices. Training configurations were fixed from prior validation.
+Poor LoRA was selected by worst seed-42 full-budget validation loss, then retrained on three seeds.
+Off LoRA means the selected full-fine-tuning control; this is not an unadapted pretrained model.
+Attention/cache best and poor are calibrated independently per checkpoint and workload; joint cases use paired settings.
+Calibration uses a distinct prompt stream and three timings; confirmation uses seven timings and three training seeds.
+Strict parity is checked against each checkpoint on eager/no-cache, not between different trained checkpoints.
+Failures remain diagnostic. Complete artifact coverage does not mean every optimization passed correctness.
+Task quality uses natural held-out examples with canonical serving choices (batch 1, prompt 128, output 32).
+SMS is a one-step label task; its cache benefit is assessed only by synthetic serving workloads.
+Timing SD within an allocation and variation across model seeds are not independent hardware replications.
+Original data splits are reused; full/LoRA inherited tuning search budgets are unequal.
+
+Coverage: {&quot;actual&quot;: {&quot;calibration&quot;: 2592, &quot;confirmation&quot;: 2232, &quot;quality&quot;: 93, &quot;training&quot;: 9}, &quot;confirmation_status&quot;: {&quot;ok&quot;: 494, &quot;parity_failed&quot;: 1738}, &quot;expected&quot;: {&quot;calibration&quot;: 2592, &quot;confirmation&quot;: 2232, &quot;quality&quot;: 93, &quot;training&quot;: 9}, &quot;repetitions_ok&quot;: true, &quot;status&quot;: &quot;COMPLETE&quot;}
+
+## Frozen training configurations
+off: {&quot;batch&quot;: 4, &quot;dropout&quot;: 0.1, &quot;length&quot;: 128, &quot;lr&quot;: 0.0001, &quot;method&quot;: &quot;full&quot;, &quot;microbatch&quot;: 4, &quot;rank&quot;: 32, &quot;scale&quot;: 2.0, &quot;targets&quot;: &quot;all&quot;, &quot;weight_decay&quot;: 0.0}
+best: {&quot;batch&quot;: 4, &quot;dropout&quot;: 0.1, &quot;length&quot;: 128, &quot;lr&quot;: 0.0003, &quot;method&quot;: &quot;lora&quot;, &quot;microbatch&quot;: 4, &quot;rank&quot;: 32, &quot;scale&quot;: 2.0, &quot;targets&quot;: &quot;all&quot;, &quot;weight_decay&quot;: 0.0}
+poor: {&quot;batch&quot;: 32, &quot;dropout&quot;: 0.1, &quot;length&quot;: 128, &quot;lr&quot;: 0.0003, &quot;method&quot;: &quot;lora&quot;, &quot;microbatch&quot;: 8, &quot;rank&quot;: 32, &quot;scale&quot;: 2.0, &quot;targets&quot;: &quot;all&quot;, &quot;weight_decay&quot;: 0.0}
+
+## Task quality by state (mean across available seeds)
+
+LoRA / Attention / Cache | seeds | metrics
+best / best / best | 3/3 | primary_correct=0.96667, score_numbers_correct=1, fields_correct=0.96667, reference_exact=0.96389
+best / best / off | 3/3 | primary_correct=0.96667, score_numbers_correct=1, fields_correct=0.96667, reference_exact=0.96389
+best / best / poor | 3/3 | primary_correct=0.96667, score_numbers_correct=1, fields_correct=0.96667, reference_exact=0.96389
+best / joint_best / joint_best | 3/3 | primary_correct=0.96667, score_numbers_correct=1, fields_correct=0.96667, reference_exact=0.96389
+best / joint_poor / joint_poor | 3/3 | primary_correct=0.96667, score_numbers_correct=1, fields_correct=0.96667, reference_exact=0.96389
+best / off / best | 3/3 | primary_correct=0.96667, score_numbers_correct=1, fields_correct=0.96667, reference_exact=0.96389
+best / off / off | 3/3 | primary_correct=0.96667, score_numbers_correct=1, fields_correct=0.96667, reference_exact=0.96389
+best / off / poor | 3/3 | primary_correct=0.96667, score_numbers_correct=1, fields_correct=0.96667, reference_exact=0.96389
+best / poor / best | 3/3 | primary_correct=0.96667, score_numbers_correct=1, fields_correct=0.96667, reference_exact=0.96389
+best / poor / off | 3/3 | primary_correct=0.96667, score_numbers_correct=1, fields_correct=0.96667, reference_exact=0.96389
+best / poor / poor | 3/3 | primary_correct=0.96667, score_numbers_correct=1, fields_correct=0.96667, reference_exact=0.96389
+off / best / best | 3/3 | primary_correct=0.225, score_numbers_correct=0.99444, fields_correct=0.225, reference_exact=0.16667
+off / best / off | 3/3 | primary_correct=0.225, score_numbers_correct=0.99444, fields_correct=0.225, reference_exact=0.16667
+off / best / poor | 3/3 | primary_correct=0.225, score_numbers_correct=0.99444, fields_correct=0.225, reference_exact=0.16667
+off / off / best | 3/3 | primary_correct=0.225, score_numbers_correct=0.99444, fields_correct=0.225, reference_exact=0.16667
+off / off / off | 3/3 | primary_correct=0.225, score_numbers_correct=0.99444, fields_correct=0.225, reference_exact=0.16667
+off / off / poor | 3/3 | primary_correct=0.225, score_numbers_correct=0.99444, fields_correct=0.225, reference_exact=0.16667
+off / poor / best | 3/3 | primary_correct=0.225, score_numbers_correct=0.99444, fields_correct=0.225, reference_exact=0.16667
+off / poor / off | 3/3 | primary_correct=0.225, score_numbers_correct=0.99444, fields_correct=0.225, reference_exact=0.16667
+off / poor / poor | 3/3 | primary_correct=0.225, score_numbers_correct=0.99444, fields_correct=0.225, reference_exact=0.16667
+poor / best / best | 3/3 | primary_correct=0.55278, score_numbers_correct=1, fields_correct=0.55278, reference_exact=0.55278
+poor / best / off | 3/3 | primary_correct=0.55278, score_numbers_correct=1, fields_correct=0.55278, reference_exact=0.55278
+poor / best / poor | 3/3 | primary_correct=0.55278, score_numbers_correct=1, fields_correct=0.55278, reference_exact=0.55278
+poor / joint_best / joint_best | 3/3 | primary_correct=0.55278, score_numbers_correct=1, fields_correct=0.55278, reference_exact=0.55278
+poor / joint_poor / joint_poor | 3/3 | primary_correct=0.55278, score_numbers_correct=1, fields_correct=0.55278, reference_exact=0.55278
+poor / off / best | 3/3 | primary_correct=0.55556, score_numbers_correct=1, fields_correct=0.55556, reference_exact=0.55556
+poor / off / off | 3/3 | primary_correct=0.55556, score_numbers_correct=1, fields_correct=0.55556, reference_exact=0.55556
+poor / off / poor | 3/3 | primary_correct=0.55556, score_numbers_correct=1, fields_correct=0.55556, reference_exact=0.55556
+poor / poor / best | 3/3 | primary_correct=0.55278, score_numbers_correct=1, fields_correct=0.55278, reference_exact=0.55278
+poor / poor / off | 3/3 | primary_correct=0.55278, score_numbers_correct=1, fields_correct=0.55278, reference_exact=0.55278
+poor / poor / poor | 3/3 | primary_correct=0.55278, score_numbers_correct=1, fields_correct=0.55278, reference_exact=0.55278
+
+## Confirmation by workload
+
+Latency and peak memory are medians across seed medians. Speed ratio uses the all-off control.
+Each row reports passing seeds; partial passing coverage cannot support a blanket speed claim.
+
+Batch 1, prompt 32, output 32
+LoRA / Attention / Cache | pass/seeds | ms | peak MiB | paired speed ratio
+best / best / best | 0/3 | 425.372 | 778.404 | -
+best / best / off | 0/3 | 452.970 | 776.559 | -
+best / best / poor | 0/3 | 416.431 | 780.408 | -
+best / joint_best / joint_best | 0/3 | 413.682 | 780.408 | -
+best / joint_poor / joint_poor | 0/3 | 423.336 | 819.439 | -
+best / off / best | 2/3 | 441.768 | 778.404 | -
+best / off / off | 3/3 | 464.983 | 776.559 | 0.586
+best / off / poor | 2/3 | 446.810 | 780.408 | -
+best / poor / best | 0/3 | 428.276 | 778.404 | -
+best / poor / off | 0/3 | 444.140 | 776.559 | -
+best / poor / poor | 0/3 | 413.528 | 780.408 | -
+off / best / best | 0/3 | 244.404 | 799.939 | -
+off / best / off | 0/3 | 241.418 | 757.684 | -
+off / best / poor | 0/3 | 230.889 | 761.533 | -
+off / off / best | 3/3 | 261.617 | 799.939 | 1.021
+off / off / off | 3/3 | 266.887 | 757.684 | 1.000
+off / off / poor | 3/3 | 263.947 | 761.533 | 1.015
+off / poor / best | 0/3 | 244.122 | 799.939 | -
+off / poor / off | 0/3 | 243.912 | 757.684 | -
+off / poor / poor | 0/3 | 232.639 | 761.533 | -
+poor / best / best | 0/3 | 423.114 | 819.439 | -
+poor / best / off | 0/3 | 449.721 | 776.559 | -
+poor / best / poor | 0/3 | 415.357 | 780.408 | -
+poor / joint_best / joint_best | 0/3 | 421.627 | 780.408 | -
+poor / joint_poor / joint_poor | 0/3 | 423.830 | 778.404 | -
+poor / off / best | 2/3 | 447.010 | 819.439 | -
+poor / off / off | 3/3 | 473.548 | 776.559 | 0.578
+poor / off / poor | 2/3 | 451.180 | 780.408 | -
+poor / poor / best | 0/3 | 424.889 | 819.439 | -
+poor / poor / off | 0/3 | 452.986 | 776.559 | -
+poor / poor / poor | 0/3 | 422.243 | 780.408 | -
+
+Batch 1, prompt 32, output 64
+LoRA / Attention / Cache | pass/seeds | ms | peak MiB | paired speed ratio
+best / best / best | 0/3 | 836.246 | 779.530 | -
+best / best / off | 0/3 | 883.157 | 776.841 | -
+best / best / poor | 0/3 | 824.925 | 782.659 | -
+best / joint_best / joint_best | 0/3 | 842.586 | 782.659 | -
+best / joint_poor / joint_poor | 0/3 | 836.434 | 779.530 | -
+best / off / best | 2/3 | 885.484 | 779.530 | -
+best / off / off | 3/3 | 926.433 | 776.841 | 0.580
+best / off / poor | 2/3 | 897.722 | 782.659 | -
+best / poor / best | 0/3 | 839.798 | 779.530 | -
+best / poor / off | 0/3 | 871.806 | 776.841 | -
+best / poor / poor | 0/3 | 824.979 | 782.659 | -
+off / best / best | 0/3 | 486.815 | 760.655 | -
+off / best / off | 0/3 | 482.171 | 757.966 | -
+off / best / poor | 0/3 | 461.611 | 763.784 | -
+off / off / best | 3/3 | 523.141 | 760.655 | 1.015
+off / off / off | 3/3 | 529.780 | 757.966 | 1.000
+off / off / poor | 3/3 | 526.034 | 763.784 | 1.011
+off / poor / best | 0/3 | 485.565 | 760.655 | -
+off / poor / off | 0/3 | 482.690 | 757.966 | -
+off / poor / poor | 0/3 | 460.808 | 763.784 | -
+poor / best / best | 0/3 | 833.487 | 819.440 | -
+poor / best / off | 0/3 | 899.101 | 776.841 | -
+poor / best / poor | 0/3 | 846.776 | 779.530 | -
+poor / joint_best / joint_best | 0/3 | 825.876 | 782.659 | -
+poor / joint_poor / joint_poor | 0/3 | 839.622 | 819.440 | -
+poor / off / best | 3/3 | 891.294 | 819.440 | 0.619
+poor / off / off | 3/3 | 914.786 | 776.841 | 0.585
+poor / off / poor | 3/3 | 864.863 | 779.530 | 0.618
+poor / poor / best | 0/3 | 856.390 | 819.440 | -
+poor / poor / off | 0/3 | 884.871 | 776.841 | -
+poor / poor / poor | 0/3 | 844.102 | 779.530 | -
+
+Batch 1, prompt 128, output 32
+LoRA / Attention / Cache | pass/seeds | ms | peak MiB | paired speed ratio
+best / best / best | 0/3 | 429.401 | 820.285 | -
+best / best / off | 0/3 | 442.350 | 777.406 | -
+best / best / poor | 0/3 | 423.362 | 787.301 | -
+best / joint_best / joint_best | 0/3 | 416.473 | 787.301 | -
+best / joint_poor / joint_poor | 0/3 | 437.510 | 782.625 | -
+best / off / best | 2/3 | 446.943 | 820.285 | -
+best / off / off | 3/3 | 468.374 | 777.406 | 0.571
+best / off / poor | 2/3 | 451.015 | 787.301 | -
+best / poor / best | 0/3 | 429.579 | 820.285 | -
+best / poor / off | 0/3 | 439.321 | 777.406 | -
+best / poor / poor | 0/3 | 420.301 | 787.301 | -
+off / best / best | 0/3 | 245.121 | 763.750 | -
+off / best / off | 0/3 | 237.214 | 758.531 | -
+off / best / poor | 0/3 | 233.821 | 768.426 | -
+off / off / best | 3/3 | 263.518 | 763.750 | 0.981
+off / off / off | 3/3 | 258.602 | 758.531 | 1.000
+off / off / poor | 3/3 | 266.167 | 768.426 | 0.972
+off / poor / best | 0/3 | 245.897 | 763.750 | -
+off / poor / off | 0/3 | 236.569 | 758.531 | -
+off / poor / poor | 0/3 | 234.306 | 768.426 | -
+poor / best / best | 0/3 | 421.589 | 820.285 | -
+poor / best / off | 0/3 | 435.965 | 777.406 | -
+poor / best / poor | 0/3 | 414.076 | 787.301 | -
+poor / joint_best / joint_best | 0/3 | 413.097 | 787.301 | -
+poor / joint_poor / joint_poor | 0/3 | 425.017 | 782.625 | -
+poor / off / best | 3/3 | 437.069 | 820.285 | 0.601
+poor / off / off | 3/3 | 455.974 | 777.406 | 0.574
+poor / off / poor | 3/3 | 441.383 | 787.301 | 0.586
+poor / poor / best | 0/3 | 420.857 | 820.285 | -
+poor / poor / off | 0/3 | 438.547 | 777.406 | -
+poor / poor / poor | 0/3 | 414.063 | 787.301 | -
+
+Batch 1, prompt 128, output 64
+LoRA / Attention / Cache | pass/seeds | ms | peak MiB | paired speed ratio
+best / best / best | 0/3 | 840.423 | 820.285 | -
+best / best / off | 0/3 | 883.580 | 777.687 | -
+best / best / poor | 0/3 | 839.165 | 789.411 | -
+best / joint_best / joint_best | 0/3 | 827.748 | 789.411 | -
+best / joint_poor / joint_poor | 0/3 | 866.810 | 783.750 | -
+best / off / best | 3/3 | 889.213 | 820.285 | 0.597
+best / off / off | 3/3 | 912.758 | 777.687 | 0.574
+best / off / poor | 3/3 | 879.291 | 789.411 | 0.596
+best / poor / best | 0/3 | 858.360 | 820.285 | -
+best / poor / off | 0/3 | 878.253 | 777.687 | -
+best / poor / poor | 0/3 | 840.126 | 789.411 | -
+off / best / best | 0/3 | 502.835 | 764.875 | -
+off / best / off | 0/3 | 486.256 | 758.812 | -
+off / best / poor | 0/3 | 479.044 | 770.536 | -
+off / off / best | 3/3 | 522.810 | 764.875 | 0.985
+off / off / off | 3/3 | 529.964 | 758.812 | 1.000
+off / off / poor | 3/3 | 541.941 | 770.536 | 0.973
+off / poor / best | 0/3 | 488.609 | 764.875 | -
+off / poor / off | 0/3 | 486.453 | 758.812 | -
+off / poor / poor | 0/3 | 466.085 | 770.536 | -
+poor / best / best | 0/3 | 836.869 | 820.285 | -
+poor / best / off | 0/3 | 869.267 | 777.687 | -
+poor / best / poor | 0/3 | 824.184 | 789.411 | -
+poor / joint_best / joint_best | 0/3 | 821.424 | 789.411 | -
+poor / joint_poor / joint_poor | 0/3 | 845.727 | 783.750 | -
+poor / off / best | 3/3 | 868.918 | 820.285 | 0.601
+poor / off / off | 3/3 | 908.442 | 777.687 | 0.573
+poor / off / poor | 3/3 | 876.770 | 789.411 | 0.595
+poor / poor / best | 0/3 | 836.426 | 820.285 | -
+poor / poor / off | 0/3 | 869.331 | 777.687 | -
+poor / poor / poor | 0/3 | 821.833 | 789.411 | -
+
+Batch 1, prompt 512, output 32
+LoRA / Attention / Cache | pass/seeds | ms | peak MiB | paired speed ratio
+best / best / best | 0/3 | 432.450 | 800.759 | -
+best / best / off | 0/3 | 446.206 | 781.770 | -
+best / best / poor | 0/3 | 427.069 | 821.060 | -
+best / joint_best / joint_best | 0/3 | 418.739 | 821.060 | -
+best / joint_poor / joint_poor | 0/3 | 433.118 | 800.759 | -
+best / off / best | 3/3 | 450.573 | 800.759 | 0.616
+best / off / off | 3/3 | 474.197 | 781.770 | 0.582
+best / off / poor | 3/3 | 448.970 | 821.810 | 0.607
+best / poor / best | 0/3 | 432.502 | 800.759 | -
+best / poor / off | 0/3 | 454.279 | 781.770 | -
+best / poor / poor | 0/3 | 422.358 | 821.060 | -
+off / best / best | 0/3 | 248.275 | 803.544 | -
+off / best / off | 0/3 | 251.928 | 762.895 | -
+off / best / poor | 0/3 | 240.968 | 802.185 | -
+off / off / best | 3/3 | 272.679 | 803.544 | 1.015
+off / off / off | 3/3 | 270.772 | 762.895 | 1.000
+off / off / poor | 3/3 | 276.725 | 802.935 | 1.002
+off / poor / best | 0/3 | 252.587 | 803.544 | -
+off / poor / off | 0/3 | 328.334 | 762.895 | -
+off / poor / poor | 0/3 | 243.567 | 802.185 | -
+poor / best / best | 0/3 | 419.387 | 826.669 | -
+poor / best / off | 0/3 | 441.208 | 781.770 | -
+poor / best / poor | 0/3 | 416.720 | 821.060 | -
+poor / joint_best / joint_best | 0/3 | 414.369 | 821.060 | -
+poor / joint_poor / joint_poor | 0/3 | 421.621 | 800.759 | -
+poor / off / best | 3/3 | 437.101 | 826.669 | 0.622
+poor / off / off | 3/3 | 463.650 | 781.770 | 0.587
+poor / off / poor | 3/3 | 444.651 | 821.810 | 0.609
+poor / poor / best | 0/3 | 420.205 | 826.669 | -
+poor / poor / off | 0/3 | 442.380 | 781.770 | -
+poor / poor / poor | 0/3 | 416.306 | 821.060 | -
+
+Batch 1, prompt 512, output 64
+LoRA / Attention / Cache | pass/seeds | ms | peak MiB | paired speed ratio
+best / best / best | 0/3 | 843.724 | 826.669 | -
+best / best / off | 0/3 | 898.273 | 781.770 | -
+best / best / poor | 0/3 | 826.500 | 821.060 | -
+best / joint_best / joint_best | 0/3 | 844.693 | 821.060 | -
+best / joint_poor / joint_poor | 0/3 | 860.485 | 801.884 | -
+best / off / best | 3/3 | 873.346 | 826.669 | 0.626
+best / off / off | 3/3 | 941.709 | 781.770 | 0.585
+best / off / poor | 3/3 | 886.424 | 821.810 | 0.616
+best / poor / best | 0/3 | 857.143 | 826.669 | -
+best / poor / off | 0/3 | 898.352 | 781.770 | -
+best / poor / poor | 0/3 | 842.888 | 821.060 | -
+off / best / best | 0/3 | 493.052 | 783.009 | -
+off / best / off | 0/3 | 509.105 | 762.895 | -
+off / best / poor | 0/3 | 472.274 | 802.185 | -
+off / off / best | 3/3 | 530.712 | 783.009 | 1.019
+off / off / off | 3/3 | 546.609 | 762.895 | 1.000
+off / off / poor | 3/3 | 546.972 | 802.935 | 1.005
+off / poor / best | 0/3 | 501.217 | 783.009 | -
+off / poor / off | 0/3 | 676.231 | 762.895 | -
+off / poor / poor | 0/3 | 479.182 | 802.185 | -
+poor / best / best | 0/3 | 833.275 | 826.669 | -
+poor / best / off | 0/3 | 875.155 | 781.770 | -
+poor / best / poor | 0/3 | 840.483 | 801.884 | -
+poor / joint_best / joint_best | 0/3 | 814.715 | 821.060 | -
+poor / joint_poor / joint_poor | 0/3 | 838.985 | 801.884 | -
+poor / off / best | 3/3 | 868.536 | 826.669 | 0.622
+poor / off / off | 3/3 | 917.728 | 781.770 | 0.588
+poor / off / poor | 3/3 | 868.505 | 801.884 | 0.621
+poor / poor / best | 0/3 | 835.511 | 826.669 | -
+poor / poor / off | 0/3 | 880.481 | 781.770 | -
+poor / poor / poor | 0/3 | 839.544 | 801.884 | -
+
+Batch 1, prompt 896, output 32
+LoRA / Attention / Cache | pass/seeds | ms | peak MiB | paired speed ratio
+best / best / best | 0/3 | 425.536 | 825.024 | -
+best / best / off | 0/3 | 527.222 | 784.179 | -
+best / best / poor | 0/3 | 430.792 | 827.053 | -
+best / joint_best / joint_best | 0/3 | 418.398 | 865.727 | -
+best / joint_poor / joint_poor | 0/3 | 432.111 | 825.024 | -
+best / off / best | 3/3 | 449.716 | 834.665 | 1.033
+best / off / off | 3/3 | 543.207 | 784.179 | 0.856
+best / off / poor | 3/3 | 448.888 | 837.143 | 1.035
+best / poor / best | 0/3 | 421.874 | 825.024 | -
+best / poor / off | 0/3 | 761.202 | 784.179 | -
+best / poor / poor | 0/3 | 430.447 | 827.053 | -
+off / best / best | 0/3 | 245.979 | 812.053 | -
+off / best / off | 0/3 | 448.295 | 765.963 | -
+off / best / poor | 0/3 | 239.372 | 847.413 | -
+off / off / best | 3/3 | 271.438 | 815.893 | 1.712
+off / off / off | 3/3 | 464.884 | 765.963 | 1.000
+off / off / poor | 3/3 | 275.264 | 846.537 | 1.688
+off / poor / best | 0/3 | 244.916 | 812.053 | -
+off / poor / off | 0/3 | 681.892 | 765.963 | -
+off / poor / poor | 0/3 | 239.908 | 847.413 | -
+poor / best / best | 0/3 | 410.537 | 865.727 | -
+poor / best / off | 0/3 | 527.177 | 784.179 | -
+poor / best / poor | 0/3 | 419.894 | 827.053 | -
+poor / joint_best / joint_best | 0/3 | 409.858 | 865.727 | -
+poor / joint_poor / joint_poor | 0/3 | 421.638 | 825.024 | -
+poor / off / best | 3/3 | 441.409 | 865.733 | 1.053
+poor / off / off | 3/3 | 543.217 | 784.179 | 0.856
+poor / off / poor | 3/3 | 439.850 | 837.143 | 1.057
+poor / poor / best | 0/3 | 412.418 | 865.727 | -
+poor / poor / off | 0/3 | 761.200 | 784.179 | -
+poor / poor / poor | 0/3 | 420.160 | 827.053 | -
+
+Batch 1, prompt 896, output 64
+LoRA / Attention / Cache | pass/seeds | ms | peak MiB | paired speed ratio
+best / best / best | 0/3 | 854.616 | 827.053 | -
+best / best / off | 0/3 | 1071.234 | 784.460 | -
+best / best / poor | 0/3 | 850.555 | 825.446 | -
+best / joint_best / joint_best | 0/3 | 832.253 | 865.727 | -
+best / joint_poor / joint_poor | 0/3 | 840.311 | 825.446 | -
+best / off / best | 3/3 | 891.441 | 837.143 | 1.059
+best / off / off | 3/3 | 1103.055 | 784.460 | 0.857
+best / off / poor | 3/3 | 871.782 | 835.071 | 1.083
+best / poor / best | 0/3 | 821.117 | 827.053 | -
+best / poor / off | 0/3 | 1556.053 | 784.460 | -
+best / poor / poor | 0/3 | 842.540 | 825.446 | -
+off / best / best | 0/3 | 497.168 | 807.734 | -
+off / best / off | 0/3 | 912.119 | 766.151 | -
+off / best / poor | 0/3 | 463.049 | 847.413 | -
+off / off / best | 2/3 | 538.877 | 814.422 | -
+off / off / off | 3/3 | 945.202 | 766.151 | 1.000
+off / off / poor | 2/3 | 539.552 | 846.537 | -
+off / poor / best | 0/3 | 491.555 | 807.734 | -
+off / poor / off | 0/3 | 1396.393 | 766.151 | -
+off / poor / poor | 0/3 | 471.830 | 847.413 | -
+poor / best / best | 0/3 | 804.268 | 865.727 | -
+poor / best / off | 0/3 | 1071.174 | 784.460 | -
+poor / best / poor | 0/3 | 835.822 | 825.446 | -
+poor / joint_best / joint_best | 0/3 | 814.830 | 865.727 | -
+poor / joint_poor / joint_poor | 0/3 | 834.659 | 825.446 | -
+poor / off / best | 3/3 | 870.423 | 865.733 | 1.085
+poor / off / off | 3/3 | 1102.945 | 784.460 | 0.857
+poor / off / poor | 3/3 | 868.948 | 835.071 | 1.087
+poor / poor / best | 0/3 | 811.427 | 865.727 | -
+poor / poor / off | 0/3 | 1556.233 | 784.460 | -
+poor / poor / poor | 0/3 | 835.922 | 825.446 | -
+
+Batch 4, prompt 32, output 32
+LoRA / Attention / Cache | pass/seeds | ms | peak MiB | paired speed ratio
+best / best / best | 0/3 | 468.785 | 922.333 | -
+best / best / off | 0/3 | 457.756 | 778.537 | -
+best / best / poor | 0/3 | 458.656 | 794.480 | -
+best / joint_best / joint_best | 0/3 | 459.882 | 794.480 | -
+best / joint_poor / joint_poor | 0/3 | 465.098 | 786.193 | -
+best / off / best | 2/3 | 487.777 | 922.333 | -
+best / off / off | 3/3 | 487.703 | 778.537 | 0.582
+best / off / poor | 2/3 | 489.845 | 794.480 | -
+best / poor / best | 0/3 | 467.534 | 922.333 | -
+best / poor / off | 0/3 | 458.627 | 778.537 | -
+best / poor / poor | 0/3 | 460.151 | 794.480 | -
+off / best / best | 0/3 | 275.863 | 902.458 | -
+off / best / off | 0/3 | 253.957 | 759.662 | -
+off / best / poor | 0/3 | 277.184 | 767.318 | -
+off / off / best | 3/3 | 296.785 | 902.458 | 0.971
+off / off / off | 3/3 | 284.808 | 759.662 | 1.000
+off / off / poor | 3/3 | 294.334 | 767.318 | 0.973
+off / poor / best | 0/3 | 275.772 | 902.458 | -
+off / poor / off | 0/3 | 255.118 | 759.662 | -
+off / poor / poor | 0/3 | 277.338 | 767.318 | -
+poor / best / best | 0/3 | 456.644 | 922.333 | -
+poor / best / off | 0/3 | 447.715 | 778.537 | -
+poor / best / poor | 0/3 | 450.827 | 794.480 | -
+poor / joint_best / joint_best | 0/3 | 449.575 | 794.480 | -
+poor / joint_poor / joint_poor | 0/3 | 458.888 | 922.333 | -
+poor / off / best | 1/3 | 474.645 | 922.333 | -
+poor / off / off | 3/3 | 476.947 | 778.537 | 0.581
+poor / off / poor | 1/3 | 479.523 | 794.480 | -
+poor / poor / best | 0/3 | 456.973 | 922.333 | -
+poor / poor / off | 0/3 | 450.118 | 778.537 | -
+poor / poor / poor | 0/3 | 449.433 | 794.480 | -
+
+Batch 4, prompt 32, output 64
+LoRA / Attention / Cache | pass/seeds | ms | peak MiB | paired speed ratio
+best / best / best | 0/3 | 924.583 | 790.694 | -
+best / best / off | 0/3 | 939.759 | 780.906 | -
+best / best / poor | 0/3 | 912.097 | 803.482 | -
+best / joint_best / joint_best | 0/3 | 913.856 | 803.482 | -
+best / joint_poor / joint_poor | 0/3 | 927.050 | 790.694 | -
+best / off / best | 1/3 | 963.955 | 790.694 | -
+best / off / off | 3/3 | 960.291 | 780.906 | 0.596
+best / off / poor | 1/3 | 968.331 | 803.482 | -
+best / poor / best | 0/3 | 923.384 | 790.694 | -
+best / poor / off | 0/3 | 905.384 | 780.906 | -
+best / poor / poor | 0/3 | 906.568 | 803.482 | -
+off / best / best | 0/3 | 548.976 | 771.819 | -
+off / best / off | 0/3 | 513.754 | 762.031 | -
+off / best / poor | 0/3 | 527.864 | 784.607 | -
+off / off / best | 3/3 | 589.724 | 771.819 | 0.987
+off / off / off | 3/3 | 575.595 | 762.031 | 1.000
+off / off / poor | 3/3 | 595.080 | 784.607 | 0.973
+off / poor / best | 0/3 | 550.625 | 771.819 | -
+off / poor / off | 0/3 | 514.976 | 762.031 | -
+off / poor / poor | 0/3 | 531.960 | 784.607 | -
+poor / best / best | 0/3 | 907.605 | 922.334 | -
+poor / best / off | 0/3 | 889.697 | 780.906 | -
+poor / best / poor | 0/3 | 895.195 | 803.482 | -
+poor / joint_best / joint_best | 0/3 | 895.166 | 803.482 | -
+poor / joint_poor / joint_poor | 0/3 | 908.695 | 790.694 | -
+poor / off / best | 0/3 | 940.263 | 922.334 | -
+poor / off / off | 3/3 | 949.737 | 780.906 | 0.601
+poor / off / poor | 0/3 | 929.711 | 803.482 | -
+poor / poor / best | 0/3 | 907.815 | 922.334 | -
+poor / poor / off | 0/3 | 890.376 | 780.906 | -
+poor / poor / poor | 0/3 | 896.197 | 803.482 | -
+
+Batch 4, prompt 128, output 32
+LoRA / Attention / Cache | pass/seeds | ms | peak MiB | paired speed ratio
+best / best / best | 0/3 | 462.278 | 924.621 | -
+best / best / off | 0/3 | 458.400 | 781.351 | -
+best / best / poor | 0/3 | 458.635 | 822.051 | -
+best / joint_best / joint_best | 0/3 | 459.163 | 822.051 | -
+best / joint_poor / joint_poor | 0/3 | 481.286 | 924.621 | -
+best / off / best | 1/3 | 480.661 | 924.621 | -
+best / off / off | 3/3 | 490.432 | 781.351 | 0.592
+best / off / poor | 1/3 | 488.799 | 822.051 | -
+best / poor / best | 0/3 | 461.285 | 924.621 | -
+best / poor / off | 0/3 | 476.933 | 781.351 | -
+best / poor / poor | 0/3 | 455.528 | 822.051 | -
+off / best / best | 0/3 | 281.742 | 905.996 | -
+off / best / off | 0/3 | 266.933 | 762.476 | -
+off / best / poor | 0/3 | 272.255 | 803.176 | -
+off / off / best | 1/3 | 294.556 | 905.996 | -
+off / off / off | 3/3 | 297.767 | 762.476 | 1.000
+off / off / poor | 1/3 | 307.134 | 803.176 | -
+off / poor / best | 0/3 | 282.512 | 905.996 | -
+off / poor / off | 0/3 | 262.834 | 762.476 | -
+off / poor / poor | 0/3 | 272.740 | 803.176 | -
+poor / best / best | 0/3 | 453.054 | 822.051 | -
+poor / best / off | 0/3 | 453.537 | 781.351 | -
+poor / best / poor | 0/3 | 459.540 | 802.980 | -
+poor / joint_best / joint_best | 0/3 | 457.297 | 924.621 | -
+poor / joint_poor / joint_poor | 0/3 | 459.545 | 802.980 | -
+poor / off / best | 1/3 | 481.852 | 822.051 | -
+poor / off / off | 3/3 | 485.139 | 781.351 | 0.594
+poor / off / poor | 1/3 | 475.259 | 802.980 | -
+poor / poor / best | 0/3 | 454.544 | 822.051 | -
+poor / poor / off | 0/3 | 452.394 | 781.351 | -
+poor / poor / poor | 0/3 | 452.622 | 802.980 | -
+
+Batch 4, prompt 128, output 64
+LoRA / Attention / Cache | pass/seeds | ms | peak MiB | paired speed ratio
+best / best / best | 0/3 | 907.471 | 818.337 | -
+best / best / off | 0/3 | 908.366 | 781.923 | -
+best / best / poor | 0/3 | 900.419 | 845.055 | -
+best / joint_best / joint_best | 0/3 | 901.010 | 845.055 | -
+best / joint_poor / joint_poor | 0/3 | 918.885 | 924.622 | -
+best / off / best | 1/3 | 946.254 | 818.337 | -
+best / off / off | 3/3 | 975.342 | 781.923 | 0.600
+best / off / poor | 1/3 | 955.612 | 845.055 | -
+best / poor / best | 0/3 | 905.843 | 818.337 | -
+best / poor / off | 0/3 | 907.681 | 781.923 | -
+best / poor / poor | 0/3 | 898.031 | 845.055 | -
+off / best / best | 0/3 | 555.996 | 905.997 | -
+off / best / off | 0/3 | 543.522 | 763.048 | -
+off / best / poor | 0/3 | 536.509 | 824.163 | -
+off / off / best | 2/3 | 593.799 | 905.997 | -
+off / off / off | 3/3 | 596.879 | 763.048 | 1.000
+off / off / poor | 2/3 | 602.965 | 824.163 | -
+off / poor / best | 0/3 | 552.915 | 905.997 | -
+off / poor / off | 0/3 | 539.715 | 763.048 | -
+off / poor / poor | 0/3 | 545.807 | 824.163 | -
+poor / best / best | 0/3 | 911.014 | 924.622 | -
+poor / best / off | 0/3 | 911.011 | 781.923 | -
+poor / best / poor | 0/3 | 894.527 | 845.055 | -
+poor / joint_best / joint_best | 0/3 | 895.720 | 845.055 | -
+poor / joint_poor / joint_poor | 0/3 | 918.507 | 924.622 | -
+poor / off / best | 1/3 | 948.545 | 924.622 | -
+poor / off / off | 3/3 | 961.356 | 781.923 | 0.603
+poor / off / poor | 1/3 | 962.684 | 845.055 | -
+poor / poor / best | 0/3 | 910.485 | 924.622 | -
+poor / poor / off | 0/3 | 899.339 | 781.923 | -
+poor / poor / poor | 0/3 | 894.740 | 845.055 | -
+
+Batch 4, prompt 512, output 32
+LoRA / Attention / Cache | pass/seeds | ms | peak MiB | paired speed ratio
+best / best / best | 0/3 | 461.811 | 947.883 | -
+best / best / off | 0/3 | 734.629 | 810.825 | -
+best / best / poor | 0/3 | 453.809 | 958.074 | -
+best / joint_best / joint_best | 0/3 | 451.963 | 958.074 | -
+best / joint_poor / joint_poor | 0/3 | 462.107 | 881.039 | -
+best / off / best | 2/3 | 476.643 | 974.883 | -
+best / off / off | 3/3 | 954.106 | 822.722 | 0.850
+best / off / poor | 2/3 | 481.124 | 958.074 | -
+best / poor / best | 0/3 | 461.939 | 947.883 | -
+best / poor / off | 0/3 | 815.835 | 810.825 | -
+best / poor / poor | 0/3 | 456.570 | 958.074 | -
+off / best / best | 0/3 | 278.277 | 928.383 | -
+off / best / off | 0/3 | 591.084 | 791.313 | -
+off / best / poor | 0/3 | 268.731 | 938.580 | -
+off / off / best | 2/3 | 294.075 | 955.008 | -
+off / off / off | 3/3 | 810.440 | 801.583 | 1.000
+off / off / poor | 2/3 | 300.219 | 938.580 | -
+off / poor / best | 0/3 | 280.379 | 928.383 | -
+off / poor / off | 0/3 | 669.404 | 791.313 | -
+off / poor / poor | 0/3 | 270.173 | 938.580 | -
+poor / best / best | 0/3 | 464.006 | 881.039 | -
+poor / best / off | 0/3 | 734.724 | 810.825 | -
+poor / best / poor | 0/3 | 456.154 | 958.074 | -
+poor / joint_best / joint_best | 0/3 | 455.725 | 958.074 | -
+poor / joint_poor / joint_poor | 0/3 | 450.690 | 881.039 | -
+poor / off / best | 1/3 | 478.415 | 907.129 | -
+poor / off / off | 3/3 | 953.604 | 822.722 | 0.850
+poor / off / poor | 1/3 | 482.970 | 958.074 | -
+poor / poor / best | 0/3 | 463.264 | 881.039 | -
+poor / poor / off | 0/3 | 816.068 | 810.825 | -
+poor / poor / poor | 0/3 | 453.720 | 958.074 | -
+
+Batch 4, prompt 512, output 64
+LoRA / Attention / Cache | pass/seeds | ms | peak MiB | paired speed ratio
+best / best / best | 0/3 | 914.747 | 884.743 | -
+best / best / off | 0/3 | 1506.975 | 815.729 | -
+best / best / poor | 0/3 | 897.853 | 958.075 | -
+best / joint_best / joint_best | 0/3 | 897.959 | 958.075 | -
+best / joint_poor / joint_poor | 0/3 | 914.153 | 884.743 | -
+best / off / best | 1/3 | 948.263 | 912.636 | -
+best / off / off | 3/3 | 1970.188 | 832.833 | 0.851
+best / off / poor | 1/3 | 952.800 | 958.075 | -
+best / poor / best | 0/3 | 915.997 | 884.743 | -
+best / poor / off | 0/3 | 1677.382 | 815.729 | -
+best / poor / poor | 0/3 | 891.411 | 958.075 | -
+off / best / best | 0/3 | 562.536 | 928.384 | -
+off / best / off | 0/3 | 1213.725 | 796.592 | -
+off / best / poor | 0/3 | 546.935 | 865.653 | -
+off / off / best | 2/3 | 584.513 | 955.009 | -
+off / off / off | 3/3 | 1677.786 | 813.287 | 1.000
+off / off / poor | 2/3 | 585.277 | 893.267 | -
+off / poor / best | 0/3 | 544.192 | 928.384 | -
+off / poor / off | 0/3 | 1380.283 | 796.592 | -
+off / poor / poor | 0/3 | 547.537 | 865.653 | -
+poor / best / best | 0/3 | 913.392 | 884.743 | -
+poor / best / off | 0/3 | 1507.293 | 815.729 | -
+poor / best / poor | 0/3 | 900.393 | 958.075 | -
+poor / joint_best / joint_best | 0/3 | 901.529 | 958.075 | -
+poor / joint_poor / joint_poor | 0/3 | 921.132 | 884.743 | -
+poor / off / best | 0/3 | 951.581 | 912.636 | -
+poor / off / off | 3/3 | 1969.889 | 832.833 | 0.851
+poor / off / poor | 0/3 | 956.345 | 958.075 | -
+poor / poor / best | 0/3 | 920.129 | 884.743 | -
+poor / poor / off | 0/3 | 1677.589 | 815.729 | -
+poor / poor / poor | 0/3 | 902.007 | 958.075 | -
+
+Batch 4, prompt 896, output 32
+LoRA / Attention / Cache | pass/seeds | ms | peak MiB | paired speed ratio
+best / best / best | 0/3 | 467.099 | 1013.917 | -
+best / best / off | 0/3 | 1301.356 | 885.899 | -
+best / best / poor | 0/3 | 461.165 | 1095.604 | -
+best / joint_best / joint_best | 0/3 | 462.032 | 1095.604 | -
+best / joint_poor / joint_poor | 0/3 | 474.555 | 1013.917 | -
+best / off / best | 3/3 | 499.438 | 1184.280 | 3.348
+best / off / off | 3/3 | 1914.581 | 1001.710 | 0.873
+best / off / poor | 3/3 | 503.969 | 1158.784 | 3.312
+best / poor / best | 0/3 | 476.877 | 1013.917 | -
+best / poor / off | 0/3 | 1563.596 | 885.899 | -
+best / poor / poor | 0/3 | 469.195 | 1095.604 | -
+off / best / best | 0/3 | 283.479 | 1006.159 | -
+off / best / off | 0/3 | 1059.199 | 867.410 | -
+off / best / poor | 0/3 | 272.366 | 1075.484 | -
+off / off / best | 3/3 | 312.697 | 1179.409 | 5.348
+off / off / off | 3/3 | 1671.749 | 983.494 | 1.000
+off / off / poor | 3/3 | 317.074 | 1139.909 | 5.274
+off / poor / best | 0/3 | 287.933 | 1006.159 | -
+off / poor / off | 0/3 | 1316.266 | 867.410 | -
+off / poor / poor | 0/3 | 281.861 | 1075.484 | -
+poor / best / best | 0/3 | 468.302 | 1013.917 | -
+poor / best / off | 0/3 | 1301.181 | 885.899 | -
+poor / best / poor | 0/3 | 464.658 | 1095.604 | -
+poor / joint_best / joint_best | 0/3 | 462.487 | 1095.604 | -
+poor / joint_poor / joint_poor | 0/3 | 475.397 | 1013.917 | -
+poor / off / best | 2/3 | 497.269 | 1184.280 | -
+poor / off / off | 3/3 | 1914.443 | 1001.710 | 0.871
+poor / off / poor | 2/3 | 505.549 | 1158.784 | -
+poor / poor / best | 0/3 | 476.005 | 1013.917 | -
+poor / poor / off | 0/3 | 1562.846 | 885.899 | -
+poor / poor / poor | 0/3 | 468.949 | 1095.604 | -
+
+Batch 4, prompt 896, output 64
+LoRA / Attention / Cache | pass/seeds | ms | peak MiB | paired speed ratio
+best / best / best | 0/3 | 916.144 | 1026.660 | -
+best / best / off | 0/3 | 2652.795 | 893.100 | -
+best / best / poor | 0/3 | 898.520 | 1095.604 | -
+best / joint_best / joint_best | 0/3 | 917.354 | 1026.660 | -
+best / joint_poor / joint_poor | 0/3 | 926.099 | 1026.660 | -
+best / off / best | 2/3 | 952.114 | 1197.660 | -
+best / off / off | 3/3 | 3911.152 | 1022.078 | 0.874
+best / off / poor | 2/3 | 968.548 | 1158.785 | -
+best / poor / best | 0/3 | 925.197 | 1026.660 | -
+best / poor / off | 0/3 | 3196.745 | 893.100 | -
+best / poor / poor | 0/3 | 909.253 | 1095.604 | -
+off / best / best | 0/3 | 529.024 | 1075.485 | -
+off / best / off | 0/3 | 2168.266 | 874.791 | -
+off / best / poor | 0/3 | 567.652 | 998.215 | -
+off / off / best | 2/3 | 603.053 | 1139.910 | -
+off / off / off | 3/3 | 3418.068 | 1003.768 | 1.000
+off / off / poor | 2/3 | 594.436 | 1171.299 | -
+off / poor / best | 0/3 | 556.635 | 1075.485 | -
+off / poor / off | 0/3 | 2707.844 | 874.791 | -
+off / poor / poor | 0/3 | 556.750 | 998.215 | -
+poor / best / best | 0/3 | 917.440 | 1020.590 | -
+poor / best / off | 0/3 | 2651.938 | 893.100 | -
+poor / best / poor | 0/3 | 903.156 | 1095.604 | -
+poor / joint_best / joint_best | 0/3 | 875.280 | 1095.604 | -
+poor / joint_poor / joint_poor | 0/3 | 928.264 | 1026.660 | -
+poor / off / best | 2/3 | 963.253 | 1190.436 | -
+poor / off / off | 3/3 | 3916.113 | 1022.078 | 0.873
+poor / off / poor | 2/3 | 944.622 | 1158.785 | -
+poor / poor / best | 0/3 | 924.851 | 1020.590 | -
+poor / poor / off | 0/3 | 3205.795 | 893.100 | -
+poor / poor / poor | 0/3 | 906.919 | 1095.604 | -
+
+Batch 8, prompt 32, output 32
+LoRA / Attention / Cache | pass/seeds | ms | peak MiB | paired speed ratio
+best / best / best | 0/3 | 446.266 | 1066.859 | -
+best / best / off | 0/3 | 436.669 | 781.971 | -
+best / best / poor | 0/3 | 446.698 | 796.578 | -
+best / joint_best / joint_best | 0/3 | 446.167 | 796.578 | -
+best / joint_poor / joint_poor | 0/3 | 446.667 | 1066.859 | -
+best / off / best | 0/3 | 457.491 | 1066.859 | -
+best / off / off | 3/3 | 466.462 | 781.971 | 0.597
+best / off / poor | 0/3 | 463.404 | 796.578 | -
+best / poor / best | 0/3 | 445.659 | 1066.859 | -
+best / poor / off | 0/3 | 440.179 | 781.971 | -
+best / poor / poor | 0/3 | 447.216 | 796.578 | -
+off / best / best | 0/3 | 261.580 | 777.703 | -
+off / best / off | 0/3 | 248.058 | 763.096 | -
+off / best / poor | 0/3 | 256.686 | 794.367 | -
+off / off / best | 3/3 | 280.327 | 777.703 | 0.994
+off / off / off | 3/3 | 277.592 | 763.096 | 1.000
+off / off / poor | 3/3 | 286.840 | 794.367 | 0.984
+off / poor / best | 0/3 | 262.571 | 777.703 | -
+off / poor / off | 0/3 | 247.920 | 763.096 | -
+off / poor / poor | 0/3 | 255.814 | 794.367 | -
+poor / best / best | 0/3 | 441.263 | 796.578 | -
+poor / best / off | 0/3 | 438.021 | 781.971 | -
+poor / best / poor | 0/3 | 446.418 | 1066.859 | -
+poor / joint_best / joint_best | 0/3 | 437.672 | 813.242 | -
+poor / joint_poor / joint_poor | 0/3 | 447.138 | 1066.859 | -
+poor / off / best | 1/3 | 463.390 | 796.578 | -
+poor / off / off | 3/3 | 466.663 | 781.971 | 0.598
+poor / off / poor | 1/3 | 461.334 | 1066.859 | -
+poor / poor / best | 0/3 | 443.953 | 796.578 | -
+poor / poor / off | 0/3 | 433.298 | 781.971 | -
+poor / poor / poor | 0/3 | 444.074 | 1066.859 | -
+
+Batch 8, prompt 32, output 64
+LoRA / Attention / Cache | pass/seeds | ms | peak MiB | paired speed ratio
+best / best / best | 0/3 | 885.293 | 817.201 | -
+best / best / off | 0/3 | 874.924 | 782.772 | -
+best / best / poor | 0/3 | 877.613 | 845.020 | -
+best / joint_best / joint_best | 0/3 | 880.531 | 845.020 | -
+best / joint_poor / joint_poor | 0/3 | 886.456 | 1066.861 | -
+best / off / best | 1/3 | 920.388 | 817.201 | -
+best / off / off | 3/3 | 929.744 | 782.772 | 0.597
+best / off / poor | 1/3 | 937.721 | 845.020 | -
+best / poor / best | 0/3 | 881.974 | 817.201 | -
+best / poor / off | 0/3 | 867.067 | 782.772 | -
+best / poor / poor | 0/3 | 880.413 | 845.020 | -
+off / best / best | 0/3 | 523.591 | 796.916 | -
+off / best / off | 0/3 | 496.690 | 763.897 | -
+off / best / poor | 0/3 | 506.086 | 824.254 | -
+off / off / best | 2/3 | 554.100 | 796.916 | -
+off / off / off | 3/3 | 560.731 | 763.897 | 1.000
+off / off / poor | 2/3 | 572.361 | 824.254 | -
+off / poor / best | 0/3 | 523.691 | 796.916 | -
+off / poor / off | 0/3 | 497.114 | 763.897 | -
+off / poor / poor | 0/3 | 503.682 | 824.254 | -
+poor / best / best | 0/3 | 883.027 | 817.201 | -
+poor / best / off | 0/3 | 875.379 | 782.772 | -
+poor / best / poor | 0/3 | 870.730 | 845.020 | -
+poor / joint_best / joint_best | 0/3 | 879.022 | 845.020 | -
+poor / joint_poor / joint_poor | 0/3 | 887.399 | 817.201 | -
+poor / off / best | 1/3 | 920.237 | 817.201 | -
+poor / off / off | 3/3 | 929.584 | 782.772 | 0.599
+poor / off / poor | 1/3 | 937.747 | 845.020 | -
+poor / poor / best | 0/3 | 876.682 | 817.201 | -
+poor / poor / off | 0/3 | 874.380 | 782.772 | -
+poor / poor / poor | 0/3 | 879.441 | 845.020 | -
+
+Batch 8, prompt 128, output 32
+LoRA / Attention / Cache | pass/seeds | ms | peak MiB | paired speed ratio
+best / best / best | 0/3 | 447.584 | 831.867 | -
+best / best / off | 0/3 | 438.308 | 785.974 | -
+best / best / poor | 0/3 | 440.945 | 875.922 | -
+best / joint_best / joint_best | 0/3 | 439.252 | 875.922 | -
+best / joint_poor / joint_poor | 0/3 | 447.530 | 831.867 | -
+best / off / best | 2/3 | 464.692 | 830.742 | -
+best / off / off | 3/3 | 470.916 | 785.974 | 0.752
+best / off / poor | 2/3 | 467.462 | 875.922 | -
+best / poor / best | 0/3 | 444.977 | 831.867 | -
+best / poor / off | 0/3 | 440.004 | 785.974 | -
+best / poor / poor | 0/3 | 437.667 | 875.922 | -
+off / best / best | 0/3 | 261.520 | 812.766 | -
+off / best / off | 0/3 | 319.820 | 767.099 | -
+off / best / poor | 0/3 | 251.979 | 856.309 | -
+off / off / best | 3/3 | 280.061 | 815.004 | 1.267
+off / off / off | 3/3 | 354.904 | 767.099 | 1.000
+off / off / poor | 3/3 | 282.763 | 856.309 | 1.255
+off / poor / best | 0/3 | 261.613 | 812.766 | -
+off / poor / off | 0/3 | 329.244 | 767.099 | -
+off / poor / poor | 0/3 | 251.744 | 856.309 | -
+poor / best / best | 0/3 | 445.556 | 1072.152 | -
+poor / best / off | 0/3 | 440.513 | 785.974 | -
+poor / best / poor | 0/3 | 438.436 | 875.922 | -
+poor / joint_best / joint_best | 0/3 | 438.914 | 875.922 | -
+poor / joint_poor / joint_poor | 0/3 | 447.271 | 831.867 | -
+poor / off / best | 2/3 | 465.185 | 1072.152 | -
+poor / off / off | 3/3 | 472.643 | 785.974 | 0.749
+poor / off / poor | 2/3 | 466.404 | 875.922 | -
+poor / poor / best | 0/3 | 447.154 | 1072.152 | -
+poor / poor / off | 0/3 | 442.291 | 785.974 | -
+poor / poor / poor | 0/3 | 438.860 | 875.922 | -
+
+Batch 8, prompt 128, output 64
+LoRA / Attention / Cache | pass/seeds | ms | peak MiB | paired speed ratio
+best / best / best | 0/3 | 866.207 | 891.451 | -
+best / best / off | 0/3 | 921.844 | 787.571 | -
+best / best / poor | 0/3 | 888.419 | 841.400 | -
+best / joint_best / joint_best | 0/3 | 867.267 | 891.451 | -
+best / joint_poor / joint_poor | 0/3 | 886.831 | 841.400 | -
+best / off / best | 1/3 | 924.116 | 891.451 | -
+best / off / off | 3/3 | 1003.725 | 787.571 | 0.779
+best / off / poor | 1/3 | 920.275 | 839.947 | -
+best / poor / best | 0/3 | 857.963 | 891.451 | -
+best / poor / off | 0/3 | 941.560 | 787.571 | -
+best / poor / poor | 0/3 | 885.166 | 841.400 | -
+off / best / best | 0/3 | 497.632 | 872.225 | -
+off / best / off | 0/3 | 700.449 | 768.696 | -
+off / best / poor | 0/3 | 519.111 | 1053.279 | -
+off / off / best | 2/3 | 564.575 | 872.225 | -
+off / off / off | 3/3 | 782.078 | 768.696 | 1.000
+off / off / poor | 2/3 | 555.183 | 1053.279 | -
+off / poor / best | 0/3 | 493.902 | 872.225 | -
+off / poor / off | 0/3 | 723.932 | 768.696 | -
+off / poor / poor | 0/3 | 515.976 | 1053.279 | -
+poor / best / best | 0/3 | 864.077 | 891.451 | -
+poor / best / off | 0/3 | 924.458 | 787.571 | -
+poor / best / poor | 0/3 | 888.667 | 1072.154 | -
+poor / joint_best / joint_best | 0/3 | 869.133 | 891.451 | -
+poor / joint_poor / joint_poor | 0/3 | 890.933 | 841.400 | -
+poor / off / best | 0/3 | 922.639 | 891.451 | -
+poor / off / off | 3/3 | 1001.147 | 787.571 | 0.781
+poor / off / poor | 0/3 | 923.017 | 1072.154 | -
+poor / poor / best | 0/3 | 867.340 | 891.451 | -
+poor / poor / off | 0/3 | 941.202 | 787.571 | -
+poor / poor / poor | 0/3 | 878.909 | 1072.154 | -
+
+Batch 8, prompt 512, output 32
+LoRA / Attention / Cache | pass/seeds | ms | peak MiB | paired speed ratio
+best / best / best | 0/3 | 457.760 | 1191.298 | -
+best / best / off | 0/3 | 1351.038 | 915.087 | -
+best / best / poor | 0/3 | 451.996 | 1139.442 | -
+best / joint_best / joint_best | 0/3 | 453.135 | 1139.442 | -
+best / joint_poor / joint_poor | 0/3 | 461.721 | 1191.298 | -
+best / off / best | 1/3 | 480.260 | 1244.298 | -
+best / off / off | 3/3 | 1814.311 | 938.631 | 0.846
+best / off / poor | 1/3 | 486.269 | 1139.061 | -
+best / poor / best | 0/3 | 462.531 | 1191.298 | -
+best / poor / off | 0/3 | 1474.860 | 915.087 | -
+best / poor / poor | 0/3 | 457.074 | 1139.442 | -
+off / best / best | 0/3 | 268.672 | 1036.939 | -
+off / best / off | 0/3 | 1072.560 | 896.212 | -
+off / best / poor | 0/3 | 260.325 | 1119.579 | -
+off / off / best | 3/3 | 293.880 | 1091.052 | 5.222
+off / off / off | 3/3 | 1534.583 | 919.119 | 1.000
+off / off / poor | 3/3 | 299.757 | 1119.197 | 5.119
+off / poor / best | 0/3 | 273.288 | 1036.939 | -
+off / poor / off | 0/3 | 1201.769 | 896.212 | -
+off / poor / poor | 0/3 | 262.550 | 1119.579 | -
+poor / best / best | 0/3 | 457.348 | 1055.541 | -
+poor / best / off | 0/3 | 1352.181 | 915.087 | -
+poor / best / poor | 0/3 | 457.175 | 1139.442 | -
+poor / joint_best / joint_best | 0/3 | 454.266 | 1139.442 | -
+poor / joint_poor / joint_poor | 0/3 | 458.589 | 1191.298 | -
+poor / off / best | 1/3 | 483.064 | 1109.541 | -
+poor / off / off | 3/3 | 1814.822 | 938.631 | 0.846
+poor / off / poor | 1/3 | 488.186 | 1139.061 | -
+poor / poor / best | 0/3 | 464.319 | 1055.541 | -
+poor / poor / off | 0/3 | 1476.320 | 915.087 | -
+poor / poor / poor | 0/3 | 456.934 | 1139.442 | -
+
+Batch 8, prompt 512, output 64
+LoRA / Attention / Cache | pass/seeds | ms | peak MiB | paired speed ratio
+best / best / best | 0/3 | 899.031 | 1191.300 | -
+best / best / off | 0/3 | 2777.662 | 927.560 | -
+best / best / poor | 0/3 | 898.632 | 1064.281 | -
+best / joint_best / joint_best | 0/3 | 874.630 | 1139.444 | -
+best / joint_poor / joint_poor | 0/3 | 904.013 | 1064.281 | -
+best / off / best | 0/3 | 921.317 | 1244.300 | -
+best / off / off | 3/3 | 3760.378 | 962.857 | 0.848
+best / off / poor | 0/3 | 939.871 | 1118.281 | -
+best / poor / best | 0/3 | 893.137 | 1191.300 | -
+best / poor / off | 0/3 | 3056.037 | 927.560 | -
+best / poor / poor | 0/3 | 903.944 | 1064.281 | -
+off / best / best | 0/3 | 522.014 | 1045.667 | -
+off / best / off | 0/3 | 2212.824 | 908.685 | -
+off / best / poor | 0/3 | 505.241 | 1119.581 | -
+off / off / best | 2/3 | 569.602 | 1100.500 | -
+off / off / off | 3/3 | 3194.122 | 943.721 | 1.000
+off / off / poor | 2/3 | 572.686 | 1119.199 | -
+off / poor / best | 0/3 | 524.018 | 1045.667 | -
+off / poor / off | 0/3 | 2485.786 | 908.685 | -
+off / poor / poor | 0/3 | 507.741 | 1119.581 | -
+poor / best / best | 0/3 | 898.557 | 1064.281 | -
+poor / best / off | 0/3 | 2778.589 | 927.560 | -
+poor / best / poor | 0/3 | 879.861 | 1139.444 | -
+poor / joint_best / joint_best | 0/3 | 884.336 | 1139.444 | -
+poor / joint_poor / joint_poor | 0/3 | 904.585 | 1064.281 | -
+poor / off / best | 0/3 | 937.630 | 1118.281 | -
+poor / off / off | 3/3 | 3760.763 | 962.857 | 0.848
+poor / off / poor | 0/3 | 944.465 | 1139.062 | -
+poor / poor / best | 0/3 | 898.672 | 1064.281 | -
+poor / poor / off | 0/3 | 3055.233 | 927.560 | -
+poor / poor / poor | 0/3 | 885.427 | 1139.444 | -
+
+Batch 8, prompt 896, output 32
+LoRA / Attention / Cache | pass/seeds | ms | peak MiB | paired speed ratio
+best / best / best | 0/3 | 488.458 | 1340.223 | -
+best / best / off | 0/3 | 2369.380 | 1065.994 | -
+best / best / poor | 0/3 | 472.532 | 1431.723 | -
+best / joint_best / joint_best | 0/3 | 475.501 | 1431.723 | -
+best / joint_poor / joint_poor | 0/3 | 499.927 | 1340.223 | -
+best / off / best | 1/3 | 531.675 | 1689.723 | -
+best / off / off | 3/3 | 3672.498 | 1298.499 | 0.873
+best / off / poor | 1/3 | 532.888 | 1612.223 | -
+best / poor / best | 0/3 | 501.604 | 1340.223 | -
+best / poor / off | 0/3 | 2779.471 | 1065.994 | -
+best / poor / poor | 0/3 | 495.288 | 1431.723 | -
+off / best / best | 0/3 | 293.046 | 1322.598 | -
+off / best / off | 0/3 | 1910.381 | 1047.504 | -
+off / best / poor | 0/3 | 289.243 | 1413.098 | -
+off / off / best | 2/3 | 338.194 | 1669.098 | -
+off / off / off | 3/3 | 3206.485 | 1280.283 | 1.000
+off / off / poor | 2/3 | 346.849 | 1593.598 | -
+off / poor / best | 0/3 | 303.900 | 1322.598 | -
+off / poor / off | 0/3 | 2319.745 | 1047.504 | -
+off / poor / poor | 0/3 | 299.395 | 1413.098 | -
+poor / best / best | 0/3 | 481.987 | 1313.262 | -
+poor / best / off | 0/3 | 2369.612 | 1065.994 | -
+poor / best / poor | 0/3 | 484.027 | 1431.723 | -
+poor / joint_best / joint_best | 0/3 | 483.010 | 1431.723 | -
+poor / joint_poor / joint_poor | 0/3 | 500.172 | 1340.223 | -
+poor / off / best | 1/3 | 531.553 | 1662.262 | -
+poor / off / off | 3/3 | 3671.943 | 1298.499 | 0.874
+poor / off / poor | 1/3 | 539.807 | 1612.223 | -
+poor / poor / best | 0/3 | 498.589 | 1313.262 | -
+poor / poor / off | 0/3 | 2779.551 | 1065.994 | -
+poor / poor / poor | 0/3 | 492.196 | 1431.723 | -
+
+Batch 8, prompt 896, output 64
+LoRA / Attention / Cache | pass/seeds | ms | peak MiB | paired speed ratio
+best / best / best | 0/3 | 930.459 | 1340.225 | -
+best / best / off | 0/3 | 4823.995 | 1077.287 | -
+best / best / poor | 0/3 | 902.723 | 1431.725 | -
+best / joint_best / joint_best | 0/3 | 915.421 | 1431.725 | -
+best / joint_poor / joint_poor | 0/3 | 939.651 | 1340.225 | -
+best / off / best | 1/3 | 984.775 | 1689.725 | -
+best / off / off | 3/3 | 7535.409 | 1335.815 | 0.874
+best / off / poor | 1/3 | 989.235 | 1612.225 | -
+best / poor / best | 0/3 | 939.273 | 1340.225 | -
+best / poor / off | 0/3 | 5683.785 | 1077.287 | -
+best / poor / poor | 0/3 | 925.529 | 1431.725 | -
+off / best / best | 0/3 | 549.647 | 1309.151 | -
+off / best / off | 0/3 | 3896.783 | 1059.739 | -
+off / best / poor | 0/3 | 531.897 | 1413.100 | -
+off / off / best | 2/3 | 612.427 | 1654.604 | -
+off / off / off | 3/3 | 6580.168 | 1318.267 | 1.000
+off / off / poor | 2/3 | 623.194 | 1593.600 | -
+off / poor / best | 0/3 | 557.479 | 1309.151 | -
+off / poor / off | 0/3 | 4743.783 | 1059.739 | -
+off / poor / poor | 0/3 | 547.169 | 1413.100 | -
+poor / best / best | 0/3 | 925.667 | 1340.225 | -
+poor / best / off | 0/3 | 4824.812 | 1077.287 | -
+poor / best / poor | 0/3 | 913.548 | 1431.725 | -
+poor / joint_best / joint_best | 0/3 | 913.657 | 1431.725 | -
+poor / joint_poor / joint_poor | 0/3 | 944.527 | 1340.225 | -
+poor / off / best | 1/3 | 988.346 | 1689.725 | -
+poor / off / off | 3/3 | 7533.073 | 1335.815 | 0.874
+poor / off / poor | 1/3 | 998.139 | 1612.225 | -
+poor / poor / best | 0/3 | 939.482 | 1340.225 | -
+poor / poor / off | 0/3 | 5689.441 | 1077.287 | -
+poor / poor / poor | 0/3 | 925.783 | 1431.725 | -
+
+## Source and provenance
+Study: 20261112_full_matrix
+Source and dataset hashes: ../SNAPSHOT_SHA256.json; frozen plans include prior selection/trial hashes.
+Raw timings, numerical errors and dtype audits: calibration-*.json and confirmation-*.json.
+Natural-task outputs: quality-*.json. Training and checkpoint hashes: training.json.
+No test score is used to select configurations. Diagnostic results are retained.</pre>

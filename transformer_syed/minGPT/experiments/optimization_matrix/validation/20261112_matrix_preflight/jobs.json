@@ -1,0 +1,38 @@
+[
+  {
+    "task": "basketball",
+    "precision": "fp16",
+    "stage": "smoke",
+    "job": "2514816",
+    "dependency": null,
+    "array": null,
+    "run": "/home/sashazli/MQP/Transformer-Acceleration-MQP/transformer_syed/minGPT/experiments/optimization_matrix/validation/20261112_matrix_preflight/basketball_fp16"
+  },
+  {
+    "task": "basketball",
+    "precision": "fp32",
+    "stage": "smoke",
+    "job": "2514817",
+    "dependency": "2514816",
+    "array": null,
+    "run": "/home/sashazli/MQP/Transformer-Acceleration-MQP/transformer_syed/minGPT/experiments/optimization_matrix/validation/20261112_matrix_preflight/basketball_fp32"
+  },
+  {
+    "task": "spam",
+    "precision": "fp16",
+    "stage": "smoke",
+    "job": "2514818",
+    "dependency": "2514817",
+    "array": null,
+    "run": "/home/sashazli/MQP/Transformer-Acceleration-MQP/transformer_syed/minGPT/experiments/optimization_matrix/validation/20261112_matrix_preflight/spam_fp16"
+  },
+  {
+    "task": "spam",
+    "precision": "fp32",
+    "stage": "smoke",
+    "job": "2514819",
+    "dependency": "2514818",
+    "array": null,
+    "run": "/home/sashazli/MQP/Transformer-Acceleration-MQP/transformer_syed/minGPT/experiments/optimization_matrix/validation/20261112_matrix_preflight/spam_fp32"
+  }
+]

@@ -1,0 +1,254 @@
+[
+  {
+    "task": "basketball",
+    "precision": "fp16",
+    "stage": "smoke",
+    "job": "2514822",
+    "dependency": null,
+    "array": null,
+    "run": "/home/sashazli/MQP/Transformer-Acceleration-MQP/transformer_syed/minGPT/experiments/optimization_matrix/runs/20261112_full_matrix/basketball_fp16"
+  },
+  {
+    "task": "basketball",
+    "precision": "fp16",
+    "stage": "prepare",
+    "job": "2514823",
+    "dependency": "2514822",
+    "array": null,
+    "run": "/home/sashazli/MQP/Transformer-Acceleration-MQP/transformer_syed/minGPT/experiments/optimization_matrix/runs/20261112_full_matrix/basketball_fp16"
+  },
+  {
+    "task": "basketball",
+    "precision": "fp16",
+    "stage": "calibrate",
+    "job": "2514824",
+    "dependency": "2514823",
+    "array": "0-2%2",
+    "run": "/home/sashazli/MQP/Transformer-Acceleration-MQP/transformer_syed/minGPT/experiments/optimization_matrix/runs/20261112_full_matrix/basketball_fp16"
+  },
+  {
+    "task": "basketball",
+    "precision": "fp16",
+    "stage": "select",
+    "job": "2514825",
+    "dependency": "2514824",
+    "array": null,
+    "run": "/home/sashazli/MQP/Transformer-Acceleration-MQP/transformer_syed/minGPT/experiments/optimization_matrix/runs/20261112_full_matrix/basketball_fp16"
+  },
+  {
+    "task": "basketball",
+    "precision": "fp16",
+    "stage": "confirm",
+    "job": "2514826",
+    "dependency": "2514825",
+    "array": "0-8%2",
+    "run": "/home/sashazli/MQP/Transformer-Acceleration-MQP/transformer_syed/minGPT/experiments/optimization_matrix/runs/20261112_full_matrix/basketball_fp16"
+  },
+  {
+    "task": "basketball",
+    "precision": "fp16",
+    "stage": "quality",
+    "job": "2514827",
+    "dependency": "2514826",
+    "array": "0-2%2",
+    "run": "/home/sashazli/MQP/Transformer-Acceleration-MQP/transformer_syed/minGPT/experiments/optimization_matrix/runs/20261112_full_matrix/basketball_fp16"
+  },
+  {
+    "task": "basketball",
+    "precision": "fp16",
+    "stage": "report",
+    "job": "2514828",
+    "dependency": "2514827",
+    "array": null,
+    "run": "/home/sashazli/MQP/Transformer-Acceleration-MQP/transformer_syed/minGPT/experiments/optimization_matrix/runs/20261112_full_matrix/basketball_fp16"
+  },
+  {
+    "task": "basketball",
+    "precision": "fp32",
+    "stage": "smoke",
+    "job": "2514829",
+    "dependency": "2514828",
+    "array": null,
+    "run": "/home/sashazli/MQP/Transformer-Acceleration-MQP/transformer_syed/minGPT/experiments/optimization_matrix/runs/20261112_full_matrix/basketball_fp32"
+  },
+  {
+    "task": "basketball",
+    "precision": "fp32",
+    "stage": "prepare",
+    "job": "2514830",
+    "dependency": "2514829",
+    "array": null,
+    "run": "/home/sashazli/MQP/Transformer-Acceleration-MQP/transformer_syed/minGPT/experiments/optimization_matrix/runs/20261112_full_matrix/basketball_fp32"
+  },
+  {
+    "task": "basketball",
+    "precision": "fp32",
+    "stage": "calibrate",
+    "job": "2514831",
+    "dependency": "2514830",
+    "array": "0-2%2",
+    "run": "/home/sashazli/MQP/Transformer-Acceleration-MQP/transformer_syed/minGPT/experiments/optimization_matrix/runs/20261112_full_matrix/basketball_fp32"
+  },
+  {
+    "task": "basketball",
+    "precision": "fp32",
+    "stage": "select",
+    "job": "2514832",
+    "dependency": "2514831",
+    "array": null,
+    "run": "/home/sashazli/MQP/Transformer-Acceleration-MQP/transformer_syed/minGPT/experiments/optimization_matrix/runs/20261112_full_matrix/basketball_fp32"
+  },
+  {
+    "task": "basketball",
+    "precision": "fp32",
+    "stage": "confirm",
+    "job": "2514833",
+    "dependency": "2514832",
+    "array": "0-8%2",
+    "run": "/home/sashazli/MQP/Transformer-Acceleration-MQP/transformer_syed/minGPT/experiments/optimization_matrix/runs/20261112_full_matrix/basketball_fp32"
+  },
+  {
+    "task": "basketball",
+    "precision": "fp32",
+    "stage": "quality",
+    "job": "2514834",
+    "dependency": "2514833",
+    "array": "0-2%2",
+    "run": "/home/sashazli/MQP/Transformer-Acceleration-MQP/transformer_syed/minGPT/experiments/optimization_matrix/runs/20261112_full_matrix/basketball_fp32"
+  },
+  {
+    "task": "basketball",
+    "precision": "fp32",
+    "stage": "report",
+    "job": "2514835",
+    "dependency": "2514834",
+    "array": null,
+    "run": "/home/sashazli/MQP/Transformer-Acceleration-MQP/transformer_syed/minGPT/experiments/optimization_matrix/runs/20261112_full_matrix/basketball_fp32"
+  },
+  {
+    "task": "spam",
+    "precision": "fp16",
+    "stage": "smoke",
+    "job": "2514836",
+    "dependency": "2514835",
+    "array": null,
+    "run": "/home/sashazli/MQP/Transformer-Acceleration-MQP/transformer_syed/minGPT/experiments/optimization_matrix/runs/20261112_full_matrix/spam_fp16"
+  },
+  {
+    "task": "spam",
+    "precision": "fp16",
+    "stage": "prepare",
+    "job": "2514837",
+    "dependency": "2514836",
+    "array": null,
+    "run": "/home/sashazli/MQP/Transformer-Acceleration-MQP/transformer_syed/minGPT/experiments/optimization_matrix/runs/20261112_full_matrix/spam_fp16"
+  },
+  {
+    "task": "spam",
+    "precision": "fp16",
+    "stage": "calibrate",
+    "job": "2514838",
+    "dependency": "2514837",
+    "array": "0-2%2",
+    "run": "/home/sashazli/MQP/Transformer-Acceleration-MQP/transformer_syed/minGPT/experiments/optimization_matrix/runs/20261112_full_matrix/spam_fp16"
+  },
+  {
+    "task": "spam",
+    "precision": "fp16",
+    "stage": "select",
+    "job": "2514839",
+    "dependency": "2514838",
+    "array": null,
+    "run": "/home/sashazli/MQP/Transformer-Acceleration-MQP/transformer_syed/minGPT/experiments/optimization_matrix/runs/20261112_full_matrix/spam_fp16"
+  },
+  {
+    "task": "spam",
+    "precision": "fp16",
+    "stage": "confirm",
+    "job": "2514840",
+    "dependency": "2514839",
+    "array": "0-8%2",
+    "run": "/home/sashazli/MQP/Transformer-Acceleration-MQP/transformer_syed/minGPT/experiments/optimization_matrix/runs/20261112_full_matrix/spam_fp16"
+  },
+  {
+    "task": "spam",
+    "precision": "fp16",
+    "stage": "quality",
+    "job": "2514841",
+    "dependency": "2514840",
+    "array": "0-2%2",
+    "run": "/home/sashazli/MQP/Transformer-Acceleration-MQP/transformer_syed/minGPT/experiments/optimization_matrix/runs/20261112_full_matrix/spam_fp16"
+  },
+  {
+    "task": "spam",
+    "precision": "fp16",
+    "stage": "report",
+    "job": "2514842",
+    "dependency": "2514841",
+    "array": null,
+    "run": "/home/sashazli/MQP/Transformer-Acceleration-MQP/transformer_syed/minGPT/experiments/optimization_matrix/runs/20261112_full_matrix/spam_fp16"
+  },
+  {
+    "task": "spam",
+    "precision": "fp32",
+    "stage": "smoke",
+    "job": "2514843",
+    "dependency": "2514842",
+    "array": null,
+    "run": "/home/sashazli/MQP/Transformer-Acceleration-MQP/transformer_syed/minGPT/experiments/optimization_matrix/runs/20261112_full_matrix/spam_fp32"
+  },
+  {
+    "task": "spam",
+    "precision": "fp32",
+    "stage": "prepare",
+    "job": "2514844",
+    "dependency": "2514843",
+    "array": null,
+    "run": "/home/sashazli/MQP/Transformer-Acceleration-MQP/transformer_syed/minGPT/experiments/optimization_matrix/runs/20261112_full_matrix/spam_fp32"
+  },
+  {
+    "task": "spam",
+    "precision": "fp32",
+    "stage": "calibrate",
+    "job": "2514845",
+    "dependency": "2514844",
+    "array": "0-2%2",
+    "run": "/home/sashazli/MQP/Transformer-Acceleration-MQP/transformer_syed/minGPT/experiments/optimization_matrix/runs/20261112_full_matrix/spam_fp32"
+  },
+  {
+    "task": "spam",
+    "precision": "fp32",
+    "stage": "select",
+    "job": "2514846",
+    "dependency": "2514845",
+    "array": null,
+    "run": "/home/sashazli/MQP/Transformer-Acceleration-MQP/transformer_syed/minGPT/experiments/optimization_matrix/runs/20261112_full_matrix/spam_fp32"
+  },
+  {
+    "task": "spam",
+    "precision": "fp32",
+    "stage": "confirm",
+    "job": "2514847",
+    "dependency": "2514846",
+    "array": "0-8%2",
+    "run": "/home/sashazli/MQP/Transformer-Acceleration-MQP/transformer_syed/minGPT/experiments/optimization_matrix/runs/20261112_full_matrix/spam_fp32"
+  },
+  {
+    "task": "spam",
+    "precision": "fp32",
+    "stage": "quality",
+    "job": "2514848",
+    "dependency": "2514847",
+    "array": "0-2%2",
+    "run": "/home/sashazli/MQP/Transformer-Acceleration-MQP/transformer_syed/minGPT/experiments/optimization_matrix/runs/20261112_full_matrix/spam_fp32"
+  },
+  {
+    "task": "spam",
+    "precision": "fp32",
+    "stage": "report",
+    "job": "2514849",
+    "dependency": "2514848",
+    "array": null,
+    "run": "/home/sashazli/MQP/Transformer-Acceleration-MQP/transformer_syed/minGPT/experiments/optimization_matrix/runs/20261112_full_matrix/spam_fp32"
+  }
+]
