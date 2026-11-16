@@ -63,7 +63,7 @@ DEFAULT_HYPERPARAMETERS = {
     "clip_norm": 1.0,
     "rank": 4,
     "alpha": 8.0,
-    "inference_repeats": 3,
+    "inference_repeats": 1,
     "seed": 42,
     "threads": 4,
     "lora": False,
@@ -83,6 +83,17 @@ def report_path_with_hyperparameters(path, args):
         return path
     suffix = "_" + "_".join(changed)
     return path.with_name(path.stem + suffix + path.suffix)
+
+
+def compact_report(report):
+    """Remove per-step and per-example records while retaining aggregate metrics."""
+    excluded = {"history", "memory_steps", "outputs"}
+    if isinstance(report, dict):
+        return {key: compact_report(value) for key, value in report.items()
+                if key not in excluded}
+    if isinstance(report, list):
+        return [compact_report(value) for value in report]
+    return report
 
 
 def synchronize(device):
@@ -186,7 +197,7 @@ def inference(model, tokenizer, rows, device, new_tokens, use_cache, repeats):
     }
 
 
-def train(model, data, device, steps, batch_size, learning_rate, seed, clip_norm):
+def train(model, data, validation_data, device, steps, batch_size, learning_rate, seed, clip_norm):
     optimizer = torch.optim.AdamW(
         [parameter for parameter in model.parameters() if parameter.requires_grad],
         lr=learning_rate,
@@ -224,8 +235,10 @@ def train(model, data, device, steps, batch_size, learning_rate, seed, clip_norm
             "memory": memory_snapshot(device),
         })
         if step == 1 or step % progress_interval == 0 or step == steps:
+            validation_loss = evaluate_loss(model, validation_data, device)
+            history[-1]["validation_loss"] = validation_loss
             print(f"Training step {step}/{steps}: loss={float(loss):.4f}, "
-                  f"step_time={elapsed:.2f}s", flush=True)
+                  f"validation_loss={validation_loss:.4f}, step_time={elapsed:.2f}s", flush=True)
     return {
         "steps": steps,
         "batch_size": batch_size,
@@ -243,6 +256,7 @@ def train(model, data, device, steps, batch_size, learning_rate, seed, clip_norm
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--train", default="experiments/sports/train.jsonl")
+    parser.add_argument("--validation", default="experiments/sports/validation.jsonl")
     parser.add_argument("--test", default="experiments/sports/test.jsonl")
     parser.add_argument("--output", type=Path, default=Path("experiments/multi_paradigm/results/report.json"))
     parser.add_argument("--device", default="cuda")
@@ -255,7 +269,7 @@ def main():
     parser.add_argument("--clip-norm", type=float, default=1.0)
     parser.add_argument("--rank", type=int, default=4)
     parser.add_argument("--alpha", type=float, default=8.0)
-    parser.add_argument("--inference-repeats", type=int, default=3)
+    parser.add_argument("--inference-repeats", type=int, default=1)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--threads", type=int, default=4)
     parser.add_argument("--lora", action="store_true", help="Train only LoRA adapter weights")
@@ -263,6 +277,8 @@ def main():
                         help="Use the KV cache during inference")
     parser.add_argument("--flash", "--flash-attention", dest="flash", action="store_true",
                         help="Force the CUDA FlashAttention backend")
+    parser.add_argument("--no-report", action="store_true",
+                        help="Do not write a report file; print a compact result for a search runner")
     args = parser.parse_args()
 
     if min(args.steps, args.batch_size, args.length, args.new_tokens,
@@ -275,17 +291,27 @@ def main():
         parser.error("CUDA is unavailable; use --device cpu")
     if device.type == "cpu" and args.dtype != "float32":
         parser.error("CPU runs require --dtype float32")
+    if args.flash and args.dtype == "float32" and device.type != "cuda":
+        parser.error("FP32 custom flash attention requires CUDA")
     if args.flash and device.type != "cuda":
         parser.error("--flash requires a CUDA device")
-    if args.flash and args.dtype == "float32":
-        parser.error("--flash requires --dtype float16 or bfloat16")
 
-    train_path, test_path = resolve_path(args.train), resolve_path(args.test)
+    train_path = resolve_path(args.train)
+    validation_path = resolve_path(args.validation)
+    test_path = resolve_path(args.test)
     output = args.output if args.output.is_absolute() else ROOT / args.output
     output = report_path_with_hyperparameters(output, args)
-    train_rows, test_rows = load_rows(train_path), load_rows(test_path)
-    if {row["question"] for row in train_rows} & {row["question"] for row in test_rows}:
-        parser.error("training and test questions must not overlap")
+    train_rows = load_rows(train_path)
+    validation_rows = load_rows(validation_path)
+    test_rows = load_rows(test_path)
+    question_sets = {
+        "train": {row["question"] for row in train_rows},
+        "validation": {row["question"] for row in validation_rows},
+        "test": {row["question"] for row in test_rows},
+    }
+    for first, second in (("train", "validation"), ("train", "test"), ("validation", "test")):
+        if question_sets[first] & question_sets[second]:
+            parser.error(f"{first} and {second} questions must not overlap")
     random.seed(args.seed)
     torch.manual_seed(args.seed)
     torch.set_num_threads(args.threads)
@@ -294,16 +320,26 @@ def main():
 
     tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
     train_data = encode(train_rows, tokenizer, args.length)
+    validation_data = encode(validation_rows, tokenizer, args.length)
     test_data = encode(test_rows, tokenizer, args.length)
     model = GPT.from_pretrained("gpt2").to(dtype=getattr(torch, args.dtype))
     if args.lora:
         model.enable_lora(args.rank, args.alpha)
-    model.set_attention_backend("flash" if args.flash else "eager")
+    attention_backend = (
+        "tiled_fp32" if args.flash and args.dtype == "float32"
+        else "flash" if args.flash
+        else "eager"
+    )
+    model.set_attention_backend(attention_backend)
+    if attention_backend == "tiled_fp32":
+        for block in model.transformer.h:
+            block.attn.attn_dropout.p = 0.0
     model.to(device)
 
     report = {
         "complete": False,
-        "config": {**vars(args), "output": str(output), "train": str(train_path), "test": str(test_path)},
+        "config": {**vars(args), "output": str(output), "train": str(train_path),
+                   "validation": str(validation_path), "test": str(test_path)},
         "environment": {
             "python": platform.python_version(),
             "torch": str(torch.__version__),
@@ -311,10 +347,13 @@ def main():
             "gpu": torch.cuda.get_device_name(device) if device.type == "cuda" else None,
         },
         "enhancements": {"lora": args.lora, "kvcache": args.kvcache, "flash_attention": args.flash},
+        "attention_backend": attention_backend,
         "data": {
             "train_examples": len(train_rows),
+            "validation_examples": len(validation_rows),
             "test_examples": len(test_rows),
             "train_sha256": hashlib.sha256(train_path.read_bytes()).hexdigest(),
+            "validation_sha256": hashlib.sha256(validation_path.read_bytes()).hexdigest(),
             "test_sha256": hashlib.sha256(test_path.read_bytes()).hexdigest(),
         },
         "parameters": parameter_counts(model),
@@ -324,16 +363,24 @@ def main():
     output.parent.mkdir(parents=True, exist_ok=True)
 
     def save():
-        output.write_text(json.dumps(report, indent=2))
+        if not args.no_report:
+            output.write_text(json.dumps(report, indent=2))
 
+    report["training"]["initial_validation_loss"] = evaluate_loss(model, validation_data, device)
     report["training"]["initial_test_loss"] = evaluate_loss(model, test_data, device)
     print("Training is running...", flush=True)
     report["training"].update(train(
-        model, train_data, device, args.steps, args.batch_size, args.lr, args.seed, args.clip_norm
+        model, train_data, validation_data, device, args.steps, args.batch_size,
+        args.lr, args.seed, args.clip_norm
     ))
+    report["training"]["final_validation_loss"] = evaluate_loss(model, validation_data, device)
     report["training"]["final_test_loss"] = evaluate_loss(model, test_data, device)
     save()
     print("Inference is running...", flush=True)
+    report["validation_inference"] = inference(
+        model, tokenizer, validation_rows, device, args.new_tokens,
+        args.kvcache, args.inference_repeats
+    )
     report["inference"] = inference(
         model, tokenizer, test_rows, device, args.new_tokens, args.kvcache, args.inference_repeats
     )
@@ -343,7 +390,10 @@ def main():
     }
     report["complete"] = True
     save()
-    print(f"Saved {output}")
+    if args.no_report:
+        print("PARAMETER_SEARCH_RESULT=" + json.dumps(compact_report(report)), flush=True)
+    else:
+        print(f"Saved {output}")
 
 
 if __name__ == "__main__":
